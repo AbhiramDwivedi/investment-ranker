@@ -53,6 +53,8 @@
   .masthead h1 { font-size: 26px; font-weight: 750; letter-spacing: -0.01em; margin: 0; }
   .masthead h1 span { color: var(--accent); }
   .issue { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-2); font-weight: 600; }
+  .methodlink { color: var(--accent); text-decoration: none; }
+  .methodlink:hover { text-decoration: underline; }
   .banner { margin-top: 16px; border: 1px solid color-mix(in srgb, var(--warn) 50%, var(--surface));
     background: color-mix(in srgb, var(--warn) 10%, var(--surface)); border-radius: 8px; padding: 12px 16px;
     font-size: 13.5px; }
@@ -184,7 +186,8 @@
 <div class="wrap">
   <header class="masthead">
     <h1>S&amp;P 1500 <span>/ Ranker</span></h1>
-    <div class="issue">Updated Friday, Aug. 14, 2026, after the close · refreshed every weekday evening</div>
+    <div class="issue">Updated Friday, Aug. 14, 2026, after the close · refreshed every weekday evening
+      · <a class="methodlink" href="approach.html">How this works</a></div>
   </header>
 
   <!--prose:banner--><div class="banner">

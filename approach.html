@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cheap Against Itself</title>
+<meta name="description" content="The method behind the S&P 1500 Ranker: how a stock is judged cheap against its own ten-year valuation history, what the backtests found, and what the screen cannot see.">
+<link rel="canonical" href="https://abhiramdwivedi.github.io/investment-ranker/approach.html">
+<meta property="og:title" content="Cheap Against Itself — method note">
+<meta property="og:description" content="One rule decides what gets looked at. Here is the rule, the evidence for and against it, and its known limits.">
+<meta property="og:type" content="article">
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --baseline: #c3c2b7; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --accent-soft: #cde2fb;
+    --machine: #1c5cab; --judge: #b5462b; --warn: #fab219;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+      --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+      --accent: #6da7ec; --accent-soft: #184f95;
+      --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+    --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+    --accent: #6da7ec; --accent-soft: #184f95;
+    --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--page); color: var(--ink); margin: 0; line-height: 1.6;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 16px; }
+  .wrap { max-width: 78ch; margin: 0 auto; padding: 28px 24px 72px; }
+  .masthead { display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+    flex-wrap: wrap; border-bottom: 2px solid var(--ink); padding-bottom: 14px; }
+  .masthead .home { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    font-weight: 650; color: var(--accent); text-decoration: none; }
+  .masthead .home:hover { text-decoration: underline; }
+  h1 { font-size: 30px; font-weight: 750; letter-spacing: -0.015em; margin: 26px 0 0; }
+  .standfirst { font-size: 17px; color: var(--ink-2); margin: 10px 0 0; }
+  .kicker { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); font-weight: 650; margin: 0; }
+  h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; margin: 40px 0 0;
+    padding-top: 14px; border-top: 1px solid var(--grid); }
+  h3 { font-size: 15.5px; font-weight: 700; margin: 24px 0 0; }
+  p { margin: 12px 0 0; }
+  ul { margin: 12px 0 0; padding-left: 20px; }
+  li { margin: 7px 0; }
+  a { color: var(--accent); }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.88em;
+    background: color-mix(in srgb, var(--muted) 14%, var(--surface)); padding: 1px 5px; border-radius: 4px; }
+  .lede { font-size: 17px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 14px;
+    font-variant-numeric: tabular-nums; }
+  caption { caption-side: bottom; text-align: left; font-size: 12px; color: var(--muted);
+    margin-top: 8px; line-height: 1.5; }
+  th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--muted); font-weight: 650; padding: 0 10px 7px 0; border-bottom: 1px solid var(--baseline); }
+  td { padding: 8px 10px 8px 0; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  td.n, th.n { text-align: right; padding-right: 0; }
+  tr.hi td { background: color-mix(in srgb, var(--accent) 8%, transparent); font-weight: 600; }
+  .scroll { overflow-x: auto; }
+  .rule { background: var(--surface); border: 1px solid var(--ring); border-radius: 8px;
+    padding: 16px 18px; margin-top: 16px; }
+  .rule ul { list-style: none; padding-left: 0; }
+  .rule li { display: grid; grid-template-columns: 13ch 1fr; gap: 12px; align-items: baseline;
+    padding: 7px 0; border-bottom: 1px solid var(--grid); font-size: 14.5px; }
+  .rule li:last-child { border-bottom: 0; }
+  .rule li b { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12.5px; color: var(--machine); font-weight: 650; }
+  .steps { counter-reset: s; list-style: none; padding-left: 0; }
+  .steps li { counter-increment: s; position: relative; padding-left: 34px; margin: 14px 0; font-size: 15px; }
+  .steps li::before { content: counter(s); position: absolute; left: 0; top: 1px; width: 23px; height: 23px;
+    border-radius: 50%; background: var(--accent-soft); color: var(--machine); font-size: 12px;
+    font-weight: 700; display: grid; place-items: center; }
+  .steps li.j::before { background: color-mix(in srgb, var(--judge) 20%, var(--surface)); color: var(--judge); }
+  .steps b { font-weight: 700; }
+  .steps .f { color: var(--muted); font-size: 12.5px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .verdict { border-left: 3px solid var(--accent); padding: 2px 0 2px 16px; margin-top: 18px;
+    font-size: 16px; }
+  .note { background: color-mix(in srgb, var(--warn) 10%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--warn) 45%, var(--surface));
+    border-radius: 8px; padding: 12px 16px; margin-top: 18px; font-size: 14.5px; }
+  footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--grid);
+    font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="kicker">Method note · S&amp;P 1500 Ranker</p>
+    <a class="home" href="./">← The Ranker</a>
+  </header>
+
+  <h1>Cheap against itself</h1>
+  <p class="standfirst">One rule decides what gets looked at. This is the rule, the evidence for and
+    against it, and the things it cannot see.</p>
+
+  <p class="lede">A stock is interesting when it is cheap against <i>its own</i> ten-year valuation
+    history — not down from its high, not cheap against its peers. The arithmetic runs every weekday
+    night on every S&amp;P 1500 name with an SEC filing history, with no language model anywhere in the
+    loop. The one question arithmetic cannot answer — <b>is the cheapness explained?</b> — is the only
+    thing a written memo is for, and the only thing a person decides.</p>
+
+  <p>The premise has been tested against a decade of the index, and the honest summary is on the
+    unflattering side: <b>alone, it has no edge.</b> Two valuation bases agreeing, and a market that is
+    itself on sale, do carry information. The evidence section below shows the numbers that say so.</p>
+
+  <h2>What "cheap against itself" means</h2>
+
+  <p>For every name the engine rebuilds ten years of daily P/E, P/S and P/FCF — P/E and P/B for
+    financials — <b>point-in-time</b>: each day's multiple uses the trailing-twelve-month figure as it
+    was known that day, on the filing date, against the split-adjusted close. Today's multiple is then
+    ranked inside that history. The 2nd percentile means the stock is cheaper than it was 98% of the
+    past decade.</p>
+
+  <p>Three legs are read together, never one: the median of three when at least two agree, the higher
+    of two when both agree, and a single leg is flagged as thin. One line can lie. Three rarely lie the
+    same way — and the backtest below is the reason that rule exists.</p>
+
+  <p>Five checks stop the percentile from lying. Trailing GAAP earnings are tested against consensus
+    before they are trusted, so one-time gains cannot manufacture a cheap P/E. Cheapness is labelled
+    <b>de-rated</b> (the price fell) or <b>earned</b> (earnings jumped while the price held) — both can
+    be good buys, but only the first is on sale. A fair band is built from the stock's own 20th-percentile
+    multiple, with a caveat when that floor is itself rich, because a growth-era floor is not a floor. A
+    reverse-DCF asks what ten-year earnings growth the current price needs. And a replay asks whether
+    buying <i>this</i> name at its own lows has ever actually paid.</p>
+
+  <h2>How a night runs</h2>
+
+  <ol class="steps">
+    <li><b>Data.</b> <span class="f">fetch_facts.py · fetch_estimates.py</span><br>
+      SEC EDGAR company facts for every S&amp;P 1500 name — 10 to 15 years of quarterly earnings,
+      revenue, cash flow, share count, debt and cash, each point stamped with its filing date — cached
+      and refreshed on a rolling budget. Prices from Yahoo. Free, and about 15 minutes.</li>
+    <li><b>Signal engine.</b> <span class="f">signals.evaluate() · universe_own_history.py</span><br>
+      One function per name: valuation, quality gate, economics, fundamental momentum, trend and events,
+      sentiment, market window. Filings only for the roughly 1,420 index names, with analyst estimates
+      layered on for the smaller covered set. No network, and the thresholds live in the code, changing
+      only by a dated commit.</li>
+    <li><b>Scores and flags.</b><br>
+      A 0-100 order of reading, a candidate rule that means "worth a memo," a tier that says act or wait,
+      a three-family sell test, and short-horizon flags that are shown but never sized like a position.</li>
+    <li><b>The decision box.</b> <span class="f">advisor.py</span><br>
+      Deterministic. It annotates each candidate, says whether the machine agrees with every entry price
+      a person has already set, and lists the next action. It downgrades; it never upgrades.</li>
+    <li class="j"><b>The memo.</b><br>
+      One per night, two pages, judgment only. It pastes the engine's numbers verbatim, sources what
+      changed from filings, and answers whether the impairment is real. It never recomputes, never
+      projects and never discounts.</li>
+    <li class="j"><b>The analyst.</b><br>
+      Reads the memo and decides whether to believe it. Only a person sets an entry price. Automation
+      never upgrades, never arms and never trades.</li>
+  </ol>
+
+  <h2>What the engine measures</h2>
+
+  <p>Seven families per name. Valuation is the heart — and the evidence cut its weight in half.</p>
+
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Family</th><th class="n">Points</th><th>What it asks</th></tr></thead>
+    <tbody>
+      <tr><td><b>Valuation</b></td><td class="n">20 × agreement</td><td>Where the multiple sits in its own
+        ten-year distribution, scaled 1.0 / 0.75 / 0.25 for three, two or one agreeing bases. It carried
+        40 points until the backtest showed the <i>level</i> of cheapness carried no information and
+        <i>agreement</i> did.</td></tr>
+      <tr><td><b>Quality gate</b></td><td class="n">25</td><td>Pass, watch or fail. Hard fails: burning cash
+        at a loss, net debt over 4× EBITDA, share count up 25% in three years. Soft flags cover weak cash
+        conversion, margin erosion and stock compensation. Unknowns are listed, never counted.</td></tr>
+      <tr><td><b>Economics</b></td><td class="n">context</td><td>Return on invested capital, and the growth
+        rate the business can fund without outside capital. When the price needs more growth than the
+        business can fund, that is a penalty.</td></tr>
+      <tr><td><b>Fundamental momentum</b></td><td class="n">25</td><td>Revenue growth and whether it
+        accelerated, forward-earnings revisions over 30 and 90 days, analysts raising minus cutting. Names
+        with no estimates read <i>unknown</i>, never zero.</td></tr>
+      <tr><td><b>Trend and events</b></td><td class="n">10</td><td>Drawdown, distance to the 50- and 200-day
+        averages, relative strength against the index and the sector, next earnings date, new 13D
+        filings.</td></tr>
+      <tr><td><b>Sentiment</b></td><td class="n">context</td><td>Short interest, insider open-market buying,
+        target upside. Shown, never scored.</td></tr>
+      <tr><td><b>Market window</b></td><td class="n">15</td><td>Open when the index closes below the average
+        of its last 200 closes. The same 15 points for every name at once — the regime, not the
+        stock.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>The candidate rule</h2>
+
+  <p>A candidate means "worth a memo." It is never a buy.</p>
+
+  <div class="rule">
+    <ul>
+      <li><b>cheap_pct ≤ 30</b><span>Blended own-history percentile, ten years.</span></li>
+      <li><b>bases ≥ 2</b><span>Two of the three legs agree. One leg alone was a trap in the data.</span></li>
+      <li><b>gate ≠ fail</b><span>No hard fail, and fewer than three soft flags.</span></li>
+      <li><b>rev_90d ≥ −10%</b><span>The street has not cut next year's earnings by a tenth. Unknown never
+        blocks — the record says the check did not run.</span></li>
+      <li><b>¬ cascade</b><span>Not a pile-on of analyst cuts. A one-year buyer loses nothing by waiting
+        for the cuts to stop.</span></li>
+    </ul>
+  </div>
+
+  <p>Blocked names are shown with the reason, never hidden. The score orders the memo queue; it decides
+    nothing on its own.</p>
+
+  <h2>The premise, tested</h2>
+
+  <p>Two backtests on the S&amp;P 500 as it actually stood at the time, 2016-2026, both pre-registered:
+    the rules were written down before the results were seen, and changed only afterwards, only by a
+    person, and only going forward.</p>
+
+  <h3>Track C — the rule alone</h3>
+
+  <p>Every index member with a usable multiple history, scored weekly by the engine's own code,
+    point-in-time. An entry is the first week the blended percentile falls to 30 or below after eight
+    weeks outside. The figures are median excess return over the index; the share that beat it is in
+    brackets.</p>
+
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Sample</th><th class="n">n</th><th class="n">12 m</th><th class="n">36 m</th></tr></thead>
+    <tbody>
+      <tr><td>Control — every member-week</td><td class="n">223,569</td><td class="n">−4.5% (0.43)</td><td class="n">−16.4%</td></tr>
+      <tr><td>Entries into the cheap zone</td><td class="n">2,425</td><td class="n">−3.2% (0.45)</td><td class="n">−15.9%</td></tr>
+      <tr><td>Mirror — entries into the <i>expensive</i> zone</td><td class="n">2,436</td><td class="n">−4.4% (0.42)</td><td class="n">−13.9%</td></tr>
+      <tr class="hi"><td>… of which two or more bases agree</td><td class="n">787</td><td class="n">−1.8% (0.48)</td><td class="n">−7.5%</td></tr>
+      <tr><td>… single basis</td><td class="n">1,638</td><td class="n">−3.8% (0.44)</td><td class="n">−19.8%</td></tr>
+      <tr class="hi"><td>… index below its 200-day at entry</td><td class="n">925</td><td class="n">+0.5% (0.51)</td><td class="n">−15.7%</td></tr>
+      <tr><td>… index above it</td><td class="n">1,500</td><td class="n">−5.2% (0.42)</td><td class="n">−15.9%</td></tr>
+    </tbody>
+    <caption>Mind the bar: the median member lost 16 points to the index over three years. A cap-weighted
+      index led by a handful of names is hard to beat with anything that is not those names. The control
+      absorbs that — and the rule still adds nothing to it.</caption>
+  </table>
+  </div>
+
+  <p class="verdict"><b>The rule did what a random member did, at every horizon</b> — and the expensive-zone
+    mirror did the same. The level of own-history cheapness was not information about forward relative
+    return in this decade.</p>
+
+  <p><b>What did carry information:</b> two bases agreeing, worth 12 points at three years; the market
+    being below its 200-day average at entry, the only group positive at 12 months and with half the risk
+    of a 30% drawdown; and falling knives, the state the engine used to <i>block</i>, which turned out to
+    be the best entry state while waiting for the bounce was the worst.</p>
+
+  <p><b>What did not:</b> de-rated versus earned cheapness made no difference, negative cash flow at entry
+    was no worse, and 2021-23 entries were the worst of the decade — the regime the index is arguably
+    still in.</p>
+
+  <h3>Track D — the buy window</h3>
+
+  <p>Six window definitions and a mechanical decision rule, all written down before running: a window
+    ships if enough entries fall inside it across three or more years with a wide enough gap, and the
+    incumbent is kept unless a challenger beats it by two points on a leave-one-year-out minimum.</p>
+
+  <p>Five of the six cleared the bar. The best challenger — the index below its 200-day <i>and</i> cheap
+    breadth above 25% — beat the incumbent by 1.3 points, under the 2-point bar, so the rule returned
+    <b>keep the incumbent</b>. The window is the index below its 200-day average, unchanged. The code
+    applied that verdict, not the reader.</p>
+
+  <p><b>Mostly selection, not timing.</b> The control moves a point or two with the window; the entries
+    move six to nine. Buy the index inside the window, yes. Buy the median member, no. Buy a two-basis
+    cheap name, better than outside — and that third trade is the only one this engine makes.</p>
+
+  <div class="note"><b>One week is thick.</b> 65 of the 840 entries land on a single date, the first row
+    of the grid, where a name already inside the zone when its history first qualifies gets counted as an
+    entry. Drop them — a check specified after the result, and labelled as such — and the in-window medians
+    roughly halve and every leave-one-year-out minimum turns negative, though the in-versus-out gap
+    survives and the rule still says keep the incumbent. Read the pre-registered table as the record and
+    that check as the honest magnitude.</div>
+
+  <p>Track D is in-sample by construction and perhaps four or five real episodes wearing 840 entries'
+    clothing. It gives the buy window <b>no new historical claim</b>; the window survived only because no
+    challenger cleared a deliberately high bar. Its forward record starts Aug. 16, 2026.</p>
+
+  <h2>The whole index, and where the estimates are</h2>
+
+  <p>The engine used to screen 68 names that had already been chosen — a filter on what was already in
+    view. Now one function scores every S&amp;P 1500 name with a filing history from filings and prices
+    alone, and the smaller covered set is simply where analyst estimates, sentiment and event data get
+    layered on. Same weights, same four gate words, whether a name is one of 68 or one of 1,423.</p>
+
+  <p>Everything estimate-shaped for an uncovered name reads <b>unknown</b>, not zero in disguise. It adds
+    nothing to the score, and it cannot block candidacy either: a rule that treated "we did not look" as
+    "it failed" would exclude every name outside coverage. A filings-only score can reach 6 of the 25
+    momentum points, not 25 — the honest direction for a thinner record. Do not compare a filings-only
+    score with a covered one as though they were measured the same way.</p>
+
+  <p>Each night the top candidates outside coverage are written to a probation list, so the next run
+    fetches their data and the full engine can reach them. Probation moves data, never a label.</p>
+
+  <h2>The memo</h2>
+
+  <p>The stock is at the Nth percentile of its own ten-year valuation. Is that because the business is
+    impaired — the de-rating deserved, the cheap multiple the new normal — or because it is out of favour,
+    the franchise intact and the multiple due to mean-revert? That is the only question the memo exists to
+    answer.</p>
+
+  <p>Two pages: what changed, dated and sourced from filings and transcripts; whether the impairment is
+    cyclical or structural, item by item; a verdict; and three to five <b>kill criteria</b> — metric,
+    threshold, and the report it gets checked against. Entry, if any, is chosen from the machine's own
+    band, never invented. No unsourced numbers.</p>
+
+  <h2>What it cannot see</h2>
+
+  <ul>
+    <li><b>GAAP noise.</b> Trailing earnings are GAAP; write-offs and mark-to-market swings distort P/E.
+      The blend and the flags mitigate this. They do not cure it.</li>
+    <li><b>Foreign filers have no EDGAR series</b> and get no own-history percentile at all. That costs the
+      index scan about 156 names, and every breadth number on the Ranker is biased a little by their
+      absence.</li>
+    <li><b>Own-history on a de-rated growth stock is honest but incomplete.</b> The 10th percentile of a 37×
+      median is a fact; whether 37× was ever sustainable is the memo's question.</li>
+    <li><b>Cyclicals on trough earnings</b> look dear on P/E and cheap on P/S. The blend handles some of it;
+      the memo handles the rest.</li>
+    <li><b>The per-name replay is survivors,</b> one rate regime and a handful of episodes. Use it as the
+      question "what is different this time?" — never as a probability.</li>
+    <li><b>The premise is backtested, and alone it failed.</b> The rules that failure motivated carry no
+      historical claim and are evaluated forward from Aug. 16, 2026.</li>
+    <li><b>The stress leg of the window is untested</b> — the replay cache holds no point-in-time volatility
+      or credit data — and is the next thing to pre-register.</li>
+  </ul>
+
+  <h2>What never happens</h2>
+
+  <ul>
+    <li><b>No trades, ever.</b> The tool proposes; a person executes.</li>
+    <li><b>No upgrade by automation.</b> Runs may downgrade or raise an alert. Anything toward a buy needs a
+      human-reviewed memo on file.</li>
+    <li><b>No "buy" label</b> without that memo. A candidate is a memo-queue suggestion.</li>
+    <li><b>The decision layer is deterministic.</b> A language model narrates it and may disagree in the
+      log. It never overrides it.</li>
+    <li><b>"No buys today" is the expected output most days.</b> Activity is not manufactured.</li>
+    <li><b>Scoring changes on a human decision only</b> — pre-registered before the results are seen,
+      forward-only, no historical claim. The model never adjusts a rule in the same session that reads the
+      numbers.</li>
+    <li><b>Every market number carries a source date.</b> Stale data publishes with a banner.</li>
+    <li><b>This page and the Ranker carry zero personal data.</b> No holdings, no positions, no amounts.</li>
+  </ul>
+
+  <footer>
+    <p>Engine as of Aug. 16, 2026. This is a personal research tool, not licensed financial advice, and
+      nothing here is a recommendation to buy or sell any security. The code is the truth; this page is
+      what a reader argues with.</p>
+    <p><a href="./">← Back to the Ranker</a></p>
+  </footer>
+
+</div>
+</body>
+</html>

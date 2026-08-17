@@ -143,6 +143,19 @@
     padding: 0 4px; margin: -6px -8px 0 12px; }
   #why .close:hover { color: var(--ink); }
 
+  /* ---- per-ticker charts inside dialog#why (drawComposition / drawOwnHistory below) ---- */
+  #why .comp { margin: 10px 0 2px; }
+  #why .comp svg, #why .oh svg { display: block; width: 100%; }
+  #why .comp text, #why .oh text { fill: var(--muted); font-family: inherit; font-variant-numeric: tabular-nums; }
+  #why .complegend { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 6px 0 0; font-size: 11.5px; color: var(--ink-2); }
+  #why .complegend .row { display: flex; align-items: center; gap: 5px; cursor: default; }
+  #why .complegend .sw { display: inline-block; width: 9px; height: 9px; border-radius: 2px; flex: none; }
+  #why .complegend b { color: var(--ink); font-variant-numeric: tabular-nums; }
+  #why .compnote { font-size: 12.5px; color: var(--ink-2); margin: 8px 0 0; }
+  #why .oh { margin: 12px 0 0; border-top: 1px solid var(--baseline); padding-top: 10px; }
+  #why .oh .cap { font-size: 12.5px; color: var(--ink-2); margin: 6px 0 0; }
+  #why .oh .absent { font-size: 12.5px; color: var(--muted); margin: 0; }
+
   /* ---- charts (data: scripts/render_charts.py; drawing: drawCharts() below) ---- */
   .charts { display: grid; gap: 14px; margin-top: 14px;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
@@ -662,6 +675,49 @@ function onResize(host, draw) {
   CHART_OBS.push(ro);
 }
 
+/* ---- small helpers shared by the two per-ticker dialog charts ---- */
+// Resolve a `--token` custom property to its literal value (e.g. "#184f95"),
+// respecting whichever :root rule is currently active (light/dark/[data-theme]).
+function cssVar(name) {
+  // accepts either a bare custom-property name ("--f4") or a fill value
+  // ("var(--f4)") — segment colors are stored as the latter, since that is
+  // what gets handed straight to sv()'s fill attribute.
+  const m = /^var\((--[\w-]+)\)$/.exec(name);
+  return getComputedStyle(document.documentElement).getPropertyValue(m ? m[1] : name).trim();
+}
+function hexToRgb(h) {
+  if (h[0] === "#") {
+    const s = h.length === 4 ? h.slice(1).split("").map(c => c + c) : [h.slice(1, 3), h.slice(3, 5), h.slice(5, 7)];
+    return s.map(c => parseInt(c, 16));
+  }
+  return (h.match(/[\d.]+/g) || [0, 0, 0]).slice(0, 3).map(Number);
+}
+function relLuminance([r, g, b]) {
+  const f = c => { c /= 255; return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); };
+  const [R, G, B] = [r, g, b].map(f);
+  return 0.2126 * R + 0.7152 * G + 0.0722 * B;
+}
+function contrastRatio(rgb1, rgb2) {
+  const l1 = relLuminance(rgb1) + 0.05, l2 = relLuminance(rgb2) + 0.05;
+  return l1 > l2 ? l1 / l2 : l2 / l1;
+}
+// Pick whichever of --ink / --surface reads better on top of a given fill
+// token (also a `--token` name), resolved live so it tracks the active theme —
+// this is how a label ever sits IN a segment without using a new color.
+function inkOrSurface(fillToken) {
+  const fill = hexToRgb(cssVar(fillToken));
+  const ink = hexToRgb(cssVar("--ink")), surface = hexToRgb(cssVar("--surface"));
+  return contrastRatio(fill, ink) >= contrastRatio(fill, surface) ? "var(--ink)" : "var(--surface)";
+}
+// text-anchor that keeps a label near x from clipping off the plot's edges.
+function edgeAnchor(x, lo, hi, pad) {
+  pad = pad === undefined ? 26 : pad;
+  if (x - lo < pad) return "start";
+  if (hi - x < pad) return "end";
+  return "middle";
+}
+function fmtPts(v) { return Number.isInteger(v) ? String(v) : v.toFixed(1); }
+
 function drawFunnel(f) {
   if (!f || !(f.stages || []).length) { document.getElementById("ch-funnel").hidden = true; return; }
   const host = document.getElementById("funnel"), max = f.stages[0].n || 1;
@@ -821,6 +877,211 @@ function drawWindow(w) {
     `<table><thead><tr><th>Year</th><th class="n">Weeks open</th><th class="n">Deepest</th></tr></thead><tbody>` +
     Object.keys(years).sort().map(yr => `<tr><td>${yr}</td><td class="n">${years[yr].open} of ${years[yr].n}</td>` +
       `<td class="n">${years[yr].lo.toFixed(1)}%</td></tr>`).join("") + `</tbody></table>`;
+}
+
+// ---- per-ticker: score composition ----------------------------------------
+// Reads r.co the same way showWhy's text lines always have; returns null when
+// there is nothing to draw (a few new listings carry no components yet).
+function scoreComponents(r) {
+  const co = r.co || {};
+  const segs = [], pens = [];
+  if (r.a === "trough-turn") {
+    if (co.depth_pct === undefined) return null;
+    segs.push({ key: "depth", label: "Depth below 5-year high", pts: 0.6 * co.depth_pct,
+      tip: `Depth-below-high rank: ${co.depth_pct.toFixed(1)} of 100, weighted ×0.6 = <b>${(0.6 * co.depth_pct).toFixed(1)}</b> points` });
+    segs.push({ key: "bounce", label: "Rebound off the low", pts: 0.25 * co.bounce_pct,
+      tip: `Rebound-off-low rank: ${co.bounce_pct.toFixed(1)} of 100, weighted ×0.25 = <b>${(0.25 * co.bounce_pct).toFixed(1)}</b> points` });
+    if (co.fundamentals_bonus) segs.push({ key: "fundamentals_bonus", label: "Filings confirm the turn", pts: co.fundamentals_bonus, bonus: true,
+      tip: `Filings confirm the turn (sales or margins improving): <b>+${co.fundamentals_bonus}</b> points` });
+  } else if (co.strength_pct !== undefined) {
+    segs.push({ key: "growth", label: "Sales-growth rank", pts: 0.5 * co.growth_pct,
+      tip: `Sales-growth rank${co.growth_default ? " (no usable filings yet — neutral 50 assumed)" : ""}: ${co.growth_pct.toFixed(1)} of 100, weighted ×0.5 = <b>${(0.5 * co.growth_pct).toFixed(1)}</b> points` });
+    segs.push({ key: "momentum", label: "Six-month price-strength rank", pts: 0.45 * co.strength_pct,
+      tip: `Six-month price-strength rank: ${co.strength_pct.toFixed(1)} of 100, weighted ×0.45 = <b>${(0.45 * co.strength_pct).toFixed(1)}</b> points` });
+    if (co.accel_bonus) segs.push({ key: "accel_bonus", label: "Sales growth accelerating", pts: co.accel_bonus, bonus: true,
+      tip: `Sales growth is accelerating: <b>+${co.accel_bonus}</b> points` });
+    if (co.spinoff_bonus) segs.push({ key: "spinoff_bonus", label: "Recent spin-off", pts: co.spinoff_bonus, bonus: true,
+      tip: `Recent spin-off (documented outperformance effect; size uncalibrated): <b>+${co.spinoff_bonus}</b> points` });
+    if (co.doubled_penalty) pens.push({ key: "doubled_penalty", label: "Already doubled — late-cycle risk", pts: Math.abs(co.doubled_penalty),
+      tip: `Already doubled over the trailing year — late-cycle risk: <b>−${Math.abs(co.doubled_penalty)}</b> points` });
+    if (co.streak_penalty) pens.push({ key: "streak_penalty", label: "3+ straight accelerating quarters", pts: Math.abs(co.streak_penalty),
+      tip: `Three or more straight quarters of acceleration — the November 2021 profile: <b>−${Math.abs(co.streak_penalty)}</b> points` });
+  } else {
+    return null;
+  }
+  return { segs, pens };
+}
+function compTakeaway(r, ordered, pens, gross) {
+  const net = r.sc;
+  if (r.dq) {
+    const g = ordered.find(s => s.key === "growth");
+    if (g) {
+      const share = g.pts / net;
+      const scale = share >= 0.6 ? "Most" : share >= 0.35 ? "About half" : "A meaningful part";
+      return `${scale} of this score is one sales-growth number — and that number is flagged below.`;
+    }
+  }
+  if (pens.length) {
+    const names = pens.map(p => p.label.toLowerCase()).join(" and ");
+    const penTotal = pens.reduce((s, p) => s + p.pts, 0);
+    return `Gross score reached ${gross.toFixed(1)}; ${fmtPts(penTotal)} points came back off for ${names}, netting ${net.toFixed(1)}.`;
+  }
+  if (r.a === "trough-turn") {
+    const depth = ordered.find(s => s.key === "depth"), bounce = ordered.find(s => s.key === "bounce");
+    if (depth && bounce) {
+      const total = depth.pts + bounce.pts;
+      if (depth.pts / total >= 0.62) return "Most of this score is how far the stock has fallen from its five-year high.";
+      if (bounce.pts / total >= 0.55) return "Most of this score is the sharpness of its rebound off the low.";
+      return "This score blends how far the stock fell with how sharply it has rebounded since.";
+    }
+  } else {
+    const g = ordered.find(s => s.key === "growth"), m = ordered.find(s => s.key === "momentum");
+    if (g && m) {
+      const total = g.pts + m.pts;
+      if (g.pts / total >= 0.58) return "Most of this score is sales growth outrunning the market, not price action.";
+      if (m.pts / total >= 0.58) return "Most of this score is recent price strength, not sales growth.";
+      return "This score blends sales growth with recent price strength in roughly equal parts.";
+    }
+  }
+  return "";
+}
+function drawComposition(r) {
+  const wrap = document.getElementById("why-comp-wrap");
+  const parsed = scoreComponents(r);
+  if (!parsed) { wrap.hidden = true; return; }
+  wrap.hidden = false;
+  const { segs, pens } = parsed;
+  const gross = segs.reduce((s, x) => s + x.pts, 0);
+  const penTotal = pens.reduce((s, x) => s + x.pts, 0);
+  const scaleMax = (gross + penTotal) || 1;
+  // widest positive segment reads darkest (--f4); bonuses are the narrow ones
+  // and land at the light end (--f1) — the opposite ramp direction from the
+  // funnel above, chosen so the two or three numbers that actually drive the
+  // score read strongest, not the bonuses.
+  const ordered = segs.slice().sort((a, b) => b.pts - a.pts);
+  const ramp = ["var(--f4)", "var(--f3)", "var(--f2)", "var(--f1)"];
+  ordered.forEach((s, i) => { s.color = ramp[Math.min(i, 3)]; });
+  if (r.dq) { const g = ordered.find(s => s.key === "growth"); if (g) g.color = "var(--warn)"; }
+  const host = document.getElementById("why-comp");
+  onResize(host, () => {
+    const W = Math.max(220, host.clientWidth), H = 64, barY = 20, barH = 34;
+    const m = { l: 2, r: 2 };
+    const iw = W - m.l - m.r;
+    host.innerHTML = "";
+    const svg = sv("svg", { viewBox: `0 0 ${W} ${H}`, height: H, role: "img", "aria-label":
+      `Score composition for ${r.t}: ${ordered.map(s => `${s.label} ${fmtPts(s.pts)} points`).join("; ")}` +
+      (pens.length ? `; minus ${pens.map(p => `${p.label} ${fmtPts(p.pts)} points`).join(", ")}` : "") +
+      `; net score ${r.sc.toFixed(1)}.` }, host);
+    const xAt = v => m.l + iw * (v / scaleMax);
+    let x = m.l;
+    const bars = [];
+    ordered.forEach(s => { const w = iw * (s.pts / scaleMax); bars.push({ ...s, x0: x, w, penalty: false }); x += w; });
+    pens.forEach(p => { const w = iw * (p.pts / scaleMax); bars.push({ ...p, x0: x, w, penalty: true }); x += w; });
+    bars.forEach(b => {
+      const rectAttrs = { x: b.x0 + 1, y: barY, width: Math.max(1, b.w - 2), height: barH, rx: 2 };
+      let rect;
+      if (b.penalty) {
+        rect = sv("rect", { ...rectAttrs, fill: "var(--surface)", stroke: "var(--muted)", "stroke-width": 1, "stroke-dasharray": "3 2" }, svg);
+      } else {
+        rect = sv("rect", { ...rectAttrs, fill: b.color }, svg);
+      }
+      rect.style.cursor = "default";
+      rect.addEventListener("mousemove", e => showTip(e, b.tip));
+      rect.addEventListener("mouseleave", hideTip);
+      if (b.w > 60) {
+        sv("text", { x: b.x0 + b.w / 2, y: barY + barH / 2 + 4, "text-anchor": "middle", "font-size": 12.5,
+          "font-weight": 650, fill: b.penalty ? "var(--muted)" : inkOrSurface(b.color) }, svg)
+          .textContent = (b.penalty ? "−" : "") + fmtPts(b.pts);
+      }
+    });
+    const tickX = xAt(r.sc);
+    sv("line", { x1: tickX, x2: tickX, y1: barY - 4, y2: barY + barH + 4, stroke: "var(--ink)", "stroke-width": 2 }, svg);
+    sv("text", { x: tickX, y: 10, "text-anchor": edgeAnchor(tickX, m.l, m.l + iw), "font-size": 12, "font-weight": 700,
+      fill: "var(--ink)" }, svg).textContent = r.sc.toFixed(1);
+  });
+  document.getElementById("why-comp-legend").innerHTML =
+    ordered.concat(pens).map(s => {
+      const isPen = pens.indexOf(s) >= 0;
+      const swStyle = isPen ? "background:var(--surface);border:1px dashed var(--muted)" : `background:${s.color}`;
+      return `<span class="row" data-tip="${esc(s.tip)}"><span class="sw" style="${swStyle}"></span>${esc(s.label)} <b>${isPen ? "−" : "+"}${fmtPts(s.pts)}</b></span>`;
+    }).join("");
+  document.getElementById("why-comp-legend").querySelectorAll(".row").forEach(row => {
+    row.addEventListener("mousemove", e => showTip(e, row.dataset.tip));
+    row.addEventListener("mouseleave", hideTip);
+  });
+  document.getElementById("why-comp-note").textContent = compTakeaway(r, ordered, pens, gross);
+}
+
+// ---- per-ticker: where this ticker sits on the scanned-universe cheapness
+// distribution. CHARTS.distribution covers the ~1,400 SCANNED S&P 1500 names
+// (every name with a filing history); DATA is only the ~365 that passed the
+// pattern gates — never conflate the two populations in the copy here.
+function drawOwnHistory(r) {
+  const host = document.getElementById("why-oh");
+  const cap = document.getElementById("why-oh-cap");
+  if (typeof r.oh !== "number") {
+    host.innerHTML = "";
+    host.hidden = true;
+    cap.className = "absent";
+    cap.textContent = "Not shown: fewer than two of the three valuation measures (P/E, P/S, P/FCF) agreed, " +
+      "or the company doesn't have enough of its own pricing history to place it.";
+    return;
+  }
+  const d = CHARTS && CHARTS.distribution;
+  if (!d || !(d.counts || []).length) {
+    host.innerHTML = "";
+    host.hidden = true;
+    cap.className = "cap";
+    cap.textContent = `${Math.round(r.oh)}th percentile of its own ten-year valuation range ` +
+      `(${r.ob} of 3 measures agree). Scanned-universe context is unavailable right now.`;
+    return;
+  }
+  host.hidden = false;
+  onResize(host, () => {
+    const W = Math.max(220, host.clientWidth), H = 92;
+    const m = { t: 26, r: 6, b: 20, l: 6 };
+    const iw = W - m.l - m.r, base = H - m.b, barsTop = m.t;
+    host.innerHTML = "";
+    const svg = sv("svg", { viewBox: `0 0 ${W} ${H}`, height: H, role: "img", "aria-label":
+      `${r.t} sits at the ${Math.round(r.oh)}th percentile of its own ten-year valuation range, among ${d.n} ` +
+      `scanned S&P 1500 names. The cheap cut is the ${d.cheap_cut}th percentile; the median name sits at the ${d.median}th.` }, host);
+    const max = Math.max(...d.counts, 1);
+    const band = iw / d.counts.length;
+    const xp = p => m.l + iw * (p / 100);
+    d.counts.forEach((n, i) => {
+      const h = (base - barsTop) * (n / max), bw = Math.max(1, band - 2);
+      const rect = sv("rect", { x: m.l + band * i + 1, y: base - h, width: bw, height: Math.max(h, n ? 1 : 0),
+        rx: Math.min(3, bw / 2), fill: "var(--grid)" }, svg);
+      rect.style.cursor = "default";
+      rect.addEventListener("mousemove", e => showTip(e,
+        `<b>${n.toLocaleString()}</b> of ${d.n.toLocaleString()} scanned names in the ${i * d.bin}–${(i + 1) * d.bin}th percentile of their own history`));
+      rect.addEventListener("mouseleave", hideTip);
+    });
+    sv("line", { x1: m.l, x2: m.l + iw, y1: base, y2: base, stroke: "var(--baseline)", "stroke-width": 1 }, svg);
+    // median: a subtle tick, not a labelled line — context, not a cutoff
+    const medX = xp(d.median);
+    const medTick = sv("line", { x1: medX, x2: medX, y1: base - 5, y2: base + 5, stroke: "var(--muted)", "stroke-width": 1 }, svg);
+    medTick.addEventListener("mousemove", e => showTip(e, `Median scanned name: <b>${d.median}th</b> percentile`));
+    medTick.addEventListener("mouseleave", hideTip);
+    // cheap cut: the screen's actual dividing line
+    const cutX = xp(d.cheap_cut);
+    sv("line", { x1: cutX, x2: cutX, y1: m.t, y2: base, stroke: "var(--muted)", "stroke-width": 1 }, svg);
+    sv("text", { x: cutX, y: m.t - 4, "text-anchor": edgeAnchor(cutX, m.l, m.l + iw), "font-size": 10 }, svg)
+      .textContent = `cheap side ← ${d.cheap_cut}th`;
+    // this ticker: an accent marker with a surface ring so it separates from
+    // the grey histogram underneath it, plus a direct label — low is good
+    // here, which is not obvious, so the axis says so explicitly below.
+    const tx = xp(r.oh);
+    sv("line", { x1: tx, x2: tx, y1: 16, y2: base, stroke: "var(--accent)", "stroke-width": 2 }, svg);
+    sv("circle", { cx: tx, cy: 16, r: 5, fill: "var(--accent)", stroke: "var(--surface)", "stroke-width": 2 }, svg);
+    sv("text", { x: tx, y: 10, "text-anchor": edgeAnchor(tx, m.l, m.l + iw), "font-size": 12, "font-weight": 700,
+      fill: "var(--ink)" }, svg).textContent = `${Math.round(r.oh)}th`;
+    sv("text", { x: m.l, y: H - 4, "text-anchor": "start", "font-size": 10 }, svg).textContent = "cheaper";
+    sv("text", { x: m.l + iw, y: H - 4, "text-anchor": "end", "font-size": 10 }, svg).textContent = "dearer";
+  });
+  cap.className = "cap";
+  cap.textContent = `${d.n_cheap.toLocaleString()} of ${d.n.toLocaleString()} scanned names sit at or below the ` +
+    `${d.cheap_cut}th-percentile cheap cut. ${r.ob} of 3 valuation measures agree for ${r.t}.`;
 }
 
 function drawCharts() {
@@ -1071,15 +1332,26 @@ function showWhy(t) {
     <h3>${r.t} <span class="arch ${p.cls}">${p.label}</span></h3>
     <p class="sub">${esc(r.n)} · ${esc(r.s)}${r.ti === "400" ? " · S&P MidCap 400" : r.ti === "600" ? " · S&P SmallCap 600" : ""}</p>
     <p>${gates[r.a] || ""}</p>
+    <div class="comp" id="why-comp-wrap" hidden>
+      <div class="plot" id="why-comp"></div>
+      <div class="complegend" id="why-comp-legend"></div>
+      <p class="compnote" id="why-comp-note"></p>
+    </div>
     <div class="math">${lines.map(l => `<div>${l}</div>`).join("")}
       <div class="tot">Score: ${r.sc.toFixed(1)}</div></div>
     ${flags}
+    <div class="oh">
+      <div class="plot" id="why-oh"></div>
+      <p class="cap" id="why-oh-cap"></p>
+    </div>
     ${dossier}
     <p class="notabuy"><b>Is this a buy? No.</b> This score measures resemblance to past winners' patterns —
     nothing more. It knows nothing about this company's cash flow, debt, competition, valuation against its own
     history or what could go wrong. Those questions take a full investigation, which this page does not perform.
     Even the best pattern here preceded a double only about one time in six, historically.</p>`;
   dlg.showModal();
+  drawComposition(r);
+  drawOwnHistory(r);
 }
 
 const secSel = document.getElementById("fsec");

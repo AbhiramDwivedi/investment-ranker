@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- ranker-template-sha256:267f269f80cddbaf665effa8daaaecc9c9e5127c21eb01e18c1bb09106ea15d6 -->
+<!-- ranker-template-sha256:8ebde246231398c7b382e1f9fdea97776b588593fd2c23505c7e08b8f32fc4ce -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -1487,7 +1487,7 @@ function render() {
       <td>${r.d5 === null || r.d5 === undefined ? "—" : "−" + Math.abs(r.d5 * 100).toFixed(0) + "%"}</td>
       <td>${r.nl ? "—" : pct(r.bo)}</td>
       <td>${r.se === null || r.se === undefined ? "—" : (r.se >= 0 ? "+" : "−") + Math.abs(r.se).toFixed(2)}</td>
-      <td${r.oh !== undefined && r.oh <= 30 ? ' class="pos"' : ""} title="${r.oh === undefined ? "" : "Where today's price sits in its own 10-year P/E, P/S and P/FCF range, as a percentile; " + r.ob + " of the three measures could be priced from filings."}">${r.oh === undefined || r.oh === null ? "—" : explainNumOrdinal(r.oh)}</td>
+      <td${r.oh !== undefined && r.oh <= 30 ? ' class="pos"' : ""} title="${((r.oh === undefined || r.oh === null ? "" : "Where today's price sits in its own 10-year P/E, P/S and P/FCF range, as a percentile; " + r.ob + " of the three measures could be priced from filings. ") + (r.os ? "One quarter of this company's last twelve months is out of line with the other three, so that measure was set aside." : "")).trim()}">${r.oh === undefined || r.oh === null ? (r.os ? "Measure set aside" : "—") : explainNumOrdinal(r.oh)}</td>
       <td${r.og === "pass" ? ' class="pos"' : ""}>${r.og === undefined || r.og === null ? "—" : r.og}</td>
       <td class="sec">${SECTOR_SHORT[r.s] || r.s}</td>
     </tr>`;

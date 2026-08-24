@@ -5,6 +5,9 @@ The published pages for a personal stock-research tool.
 **→ [The Ranker](https://abhiramdwivedi.github.io/investment-ranker/)** — updated every weekday
 evening after the U.S. close.
 
+**→ [How it works, in three pictures](https://abhiramdwivedi.github.io/investment-ranker/how-it-works.html)**
+— the whole method in about a minute, for anyone starting from scratch.
+
 **→ [Method note](https://abhiramdwivedi.github.io/investment-ranker/approach.html)** — what the
 numbers mean, what the backtests found, and what the screen cannot see.
 
@@ -30,6 +33,6 @@ automated check that refuses to publish if any appear.
 ## How it gets here
 
 This repository holds only the rendered output. The engine, its data and its backtests live in a
-separate private repository; a nightly job renders these two pages and pushes them here.
+separate private repository; a nightly job renders these pages and pushes them here.
 
 Figures carry the date of the market close they were built from.

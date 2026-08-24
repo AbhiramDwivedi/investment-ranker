@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How the Ranking Works</title>
+<meta name="description" content="The S&amp;P 1500 Ranker explained in three pictures: what happens on one night, what a stock is measured cheap against, and what decides the order.">
+<link rel="canonical" href="https://abhiramdwivedi.github.io/investment-ranker/how-it-works.html">
+<meta property="og:title" content="How the Ranking Works">
+<meta property="og:description" content="Three pictures for the whole method: a night end to end, what cheap is measured against, and the hundred points that set the order.">
+<meta property="og:type" content="article">
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --baseline: #c3c2b7; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --accent-soft: #cde2fb;
+    --machine: #1c5cab; --judge: #b5462b; --warn: #fab219;
+    --fill-co: #1c5cab; --fill-mkt: #b07206; --on-fill: #ffffff;
+    --band: rgba(28,92,171,0.10);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+      --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+      --accent: #6da7ec; --accent-soft: #184f95;
+      --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+    --fill-co: #6da7ec; --fill-mkt: #e8ac2f; --on-fill: #0d0d0d;
+    --band: rgba(109,167,236,0.13);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+    --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+    --accent: #6da7ec; --accent-soft: #184f95;
+    --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+    --fill-co: #6da7ec; --fill-mkt: #e8ac2f; --on-fill: #0d0d0d;
+    --band: rgba(109,167,236,0.13);
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--page); color: var(--ink); margin: 0; line-height: 1.6;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 16px; }
+  .wrap { max-width: 78ch; margin: 0 auto; padding: 28px 24px 72px; }
+  .masthead { display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+    flex-wrap: wrap; border-bottom: 2px solid var(--ink); padding-bottom: 14px; }
+  .masthead .home { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    font-weight: 650; color: var(--accent); text-decoration: none; }
+  .masthead .home:hover { text-decoration: underline; }
+  h1 { font-size: 30px; font-weight: 750; letter-spacing: -0.015em; margin: 26px 0 0; }
+  .standfirst { font-size: 17px; color: var(--ink-2); margin: 10px 0 0; }
+  .kicker { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); font-weight: 650; margin: 0; }
+  h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; margin: 40px 0 0;
+    padding-top: 14px; border-top: 1px solid var(--grid); }
+  h3 { font-size: 15.5px; font-weight: 700; margin: 24px 0 0; }
+  p { margin: 12px 0 0; }
+  ul { margin: 12px 0 0; padding-left: 20px; }
+  li { margin: 7px 0; }
+  a { color: var(--accent); }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.88em;
+    background: color-mix(in srgb, var(--muted) 14%, var(--surface)); padding: 1px 5px; border-radius: 4px; }
+  .lede { font-size: 17px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 14px;
+    font-variant-numeric: tabular-nums; }
+  caption { caption-side: bottom; text-align: left; font-size: 12px; color: var(--muted);
+    margin-top: 8px; line-height: 1.5; }
+  th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--muted); font-weight: 650; padding: 0 10px 7px 0; border-bottom: 1px solid var(--baseline); }
+  td { padding: 8px 10px 8px 0; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  td.n, th.n { text-align: right; padding-right: 0; }
+  tr.hi td { background: color-mix(in srgb, var(--accent) 8%, transparent); font-weight: 600; }
+  .scroll { overflow-x: auto; }
+  .rule { background: var(--surface); border: 1px solid var(--ring); border-radius: 8px;
+    padding: 16px 18px; margin-top: 16px; }
+  .rule ul { list-style: none; padding-left: 0; }
+  .rule li { display: grid; grid-template-columns: 13ch 1fr; gap: 12px; align-items: baseline;
+    padding: 7px 0; border-bottom: 1px solid var(--grid); font-size: 14.5px; }
+  .rule li:last-child { border-bottom: 0; }
+  .rule li b { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12.5px; color: var(--machine); font-weight: 650; }
+  .steps { counter-reset: s; list-style: none; padding-left: 0; }
+  .steps li { counter-increment: s; position: relative; padding-left: 34px; margin: 14px 0; font-size: 15px; }
+  .steps li::before { content: counter(s); position: absolute; left: 0; top: 1px; width: 23px; height: 23px;
+    border-radius: 50%; background: var(--accent-soft); color: var(--machine); font-size: 12px;
+    font-weight: 700; display: grid; place-items: center; }
+  .steps li.j::before { background: color-mix(in srgb, var(--judge) 20%, var(--surface)); color: var(--judge); }
+  .steps b { font-weight: 700; }
+  .steps .f { color: var(--muted); font-size: 12.5px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .verdict { border-left: 3px solid var(--accent); padding: 2px 0 2px 16px; margin-top: 18px;
+    font-size: 16px; }
+  .note { background: color-mix(in srgb, var(--warn) 10%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--warn) 45%, var(--surface));
+    border-radius: 8px; padding: 12px 16px; margin-top: 18px; font-size: 14.5px; }
+  figure { margin: 0; }
+  .pic { background: var(--surface); border: 1px solid var(--ring); border-radius: 10px;
+    padding: 16px 14px 12px; margin-top: 20px; overflow-x: auto; }
+  .pic svg { display: block; width: 100%; min-width: 460px; height: auto; }
+  figcaption { font-size: 12.5px; color: var(--muted); margin-top: 10px; line-height: 1.5; }
+  footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--grid);
+    font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="kicker">In pictures &middot; S&amp;P 1500 Ranker</p>
+    <a class="home" href="./">&larr; The Ranker</a>
+  </header>
+
+  <h1>How the ranking works</h1>
+  <p class="standfirst">Three pictures for the whole thing: what happens on one night, what a stock is
+    measured cheap against, and what decides the order it comes out in.</p>
+
+    <p>This page is the short version. The method note has the same thing in detail, with the evidence
+    for and against it.</p>
+
+  <h3>Picture one: a single night</h3>
+
+  <figure class="pic">
+    <svg viewBox="0 0 700 420" role="img" preserveAspectRatio="xMidYMid meet"
+         aria-label="A funnel. Of 1,423 S&amp;P 1500 companies scored on the night of Aug. 21, 2026, 326 were cheap against their own ten-year history on at least two yardsticks, and 266 of those cleared the health and analyst checks to become candidates. The list is sorted by buy score, and one memo is written by a person.">
+      <defs>
+        <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6"
+                orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/>
+        </marker>
+      </defs>
+
+      <rect x="30" y="26" width="640" height="52" rx="5" fill="var(--fill-co)"/>
+      <text x="48" y="58" font-size="14" fill="var(--on-fill)">Every S&amp;P 1500 company with a filing history</text>
+      <text x="652" y="59" font-size="19" font-weight="700" text-anchor="end" fill="var(--on-fill)">1,423</text>
+
+      <g color="var(--muted)">
+        <line x1="46" y1="88" x2="46" y2="140" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"/>
+      </g>
+      <text x="68" y="104" font-size="13" fill="var(--ink-2)">Is it cheap against its own ten-year history,</text>
+      <text x="68" y="122" font-size="13" fill="var(--ink-2)">on at least two of the three yardsticks?</text>
+
+      <rect x="30" y="150" width="147" height="52" rx="5" fill="var(--fill-co)"/>
+      <text x="48" y="183" font-size="19" font-weight="700" fill="var(--on-fill)">326</text>
+      <text x="192" y="182" font-size="14" fill="var(--ink)">cheap against their own past</text>
+
+      <g color="var(--muted)">
+        <line x1="46" y1="212" x2="46" y2="264" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"/>
+      </g>
+      <text x="68" y="228" font-size="13" fill="var(--ink-2)">Does the health check avoid a fail, and have</text>
+      <text x="68" y="246" font-size="13" fill="var(--ink-2)">analysts stopped cutting their estimates?</text>
+
+      <rect x="30" y="274" width="120" height="52" rx="5" fill="var(--fill-co)"/>
+      <text x="48" y="307" font-size="19" font-weight="700" fill="var(--on-fill)">266</text>
+      <text x="165" y="306" font-size="14" fill="var(--ink)">candidates, meaning names worth a memo</text>
+
+      <line x1="30" y1="352" x2="670" y2="352" stroke="var(--grid)" stroke-width="1" stroke-dasharray="4 4"/>
+
+      <circle cx="38" cy="378" r="7" fill="var(--judge)"/>
+      <text x="56" y="383" font-size="13.5" fill="var(--ink)">Sorted by the buy score. One memo a night. A person decides.</text>
+      <text x="56" y="404" font-size="13" fill="var(--muted)">Nothing here places a trade, and no candidate is ever labelled a buy.</text>
+    </svg>
+    <figcaption>Counts are from the run of Aug. 21, 2026, and they move a little every night. The drop
+      from 326 to 266 was the health check alone: most companies in the index carry no analyst coverage
+      in this scan, so the analyst tests read unknown and cannot block a name.</figcaption>
+  </figure>
+
+  <p>Every weeknight the engine reads the same list of companies and looks for one thing. It wants a
+    company whose price is unusually low measured against its own past. Not against its rivals, and not
+    against its own high.</p>
+
+  <p>What comes out is a candidate, and a candidate means only that the name is worth a written memo. It
+    is not a buy, and nothing on the public page ever is.</p>
+
+  <h3>Picture two: cheap against itself</h3>
+
+  <p>A yardstick is one way of pricing a company against its own results. The engine uses three: the
+    price against earnings, against sales, and against the cash the business actually generates. Banks
+    and insurers get price against book value in place of cash flow.</p>
+
+  <p>For each yardstick it rebuilds ten years of daily readings for that one company, then asks where
+    today sits inside that ten-year spread. The 12th percentile means the stock was more expensive than
+    it is now on 88% of the days of the past decade.</p>
+
+  <figure class="pic">
+    <svg viewBox="0 0 700 278" role="img" preserveAspectRatio="xMidYMid meet"
+         aria-label="One company on three yardsticks. Price to earnings sits at the 12th percentile of its own ten-year history and price to sales at the 24th, both inside the cheapest 30%. Price to free cash flow sits at the 58th and is not cheap. The blend takes the middle reading, the 24th percentile, so the name counts as cheap.">
+      <rect x="180" y="44" width="147" height="188" fill="var(--band)"/>
+      <line x1="327" y1="44" x2="327" y2="240" stroke="var(--ink-2)" stroke-width="1.5" stroke-dasharray="5 4"/>
+      <text x="327" y="262" font-size="12.5" font-weight="650" text-anchor="middle" fill="var(--ink-2)">the cheapest 30%</text>
+
+      <text x="180" y="32" font-size="12" fill="var(--muted)">Cheapest this company has been in ten years</text>
+      <text x="670" y="32" font-size="12" text-anchor="end" fill="var(--muted)">Dearest</text>
+
+      <text x="170" y="70" font-size="13" text-anchor="end" fill="var(--ink)">Price to earnings</text>
+      <rect x="180" y="55" width="490" height="20" rx="10" fill="var(--grid)"/>
+      <circle cx="238.8" cy="65" r="9" fill="var(--fill-co)"/>
+      <text x="256" y="70" font-size="12.5" font-weight="650" fill="var(--ink)">12th</text>
+
+      <text x="170" y="114" font-size="13" text-anchor="end" fill="var(--ink)">Price to sales</text>
+      <rect x="180" y="99" width="490" height="20" rx="10" fill="var(--grid)"/>
+      <circle cx="297.6" cy="109" r="9" fill="var(--fill-co)"/>
+      <text x="315" y="114" font-size="12.5" font-weight="650" fill="var(--ink)">24th</text>
+
+      <text x="170" y="158" font-size="13" text-anchor="end" fill="var(--ink)">Price to free cash flow</text>
+      <rect x="180" y="143" width="490" height="20" rx="10" fill="var(--grid)"/>
+      <circle cx="464.2" cy="153" r="9" fill="var(--muted)"/>
+      <text x="482" y="158" font-size="12.5" font-weight="650" fill="var(--muted)">58th</text>
+
+      <line x1="30" y1="186" x2="670" y2="186" stroke="var(--grid)" stroke-width="1"/>
+
+      <text x="170" y="216" font-size="13" font-weight="700" text-anchor="end" fill="var(--ink)">The blend</text>
+      <rect x="180" y="201" width="490" height="20" rx="10" fill="var(--grid)"/>
+      <circle cx="297.6" cy="211" r="11" fill="var(--fill-co)" stroke="var(--surface)" stroke-width="2.5"/>
+      <text x="317" y="216" font-size="12.5" font-weight="700" fill="var(--ink)"
+            paint-order="stroke" stroke="var(--surface)" stroke-width="3.5" stroke-linejoin="round">24th, the middle reading</text>
+
+    </svg>
+    <figcaption>One company, three yardsticks, one illustrative set of readings. Two of the three land
+      inside the cheapest 30% of this company's own history, so the middle reading does too and the name
+      counts as cheap.</figcaption>
+  </figure>
+
+  <p>A single yardstick can lie. Earnings are flattered by a one-time gain, and a sales multiple looks
+    cheap at a company that is burning through its cash. So the engine never trusts one reading. With
+    all three available it takes the middle one, which forces two of the three to agree before the blend
+    can read cheap. With only two available it takes the higher, less flattering one. A name left with a
+    single yardstick is marked thin.</p>
+
+  <p>In the picture the dear cash-flow reading cannot spoil the verdict, and one lucky cheap reading
+    could not have carried it alone. That is the whole point of blending.</p>
+
+  <h3>Picture three: what sets the order</h3>
+
+  <p>The candidates are then sorted by a buy score from zero to 100. The score is an order of reading,
+    not a forecast of return. It answers which name a person should look at first, and nothing else.</p>
+
+  <figure class="pic">
+    <svg viewBox="0 0 700 230" role="img" preserveAspectRatio="xMidYMid meet"
+         aria-label="A bar of 100 points. Cheapness is 20 points, the health check 25, growth and revisions 25, trend 10, the market window 15, and the name's own replay record five. Eighty of the hundred points are about the company, 15 about the whole market, and five about the company's own past.">
+      <text x="93"  y="42" font-size="15" font-weight="700" text-anchor="middle" fill="var(--ink)">20</text>
+      <text x="237" y="42" font-size="15" font-weight="700" text-anchor="middle" fill="var(--ink)">25</text>
+      <text x="397" y="42" font-size="15" font-weight="700" text-anchor="middle" fill="var(--ink)">25</text>
+      <text x="509" y="42" font-size="15" font-weight="700" text-anchor="middle" fill="var(--ink)">10</text>
+      <text x="589" y="42" font-size="15" font-weight="700" text-anchor="middle" fill="var(--fill-mkt)">15</text>
+      <text x="653" y="42" font-size="15" font-weight="700" text-anchor="middle" fill="var(--ink-2)">5</text>
+
+      <rect x="30"  y="52" width="126" height="46" rx="4" fill="var(--fill-co)"/>
+      <rect x="158" y="52" width="158" height="46" rx="4" fill="var(--fill-co)"/>
+      <rect x="318" y="52" width="158" height="46" rx="4" fill="var(--fill-co)"/>
+      <rect x="478" y="52" width="62"  height="46" rx="4" fill="var(--fill-co)"/>
+      <rect x="542" y="52" width="94"  height="46" rx="4" fill="var(--fill-mkt)"/>
+      <rect x="639" y="53" width="29"  height="44" rx="4" fill="none" stroke="var(--ink-2)"
+            stroke-width="1.5" stroke-dasharray="4 3"/>
+
+      <g stroke="var(--baseline)" stroke-width="1">
+        <line x1="93"  y1="100" x2="93"  y2="118"/>
+        <line x1="397" y1="100" x2="397" y2="118"/>
+        <line x1="589" y1="100" x2="589" y2="118"/>
+        <line x1="237" y1="100" x2="237" y2="142"/>
+        <line x1="509" y1="100" x2="509" y2="142"/>
+        <line x1="653" y1="100" x2="653" y2="142"/>
+      </g>
+      <text x="93"  y="132" font-size="12.5" text-anchor="middle" fill="var(--ink)">Cheapness</text>
+      <text x="397" y="132" font-size="12.5" text-anchor="middle" fill="var(--ink)">Growth and revisions</text>
+      <text x="589" y="132" font-size="12.5" text-anchor="middle" fill="var(--ink)">Market window</text>
+      <text x="237" y="156" font-size="12.5" text-anchor="middle" fill="var(--ink)">Health check</text>
+      <text x="509" y="156" font-size="12.5" text-anchor="middle" fill="var(--ink)">Trend</text>
+      <text x="653" y="156" font-size="12.5" text-anchor="middle" fill="var(--ink)">Replay</text>
+
+      <rect x="30" y="186" width="13" height="13" rx="3" fill="var(--fill-co)"/>
+      <text x="50" y="197" font-size="12.5" fill="var(--ink-2)">About this company: 80</text>
+      <rect x="248" y="186" width="13" height="13" rx="3" fill="var(--fill-mkt)"/>
+      <text x="268" y="197" font-size="12.5" fill="var(--ink-2)">About the whole market: 15</text>
+      <rect x="484" y="186" width="13" height="13" rx="3" fill="none" stroke="var(--ink-2)"
+            stroke-width="1.5" stroke-dasharray="4 3"/>
+      <text x="504" y="197" font-size="12.5" fill="var(--ink-2)">Its own past: five, either way</text>
+    </svg>
+    <figcaption>Where the 100 points come from. The dashed block is the only one that can subtract as
+      well as add.</figcaption>
+  </figure>
+
+  <p>The surprising part of that picture is how small cheapness is. It is 20 points of the 100, and it
+    is scaled back when the yardsticks disagree: three quarters of it when two agree, a quarter when one
+    stands alone. It used to be worth 40. The backtest described further down found that the depth of
+    the discount said nothing about what a stock did next, while the number of agreeing yardsticks did,
+    so the weight was halved and tied to agreement.</p>
+
+  <p>The 15 points for the market window are identical for every name on the same night, because the
+    window is a fact about the market and not about any one company. It is open when the market trades
+    below the average of its last 200 closes. On a night when it is shut, every score on the page sits
+    15 points lower than it could, which is why a score in the fifties can lead the list.</p>
+
+  <p>The last five points are the company's own record. Has buying this particular name at its own
+    ten-year lows paid off before? Three or more past episodes that mostly beat the market add five
+    points, and three or more that mostly lost subtract five.</p>
+
+  <p>Two smaller penalties can apply on top. A company loses five points when its cheapness came from
+    earnings jumping rather than from the price falling, because that is not a discount. It loses five
+    more when the growth its price already assumes is more than the business can fund out of its own
+    cash.</p>
+
+  <p>That is the ranking. The method note carries the parts a picture cannot hold: what stops each
+    number from lying, what the backtests found when the rule was tested on its own, and what the
+    screen cannot see. It is the argument; this page is the mechanism.</p>
+
+  <footer>
+    <p>This is a personal research tool, not licensed financial advice, and nothing here is a
+      recommendation to buy or sell any security. The numbers in the pictures are real output from a
+      single run, so a later run will differ.</p>
+    <p><a href="approach.html">The full method note</a></p>
+    <p><a href="./">&larr; Back to the Ranker</a></p>
+  </footer>
+
+</div>
+</body>
+</html>

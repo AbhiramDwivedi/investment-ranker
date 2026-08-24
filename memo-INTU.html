@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>INTU memo &mdash; Intuit</title>
+<meta name="description" content="Intuit (INTU): the research memo behind
+  its row on the S&amp;P 1500 Ranker, written Aug. 15, 2026.">
+<link rel="canonical" href="https://abhiramdwivedi.github.io/investment-ranker/memo-INTU.html">
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --baseline: #c3c2b7; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --accent-soft: #cde2fb;
+    --machine: #1c5cab; --judge: #b5462b; --warn: #fab219;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+      --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+      --accent: #6da7ec; --accent-soft: #184f95;
+      --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+    --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+    --accent: #6da7ec; --accent-soft: #184f95;
+    --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--page); color: var(--ink); margin: 0; line-height: 1.6;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 16px; }
+  .wrap { max-width: 78ch; margin: 0 auto; padding: 28px 24px 72px; }
+  .masthead { display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+    flex-wrap: wrap; border-bottom: 2px solid var(--ink); padding-bottom: 14px; }
+  .masthead .home { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    font-weight: 650; color: var(--accent); text-decoration: none; }
+  .masthead .home:hover { text-decoration: underline; }
+  h1 { font-size: 30px; font-weight: 750; letter-spacing: -0.015em; margin: 26px 0 0; }
+  .standfirst { font-size: 17px; color: var(--ink-2); margin: 10px 0 0; }
+  .kicker { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); font-weight: 650; margin: 0; }
+  h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; margin: 40px 0 0;
+    padding-top: 14px; border-top: 1px solid var(--grid); }
+  h3 { font-size: 15.5px; font-weight: 700; margin: 24px 0 0; }
+  p { margin: 12px 0 0; }
+  ul { margin: 12px 0 0; padding-left: 20px; }
+  li { margin: 7px 0; }
+  a { color: var(--accent); }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.88em;
+    background: color-mix(in srgb, var(--muted) 14%, var(--surface)); padding: 1px 5px; border-radius: 4px; }
+  .lede { font-size: 17px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 14px;
+    font-variant-numeric: tabular-nums; }
+  caption { caption-side: bottom; text-align: left; font-size: 12px; color: var(--muted);
+    margin-top: 8px; line-height: 1.5; }
+  th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--muted); font-weight: 650; padding: 0 10px 7px 0; border-bottom: 1px solid var(--baseline); }
+  td { padding: 8px 10px 8px 0; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  td.n, th.n { text-align: right; padding-right: 0; }
+  tr.hi td { background: color-mix(in srgb, var(--accent) 8%, transparent); font-weight: 600; }
+  .scroll { overflow-x: auto; }
+  .rule { background: var(--surface); border: 1px solid var(--ring); border-radius: 8px;
+    padding: 16px 18px; margin-top: 16px; }
+  .rule ul { list-style: none; padding-left: 0; }
+  .rule li { display: grid; grid-template-columns: 13ch 1fr; gap: 12px; align-items: baseline;
+    padding: 7px 0; border-bottom: 1px solid var(--grid); font-size: 14.5px; }
+  .rule li:last-child { border-bottom: 0; }
+  .rule li b { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12.5px; color: var(--machine); font-weight: 650; }
+  .steps { counter-reset: s; list-style: none; padding-left: 0; }
+  .steps li { counter-increment: s; position: relative; padding-left: 34px; margin: 14px 0; font-size: 15px; }
+  .steps li::before { content: counter(s); position: absolute; left: 0; top: 1px; width: 23px; height: 23px;
+    border-radius: 50%; background: var(--accent-soft); color: var(--machine); font-size: 12px;
+    font-weight: 700; display: grid; place-items: center; }
+  .steps li.j::before { background: color-mix(in srgb, var(--judge) 20%, var(--surface)); color: var(--judge); }
+  .steps b { font-weight: 700; }
+  .steps .f { color: var(--muted); font-size: 12.5px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .verdict { border-left: 3px solid var(--accent); padding: 2px 0 2px 16px; margin-top: 18px;
+    font-size: 16px; }
+  .note { background: color-mix(in srgb, var(--warn) 10%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--warn) 45%, var(--surface));
+    border-radius: 8px; padding: 12px 16px; margin-top: 18px; font-size: 14.5px; }
+  footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--grid);
+    font-size: 13px; color: var(--muted); }
+
+  .memobody h2 { font-size: 19px; }
+  .memobody table { font-size: 13px; }
+  .memobody blockquote { margin: 14px 0 0; padding: 2px 0 2px 16px;
+    border-left: 3px solid var(--baseline); color: var(--ink-2); }
+  .memobody pre { background: color-mix(in srgb, var(--muted) 12%, var(--surface));
+    border: 1px solid var(--ring); border-radius: 8px; padding: 12px 14px; overflow-x: auto;
+    font-size: 12.5px; line-height: 1.5; }
+  .memobody pre code { background: none; padding: 0; }
+  .stamp { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+  .stamp b { color: var(--ink-2); }
+  .verdict-tag { display: inline-block; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.06em; font-weight: 700; border: 1px solid var(--baseline);
+    border-radius: 999px; padding: 2px 9px; }
+  .rs { font-size: 12px; border: 1px solid var(--baseline); border-radius: 999px;
+    padding: 1px 8px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="kicker">Memo &middot; S&amp;P 1500 Ranker</p>
+    <a class="home" href="memos.html">&larr; All memos</a>
+  </header>
+
+  <h1>INTU &mdash; Intuit</h1>
+  <p class="standfirst">Written Aug. 15, 2026. The verdict was
+    <span class="verdict-tag">memo-buy candidate</span> and the name reads
+    <code class="rs">ready-watch</code> on tonight's table.</p>
+  <p class="stamp"><b>As of:</b> Aug. 15, 2026 &middot; 9 days old &middot; reviewed Aug. 24, 2026 &middot;
+    a memo is a point-in-time judgment and does not update itself the way the nightly table does.</p>
+
+
+
+  <div class="note"><p><b>What this is not.</b> The ledger behind this site holds 275 decisions, collapsed from 369 name-nights, and none of them has ever been actionable. One row is one decision, not one appearance. A company suggested on 40 consecutive nights is counted once, dated from the first of them, so a name that keeps qualifying cannot inflate the sample. The cohorts above are the other view of the same calls and do repeat a name every night, by design. The actionable date is the first night every condition of the actionable-suggestion contract held at once. It reads empty for a name that has never been actionable, and for every night frozen before the contract existed on Aug. 23, 2026. The engine's current rules are forward-only from Aug. 16, 2026, so the record is days long, not years. This is a personal research tool, not licensed financial advice, and nothing here is a recommendation to buy or sell any security.</p></div>
+
+  <div class="memobody">
+<h2>0. Signals</h2>
+<p>Pasted from <code>build/memo_inputs/INTU-signals-2026-08-14.json</code>.</p>
+<pre><code>ticker INTU | close 345.66 | as_of 2026-08-14 | next_earnings 2026-08-25 (11 days)
+
+valuation  cheap_pct 2.2 (pe+ps+pfcf; pe 2.2 / ps 2.4 / pfcf 2.2; cheap_thin false)
+           eps_ttm_flag &quot;ttm_far_below_fwd&quot; | pe_ttm 20.9 | pe_fwd 12.7
+           fair_band  low 675.01  mid 814.77  high 1024.65  bases [pe, ps, pfcf]
+                      reliability &quot;ok&quot; | low_implied_fwd_pe 24.7 | mid_implied_fwd_pe 29.8
+             caveats  &quot;own PE history is a growth/early era (p20 41x, median 49x):
+                       that rung overstates a margin of safety&quot;
+                      &quot;P/E leg sits on TTM EPS far below forward; blended band used&quot;
+           by_basis   pe 675/815/1025 | ps 622/788/909 | pfcf 800/906/1106
+           discount_to_mid -57.6% | discount_to_low -48.8%
+           implied_eps_growth  at_hurdle_median_exit -0.84% | at_hurdle_p20_exit +0.96%
+                      at_hurdle_20x_exit +7.99% | fwd_at_hurdle_20x_exit +2.29%
+                      hurdle 9% (quality_compounder) | eps_base_ttm 16.50 | eps_base_fwd 27.32
+           compare    trailing_5y_eps_cagr 16.17% | consensus_eps_growth_1y 14.63% | ltg null
+           replay     episodes 6, closed 4, hit_rate_vs_spy 75%, median_excess_12m +12.7%,
+                      median_worst_dd_12m -10%; 2022-05 +14.3% xs | 2022-08 +11.1% xs |
+                      2025-04 -69.9% xs (-36% abs, -38.7% dd) | 2025-11 open | 2026-01 open
+
+quality    gate pass | hard [] | soft [] | fcf_conversion 1.69 | net_debt_to_ebitda 0.02
+           share_count_chg_3y -2.5% | gross_margin null vs 3y ago null | roe 22.5% | op_margin 27.5%
+fund.mom.  rev_yoy +10.4% (prev +17.4%) | rev_decel_2q true | eps_ttm_yoy +34%
+           fwd_eps_rev_30d -0.08% | 90d +3.15% | up_minus_down_30d +2 | rec_mean null vs 3m null
+trend      dd_52w -52.1% | dist_200dma -22.7% | rs_spy_6m -27% | sector_dd_52w -4%
+           knife false | turned false | ret_1m +17.3% | rsi14 64
+sentiment  short_pct_float 5.09% | insider_net_count_6m -3 | target_upside +30.6%
+scores     buy_score 86.5 | candidate true | blockers []
+</code></pre>
+<p>This memo argues with all three flagged fields, and rejects the fair band as an entry rung.</p>
+<h2>1. What changed</h2>
+<p><strong>May 20, 2026 (Q3 FY26, 10-Q and call).</strong> Revenue $8.6 billion, up 10%. Intuit <em>raised</em> full-year
+guidance to $21.341-$21.374 billion (13-14% growth) and non-GAAP EPS to $23.80-$23.85 (18% growth).
+The same release cut the full-time workforce roughly 17%, booking $300 million-$340 million of
+restructuring charges primarily in Q4. CEO Sasan Goodarzi on DIY tax: "We faced pressure among the
+most price-sensitive DIY filers earning less than $50,000 annually. <strong>We lost on price.</strong>" TurboTax
+Online paying units are guided to grow 2%. Total IRS filers are expected to fall about 30 basis
+points, roughly 2 million units below macro expectations — "the most significant industry-wide
+contraction since the post-COVID tax season."</p>
+<p><strong>May 21.</strong> Shares fell 20.02%, $383.93 to $307.07.</p>
+<p><strong>June 2.</strong> Goldman Sachs cut to Sell, target $519 to $276, arguing AI models process a return for
+$0.12 against TurboTax's roughly $162 of revenue per return, and modeling TurboTax revenue 18% below
+fiscal 2025 by 2030 if 20% of filers move to fully AI preparation.</p>
+<p><strong>June 22.</strong> 52-week low, $252.84. <strong>Aug. 12.</strong> Securities class action filed, <em>Baldwin v. Intuit</em>,
+N.D. Cal. 26-cv-7086, lead-plaintiff deadline Sept. 8.</p>
+<p>Category (b), growth expectations fell, plus (c), a discrete competitive risk appeared. Not (a) —
+earnings power rose. Not (d) — XLK sits 4% off its high while INTU sits 52% off its own.</p>
+<h2>2. Is the impairment real?</h2>
+<p><strong>Partly. The real part is small; the market prices it as total.</strong></p>
+<p><em>The concession is real.</em> Management does not dispute it — it will "evolve our DIY business model to
+deliver the right value at the right price point" at the low end. That is a margin give-back, not a
+costless defense. The named entrants launched into the 2026 season and are credible: Prime Meridian,
+free federal and state filing, with former IRS commissioner Danny Werfel advising; Perplexity's tax
+agent at $17 a month. Goldman's $0.12-versus-$162 asymmetry is a real cost-structure problem in a
+commoditizable product.</p>
+<p><em>The scope is not.</em> Intuit sizes DIY at a $5 billion TAM — 12% of the TurboTax TAM. The assisted
+category is $37 billion, or 88%, and that is where the business went: TurboTax Live revenue up 36%
+and customers up 38% in fiscal 2026, now 53% of total TurboTax revenue, up 11 points year over year.
+That is growth in the segment least exposed to a chatbot, because a human expert signs the return and
+carries the liability. TurboTax is itself only about $5.28 billion of a $21.35 billion company;
+Global Business Solutions grew 15% in Q3, Online Ecosystem 19%, mid-market above 30%. A problem
+inside a slice of one-quarter of revenue is being discounted as a whole-company terminal break.</p>
+<p><em>Two bear claims fail on the filings.</em> The regulatory overhang is stale — on March 20, 2026, the
+Fifth Circuit <strong>vacated</strong> the FTC's order and remanded. The balance sheet is not stressed: net
+debt/EBITDA 0.02x, nine-month operating cash flow $7.507 billion on $148 million of capex,
+refinanced in June at 4.95% and 5.50%.</p>
+<p><em>What the price implies (<code>eps_ttm_flag</code>).</em> Trailing P/E is unusable here — TTM GAAP EPS of $16.50
+sits far below the $27.32 forward base, and the Q4 restructuring charge will push it lower still. Use
+the absolute anchor: at $345.66, exiting at a plain 20x, the buyer earns the 9% hurdle if forward EPS
+compounds <strong>2.29%</strong> a year. Consensus next-year growth is 14.63%; trailing five-year EPS CAGR 16.17%;
+CFO Sandeep Aujla committed to "annual EPS growth of at least mid-teens over the coming years" at the
+same event that cost the stock a fifth of its value. I cannot name a structural reason DIY repricing
+takes a company growing revenue 13-14% down to 2%/yr EPS for a decade. That gap is the case. Discount
+it honestly: $27.32 is non-GAAP against a GAAP guide of $15.79-$15.84, mostly stock compensation, so
+true required growth exceeds 2.29% — wide enough to absorb, not wide enough to buy blind into a print.</p>
+<p><em>The band (<code>caveats</code>).</em> Rejected as an entry rung: p20 is a 40.91x growth-era P/E, and
+<code>low_implied_fwd_pe</code> 24.7 asks 24.7x forward earnings for a business whose terminal multiple is the
+entire dispute. The band also sits roughly 2x spot (<code>discount_to_low</code> -48.8%). A band saying "buy at
+$675" while the stock trades at $346 imposes no discipline; it is broken here, not bullish.</p>
+<p><em>The replay.</em> Not counted as support. The 75% hit rate is a median of four. The one closed episode
+inside <em>this</em> de-rating — April 10, 2025, at the 29.8th percentile — lost 36% and trailed SPY by 69.9
+points. Both open episodes (Nov. 2025, Jan. 2026) are underwater and excluded from the hit rate. What
+is different now: the tax-season result is disclosed and the percentile is 2.2, not 29.8. The bad
+news that broke the April 2025 entry has happened. Reason to look again, not evidence the trade works.</p>
+<h2>3. Verdict and entry</h2>
+<p><strong>Memo-buy candidate, gated on the Aug. 25 print.</strong></p>
+<p>The deciding sentence: the price implies low-single-digit EPS growth for a decade, management guides
+at least mid-teens, and the only impairment I can document sits in a segment worth 12% of the TurboTax
+TAM inside a business worth a quarter of revenue.</p>
+<p><strong>Entry: spot ($345.66) or better, executable only after the Aug. 25 fiscal Q4 report.</strong> No
+<code>fair_band</code> rung is used — every rung sits above spot and embeds a growth-era multiple (§2). The gate
+is a date, not a price, because Aug. 25 delivers what does not yet exist: fiscal 2027 guidance, the
+first time management prices the DIY repricing and the restructuring savings together. Buying now
+pays for that print after a 36% bounce off the low, at RSI 64, with 67% volatility and no edge.</p>
+<p><strong>Tier: <code>quality_compounder</code>, 9%</strong> — diversified across QuickBooks, TurboTax and Credit Karma; ROE
+22.5%; FCF margin 36.9%; gate passes with no hard or soft fails. Terminal uncertainty is elevated,
+but the return-hurdle policy forbids raising the hurdle to express qualitative doubt; it goes in §4 instead.</p>
+<h2>4. Kill criteria</h2>
+<ol>
+<li><strong>Aug. 25, 2026 (Q4/FY26 report).</strong> Fiscal 2027 non-GAAP EPS guidance midpoint implies growth
+   below 10% vs the $23.80-$23.85 FY26 guide → management's "at least mid-teens" commitment is
+   abandoned. Downgrade to pass.</li>
+<li><strong>Aug. 25, 2026.</strong> Fiscal 2027 revenue growth guidance midpoint below 8% (FY26: 13-14%) → the
+   damage is not confined to DIY. Downgrade to pass.</li>
+<li><strong>Q1 FY27 report (~late Nov. 2026).</strong> Online Ecosystem revenue growth below 12% year over year
+   (Q3 FY26: 19%) → AI pressure has migrated from consumer tax into the business platform. That is
+   the structural case, and it kills the thesis.</li>
+<li><strong>Q3 FY27 report (~May 2027).</strong> TurboTax Live revenue growth below 15% — the floor of management's
+   own stated 15-20% long-term range, against 36% in FY26 → the assisted moat, which is the whole
+   bull case, is eroding.</li>
+<li><strong>Any Monday re-check.</strong> Quality gate leaves <code>pass</code>, or <code>fwd_eps_rev_90d</code> below -5% for two
+   consecutive runs → downgrade to wait pending a re-underwrite.</li>
+</ol>
+<h2>5. Sources</h2>
+<ul>
+<li>Intuit, "Intuit Reports Strong Third-Quarter Results and Raises Full-Year Revenue Guidance,"
+  May 20, 2026. https://investors.intuit.com/news-events/press-releases/detail/1312/intuit-reports-strong-third-quarter-results-and-raises-full-year-revenue-guidance</li>
+<li>Intuit, Q3 FY2026 conference call prepared remarks, May 20, 2026 (Goodarzi and Aujla quotes, DIY
+  and TurboTax Live figures, IRS filer commentary, Q4 and FY26 guidance).
+  https://investors.intuit.com/_assets/_25d0832d8f64a0e6da9a25f2f35656c4/intuit/db/946/10372/webcast_transcript/Q3FY26+Earnings+Script+(1).pdf</li>
+<li>Intuit, Form 10-Q for the quarter ended April 30, 2026, filed May 20, 2026 (Note 11 Legal
+  Proceedings incl. Fifth Circuit vacatur March 20, 2026; Note 13 Subsequent Events, 2026 Plan
+  $300-340 million; cash flow statement; buybacks).
+  https://www.sec.gov/Archives/edgar/data/896878/000089687826000025/intu-20260430.htm</li>
+<li>Intuit, Form 8-K, June 11, 2026 ($1.75 billion senior notes, 4.950% due 2031 / 5.500% due 2036).
+  https://www.sec.gov/Archives/edgar/data/896878/000119312526267866/d159651d8k.htm</li>
+<li>InvestingLive, "Why is Intuit stock crashing," May 21, 2026 (intraday reaction, TurboTax revenue
+  guide cut). https://investinglive.com/stocks/why-is-intuit-stock-crashing-also-after-its-earnings-last-night-20260521/</li>
+<li>Investing.com, "Intuit dips as Goldman cuts to Sell on heightened tax competition," June 2, 2026.
+  https://www.investing.com/news/stock-market-news/intuit-dips-as-goldman-cuts-to-sell-on-heightened-tax-competition-4721302</li>
+<li>Kessler Topaz Meltzer &amp; Check, "Intuit Inc. Securities Fraud Class Action Lawsuit Filed,"
+  Aug. 12, 2026 (Baldwin v. Intuit, N.D. Cal. 26-cv-7086; $383.93 to $307.07; Sept. 8 deadline).
+  https://www.globenewswire.com/news-release/2026/08/12/3343998/0/en/intuit-inc-nasdaq-intu-securities-fraud-class-action-lawsuit-filed-september-8-2026-lead-plaintiff-deadline-contact-kessler-topaz-meltzer-check-llp.html</li>
+<li>Accounting Today, "Prime Meridian launches free tax filing with support of former IRS
+  commissioner," March 2026. https://www.accountingtoday.com/news/prime-meridian-launches-free-tax-filing-with-support-of-former-irs-commissioner</li>
+<li>PYMNTS, "Perplexity Launches AI Agent That Drafts Tax Returns," 2026.
+  https://www.pymnts.com/taxes/2026/perplexity-launches-ai-agent-that-drafts-tax-returns/</li>
+<li>Barchart via Yahoo Finance, "Dear Intuit Stock Fans, Mark Your Calendars for August 25,"
+  Aug. 12, 2026 (earnings date; 52-week low $252.84 on June 22).
+  https://finance.yahoo.com/markets/stocks/articles/dear-intuit-stock-fans-mark-185751497.html</li>
+</ul>
+<p><strong>Could not verify:</strong> third-party fiscal 2027 consensus EPS. The signals file carries <code>eps_base_fwd</code>
+27.32 with 33 analysts, consistent with the FY26 non-GAAP guide grown at the 14.63% consensus rate;
+one aggregator instead published $21.11 for FY27. Unreconciled — the memo uses the signals file.
+Also unverified: whether the 2025-04-10 replay episode's start price and the <code>days_since_52w_low</code>
+field (35 days, implying ~July 11) reconcile with the reported June 22 low of $252.84.</p>
+  </div>
+
+  <footer>
+    <p>The personal half of this memo &mdash; position size, portfolio overlap, tax lots &mdash; is
+      fenced out of the published text by construction and is not on this page. What a name is worth
+      is public; what one investor should own is not.</p>
+    <p class="methodlink"><a href="memos.html">&larr; All memos</a> &middot;
+      <a href="./">The Ranker</a> &middot; <a href="approach.html">How this works</a></p>
+  </footer>
+
+</div>
+</body>
+</html>

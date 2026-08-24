@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UNH memo &mdash; UnitedHealth Group</title>
+<meta name="description" content="UnitedHealth Group (UNH): the research memo behind
+  its row on the S&amp;P 1500 Ranker, written Aug. 15, 2026.">
+<link rel="canonical" href="https://abhiramdwivedi.github.io/investment-ranker/memo-UNH.html">
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --baseline: #c3c2b7; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --accent-soft: #cde2fb;
+    --machine: #1c5cab; --judge: #b5462b; --warn: #fab219;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+      --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+      --accent: #6da7ec; --accent-soft: #184f95;
+      --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+    --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+    --accent: #6da7ec; --accent-soft: #184f95;
+    --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--page); color: var(--ink); margin: 0; line-height: 1.6;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 16px; }
+  .wrap { max-width: 78ch; margin: 0 auto; padding: 28px 24px 72px; }
+  .masthead { display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+    flex-wrap: wrap; border-bottom: 2px solid var(--ink); padding-bottom: 14px; }
+  .masthead .home { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    font-weight: 650; color: var(--accent); text-decoration: none; }
+  .masthead .home:hover { text-decoration: underline; }
+  h1 { font-size: 30px; font-weight: 750; letter-spacing: -0.015em; margin: 26px 0 0; }
+  .standfirst { font-size: 17px; color: var(--ink-2); margin: 10px 0 0; }
+  .kicker { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); font-weight: 650; margin: 0; }
+  h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; margin: 40px 0 0;
+    padding-top: 14px; border-top: 1px solid var(--grid); }
+  h3 { font-size: 15.5px; font-weight: 700; margin: 24px 0 0; }
+  p { margin: 12px 0 0; }
+  ul { margin: 12px 0 0; padding-left: 20px; }
+  li { margin: 7px 0; }
+  a { color: var(--accent); }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.88em;
+    background: color-mix(in srgb, var(--muted) 14%, var(--surface)); padding: 1px 5px; border-radius: 4px; }
+  .lede { font-size: 17px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 14px;
+    font-variant-numeric: tabular-nums; }
+  caption { caption-side: bottom; text-align: left; font-size: 12px; color: var(--muted);
+    margin-top: 8px; line-height: 1.5; }
+  th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--muted); font-weight: 650; padding: 0 10px 7px 0; border-bottom: 1px solid var(--baseline); }
+  td { padding: 8px 10px 8px 0; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  td.n, th.n { text-align: right; padding-right: 0; }
+  tr.hi td { background: color-mix(in srgb, var(--accent) 8%, transparent); font-weight: 600; }
+  .scroll { overflow-x: auto; }
+  .rule { background: var(--surface); border: 1px solid var(--ring); border-radius: 8px;
+    padding: 16px 18px; margin-top: 16px; }
+  .rule ul { list-style: none; padding-left: 0; }
+  .rule li { display: grid; grid-template-columns: 13ch 1fr; gap: 12px; align-items: baseline;
+    padding: 7px 0; border-bottom: 1px solid var(--grid); font-size: 14.5px; }
+  .rule li:last-child { border-bottom: 0; }
+  .rule li b { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12.5px; color: var(--machine); font-weight: 650; }
+  .steps { counter-reset: s; list-style: none; padding-left: 0; }
+  .steps li { counter-increment: s; position: relative; padding-left: 34px; margin: 14px 0; font-size: 15px; }
+  .steps li::before { content: counter(s); position: absolute; left: 0; top: 1px; width: 23px; height: 23px;
+    border-radius: 50%; background: var(--accent-soft); color: var(--machine); font-size: 12px;
+    font-weight: 700; display: grid; place-items: center; }
+  .steps li.j::before { background: color-mix(in srgb, var(--judge) 20%, var(--surface)); color: var(--judge); }
+  .steps b { font-weight: 700; }
+  .steps .f { color: var(--muted); font-size: 12.5px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .verdict { border-left: 3px solid var(--accent); padding: 2px 0 2px 16px; margin-top: 18px;
+    font-size: 16px; }
+  .note { background: color-mix(in srgb, var(--warn) 10%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--warn) 45%, var(--surface));
+    border-radius: 8px; padding: 12px 16px; margin-top: 18px; font-size: 14.5px; }
+  footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--grid);
+    font-size: 13px; color: var(--muted); }
+
+  .memobody h2 { font-size: 19px; }
+  .memobody table { font-size: 13px; }
+  .memobody blockquote { margin: 14px 0 0; padding: 2px 0 2px 16px;
+    border-left: 3px solid var(--baseline); color: var(--ink-2); }
+  .memobody pre { background: color-mix(in srgb, var(--muted) 12%, var(--surface));
+    border: 1px solid var(--ring); border-radius: 8px; padding: 12px 14px; overflow-x: auto;
+    font-size: 12.5px; line-height: 1.5; }
+  .memobody pre code { background: none; padding: 0; }
+  .stamp { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+  .stamp b { color: var(--ink-2); }
+  .verdict-tag { display: inline-block; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.06em; font-weight: 700; border: 1px solid var(--baseline);
+    border-radius: 999px; padding: 2px 9px; }
+  .rs { font-size: 12px; border: 1px solid var(--baseline); border-radius: 999px;
+    padding: 1px 8px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="kicker">Memo &middot; S&amp;P 1500 Ranker</p>
+    <a class="home" href="memos.html">&larr; All memos</a>
+  </header>
+
+  <h1>UNH &mdash; UnitedHealth Group</h1>
+  <p class="standfirst">Written Aug. 15, 2026. The verdict was
+    <span class="verdict-tag">wait</span> and the name reads
+    <code class="rs">research</code> on tonight's table.</p>
+  <p class="stamp"><b>As of:</b> Aug. 15, 2026 &middot; 9 days old &middot; reviewed Aug. 24, 2026 &middot;
+    a memo is a point-in-time judgment and does not update itself the way the nightly table does.</p>
+
+
+
+  <div class="note"><p><b>What this is not.</b> The ledger behind this site holds 275 decisions, collapsed from 369 name-nights, and none of them has ever been actionable. One row is one decision, not one appearance. A company suggested on 40 consecutive nights is counted once, dated from the first of them, so a name that keeps qualifying cannot inflate the sample. The cohorts above are the other view of the same calls and do repeat a name every night, by design. The actionable date is the first night every condition of the actionable-suggestion contract held at once. It reads empty for a name that has never been actionable, and for every night frozen before the contract existed on Aug. 23, 2026. The engine's current rules are forward-only from Aug. 16, 2026, so the record is days long, not years. This is a personal research tool, not licensed financial advice, and nothing here is a recommendation to buy or sell any security.</p></div>
+
+  <div class="memobody">
+<h2>0. Signals (from <code>build/memo_inputs/UNH-signals-2026-08-14.json</code>)</h2>
+<pre><code>ticker UNH   close 401.73   as_of 2026-08-14   next_earnings 2026-10-27 (74 days)
+
+valuation
+  cheap_pct 23.0 (basis pe+ps+pfcf; pct_by_basis pe 73.1 / ps 13.4 / pfcf 23.0; cheap_thin false)
+  eps_ttm_flag null    pe_ttm 25.8   pe_fwd 17.9   ev_ebitda 15.4   p_book 3.48
+  fair_band  low 394.92 / mid 468.43 / high 610.76   bases [pe, ps, pfcf]
+             caveats []   reliability &quot;ok&quot;   low_implied_fwd_pe 17.6   mid_implied_fwd_pe 20.9
+  fair_band_by_basis   pe 302.60 / 350.50 / 428.56
+                       ps 442.18 / 591.23 / 710.47
+                       pfcf 394.92 / 468.43 / 610.76
+  discount_to_mid -14.2%    discount_to_low +1.7% (spot is ABOVE the low rung)
+  implied_eps_growth  at_hurdle_median_exit 7.92% | at_hurdle_p20_exit 9.31% | at_hurdle_20x_exit 9.05%
+                      fwd_at_hurdle_median_exit 3.58% | fwd_at_hurdle_20x_exit 4.64%
+                      hurdle_used 9% (tier quality_compounder); eps_base_ttm 15.55; eps_base_fwd 22.44
+  compare  trailing_5y_eps_cagr 0.54% | trailing_5y_rev_cagr 10.59% | consensus_eps_growth_1y 13.24%
+           | consensus_ltg null
+  replay   episodes_closed 5, hit_rate_vs_spy 40%, median_excess_12m -0.5%, median_worst_dd_12m -15.3%,
+           weeks_in_zone_median_excess_12m +12.7%, in_zone_now true
+           2020-02-28 (13.5 pct) +33.4% / -0.5% | 2020-08-05 (11.1) +33.6% / -1.4%
+           2021-01-27 (28.8) +39.6% / +22.3% | 2025-05-08 (5.2) +2.5% / -29.8% (worst dd -37.9%)
+           2026-08-11 (23.1) open
+
+quality   gate pass; hard []; soft []; fcf_ttm $23.6B; fcf_conversion 1.67; net_debt_to_ebitda 1.57;
+          share_count_chg_3y -3.6%; op_margin 4.8%; roe 14.2%; gross_margin null (insurer)
+fund.mom. rev_yoy +0.4% (prev +2.0%; rev_decel_2q true); eps_ttm_yoy -32.6%;
+          fwd_eps_rev_30d +7.19% / 90d +8.10%; analyst_up_minus_down_30d +24; rec_mean null
+trend     dd_52w -13.0%; dist_200dma +16.8%; ret_1m -5.1% / 6m +43.2% / 12m +51.8%; rs_spy_6m +28.6%;
+          sector_dd_52w -0.6%; rsi14 42.5; knife false; turned true; bounce_off_52w_low +56%
+sentiment short_pct_float 1.88%; insider_net_count_6m -2 (sells $489k, buys $0); target_upside +18.3%
+scores    buy_score 79.7 (val 24.7 / qual 20 / mom 15 / trend 20 / replay 0); candidate true;
+          blockers []; replay_warning null
+market    risk-on; 16 of 59 covered names below their own 30th percentile
+</code></pre>
+<p>This memo argues with four things: the null <code>eps_ttm_flag</code> and the empty <code>fair_band.caveats</code> (both are errors — §2), the spread in <code>fair_band_by_basis</code>, and the replay.</p>
+<h2>1. What changed</h2>
+<p><strong>(a) Earnings power fell, then recovered.</strong> May 13, 2025: UNH suspended 2025 guidance, citing Medicare Advantage costs for new members "higher than expected," and replaced CEO Andrew Witty with Stephen Hemsley; the stock fell about 18% in a day [1]. Full-year 2025 (Jan. 27, 2026): revenue $447.6 billion, up 12%; GAAP EPS $13.23; adjusted EPS $16.35; net margin 2.7%. Initial 2026 guidance: revenue above $439.0 billion — below 2025 — adjusted EPS above $17.75, MCR 88.8% ±50 bps [2]. Two raises followed: April 21, 2026, Q1 adjusted EPS $7.23, guide above $18.25 [3]; and July 16, 2026, Q2 revenue $112.0 billion, adjusted EPS $6.38, MCR 86.7% versus 89.4%, guide to $19.50-$20.00 adjusted, MCR 88.1% ±25 bps, cash flow about $24 billion from above $18 billion, buyback at least $5.0 billion from about $2.5 billion [4].</p>
+<p><strong>(c) Discrete risk, unresolved.</strong> DOJ criminal and civil probes of MA risk-adjustment billing, confirmed July 2025 [5], later reported to reach Optum Rx and physician pay [6]. Senate Judiciary report, Jan. 12, 2026 [7]. Amended shareholder complaint, D. Minn., filed Aug. 7 and reported Aug. 13, 2026 [8] — likely cause of <code>ret_1m</code> -5.1%.</p>
+<p><strong>Policy tailwind:</strong> CMS finalized CY2027 MA rates April 6, 2026 at +2.48% net (about +4.98% with risk-score trend) versus +0.09% proposed, and left the v28 risk model uncalibrated [9][10].</p>
+<h2>2. Is the impairment real?</h2>
+<p><strong>None of the three percentiles describes reality.</strong></p>
+<p><em>P/E, 73rd percentile — a trough-EPS artifact.</em> <code>eps_base_ttm</code> $15.55 is down 32.6% year over year, against 2025 adjusted EPS of $16.35 and 2024 adjusted $27.66 [2]. A 25.8x multiple on collapsed GAAP earnings says nothing; the engine left <code>eps_ttm_flag</code> null and <code>caveats</code> empty, and both are wrong. Discard that leg.</p>
+<p><em>P/S, 13th percentile — an artifact the other way.</em> 2026 revenue is guided below 2025 and Q2 grew 0.4%; net margin was 2.7% in 2025 and 4.9% in Q2 [2][4], below what the historical P/S embedded. A structurally lower margin deserves a lower P/S — repricing, not cheapness.</p>
+<p><em>P/FCF, 23rd percentile — this is the entire band.</em> The blend is the median of three legs, and P/FCF is the median at all three rungs: <code>fair_band</code> equals <code>fair_band_by_basis.pfcf</code> exactly. It rests on TTM FCF of $23.6 billion at 1.67x net income — but UNH attributed Q2's $11.1 billion operating cash flow (1.9x) partly to "the timing of a substantial government payment" [4], and the 2026 guide, about $24 billion on net earnings above $16.75 billion, implies roughly 1.4x.</p>
+<p><em>What survives:</em> 17.9x forward on $22.44 FY27 consensus; <code>low_implied_fwd_pe</code> 17.6 confirms the safety rung is 17.6x forward. Fair, not cheap.</p>
+<p><strong>Cyclical or structural? Both.</strong> Turning: Medicare trend below the initial ~10% assumption, Medicare margins above 3% for 2026, MCR guide cut 70 bps [4][11]. Structural: the recovery is bought with volume — MA membership down 965,000 since year-end 2025, about 1.1 million expected for the year; Optum Health value-based patients about -700,000; commercial trend "modestly above 11%" [4][11]. And CMS finalized excluding unlinked chart-review diagnoses from CY2027 risk scores [10] — aimed at the practice the Senate report and DOJ probes concern [7].</p>
+<p><strong>What the price implies.</strong> At the 9% hurdle from forward EPS: 3.58%/yr for a decade at a median exit, 4.64% at 20x — against management's 13%-16% long-term range, 13.24% consensus and a 0.54% trailing five-year CAGR. A low bar. But I can name the structural reason — an open criminal investigation into the source of MA revenue per member — and the p20 rung does not price it: $394.92 is 1.7% <em>below</em> spot.</p>
+<p><strong>The replay.</strong> Five closed entries, 40% beat SPY, median excess -0.5% — but two are overlapping 2020 COVID entries into a ripping market, and the one entry into a real crisis (May 8, 2025, 5th percentile) returned +2.5%, -29.8% excess, -37.9% drawdown, five days before guidance was pulled. Week-weighted, <code>weeks_in_zone_median_excess_12m</code> is +12.7% — opposite sign. Different now: guidance exists and has been raised twice; estimates are +8.1% in 90 days on 24 net raises; trend runs below plan, not above. Same: the DOJ.</p>
+<h2>3. Verdict and entry</h2>
+<p><strong>WAIT.</strong> The only cheapness that survives scrutiny is 17.9x forward, and the engine's own margin-of-safety rung sits 1.7% <em>below</em> spot — you are being asked to underwrite an open criminal investigation for a discount a 51.8% 12-month move has already arbitraged away.</p>
+<p><strong>Entry rung: <code>fair_band.low</code> $394.92</strong> (17.6x forward), armed only on an event gate: the Q3 print, Oct. 27, 2026, confirming MCR inside the 88.1% ±25 bps guide <em>and</em> a 2027 membership plan that stops the decline.</p>
+<p><strong>Tier: <code>quality_compounder</code>, 9%,</strong> as assigned. <code>fwd_at_hurdle_median_exit</code> 3.58% is achievable against 13.24% consensus. I am not raising the hurdle to 12% to express DOJ doubt; the return-hurdle policy prohibits it and the doubt belongs in §4.</p>
+<h2>4. Kill criteria</h2>
+<ol>
+<li><strong>DOJ</strong> — any criminal charge, deferred-prosecution agreement, or disclosed loss accrual on the MA billing matters, in the Q3 2026 10-Q (late Oct. 2026) or after → downgrade to <strong>pass</strong>.</li>
+<li><strong>Cost cycle</strong> — Q3 MCR above 89.0%, or the FY26 MCR guide raised above 88.35%, at the Oct. 27, 2026 print → the turn was prior-period development, not trend.</li>
+<li><strong>Revisions</strong> — <code>fwd_eps_rev_90d</code> ≤ -5% on any Monday <code>signals.json</code> refresh → recovery not durable.</li>
+<li><strong>Volume</strong> — 2027 MA enrollment guided to fall more than the ~1.1 million expected in 2026, at the December 2026 investor conference or the Q4 release (late Jan. 2027) → repricing has become shrinkage.</li>
+<li><strong>Stars</strong> — 2027 star ratings (CMS, expected early Oct. 2026): under 70% of MA members in 4+ star plans, versus 78% for 2026 → 2028 revenue impaired.</li>
+</ol>
+<h2>5. Sources</h2>
+<ol>
+<li>STAT News / Healthcare Dive, May 13, 2025 — guidance suspended, Witty out, Hemsley in. https://www.statnews.com/2025/05/13/stephen-hemsley-andrew-witty-unitedhealth-ceo-guidance/ ; https://www.healthcaredive.com/news/andrew-witty-unitedhealth-ceo-steps-down-hemsley/747945/</li>
+<li>UnitedHealth Group, "Reports 2025 Results and Issues 2026 Outlook," Jan. 27, 2026. https://www.unitedhealthgroup.com/newsroom/2026/2026-01-27-uhg-reports-2025-results-and-issues-2026-outlook.html (2024 adjusted EPS of $27.66 is from press coverage of this release, not read in the filing itself)</li>
+<li>Healthcare Dive / STAT, April 21, 2026 — Q1 2026 results and guidance raise. https://www.healthcaredive.com/news/unitedhealth-hikes-2026-profit-outlook-q1-results/817993/ ; https://www.statnews.com/2026/04/21/unitedhealth-earnings-beat-expectations-in-first-quarter-2026/</li>
+<li>UnitedHealth Group, "Reports Second Quarter 2026 Results," July 16, 2026 (full release PDF, read directly). https://www.unitedhealthgroup.com/content/dam/UHG/PDF/investors/2026/unh-reports-second-quarter-2026-results.pdf</li>
+<li>CNBC, July 24, 2025 — UNH confirms DOJ criminal and civil investigations. https://www.cnbc.com/2025/07/24/unitedhealthcare-doj-investigation-medicare-billing.html</li>
+<li>Bloomberg / Fierce Healthcare, Aug. 2025 — probe extends to Optum Rx and physician pay. https://www.bloomberg.com/news/articles/2025-08-26/unitedhealth-ongoing-criminal-probe-is-broader-than-medicare</li>
+<li>Healthcare Dive, Jan. 12, 2026 — Senate Judiciary (Grassley) findings on MA diagnosis capture. https://www.healthcaredive.com/news/unitedhealth-grassley-medicare-advantage-investigation/809377/</li>
+<li>Claims Journal / Bloomberg Law, Aug. 13, 2026 — amended investor complaint filed Aug. 7, 2026, D. Minn. https://www.claimsjournal.com/news/national/2026/08/13/339498.htm</li>
+<li>AHA, April 6, 2026 — CMS finalizes CY2027 MA rates, +2.48%. https://www.aha.org/news/headline/2026-04-06-cms-finalizes-medicare-advantage-rates-cy-2027</li>
+<li>Georgetown CHIR Medicare Policy Initiative, April 2026 — CY2027 rate detail, v28 not recalibrated, unlinked chart-review exclusion. https://medicare.chir.georgetown.edu/from-flat-to-favorable-how-medicare-advantage-payments-increased-in-the-calendar-year-cy-2027-rate-announcement/ ; Healthcare Dive, April 7, 2026. https://www.healthcaredive.com/news/cms-finalizes-higher-medicare-advantage-rates-2027/816633/</li>
+<li>UNH Q2 2026 earnings call transcript, July 16, 2026 (Hemsley, Noel, Kueter). https://www.fool.com/earnings/call-transcripts/2026/07/16/unitedhealth-unh-q2-2026-earnings-call-transcript/</li>
+</ol>
+<p><strong>Could not verify:</strong> the Q2 2026 10-Q legal-matters note (sec.gov returned HTTP 403 to every fetch), so no DOJ accrual, reserve or range-of-loss figure is confirmed; the 2027 star-ratings publication date; the December 2026 investor conference date; any 2027 EPS guidance (none given as of the July 16 call).</p>
+  </div>
+
+  <footer>
+    <p>The personal half of this memo &mdash; position size, portfolio overlap, tax lots &mdash; is
+      fenced out of the published text by construction and is not on this page. What a name is worth
+      is public; what one investor should own is not.</p>
+    <p class="methodlink"><a href="memos.html">&larr; All memos</a> &middot;
+      <a href="./">The Ranker</a> &middot; <a href="approach.html">How this works</a></p>
+  </footer>
+
+</div>
+</body>
+</html>

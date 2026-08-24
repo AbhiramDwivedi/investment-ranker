@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DECK memo &mdash; Deckers Brands</title>
+<meta name="description" content="Deckers Brands (DECK): the research memo behind
+  its row on the S&amp;P 1500 Ranker, written Aug. 17, 2026.">
+<link rel="canonical" href="https://abhiramdwivedi.github.io/investment-ranker/memo-DECK.html">
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --baseline: #c3c2b7; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --accent-soft: #cde2fb;
+    --machine: #1c5cab; --judge: #b5462b; --warn: #fab219;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+      --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+      --accent: #6da7ec; --accent-soft: #184f95;
+      --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+    --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+    --accent: #6da7ec; --accent-soft: #184f95;
+    --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--page); color: var(--ink); margin: 0; line-height: 1.6;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 16px; }
+  .wrap { max-width: 78ch; margin: 0 auto; padding: 28px 24px 72px; }
+  .masthead { display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+    flex-wrap: wrap; border-bottom: 2px solid var(--ink); padding-bottom: 14px; }
+  .masthead .home { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    font-weight: 650; color: var(--accent); text-decoration: none; }
+  .masthead .home:hover { text-decoration: underline; }
+  h1 { font-size: 30px; font-weight: 750; letter-spacing: -0.015em; margin: 26px 0 0; }
+  .standfirst { font-size: 17px; color: var(--ink-2); margin: 10px 0 0; }
+  .kicker { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); font-weight: 650; margin: 0; }
+  h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; margin: 40px 0 0;
+    padding-top: 14px; border-top: 1px solid var(--grid); }
+  h3 { font-size: 15.5px; font-weight: 700; margin: 24px 0 0; }
+  p { margin: 12px 0 0; }
+  ul { margin: 12px 0 0; padding-left: 20px; }
+  li { margin: 7px 0; }
+  a { color: var(--accent); }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.88em;
+    background: color-mix(in srgb, var(--muted) 14%, var(--surface)); padding: 1px 5px; border-radius: 4px; }
+  .lede { font-size: 17px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 14px;
+    font-variant-numeric: tabular-nums; }
+  caption { caption-side: bottom; text-align: left; font-size: 12px; color: var(--muted);
+    margin-top: 8px; line-height: 1.5; }
+  th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--muted); font-weight: 650; padding: 0 10px 7px 0; border-bottom: 1px solid var(--baseline); }
+  td { padding: 8px 10px 8px 0; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  td.n, th.n { text-align: right; padding-right: 0; }
+  tr.hi td { background: color-mix(in srgb, var(--accent) 8%, transparent); font-weight: 600; }
+  .scroll { overflow-x: auto; }
+  .rule { background: var(--surface); border: 1px solid var(--ring); border-radius: 8px;
+    padding: 16px 18px; margin-top: 16px; }
+  .rule ul { list-style: none; padding-left: 0; }
+  .rule li { display: grid; grid-template-columns: 13ch 1fr; gap: 12px; align-items: baseline;
+    padding: 7px 0; border-bottom: 1px solid var(--grid); font-size: 14.5px; }
+  .rule li:last-child { border-bottom: 0; }
+  .rule li b { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12.5px; color: var(--machine); font-weight: 650; }
+  .steps { counter-reset: s; list-style: none; padding-left: 0; }
+  .steps li { counter-increment: s; position: relative; padding-left: 34px; margin: 14px 0; font-size: 15px; }
+  .steps li::before { content: counter(s); position: absolute; left: 0; top: 1px; width: 23px; height: 23px;
+    border-radius: 50%; background: var(--accent-soft); color: var(--machine); font-size: 12px;
+    font-weight: 700; display: grid; place-items: center; }
+  .steps li.j::before { background: color-mix(in srgb, var(--judge) 20%, var(--surface)); color: var(--judge); }
+  .steps b { font-weight: 700; }
+  .steps .f { color: var(--muted); font-size: 12.5px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .verdict { border-left: 3px solid var(--accent); padding: 2px 0 2px 16px; margin-top: 18px;
+    font-size: 16px; }
+  .note { background: color-mix(in srgb, var(--warn) 10%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--warn) 45%, var(--surface));
+    border-radius: 8px; padding: 12px 16px; margin-top: 18px; font-size: 14.5px; }
+  footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--grid);
+    font-size: 13px; color: var(--muted); }
+
+  .memobody h2 { font-size: 19px; }
+  .memobody table { font-size: 13px; }
+  .memobody blockquote { margin: 14px 0 0; padding: 2px 0 2px 16px;
+    border-left: 3px solid var(--baseline); color: var(--ink-2); }
+  .memobody pre { background: color-mix(in srgb, var(--muted) 12%, var(--surface));
+    border: 1px solid var(--ring); border-radius: 8px; padding: 12px 14px; overflow-x: auto;
+    font-size: 12.5px; line-height: 1.5; }
+  .memobody pre code { background: none; padding: 0; }
+  .stamp { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+  .stamp b { color: var(--ink-2); }
+  .verdict-tag { display: inline-block; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.06em; font-weight: 700; border: 1px solid var(--baseline);
+    border-radius: 999px; padding: 2px 9px; }
+  .rs { font-size: 12px; border: 1px solid var(--baseline); border-radius: 999px;
+    padding: 1px 8px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="kicker">Memo &middot; S&amp;P 1500 Ranker</p>
+    <a class="home" href="memos.html">&larr; All memos</a>
+  </header>
+
+  <h1>DECK &mdash; Deckers Brands</h1>
+  <p class="standfirst">Written Aug. 17, 2026. The verdict was
+    <span class="verdict-tag">wait</span> and the name reads
+    <code class="rs">research</code> on tonight's table.</p>
+  <p class="stamp"><b>As of:</b> Aug. 17, 2026 &middot; 7 days old &middot; reviewed Aug. 24, 2026 &middot;
+    a memo is a point-in-time judgment and does not update itself the way the nightly table does.</p>
+
+
+
+  <div class="note"><p><b>What this is not.</b> The ledger behind this site holds 275 decisions, collapsed from 369 name-nights, and none of them has ever been actionable. One row is one decision, not one appearance. A company suggested on 40 consecutive nights is counted once, dated from the first of them, so a name that keeps qualifying cannot inflate the sample. The cohorts above are the other view of the same calls and do repeat a name every night, by design. The actionable date is the first night every condition of the actionable-suggestion contract held at once. It reads empty for a name that has never been actionable, and for every night frozen before the contract existed on Aug. 23, 2026. The engine's current rules are forward-only from Aug. 16, 2026, so the record is days long, not years. This is a personal research tool, not licensed financial advice, and nothing here is a recommendation to buy or sell any security.</p></div>
+
+  <div class="memobody">
+<h2>0. Signals (from <code>build/signals.json → names.DECK</code>, as of 2026-08-17)</h2>
+<pre><code>ticker DECK  Deckers Outdoor Corporation  Consumer Discretionary
+close 90.11  as_of 2026-08-17  next_earnings 2026-10-22 (66 days)
+
+valuation:  cheap_pct 1.4 (basis pe+ps+pfcf; pe 1.2 / ps 8.8 / pfcf 1.4;
+            cheap_thin false), cheapness_source "de-rated",
+            eps_ttm_flag null, ttm_base_spikes null,
+            pe_ttm 12.7, pe_fwd 10.7, ev_ebitda 8.7, p_book 5.35
+            own 10y: pe cur 12.75 (p20 16.61, median 23.22, p80 30.37, 2,387 obs)
+                     ps cur 2.26  (p20 2.58,  median 3.24,  p80 4.27,  1,814 obs)
+                     pfcf cur 11.17 (p20 15.17, median 20.53, p80 31.72, 2,209 obs)
+            fair_band low 117.43 / mid 164.17 / high 214.72
+                      bases pe+ps+pfcf, rung_basis low=pe, caveats [] ,
+                      reliability "ok", low_implied_fwd_pe 14.0,
+                      upside_to_low_rung +30.3%, upside_to_mid_rung +82.2%
+            fair_band_by_basis pe 117.43 / ps 102.92 / pfcf 122.38 / pb 61.63
+            implied_eps_growth at_hurdle_median_exit +2.65%/yr,
+                      at_hurdle_p20_exit +6.15%, at_hurdle_20x_exit +4.20%,
+                      fwd_at_hurdle_median_exit +0.90%, fwd_at_hurdle_20x_exit +2.42%
+                      hurdle_used 9% (tier quality_compounder), exit_median_pe 23.22,
+                      eps_base_ttm 7.07, eps_base_fwd 8.40
+            compare trailing_5y_eps_cagr +22.4%, trailing_5y_rev_cagr +14.8%,
+                      consensus_eps_growth_1y +11.5%, consensus_ltg null
+            replay 3 episodes, all closed; hit_rate_vs_spy 67%,
+                      median_excess_12m +67.2%, worst/latest_closed_excess_12m −37.2%
+                      (latest started 2025-03-10), median_worst_dd_12m −34.3%,
+                      117 of 620 weeks in the zone; 36m: 2 closed, 100%, +139.9%
+quality:    gate PASS, hard [], soft [], fcf_conversion 1.1,
+            net_debt_to_ebitda −0.85 (net cash), share_count_chg_3y −12.3%,
+            gross_margin 57.8% vs 50.9% three years ago, op_margin 22.7%, roe 42.6%
+fund. mom.: rev_yoy +5.7% (prev +9.6%), rev_accel false, rev_decel_2q false,
+            eps_ttm_yoy +8.4%, fwd_eps_rev_30d +0.8%, fwd_eps_rev_90d null,
+            analyst_up_minus_down_30d +16, analysts 21
+trend:      dd_52w −28.2%, dist_200dma −11.8%, slope_200dma_1m −0.06%,
+            rs_spy_6m −36.1%, rs_spy_12m −34.4%, sector (XLY) dd_52w −5.9%,
+            rsi14 33.4, knife false, turned false, days_since_52w_low 195
+sentiment:  short_pct_float 6.7%, insider_net_count_6m 0, target_upside +36.3%
+economics:  ROIC 84.5% (69.8% three years ago), retention 0, buyback_yield 10.0%,
+            fundable_growth 10.0%, needed_at_hurdle_20x +4.2%, growth_gap −5.8%
+scores:     buy_score 57.5 (valuation 19.5, quality 25, fund. mom. 13, trend 0),
+            candidate true, tier "memo", blockers [], replay_warning null
+</code></pre>
+<p><strong>What this memo argues with.</strong> One thing, and it is decisive: the band. Its
+low rung, $117.43, sits 30.3% ABOVE the $90.11 close. Under the template's own
+rule that makes it not an entry rung at all.</p>
+<p>The replay is not argued with: three episodes, 67%
+beating SPY by a median 67%, but the most recent one (March 2025) lost to SPY
+by 37%, which is the honest warning that the last time this name looked this
+cheap the cheapness kept going.</p>
+<h2>1. What changed — why is the multiple where it is?</h2>
+<p>Deckers is at the 1st percentile of its own decade on P/E and the 1.4th
+blended, and nothing in the filings looks like a break. It looks like a
+growth-rate reset, in four dated steps.</p>
+<ul>
+<li><strong>FY2026 (year ended Mar. 31, 2026; 10-K filed May 22, 2026).</strong> Net sales
+  +9.8% to $5,472.3M, +9.0% constant currency — the first single-digit year
+  after a run of 15%-plus. HOKA +15.9% to $2,587.3M, UGG +8.2% to $2,738.8M,
+  Other brands −33.9% to $146.2M on the Koolaburra phase-out. Diluted EPS
+  $7.02, +10.9%. Operating margin 23.1%, down 50bp.</li>
+<li><strong>The U.S. stopped growing.</strong> Domestic net sales rose 0.2% in FY2026 — the
+  whole year's growth was international (+26.8%). That is the single most
+  important line in the file, and it predates the de-rating.</li>
+<li><strong>Q1 FY2027 (quarter ended Jun. 30, 2026; released Jul. 23, 10-Q filed
+  Jul. 30).</strong> Net sales +5.7% to $1,019.5M (+4.8% cc). HOKA +7.7% to $703.5M.
+  UGG +4.9% to $278.0M. Domestic +3.2%, international +8.4%. Gross margin
+  56.4%, up 60bp. But SG&amp;A rose 12.7% to $419.9M, so <strong>operating income fell
+  6.0% to $155.3M</strong> and operating margin fell 190bp to 15.2%. Diluted EPS
+  $0.94, +1.1%.</li>
+<li><strong>Tariffs, quantified.</strong> The 10-Q says the company has paid about $120.0M
+  gross in IEEPA tariffs, has begun filing for refunds, has recognized none of
+  it, and does not expect mitigation to fully offset the incremental tariff
+  cost this fiscal year. FY2027 guidance excludes any refund.</li>
+</ul>
+<p>So: (b) growth expectations fell and (a) earnings power is being squeezed at
+the margin line, together. Not (c) — there is no discrete risk event in the
+filings — and not only (d), though a −5.9% XLY against DECK's −28.2% says
+some of it is the sector too.</p>
+<h2>2. Is the impairment real?</h2>
+<p><strong>Partly, and the market is pricing much more than "partly."</strong> Take the three
+pieces separately.</p>
+<p><em>The U.S. slowdown is real and is not a one-quarter artifact.</em> Domestic sales
+were +0.2% for FY2026 and +3.2% in Q1 FY2027. HOKA's decelerating from +15.9%
+to +7.7% while management guides the full year to a low-double-digit increase
+(guidance of Jul. 23, 2026, reaffirmed at that level) means <strong>the guide
+requires a re-acceleration in the back half that has not started.</strong> That is a
+falsifiable claim with a date on it, and it is the most likely thing to break.</p>
+<p><em>The margin compression is real but is being disclosed as tariff-driven and
+partially reversible.</em> FY2027 guidance: revenue $5.86-5.91B, gross margin
+slightly better than 56.5%, SG&amp;A about 35% of sales, operating margin slightly
+better than 21.5%, EPS $7.35-$7.50. Use the midpoint: $7.425, up 5.8% on
+FY2026's $7.02, with about 160bp of operating margin given away. The $120.0M
+of IEEPA tariffs already paid is a real cash cost carried at zero recognized
+recovery — that is conservative accounting, not an impairment of the
+franchise, and any refund is upside nobody is booking.</p>
+<p><em>Nothing in the quality or capital picture is impaired.</em> Gross margin is 57.8%
+against 50.9% three years ago. ROIC is 84.5%, up from 69.8%. Net cash, no
+outstanding borrowings, $1.603B of cash, inventories DOWN year over year to
+$807.6M — inventory is not backing up behind the slowdown, which is what a
+real demand break looks like. The company bought back 3.3 million shares for
+$338.2M in the June quarter alone (vs $183.0M a year earlier) at an average
+$103.79, and guides to spending about 80% of FY2027 free cash flow on
+buybacks against a $4.7B remaining authorization.</p>
+<p><em>What the price implies.</em> At the 9% quality-compounder hurdle and an exit at
+its own median 23.2x, the $90.11 close implies <strong>+2.65% EPS growth a year for
+ten years</strong>. Against trailing five-year EPS CAGR of +22.4%, consensus +11.5%
+for next year, and management's own guided +5.8% for this year — with a 10%
+buyback yield that alone funds about 10% of share-count-driven EPS growth a
+year. The price is not asking whether growth slows; it is asking whether
+growth essentially stops, permanently, at a company that has already told you
+it will retire a tenth of its shares annually. <strong>I cannot name the structural
+reason for that, and the filings do not supply one.</strong> The nameable risks — a
+U.S. HOKA plateau, tariffs, wholesale over-shipping — are all worth several
+points of growth, not all of it.</p>
+<p>The honest counterweight is the replay: the last time DECK entered this zone
+(March 2025) it went on to lag SPY by 37% over the following year. Cheap on
+its own history has been a poor short-run signal for this name once already.</p>
+<h2>3. Verdict and entry</h2>
+<p><strong>Wait</strong> — but the reason is different from the one on file, and it is worth
+recording plainly.</p>
+<p>The band cannot be used as the entry rung here. <code>fair_band.low</code> is $117.43
+against a $90.11 close (<code>upside_to_low_rung</code> +30.3%), so the p20 rung sits
+above today's price; the template's own rule says do not arm a "margin of
+safety" above spot. That leaves spot or an event gate.</p>
+<p>The gate that would actually matter is an event, not a price: <strong>the H2
+FY2027 re-acceleration in HOKA, first testable at the Q2 print on Oct. 22,
+2026 and decided at Q3 in late January 2027.</strong> Tier is 9% (quality
+compounder — diversified across two brands, three channels, two geographies,
+net cash, 57.8% gross margin); at that tier the price implies +2.65% and the
+company guides +5.8% this year, so the hurdle is achievable on the arithmetic
+without heroic assumptions.</p>
+<h2>4. Kill criteria — pre-committed, falsifiable, dated</h2>
+<ol>
+<li><strong>HOKA constant-currency growth below +5% in two straight quarters, or any
+   negative quarter.</strong> Checked on each quarterly release; next Oct. 22, 2026.
+   Q1 FY2027 reported +7.7% (as-reported; the release gives cc only at the
+   consolidated level, +4.8%) — PASS, with under 3 points of room.</li>
+<li><strong>H2 FY2027 re-acceleration missed</strong> — full-year HOKA lands below a
+   low-double-digit increase, or the FY2027 revenue guide of $5.86-5.91B is
+   cut. Checked Oct. 22, 2026 and late January 2027.</li>
+<li><strong>Full-year operating margin below 19.5%.</strong> Guided "slightly better than
+   21.5%" on Jul. 23, 2026. Checked at each guidance update.</li>
+<li><strong>Wholesale outrunning DTC by more than 5 points over a fiscal year.</strong>
+   FY2026 TRIPPED this: wholesale +12.3% vs DTC +6.3%, a 6.0-point gap.
+   Q1 FY2027 reversed it hard — DTC +13.0% vs wholesale +2.2%, comparable DTC
+   +6.8%. Re-checked at FY2027 year-end, May 2027; a second consecutive
+   fiscal year of it is a downgrade, not a discussion.</li>
+<li><strong>Buybacks paused or debt-funded.</strong> Currently the opposite: $338.2M in the
+   June quarter, no outstanding borrowings, $4.7B authorization remaining.
+   Checked each 10-Q.</li>
+</ol>
+<h2>5. Sources</h2>
+<ul>
+<li>Deckers Outdoor 10-Q for the quarter ended Jun. 30, 2026, filed Jul. 30,
+  2026 (accession 0000910521-26-000022): financial highlights, brand and
+  channel net sales, operating margin, IEEPA tariff disclosure, stock
+  repurchase note.</li>
+<li>Deckers Outdoor 8-K filed Jul. 23, 2026 (accession 0000910521-26-000015),
+  Exhibit 99.1 press release: Q1 FY2027 results, constant-currency net sales,
+  DTC comparable sales, balance sheet, and the full FY2027 outlook.</li>
+<li>Deckers Outdoor 10-K for the fiscal year ended Mar. 31, 2026, filed
+  May 22, 2026 (accession 0001628280-26-037664): FY2026 brand, channel and
+  geographic net sales, operating margin, diluted EPS, segment operating
+  margins.</li>
+<li><code>build/signals.json</code> as of 2026-08-17 for every number in §0; EDGAR
+  companyfacts (split-rebased) via <code>scripts/fetch_facts.py</code> for the quarterly
+  series behind them.</li>
+<li>Not verified: the Q1 FY2027 conference call of Jul. 23, 2026. The transcript
+  is not on EDGAR and was not reachable from this run, so no management
+  commentary beyond the furnished press release is relied on here.</li>
+</ul>
+  </div>
+
+  <footer>
+    <p>The personal half of this memo &mdash; position size, portfolio overlap, tax lots &mdash; is
+      fenced out of the published text by construction and is not on this page. What a name is worth
+      is public; what one investor should own is not.</p>
+    <p class="methodlink"><a href="memos.html">&larr; All memos</a> &middot;
+      <a href="./">The Ranker</a> &middot; <a href="approach.html">How this works</a></p>
+  </footer>
+
+</div>
+</body>
+</html>

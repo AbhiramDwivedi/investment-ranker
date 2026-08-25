@@ -3,7 +3,11 @@
 The published pages for a personal stock-research tool.
 
 **→ [The Ranker](https://abhiramdwivedi.github.io/investment-ranker/)** — updated every weekday
-evening after the U.S. close.
+evening after the U.S. close. One table: the stocks trading cheap against their own history tonight.
+
+**→ [What is moving](https://abhiramdwivedi.github.io/investment-ranker/patterns.html)** — a different
+question, on its own page: which stocks already match a pattern that preceded big gains in the past,
+with each pattern's replay record, including the one that failed its own test.
 
 **→ [How it works, in three pictures](https://abhiramdwivedi.github.io/investment-ranker/how-it-works.html)**
 — the whole method in about a minute, for anyone starting from scratch.

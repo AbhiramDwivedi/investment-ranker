@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LHX memo &mdash; L3Harris</title>
+<meta name="description" content="L3Harris (LHX): the research memo behind
+  its row on the S&amp;P 1500 Ranker, written Aug. 24, 2026.">
+<link rel="canonical" href="https://abhiramdwivedi.github.io/investment-ranker/memo-LHX.html">
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --baseline: #c3c2b7; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --accent-soft: #cde2fb;
+    --machine: #1c5cab; --judge: #b5462b; --warn: #fab219;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+      --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+      --accent: #6da7ec; --accent-soft: #184f95;
+      --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+    --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+    --accent: #6da7ec; --accent-soft: #184f95;
+    --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--page); color: var(--ink); margin: 0; line-height: 1.6;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 16px; }
+  .wrap { max-width: 78ch; margin: 0 auto; padding: 28px 24px 72px; }
+  .masthead { display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+    flex-wrap: wrap; border-bottom: 2px solid var(--ink); padding-bottom: 14px; }
+  .masthead .home { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    font-weight: 650; color: var(--accent); text-decoration: none; }
+  .masthead .home:hover { text-decoration: underline; }
+  h1 { font-size: 30px; font-weight: 750; letter-spacing: -0.015em; margin: 26px 0 0; }
+  .standfirst { font-size: 17px; color: var(--ink-2); margin: 10px 0 0; }
+  .kicker { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); font-weight: 650; margin: 0; }
+  h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; margin: 40px 0 0;
+    padding-top: 14px; border-top: 1px solid var(--grid); }
+  h3 { font-size: 15.5px; font-weight: 700; margin: 24px 0 0; }
+  p { margin: 12px 0 0; }
+  ul { margin: 12px 0 0; padding-left: 20px; }
+  li { margin: 7px 0; }
+  a { color: var(--accent); }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.88em;
+    background: color-mix(in srgb, var(--muted) 14%, var(--surface)); padding: 1px 5px; border-radius: 4px; }
+  .lede { font-size: 17px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 14px;
+    font-variant-numeric: tabular-nums; }
+  caption { caption-side: bottom; text-align: left; font-size: 12px; color: var(--muted);
+    margin-top: 8px; line-height: 1.5; }
+  th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--muted); font-weight: 650; padding: 0 10px 7px 0; border-bottom: 1px solid var(--baseline); }
+  td { padding: 8px 10px 8px 0; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  td.n, th.n { text-align: right; padding-right: 0; }
+  tr.hi td { background: color-mix(in srgb, var(--accent) 8%, transparent); font-weight: 600; }
+  .scroll { overflow-x: auto; }
+  .rule { background: var(--surface); border: 1px solid var(--ring); border-radius: 8px;
+    padding: 16px 18px; margin-top: 16px; }
+  .rule ul { list-style: none; padding-left: 0; }
+  .rule li { display: grid; grid-template-columns: 13ch 1fr; gap: 12px; align-items: baseline;
+    padding: 7px 0; border-bottom: 1px solid var(--grid); font-size: 14.5px; }
+  .rule li:last-child { border-bottom: 0; }
+  .rule li b { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12.5px; color: var(--machine); font-weight: 650; }
+  .steps { counter-reset: s; list-style: none; padding-left: 0; }
+  .steps li { counter-increment: s; position: relative; padding-left: 34px; margin: 14px 0; font-size: 15px; }
+  .steps li::before { content: counter(s); position: absolute; left: 0; top: 1px; width: 23px; height: 23px;
+    border-radius: 50%; background: var(--accent-soft); color: var(--machine); font-size: 12px;
+    font-weight: 700; display: grid; place-items: center; }
+  .steps li.j::before { background: color-mix(in srgb, var(--judge) 20%, var(--surface)); color: var(--judge); }
+  .steps b { font-weight: 700; }
+  .steps .f { color: var(--muted); font-size: 12.5px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .verdict { border-left: 3px solid var(--accent); padding: 2px 0 2px 16px; margin-top: 18px;
+    font-size: 16px; }
+  .note { background: color-mix(in srgb, var(--warn) 10%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--warn) 45%, var(--surface));
+    border-radius: 8px; padding: 12px 16px; margin-top: 18px; font-size: 14.5px; }
+  footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--grid);
+    font-size: 13px; color: var(--muted); }
+
+  .memobody h2 { font-size: 19px; }
+  .memobody table { font-size: 13px; }
+  .memobody blockquote { margin: 14px 0 0; padding: 2px 0 2px 16px;
+    border-left: 3px solid var(--baseline); color: var(--ink-2); }
+  .memobody pre { background: color-mix(in srgb, var(--muted) 12%, var(--surface));
+    border: 1px solid var(--ring); border-radius: 8px; padding: 12px 14px; overflow-x: auto;
+    font-size: 12.5px; line-height: 1.5; }
+  .memobody pre code { background: none; padding: 0; }
+  .stamp { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+  .stamp b { color: var(--ink-2); }
+  .verdict-tag { display: inline-block; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.06em; font-weight: 700; border: 1px solid var(--baseline);
+    border-radius: 999px; padding: 2px 9px; }
+  .rs { font-size: 12px; border: 1px solid var(--baseline); border-radius: 999px;
+    padding: 1px 8px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="kicker">Memo &middot; S&amp;P 1500 Ranker</p>
+    <a class="home" href="memos.html">&larr; All memos</a>
+  </header>
+
+  <h1>LHX &mdash; L3Harris</h1>
+  <p class="standfirst">Written Aug. 24, 2026. The verdict was
+    <span class="verdict-tag">wait</span> and the name reads
+    <code class="rs">research</code> on tonight's table.</p>
+  <p class="stamp"><b>As of:</b> Aug. 24, 2026 &middot; 1 days old &middot; reviewed Aug. 25, 2026 by codex &middot;
+    a memo is a point-in-time judgment and does not update itself the way the nightly table does.</p>
+
+
+
+  <div class="note"><p><b>What this is not.</b> The ledger behind this site holds 275 decisions, collapsed from 369 name-nights, and none of them has ever been actionable. One row is one decision, not one appearance. A company suggested on 40 consecutive nights is counted once, dated from the first of them, so a name that keeps qualifying cannot inflate the sample. The cohorts above are the other view of the same calls and do repeat a name every night, by design. The actionable date is the first night every condition of the actionable-suggestion contract held at once. It reads empty for a name that has never been actionable, and for every night frozen before the contract existed on Aug. 23, 2026. The engine's current rules are forward-only from Aug. 16, 2026, so the record is days long, not years. This is a personal research tool, not licensed financial advice, and nothing here is a recommendation to buy or sell any security.</p></div>
+
+  <div class="memobody">
+<p>Revised 2026-08-25 addressing research/memos/LHX-review-2026-08-25.md.</p>
+<h2>0. Signals</h2>
+<p>Engine coverage for LHX, checked across every governed surface by <code>python
+scripts/memo_context.py LHX</code> on 2026-08-25T12:41:51Z. This block is generated;
+paste it verbatim and do not edit it by hand.</p>
+<pre><code>focused signals       COVERED       93 names, as of 2026-08-21
+                      build/signals.json - The narrower set the nightly engine scores in full, with estimate families layered on.
+full universe         COVERED       1,422 names, as of 2026-08-21
+                      build/universe.json - The filings-only engine over every S&amp;P 1500 name with an EDGAR history.
+committed universe    COVERED       1,422 names, as of 2026-08-21
+                      reports/universe.json - The committed fallback for the universe run, stored compact.
+cross-sectional rank  COVERED       1,340 names, as of 2026-08-24
+                      build/rank.json - A factor ranking, not own-history, and possibly an older window.
+</code></pre>
+<p>Memo mode is <strong>covered</strong>: the engine has output for LHX in build/signals.json,
+and section 3 must choose its entry from the machine band below rather than
+building a new one.</p>
+<p>Where the factor row disagrees with the engine, the engine wins:</p>
+<ul>
+<li>
+<p>The cross-sectional row in build/rank.json was generated at
+  2026-08-24T03:06:58+00:00, before the engine result at
+  2026-08-25T12:41:41+00:00, so it never supersedes it.</p>
+<p>ticker LHX | close 266.73 | as_of 2026-08-21 | next_earnings 2026-10-29 (days_to_earnings 69)
+per share:  eps_ttm 9.92, sales 209.02, fcf 14.99, book 106.15
+valuation:  cheap_pct 12.6 (basis pe+ps+pfcf; by basis pe 41.6, ps 0.0, pfcf 12.6; cheap_thin false)
+            cheapness_source de-rated, eps_ttm_flag ttm_far_below_fwd, ttm_base_spikes none
+            pe_ttm 26.90, pe_fwd 19.80, ev_ebitda 30.80, p_book 2.60
+            fair_band low 279.30 / mid 350.51 / high 506.58 on bases pe, ps, pfcf
+            fair_band reliability ok, upside_to_low_rung 4.7%, caveats P/E leg of the band sits on TTM EPS far below forward; blended band used — the PFCF leg is the low rung
+            fair_band_by_basis {"pe": {"low": 231.14, "mid": 279.35, "high": 342.04}, "ps": {"low": 405.49, "mid": 507.91, "high": 733.65}, "pfcf": {"low": 279.3, "mid": 350.51, "high": 506.58}, "pb": {"low": 218.67, "mid": 256.88, "high": 564.72}}
+            implied_eps_growth at_hurdle_median_exit 6.6%, at_hurdle_p20_exit 8.4%, at_hurdle_20x_exit 9.9%
+            implied_eps_growth fwd_at_hurdle_20x_exit 6.3%, tier quality_compounder, hurdle_used 9.0%, eps_base_ttm 9.92
+            compare trailing_5y_eps_cagr 6.7%, consensus_eps_growth_1y 12.2%, consensus_ltg none
+            replay episodes_closed 8, hit_rate_vs_spy 50.0%, median_excess_12m -12.0%, worst_excess_12m -39.8%
+            replay open_episodes 1, open_median_excess_to_date -37.5%, median_worst_dd_12m -16.8%
+quality:    gate pass, hard none, soft net debt is 3.2 times EBITDA, unknown none
+            fcf_conversion 1.50, net_debt_to_ebitda 3.23, share_count_chg_3y -1.5%, sbc_to_fcf 4.0%
+            sbc_adjusted_fcf 2,694,000,000.00 (5.4% of market cap) against reported fcf_ttm 2,808,000,000.00
+            gross_margin 25.6% against 26.9% three years ago
+economics:  roic 11.9% against 14.0% three years ago, fundable_growth 2.3%, needed_at_hurdle_20x 6.3%, growth_gap 3.9%
+fund. mom.: rev_yoy 8.4%, rev_accel false, rev_decel_2q false, eps_ttm_yoy 10.8%
+            fwd_eps_rev_30d -1.0%, fwd_eps_rev_90d -1.0%, analyst_up_minus_down_30d -4, rec_mean none against none three months ago
+trend:      dd_52w -29.7%, dist_200dma -15.1%, rs_spy_6m -36.2%, sector_dd_52w -3.4%, knife false, turned false
+sentiment:  short_pct_float 2.4%, insider_net_count_6m -4, target_upside 28.1%
+scores:     buy_score 42.8, cheap true, bases 3, candidate true, tier memo
+            candidate_reasons own-history pe+ps+pfcf at 13th pct (10y), de-rated: -30% off the 52w high, -2% over 12m, -24% against own-median re-rating value 350.51, replay: 8 past entries into this zone, 50% beat SPY over 12m, median excess -12%, median worst drawdown -17% (worst -40%; latest 2024-12 +5%; 1 open, running -38% against SPY so far; all weeks in zone, median +0%), economics: ROIC 12% (3y ago 14%), 5% retained, 1.7% buyback yield — enough to fund about +2% a year without outside capital; the price at a 20x exit needs +6% — gap +4%: the price asks for a re-rating, leverage or higher returns, not just execution, buybacks: 25% of today's market cap spent at a dollar-weighted 53rd pct of own history, replay 36m: 7 entries with 3y of data, 0% beat SPY, median excess -35%
+            candidate_blockers none
+            replay_warning none
+data notes: trailing P/E 27x against forward 20x, TTM EPS +11% YoY: TTM GAAP EPS far below +1y consensus (charges, a trough, a GAAP/non-GAAP gap, or rapid growth) — read the blended band and the forward-EPS implied-growth rows
+portfolio:  held false (position size never appears in a memo)</p>
+</li>
+</ul>
+<!-- memo-context: generated block, do not edit by hand. Regenerate with `python scripts/memo_context.py LHX`. -->
+
+<p>```json memo-context
+{
+  "checksum": "sha256:a1ad1c05156d426af4b7100947d823c6759257a0c8ba4ab069554488d94f0c8e",
+  "coverage": [
+    {
+      "as_of": "2026-08-21",
+      "covers_ticker": true,
+      "exists": true,
+      "generated_at": "2026-08-25T12:41:41+00:00",
+      "kind": "signals_focused",
+      "label": "focused signals",
+      "names": 93,
+      "note": "The narrower set the nightly engine scores in full, with estimate families layered on.",
+      "path": "build/signals.json"
+    },
+    {
+      "as_of": "2026-08-21",
+      "covers_ticker": true,
+      "exists": true,
+      "generated_at": "2026-08-25T12:41:29+00:00",
+      "kind": "universe_full",
+      "label": "full universe",
+      "names": 1422,
+      "note": "The filings-only engine over every S&amp;P 1500 name with an EDGAR history.",
+      "path": "build/universe.json"
+    },
+    {
+      "as_of": "2026-08-21",
+      "covers_ticker": true,
+      "exists": true,
+      "generated_at": "2026-08-25T12:41:29+00:00",
+      "kind": "universe_committed",
+      "label": "committed universe",
+      "names": 1422,
+      "note": "The committed fallback for the universe run, stored compact.",
+      "path": "reports/universe.json"
+    },
+    {
+      "as_of": null,
+      "covers_ticker": true,
+      "exists": true,
+      "generated_at": "2026-08-24T03:06:58+00:00",
+      "kind": "rank_cross_sectional",
+      "label": "cross-sectional rank",
+      "names": 1340,
+      "note": "A factor ranking, not own-history, and possibly an older window.",
+      "path": "build/rank.json"
+    }
+  ],
+  "data_as_of": "2026-08-21",
+  "engine_coverage": [
+    "build/signals.json",
+    "build/universe.json",
+    "reports/universe.json"
+  ],
+  "generated_at": "2026-08-25T12:41:51Z",
+  "held": false,
+  "instruction_locks": [
+    {
+      "commit": "0bf61dbf22e00df68b4a65693e6b2851205cd8fe",
+      "path": "research/MEMO-TEMPLATE.md",
+      "present": true,
+      "sha256": "baa999933a4facf5a8fd324a5394a56d7a5cfa50f23bf6b419de0615da1bc4c1",
+      "uncommitted": false
+    },
+    {
+      "commit": "0bf61dbf22e00df68b4a65693e6b2851205cd8fe",
+      "path": ".claude/agents/memo-writer.md",
+      "present": true,
+      "sha256": "1c4ecd15f2a119c608b3ba99734cd18feef9a7c049d606d81d6e783a73c4546a",
+      "uncommitted": false
+    },
+    {
+      "commit": "b1a37ce929e9e9146fadbd51dce18d218f9ae8c3",
+      "path": "scripts/memo_context.py",
+      "present": true,
+      "sha256": "2af4479dcad1e3a2316f5e028d1ab61eae85dc31250f69c33e7861638b556efd",
+      "uncommitted": false
+    }
+  ],
+  "mode": "covered",
+  "mode_derived": "covered",
+  "mode_forced": false,
+  "primary_kind": "signals_focused",
+  "primary_source": "build/signals.json",
+  "rank_conflicts": [
+    "The cross-sectional row in build/rank.json was generated at 2026-08-24T03:06:58+00:00, before the engine result at 2026-08-25T12:41:41+00:00, so it never supersedes it."
+  ],
+  "schema": "memo-context/1",
+  "spot": {
+    "as_of": "2026-08-21",
+    "close": 266.73,
+    "source": "build/signals.json"
+  },
+  "ticker": "LHX"
+}</p>
+<pre><code>
+## 1. What changed - why is the multiple where it is? (&lt;=200 words)
+
+L3Harris raised FY26 GAAP diluted EPS guidance three times in 2026: $11.30-11.50
+(1/29/26) -&gt; $11.40-11.60 (4/30/26) -&gt; $11.80-12.00, midpoint $11.90 (7/29/26).
+H1 2026 GAAP diluted EPS was $5.85 versus $4.48 a year earlier (Q2 2026 10-Q).
+Consolidated earnings power rose. But the same 7/29/26 release that raised
+total revenue guidance ($23.2-23.7B, from $23-23.5B) and EPS cut Missile
+Solutions' own guide: revenue from ~$4.4B (initial 1/29/26 guide) to ~$4.1B,
+and segment margin from &quot;mid 12%&quot; to &quot;low 12%&quot; - the only segment guided
+down, while Space &amp; Mission Systems rose (~$11.5B to ~$11.7B) and
+Communications &amp; Spectrum Dominance's margin guide rose (~25% to mid-25%)
+(1/29/26 and 7/29/26 earnings releases, 2026 Guidance tables; the 4/30/26
+release updated only consolidated EPS, not the segment table). The stock
+fell from $305.20 (7/28) to $271.90 (7/30), -10.9% over two sessions,
+coinciding with call commentary that the Missile Solutions/AXYV IPO timeline
+was slipping toward mid-2027 [secondary - the only primary fact is the
+2027-12-31 contractual Qualified-IPO deadline, 10-Q Note B]. Two weeks
+later, an 8-K filed 2026-08-17 (event date 2026-08-16) disclosed
+Chairman/CEO Christopher Kubasik's employment ended after a board
+investigation found conduct &quot;not consistent with... the Company's values as
+outlined in its Code of Conduct,&quot; with an internal promotion (Sam Mehta,
+previously president of segments comprising ~80% of revenue) and a new
+independent chairman. The stock fell 4.6% the next session (8/14 close
+$291.82 -&gt; 8/17 close $278.38) and kept sliding to $266.73 by 8/21 (-8.6%
+over the week), against the broader defense sector's -3.4% 52-week drawdown
+(section 0).
+
+## 2. Is the impairment real? (the memo's only real job, &lt;=400 words)
+
+**Earnings normalization, finished, and carried into section 3.** The
+TTM/FY26E EPS gap is mostly declining, non-cash purchase-price amortization
+($853M FY24 -&gt; $770M FY25 -&gt; ~$646M FY26E: FY2025 10-K Note 6; FY26E = 10-Q
+Note F's H1 actual $351M plus its &quot;remaining fiscal 2026&quot; estimate $295M) -
+expected, not evidence of cheapness by itself (section 0's eps_ttm_flag).
+Finishing the bridge from guided GAAP EPS to an ordinary figure, tax-effected
+at the H1 2026 actual 14.4% ETR (10-Q, &quot;Income Taxes&quot;) over ~187.5M diluted
+shares:
+
+| Item ($M pretax, FY26E) | Source | Per share, after-tax |
+|---|---|---|
+| FY26E GAAP diluted EPS (guided midpoint) | 7/29/26 release | $11.90 |
+| + Acquisition-related intangible amortization, $646M | 10-Q Note F | +$2.95 |
+| + Acquisition/divestiture/transaction costs, $40M (H1 actual, not annualized) | Q2 release Table 4 | +$0.18 |
+| + Space Technology divestiture loss, $10M (H1 actual) | Q2 release Table 4 | +$0.05 |
+| - Segment investment income, $39M (one-time dual-use-tech gain, H1) | Q2 release Table 4 | -$0.18 |
+| - Product-line sale gains, $50M (H1 actual) | 10-Q MD&amp;A, G&amp;A Expenses table | -$0.23 |
+| = Normalized FY26E EPS | | **~$14.67** |
+
+H1-actual items are not annualized because no full-year run-rate is
+disclosed; if either the gains or the transaction costs repeat at a similar
+pace in H2, the net adjustment is close to a wash. Not normalized: pension
+income and EAC swings, both a recurring feature of this business rather than
+a one-off (H1 2026 EAC added $0.17/diluted-share versus -$0.16 a year
+earlier - 10-Q Note N - a swing worth watching, not stripping out). $14.67
+replaces $11.90 as section 3's --base-eps.
+
+**The mix mechanism, demonstrated - and MSL's own leading indicators, not
+gross margin.** Section 0's consolidated gross margin (25.6% vs 26.9% three
+years ago) cannot be decomposed by segment; L3Harris discloses segment
+operating margin, not segment gross profit. That operating-margin mix does
+reconcile: H1'26 segment operating margin of 15.86% ($1,844M/$11,625M,
+earnings release Table 5) sits within 1bp of the revenue-weighted blend of
+the three segments' own margins (SMS 51.2% weight x 10.1% + CSD 32.7% x
+26.0% + MSL 17.6% x 12.4% = 15.85%) - mix, not within-segment compression,
+is the mechanism. For the second-source threat, the metric that should move
+first is not MSL's reported revenue (+14% Q2, +16% H1 YoY, still healthy)
+but MSL's own contractual backlog and its own forward guide, both
+segment-disclosed every quarter: MSL ending backlog grew only +9.0% YoY to
+$10,531M ($9,661M a year earlier) - slower than MSL's own revenue growth and
+far slower than SMS's +37.8% backlog growth - while MSL's FY26 guide moved
+down on both lines (revenue and margin, above) at the same print that raised
+every other segment (10-Q MD&amp;A, Business Segment Results). Neither point
+proves the second-source threat is already in the P&amp;L, but both are checked
+each quarter and move before a consolidated margin does - section 4's kill
+criteria now test these, not consolidated margin alone.
+
+**Peer comparison, widened, with a basis caveat.** Against LHX's 19.8x
+forward P/E (section 0): NOC 18.1x (space/missile defense, closest in
+program mix to SMS+MSL), LMT 17.2x (the PAC-3 prime integrator LHX's own
+propulsion feeds - a direct customer-side read), GD 20.7x (diversified, a
+rough ceiling), all from this repo's governed engine. RTX carries no
+forward multiple in the engine (filings-only coverage there) and a 37.0x
+trailing GAAP P/E not usable here without checking what one-time items sit
+in it. None of these is confirmed to share LHX's now-GAAP-only basis: NOC's
+own Q2 2026 release guides to &quot;MTM-adjusted&quot; (pension-mark-to-market) EPS of
+$28.60-29.10 against $7.68 GAAP diluted EPS the same quarter [secondary,
+company release] - a different adjustment than stripping purchase
+amortization - while LMT's and GD's July 2026 guidance headlines
+($29.95-30.65 and $16.80-16.90 respectively) carry no explicit non-GAAP
+label, suggestive of a closer-to-GAAP basis but not confirmed against
+either company's own filings in this pass [secondary]. On the normalized
+$14.67 EPS above, LHX's own multiple is spot/14.67 = 18.2x - inside this
+range, not clearly above it, a different read than a raw-GAAP 19.8x-vs-18.1x
+comparison would suggest. The basis inconsistency across peers means none of
+this should be read as precise; it is a directional check, not a proof of
+cheapness or expense.
+
+**The AXYV preferred is sized in section 3**, not left as a named risk: the
+disclosed &quot;highest redemption value&quot; already exceeds carrying value by
+$454M (10-Q Note B), and both mutually exclusive outcomes - redemption and
+conversion - are quantified there.
+
+**SBC and buybacks.** sbc_adjusted_fcf is $2,694M against reported fcf_ttm
+$2,808M (section 0). Share count fell only -1.5% over three years despite
+$554M (FY24) and $1,154M (FY25) of buybacks; H1 2026's $525M was spent at
+$338.26/$312.00/$309.38 across the quarter's three fiscal months (10-Q, Item
+2), above spot - most of the program offsets SBC issuance, not the float.
+
+**The replay is a caution, not a green light.** Section 0: 8 entries into
+this zone beat SPY only half the time, median 12-month excess -12% (worst
+-40%), and the open episode is running -37.5% behind SPY so far - the CEO
+shock is a new risk none of those episodes carried.
+
+## 3. Verdict and entry (&lt;=150 words)
+
+**Wait.** The price is not paying for the single-customer/second-source risk,
+and last week added a governance risk the machine's own-history math has
+never priced; neither is resolved by the Q3 print alone, even though
+ordinary earnings power (section 2) is closer to today's peer multiples than
+the raw GAAP comparison suggested.
+
+The quality-compounder tier (9% hurdle) is right: three segments, no single
+program dominant, though 74% of YTD 2026 revenue is U.S. Government-linked
+(10-Q MD&amp;A) - that belongs in the growth path, not a hurdle bump.
+fair_band.low ($279.30) sits 4.7% above spot (upside_to_low_rung positive),
+so it is not a margin-of-safety rung; entry stays an event gate.
+
+**The AXYV preferred, sized.** Two mutually exclusive branches (10-Q Note
+B), neither zero: (1) No-QIPO/redemption - the $968M carrying value already
+accretes toward the disclosed $1,422M &quot;highest redemption value&quot;; net debt
+of $9,478M (7/3/26) becomes a $10,900M debt-equivalent claim once the
+preferred is added at that value, a claim worth roughly $7.62/share (over
+186.5M common shares) ahead of common equity, before the 7% cumulative
+quarterly compounding that grows it further each quarter outstanding and
+before the 110% redemption-premium methodology that applies if contractual
+milestones are not met by 2027-12-31. (2) QIPO/conversion - the DoW investor
+converts to ~10% of AXYV plus up to 3% fully diluted via warrants; at MSL's
+FY26E guide (~$4.1B revenue x low-12% margin, ~$492M operating income), a
+10-13% minority claim is ~$49-64M pretax, ~$0.22-0.29/share after tax at the
+14.4% ETR - a real but modest drag on the normalized EPS above, well short
+of a full loss of the choke point. Neither branch sits inside the scenario
+table below, which prices 100%-owned Missile Solutions; both are real claims
+against the common shares the table does not carry.
+
+| Case | Growth | exit P/E | EPS in 10y | Price | Total | Annualized | Growth needed at 9.0% |
+|---|---|---|---|---|---|---|---|
+| Bear | 1.0% | 13x | 16.20 | $210.66 | -21.0% | -0.5% | 12.7% |
+| Base | 6.0% | 18x | 26.27 | $472.89 | 77.3% | 7.8% | 9.1% |
+| Bull | 10.0% | 22x | 38.05 | $837.10 | 213.8% | 14.0% | 6.9% |
+
+Base-eps is the $14.67 normalized figure from section 2, not the $11.90 GAAP
+guide; 18x (base case) is today's normalized multiple (spot/14.67), close to
+NOC's 18.1x. At that 18x exit, the price already needs 9.1%/yr growth to
+clear the 9.0% hurdle against the 6.0% base case assumes - closer to
+clearing than the raw-GAAP framing implied (which needed 10.8% at 19x), but
+still short, and the bear case still shows real downside (-21% total,
+-0.5%/yr) if the second-source or governance risk is not contained. The
+AXYV redemption claim and conversion dilution above sit outside this table
+and would each subtract further from the per-share outcomes shown.
+
+Entry stays an event gate, not a price: the Q3 2026 print (~2026-10-29),
+the new CEO's first call. &quot;No further Item 5.02 8-Ks and an intact FY26
+guide&quot; is necessary but not sufficient containment evidence - one earnings
+call from an internally promoted CEO does not settle a for-cause departure.
+What would actually move this toward reconsideration: affirmative
+disclosure that the investigation is complete and its scope (not merely its
+absence from a new filing), any board or governance-committee action
+(clawback, control finding) disclosed through the FY2027 proxy (~spring
+2027), and no further senior departures tied to conduct through that proxy.
+Absent that disclosure, this stays at wait past Q3 even if the guide holds.
+
+## 4. Kill criteria - pre-committed, falsifiable, dated (3-5 lines)
+
+Five criteria. Two use only consolidated XBRL figures the engine already
+reads (`scripts/fetch_facts.py`'s DURATION_TAGS/INSTANT_TAGS). Two need one
+number each quarter from the segment/note tables in the 10-Q/10-K MD&amp;A
+(Missile Solutions backlog and guide; the AXYV preferred's redemption
+balance), not an XBRL tag. The fifth rests on 8-K/proxy disclosure and is
+not checkable by the automated Monday routine; it needs a human filing
+check.
+
+1. Missile Solutions' own ending contractual backlog (YoY) and its own FY
+   revenue/margin guide, both from the 10-Q/10-K segment MD&amp;A, tested
+   before consolidated revenue or margin: WATCH if MSL's FY guide (revenue
+   or margin) is cut again at any quarterly print (it has already been cut
+   once, ~$4.4B/mid-12% at 1/29/26 to ~$4.1B/low-12% at 7/29/26);
+   RE-UNDERWRITE if MSL segment backlog turns YoY-negative for two
+   consecutive quarters while SMS and CSD backlog do not. Checked each
+   10-Q/10-K starting Q3 2026 (~2026-10-29). Baseline: MSL backlog +9.0%
+   YoY at Q2 2026 ($10,531M vs $9,661M).
+2. Consolidated GAAP operating margin (operating income / revenue) below
+   10.0% for two consecutive quarters, checked at each 10-Q/10-K starting
+   Q3 2026. Baseline: 11.1% (Q2'26), 11.2% (H1'26). A backstop, not the
+   primary test - see criterion 1.
+3. FY2026 free cash flow (operating cash flow less capex) below $2.6B at
+   the FY2026 10-K (~Feb. 2027), against the $3.0B guide; interim WATCH if
+   nine-month 2026 FCF is below nine-month 2025 FCF at the Q3 2026 release
+   (~2026-10-29).
+4. Net debt (long-term debt + current debt - cash) plus the AXYV
+   preferred's disclosed &quot;highest redemption value&quot; above $13.0B at any
+   quarter-end through Q4 2027 (baseline 7/3/26: $9,478M + $1,422M =
+   $10,900M), OR the Qualified IPO not completed by 2027-12-31, OR the
+   110%-premium alternative redemption methodology becoming applicable
+   (10-Q Note B).
+5. Governance, tiered, checked on any 8-K through the FY2027 annual-meeting
+   proxy (~spring 2027): WATCH if there is no affirmative disclosure of the
+   investigation's scope or completion by the Q3 2026 call; RE-UNDERWRITE if
+   any internal-control deficiency, clawback, or governance-committee
+   finding tied to the departure is disclosed; DOWNGRADE if a second Item
+   5.02 8-K discloses a for-cause departure within twelve months of
+   2026-08-16.
+
+```json kill-criteria
+[
+  {
+    &quot;metric&quot;: &quot;Missile Solutions segment ending contractual backlog (YoY) and Missile Solutions FY revenue/margin guidance, both from the 10-Q/10-K segment MD&amp;A tables&quot;,
+    &quot;operator&quot;: &quot;tiered&quot;,
+    &quot;condition&quot;: &quot;WATCH if MSL's own FY guide (revenue or margin) is cut again at any quarterly print; RE-UNDERWRITE if MSL segment backlog turns YoY-negative for two consecutive quarters while SMS and CSD backlog do not&quot;,
+    &quot;threshold&quot;: &quot;baseline: MSL FY26 guide already cut once, ~$4.4B/mid-12% (1/29/26) to ~$4.1B/low-12% (7/29/26); MSL backlog +9.0% YoY at Q2 2026 ($10,531M vs $9,661M)&quot;,
+    &quot;check_event&quot;: &quot;Each Form 10-Q/10-K starting with Q3 2026 earnings, ~2026-10-29&quot;,
+    &quot;response&quot;: &quot;WATCH tier: re-check next quarter; RE-UNDERWRITE tier: reassess the second-source thesis before any entry&quot;,
+    &quot;benign_exceptions&quot;: [
+      &quot;the MSL guide is cut because the Space Technology disposal group (SPPS/SA&amp;C) formally exits MSL guidance upon the AE Industrial deal's close, and the release states that explicitly (the 7/29/26 cut did not carry that explanation)&quot;,
+      &quot;a single quarter's backlog dip from one large contract's funding or appropriation timing that reverses the following quarter&quot;
+    ]
+  },
+  {
+    &quot;metric&quot;: &quot;Consolidated GAAP operating margin (operating_income / revenue, both engine XBRL tags)&quot;,
+    &quot;operator&quot;: &quot;below_threshold_two_consecutive_quarters&quot;,
+    &quot;threshold&quot;: &quot;10.0%&quot;,
+    &quot;check_event&quot;: &quot;Each Form 10-Q/10-K starting with Q3 2026 earnings, ~2026-10-29&quot;,
+    &quot;response&quot;: &quot;re-underwrite; treat as a backstop behind criterion 1, not the primary test&quot;,
+    &quot;benign_exceptions&quot;: [
+      &quot;a one-time acquisition, divestiture or transaction cost already itemized as such in the filing's MD&amp;A (the unallocated corporate items table)&quot;,
+      &quot;a discrete legal settlement or goodwill impairment management identifies as non-recurring&quot;
+    ]
+  },
+  {
+    &quot;metric&quot;: &quot;FY2026 free cash flow (ocf - capex, both engine XBRL tags)&quot;,
+    &quot;operator&quot;: &quot;below&quot;,
+    &quot;threshold&quot;: &quot;$2.6 billion at the FY2026 10-K; interim WATCH if nine-month 2026 FCF is below nine-month 2025 FCF at the Q3 2026 release&quot;,
+    &quot;check_event&quot;: &quot;Q3 2026 earnings (~2026-10-29) for the interim check; FY2026 Form 10-K, expected ~Feb. 2027, for the full-year threshold&quot;,
+    &quot;response&quot;: &quot;WATCH at Q3 if the interim test fails; re-underwrite if the FY26 figure is below $2.6B&quot;,
+    &quot;benign_exceptions&quot;: [
+      &quot;capex pulled forward from FY2027 into FY2026 (accelerating, not deferring, the ~$600M capacity build) reduces FY2026 FCF without indicating weaker earnings power&quot;,
+      &quot;a working-capital swing that already reversed in the following quarter, matching the disclosed H1 2026 pattern&quot;
+    ]
+  },
+  {
+    &quot;metric&quot;: &quot;Net debt (total_debt_lt + debt_current - cash, engine instant XBRL tags) plus the AXYV preferred's disclosed 'highest redemption value' (10-Q Note B, not an XBRL tag)&quot;,
+    &quot;operator&quot;: &quot;above_or_condition&quot;,
+    &quot;threshold&quot;: &quot;$13.0 billion combined at any quarter-end through Q4 2027 (baseline 7/3/26: $9,478M + $1,422M = $10,900M)&quot;,
+    &quot;condition&quot;: &quot;OR the Qualified IPO of AXYV is not completed by 2027-12-31, OR the 110%-premium alternative redemption methodology becomes applicable (10-Q Note B)&quot;,
+    &quot;check_event&quot;: &quot;Each 10-Q/10-K quarter-end through Q4 2027; the QIPO/methodology condition checked at any filing through the FY2027 Form 10-K (~Feb. 2028)&quot;,
+    &quot;response&quot;: &quot;re-underwrite; treat as structural, not cyclical, leverage&quot;,
+    &quot;benign_exceptions&quot;: [
+      &quot;a commercial-paper or revolver draw present at a quarter-end that is repaid in the following quarter, as the H1 2026 CP paydown showed&quot;,
+      &quot;the preferred redemption value rising solely from the contractual 7% compounding at the pace disclosed in Note B, with no milestone or deadline risk newly triggered&quot;
+    ]
+  },
+  {
+    &quot;metric&quot;: &quot;Disclosure resolving the scope of the 2026-08-16 for-cause CEO departure: investigation completion/remediation statement, any internal-control or clawback finding, or a second Item 5.02 departure tied to conduct&quot;,
+    &quot;operator&quot;: &quot;tiered&quot;,
+    &quot;condition&quot;: &quot;WATCH if no affirmative disclosure of investigation scope/completion by the Q3 2026 call; RE-UNDERWRITE if any internal-control deficiency, clawback, or governance-committee finding tied to the departure is disclosed through the FY2027 proxy; DOWNGRADE if a second Item 5.02 8-K discloses a for-cause departure within twelve months of 2026-08-16&quot;,
+    &quot;check_event&quot;: &quot;Q3 2026 earnings call (~2026-10-29) for the WATCH tier; any 8-K or the FY2027 annual-meeting proxy (~spring 2027) for the other tiers&quot;,
+    &quot;response&quot;: &quot;WATCH: hold at wait and re-check; RE-UNDERWRITE/DOWNGRADE: treat as confirmation of a deeper governance problem, pending a fresh review before any entry&quot;,
+    &quot;benign_exceptions&quot;: [
+      &quot;a disclosed retirement, death or ordinary resignation with no cited conduct finding&quot;,
+      &quot;a departure explicitly tied to the completed AXYV carve-out (e.g., a segment president leaving to run the newly independent entity) rather than a conduct finding&quot;
+    ]
+  }
+]
+</code></pre>
+<h2>5. Sources</h2>
+<ul>
+<li>L3Harris Q2 2026 Form 10-Q, fiscal quarter ended 2026-07-03, filed
+  2026-07-30 (accession 0000202058-26-000058):
+  https://www.sec.gov/Archives/edgar/data/202058/000020205826000058/hrs-20260703.htm</li>
+<li>Q2 2026 earnings release, Ex. 99.1 to Form 8-K furnished 2026-07-29:
+  https://www.sec.gov/Archives/edgar/data/202058/000020205826000054/exhibit991q2cy26earnings.htm</li>
+<li>Q1 2026 earnings release, Ex. 99.1 to Form 8-K filed 2026-04-30:
+  https://www.sec.gov/Archives/edgar/data/202058/000020205826000032/exhibit991q1cy26earnings.htm</li>
+<li>Q4/FY2025 earnings release, Ex. 99.1 to Form 8-K filed 2026-01-29 (2026
+  Guidance table, including the initial Missile Solutions ~$4.4B/mid-12%
+  segment guide):
+  https://www.sec.gov/Archives/edgar/data/202058/000020205826000008/exhibit991q4cy25earnings.htm</li>
+<li>FY2025 Form 10-K, fiscal year ended 2026-01-02, filed 2026-02-12 (Note 6,
+  Goodwill and Intangible Assets, for FY23-FY25 amortization):
+  https://www.sec.gov/Archives/edgar/data/202058/000020205826000015/hrs-20260102.htm</li>
+<li>8-K filed 2026-08-17 (event date 2026-08-16), Items 5.02/7.01/8.01, CEO
+  transition and separation:
+  https://www.sec.gov/Archives/edgar/data/202058/000020205826000066/hrs-20260816.htm</li>
+<li>Daily closing prices, re-pulled 2026-08-24 from the repo's own price
+  series (secondary - market data, not a filing), used for the price-
+  reaction figures in sections 1 and 3.</li>
+<li><code>build/signals.json</code> (this repo's governed engine, as_of 2026-08-21), used
+  for the NOC/LMT/GD peer forward multiples in section 2 and all section-0
+  figures; <code>build/universe.json</code> for RTX's filings-only trailing P/E.</li>
+<li>Secondary, unverified against a primary filing: press coverage of the
+  2026-07-29 earnings call describing the Missile Solutions/AXYV IPO
+  timeline slipping toward mid-2027, and press/trade coverage of a Northrop
+  Grumman DoD second-source award for PAC-3/THAAD solid rocket motors
+  (~mid/late 2026); neither appears in an L3Harris filing located in this
+  pass, and the Northrop award specifically was not independently
+  fetched from a Northrop filing in this pass either.</li>
+<li>Secondary, for the peer accounting-basis check in section 2: Northrop
+  Grumman Q2 2026 earnings release (MTM-adjusted EPS guidance $28.60-29.10
+  vs. $7.68 GAAP diluted EPS that quarter),
+  https://investor.northropgrumman.com/static-files/eeecbac8-4b29-4887-81fd-835451a46927,
+  and press summaries of Lockheed Martin's and General Dynamics' July 2026
+  earnings releases for their FY26 EPS guidance figures.</li>
+</ul>
+  </div>
+
+  <footer>
+    <p>The personal half of this memo &mdash; position size, portfolio overlap, tax lots &mdash; is
+      fenced out of the published text by construction and is not on this page. What a name is worth
+      is public; what one investor should own is not.</p>
+    <p class="methodlink"><a href="memos.html">&larr; All memos</a> &middot;
+      <a href="./">The Ranker</a> &middot; <a href="approach.html">How this works</a></p>
+  </footer>
+
+</div>
+</body>
+</html>

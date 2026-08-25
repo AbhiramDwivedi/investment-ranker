@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PINS memo &mdash; Pinterest</title>
+<meta name="description" content="Pinterest (PINS): the research memo behind
+  its row on the S&amp;P 1500 Ranker, written Aug. 24, 2026.">
+<link rel="canonical" href="https://abhiramdwivedi.github.io/investment-ranker/memo-PINS.html">
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --baseline: #c3c2b7; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --accent-soft: #cde2fb;
+    --machine: #1c5cab; --judge: #b5462b; --warn: #fab219;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+      --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+      --accent: #6da7ec; --accent-soft: #184f95;
+      --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+    --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+    --accent: #6da7ec; --accent-soft: #184f95;
+    --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--page); color: var(--ink); margin: 0; line-height: 1.6;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 16px; }
+  .wrap { max-width: 78ch; margin: 0 auto; padding: 28px 24px 72px; }
+  .masthead { display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+    flex-wrap: wrap; border-bottom: 2px solid var(--ink); padding-bottom: 14px; }
+  .masthead .home { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    font-weight: 650; color: var(--accent); text-decoration: none; }
+  .masthead .home:hover { text-decoration: underline; }
+  h1 { font-size: 30px; font-weight: 750; letter-spacing: -0.015em; margin: 26px 0 0; }
+  .standfirst { font-size: 17px; color: var(--ink-2); margin: 10px 0 0; }
+  .kicker { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); font-weight: 650; margin: 0; }
+  h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; margin: 40px 0 0;
+    padding-top: 14px; border-top: 1px solid var(--grid); }
+  h3 { font-size: 15.5px; font-weight: 700; margin: 24px 0 0; }
+  p { margin: 12px 0 0; }
+  ul { margin: 12px 0 0; padding-left: 20px; }
+  li { margin: 7px 0; }
+  a { color: var(--accent); }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.88em;
+    background: color-mix(in srgb, var(--muted) 14%, var(--surface)); padding: 1px 5px; border-radius: 4px; }
+  .lede { font-size: 17px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 14px;
+    font-variant-numeric: tabular-nums; }
+  caption { caption-side: bottom; text-align: left; font-size: 12px; color: var(--muted);
+    margin-top: 8px; line-height: 1.5; }
+  th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--muted); font-weight: 650; padding: 0 10px 7px 0; border-bottom: 1px solid var(--baseline); }
+  td { padding: 8px 10px 8px 0; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  td.n, th.n { text-align: right; padding-right: 0; }
+  tr.hi td { background: color-mix(in srgb, var(--accent) 8%, transparent); font-weight: 600; }
+  .scroll { overflow-x: auto; }
+  .rule { background: var(--surface); border: 1px solid var(--ring); border-radius: 8px;
+    padding: 16px 18px; margin-top: 16px; }
+  .rule ul { list-style: none; padding-left: 0; }
+  .rule li { display: grid; grid-template-columns: 13ch 1fr; gap: 12px; align-items: baseline;
+    padding: 7px 0; border-bottom: 1px solid var(--grid); font-size: 14.5px; }
+  .rule li:last-child { border-bottom: 0; }
+  .rule li b { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12.5px; color: var(--machine); font-weight: 650; }
+  .steps { counter-reset: s; list-style: none; padding-left: 0; }
+  .steps li { counter-increment: s; position: relative; padding-left: 34px; margin: 14px 0; font-size: 15px; }
+  .steps li::before { content: counter(s); position: absolute; left: 0; top: 1px; width: 23px; height: 23px;
+    border-radius: 50%; background: var(--accent-soft); color: var(--machine); font-size: 12px;
+    font-weight: 700; display: grid; place-items: center; }
+  .steps li.j::before { background: color-mix(in srgb, var(--judge) 20%, var(--surface)); color: var(--judge); }
+  .steps b { font-weight: 700; }
+  .steps .f { color: var(--muted); font-size: 12.5px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .verdict { border-left: 3px solid var(--accent); padding: 2px 0 2px 16px; margin-top: 18px;
+    font-size: 16px; }
+  .note { background: color-mix(in srgb, var(--warn) 10%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--warn) 45%, var(--surface));
+    border-radius: 8px; padding: 12px 16px; margin-top: 18px; font-size: 14.5px; }
+  footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--grid);
+    font-size: 13px; color: var(--muted); }
+
+  .memobody h2 { font-size: 19px; }
+  .memobody table { font-size: 13px; }
+  .memobody blockquote { margin: 14px 0 0; padding: 2px 0 2px 16px;
+    border-left: 3px solid var(--baseline); color: var(--ink-2); }
+  .memobody pre { background: color-mix(in srgb, var(--muted) 12%, var(--surface));
+    border: 1px solid var(--ring); border-radius: 8px; padding: 12px 14px; overflow-x: auto;
+    font-size: 12.5px; line-height: 1.5; }
+  .memobody pre code { background: none; padding: 0; }
+  .stamp { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+  .stamp b { color: var(--ink-2); }
+  .verdict-tag { display: inline-block; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.06em; font-weight: 700; border: 1px solid var(--baseline);
+    border-radius: 999px; padding: 2px 9px; }
+  .rs { font-size: 12px; border: 1px solid var(--baseline); border-radius: 999px;
+    padding: 1px 8px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="kicker">Memo &middot; S&amp;P 1500 Ranker</p>
+    <a class="home" href="memos.html">&larr; All memos</a>
+  </header>
+
+  <h1>PINS &mdash; Pinterest</h1>
+  <p class="standfirst">Written Aug. 24, 2026. The verdict was
+    <span class="verdict-tag">wait</span> and the name reads
+    <code class="rs">research</code> on tonight's table.</p>
+  <p class="stamp"><b>As of:</b> Aug. 24, 2026 &middot; 1 days old &middot; reviewed Aug. 25, 2026 by codex &middot;
+    a memo is a point-in-time judgment and does not update itself the way the nightly table does.</p>
+
+
+
+  <div class="note"><p><b>What this is not.</b> The ledger behind this site holds 275 decisions, collapsed from 369 name-nights, and none of them has ever been actionable. One row is one decision, not one appearance. A company suggested on 40 consecutive nights is counted once, dated from the first of them, so a name that keeps qualifying cannot inflate the sample. The cohorts above are the other view of the same calls and do repeat a name every night, by design. The actionable date is the first night every condition of the actionable-suggestion contract held at once. It reads empty for a name that has never been actionable, and for every night frozen before the contract existed on Aug. 23, 2026. The engine's current rules are forward-only from Aug. 16, 2026, so the record is days long, not years. This is a personal research tool, not licensed financial advice, and nothing here is a recommendation to buy or sell any security.</p></div>
+
+  <div class="memobody">
+<p>Revised 2026-08-25 addressing research/memos/PINS-review-2026-08-25.md.</p>
+<h2>0. Signals</h2>
+<p>Engine coverage for PINS, checked across every governed surface by <code>python
+scripts/memo_context.py PINS</code> on 2026-08-25T12:33:54Z. This block is
+generated; paste it verbatim and do not edit it by hand.</p>
+<pre><code>focused signals       COVERED       93 names, as of 2026-08-21
+                      build/signals.json - The narrower set the nightly engine scores in full, with estimate families layered on.
+full universe         COVERED       1,422 names, as of 2026-08-21
+                      build/universe.json - The filings-only engine over every S&amp;P 1500 name with an EDGAR history.
+committed universe    COVERED       1,422 names, as of 2026-08-21
+                      reports/universe.json - The committed fallback for the universe run, stored compact.
+cross-sectional rank  COVERED       1,340 names, as of 2026-08-24
+                      build/rank.json - A factor ranking, not own-history, and possibly an older window.
+</code></pre>
+<p>Memo mode is <strong>covered</strong>: the engine has output for PINS in
+build/signals.json, and section 3 must choose its entry from the machine band
+below rather than building a new one.</p>
+<p>Where the factor row disagrees with the engine, the engine wins:</p>
+<ul>
+<li>
+<p>The cross-sectional row in build/rank.json was generated at
+  2026-08-24T03:06:58+00:00, before the engine result at
+  2026-08-25T12:32:33+00:00, so it never supersedes it.</p>
+<p>ticker PINS | close 23.40 | as_of 2026-08-21 | next_earnings none (days_to_earnings none)
+per share:  eps_ttm 0.34, sales 8.09, fcf 2.27, book 5.14
+valuation:  cheap_pct 5.7 (basis ps+pfcf; by basis ps 5.7, pfcf 3.9; cheap_thin false)
+            cheapness_source de-rated, eps_ttm_flag ttm_far_below_fwd, ttm_base_spikes none
+            pe_ttm 68.80, pe_fwd none, ev_ebitda none, p_book none
+            fair_band low 40.71 / mid 52.52 / high 92.67 on bases ps, pfcf
+            fair_band reliability ok, upside_to_low_rung 74.0%, caveats none
+            fair_band_by_basis {"ps": {"low": 40.71, "mid": 52.52, "high": 92.67}, "pfcf": {"low": 44.42, "mid": 61.87, "high": 103.04}, "pb": {"low": 24.01, "mid": 30.23, "high": 47.55}}
+            implied_eps_growth at_hurdle_median_exit none, at_hurdle_p20_exit none, at_hurdle_20x_exit 23.3%
+            implied_eps_growth fwd_at_hurdle_20x_exit none, tier quality_compounder, hurdle_used 9.0%, eps_base_ttm 0.34
+            compare trailing_5y_eps_cagr 5.5%, consensus_eps_growth_1y none, consensus_ltg none
+            replay episodes_closed 4, hit_rate_vs_spy 50.0%, median_excess_12m -5.2%, worst_excess_12m -57.7%
+            replay open_episodes 0, open_median_excess_to_date none, median_worst_dd_12m -24.0%
+quality:    gate pass, hard none, soft stock-based compensation is 80% of free cash flow, unknown leverage
+            fcf_conversion 5.14, net_debt_to_ebitda none, share_count_chg_3y -16.5%, sbc_to_fcf 80.0%
+            sbc_adjusted_fcf 258,638,000.00 (none of market cap) against reported fcf_ttm 1,280,404,000.00
+            gross_margin 79.5% against 75.4% three years ago
+economics:  roic 7.2% against -19.9% three years ago, fundable_growth 0.0%, needed_at_hurdle_20x 23.3%, growth_gap 23.3%
+fund. mom.: rev_yoy 18.2%, rev_accel true, rev_decel_2q false, eps_ttm_yoy -87.7%
+            fwd_eps_rev_30d none, fwd_eps_rev_90d none, analyst_up_minus_down_30d none, rec_mean none against none three months ago
+trend:      dd_52w -38.3%, dist_200dma 5.5%, rs_spy_6m 20.0%, sector_dd_52w -6.7%, knife false, turned true
+sentiment:  short_pct_float none, insider_net_count_6m none, target_upside none
+scores:     buy_score 44.6, cheap true, bases 2, candidate true, tier memo
+            candidate_reasons own-history ps+pfcf at 6th pct (10y), de-rated: -38% off the 52w high, -34% over 12m, -55% against own-median re-rating value 52.52, replay: 4 past entries into this zone, 50% beat SPY over 12m, median excess -5%, median worst drawdown -24% (worst -58%; latest 2025-08 -58%; all weeks in zone, median -32%), economics: ROIC 7% (3y ago -20%), 0% retained (payout + buybacks &gt;= net income), 0.0% buyback yield - enough to fund about +0% a year without outside capital; the price at a 20x exit needs +23% - gap +23%: the price asks for a re-rating, leverage or higher returns, not just execution, replay 36m: 1 entries with 3y of data, 0% beat SPY, median excess -86%
+            candidate_blockers none
+            replay_warning none
+data notes: trailing P/E 69x against forward 0x, TTM EPS -88% YoY: TTM GAAP EPS far below +1y consensus (charges, a trough, a GAAP/non-GAAP gap, or rapid growth) - read the blended band and the forward-EPS implied-growth rows, short history for pe (&lt;3y of observations), no Yahoo forward-EPS revision history (30/90d revisions unavailable)
+portfolio:  held true (position size never appears in a memo)</p>
+</li>
+</ul>
+<!-- memo-context: generated block, do not edit by hand. Regenerate with `python scripts/memo_context.py PINS`. -->
+
+<p>```json memo-context
+{
+  "checksum": "sha256:52fb5ba4d7f61d9d61c796b63ca3ce0b34de9543e6b1e94f76cc910709409e88",
+  "coverage": [
+    {
+      "as_of": "2026-08-21",
+      "covers_ticker": true,
+      "exists": true,
+      "generated_at": "2026-08-25T12:32:33+00:00",
+      "kind": "signals_focused",
+      "label": "focused signals",
+      "names": 93,
+      "note": "The narrower set the nightly engine scores in full, with estimate families layered on.",
+      "path": "build/signals.json"
+    },
+    {
+      "as_of": "2026-08-21",
+      "covers_ticker": true,
+      "exists": true,
+      "generated_at": "2026-08-25T12:31:53+00:00",
+      "kind": "universe_full",
+      "label": "full universe",
+      "names": 1422,
+      "note": "The filings-only engine over every S&amp;P 1500 name with an EDGAR history.",
+      "path": "build/universe.json"
+    },
+    {
+      "as_of": "2026-08-21",
+      "covers_ticker": true,
+      "exists": true,
+      "generated_at": "2026-08-25T12:31:53+00:00",
+      "kind": "universe_committed",
+      "label": "committed universe",
+      "names": 1422,
+      "note": "The committed fallback for the universe run, stored compact.",
+      "path": "reports/universe.json"
+    },
+    {
+      "as_of": null,
+      "covers_ticker": true,
+      "exists": true,
+      "generated_at": "2026-08-24T03:06:58+00:00",
+      "kind": "rank_cross_sectional",
+      "label": "cross-sectional rank",
+      "names": 1340,
+      "note": "A factor ranking, not own-history, and possibly an older window.",
+      "path": "build/rank.json"
+    }
+  ],
+  "data_as_of": "2026-08-21",
+  "engine_coverage": [
+    "build/signals.json",
+    "build/universe.json",
+    "reports/universe.json"
+  ],
+  "generated_at": "2026-08-25T12:33:54Z",
+  "held": true,
+  "instruction_locks": [
+    {
+      "commit": "0bf61dbf22e00df68b4a65693e6b2851205cd8fe",
+      "path": "research/MEMO-TEMPLATE.md",
+      "present": true,
+      "sha256": "baa999933a4facf5a8fd324a5394a56d7a5cfa50f23bf6b419de0615da1bc4c1",
+      "uncommitted": false
+    },
+    {
+      "commit": "0bf61dbf22e00df68b4a65693e6b2851205cd8fe",
+      "path": ".claude/agents/memo-writer.md",
+      "present": true,
+      "sha256": "1c4ecd15f2a119c608b3ba99734cd18feef9a7c049d606d81d6e783a73c4546a",
+      "uncommitted": false
+    },
+    {
+      "commit": "b1a37ce929e9e9146fadbd51dce18d218f9ae8c3",
+      "path": "scripts/memo_context.py",
+      "present": true,
+      "sha256": "2af4479dcad1e3a2316f5e028d1ab61eae85dc31250f69c33e7861638b556efd",
+      "uncommitted": false
+    }
+  ],
+  "mode": "covered",
+  "mode_derived": "covered",
+  "mode_forced": false,
+  "primary_kind": "signals_focused",
+  "primary_source": "build/signals.json",
+  "rank_conflicts": [
+    "The cross-sectional row in build/rank.json was generated at 2026-08-24T03:06:58+00:00, before the engine result at 2026-08-25T12:32:33+00:00, so it never supersedes it."
+  ],
+  "schema": "memo-context/1",
+  "spot": {
+    "as_of": "2026-08-21",
+    "close": 23.4,
+    "source": "build/signals.json"
+  },
+  "ticker": "PINS"
+}</p>
+<pre><code>
+One sentence on what this memo argues with: the engine's 5.7th-percentile cheap read and its lone closed 36-month replay episode are both built on P/S and P/FCF bases measured from a period when SBC ran a stable ~21% of revenue, and section 2 checks whether that comparison still holds now that SBC has stepped up to run at 25.4% of H1 2026 revenue -- rather than reading the reported percentile or the replay's -86% median excess as literally decisive either way.
+
+## 1. What changed -- why is the multiple where it is?
+
+Order of events, all sourced to EDGAR filings. Pinterest's FY2024 10-K (filed Feb. 6, 2025) recognized
+a $1,597.0 million non-cash tax benefit from releasing a U.S. valuation allowance in Q4 2024, inflating
+FY2024 diluted EPS to $2.67 -- the comp base the current TTM figure is measured against. On March 3, 2026
+Pinterest issued $1.0 billion of 1.75% convertible notes due 2031 to Elliott Investment Management ($22.72
+conversion price, cash-settled up to principal), used the $979.9 million net proceeds to fund a $1.0
+billion accelerated share repurchase, and authorized a new $3.5 billion open-market buyback replacing
+November 2024's; Elliott's Marc Steinberg joined the board (8-K, March 3, 2026; 10-Q, filed Aug. 4, 2026).
+Across all three H1 2026 programs Pinterest retired 111.4 million shares (about 16% of the 678.1 million
+outstanding at Sept. 30, 2025) for $2,024.9 million. Q1 and Q2 2026 both posted GAAP net losses (-$73.6
+million, -$46.7 million) as a new Restructuring Plan (up to $69.6 million, disclosed to conclude by Q3
+2026) and SBC up 34% YoY to $556.0 million in H1 outran 18% revenue growth. On Aug. 4, 2026 Pinterest beat
+Q2 revenue ($1.180 billion, +18%) and MAU (640 million, +11%) estimates but guided Q3 to 13%-15% growth,
+below Q2's 18% (8-K press-release exhibit); shares fell about 9% after hours (secondary: Investing.com,
+Aug. 4, 2026).
+
+## 2. Is the impairment real?
+
+**Normalized earnings, and its assumption.** TTM reported diluted EPS is $0.34 versus FY2024's $2.67, a
+comp effect above. Adding back the $61.4 million of H1 2026 restructuring charges (10-Q Note 11) gives
+normalized EPS of about $0.45 -- my own estimate, not an engine field, with no tax shield assumed because
+the 10-Q reports income taxes as &quot;not material&quot; in the loss quarters (Note 9). Of that $61.4 million, $14.1
+million is restructuring SBC already counted in the TTM SBC used below -- a small overlap, not one that
+moves $0.45 much.
+
+**SBC-adjusted FCF, tax and working-capital checks finished.** Reported TTM FCF is $1,280.4 million (9.7%
+yield); netting the full $1,021.8 million of TTM SBC (section 0) gives $258.6 million (2.0% yield, ~51x) --
+the conservative reading, since $207.7 million of that SBC generated a realized cash tax benefit already
+inside reported cash flow (10-K: $182.3 million FY2025 less $86.0 million in H1 2025; 10-Q: $111.4 million
+in H1 2026). A tax-adjusted netting ($1,021.8M-$207.7M) gives $466.3 million, a 3.6% yield -- still well
+under 9.7%. On working capital: H1 2026 got a $197.4 million lift from AR collections and accrued-liability
+growth versus $121.0 million in H1 2025 (10-Q MD&amp;A), but that reverses against a $239.7 million AR build in
+H2 2025 (FY2025 10-K); across the actual TTM window the two items net to about -$12.6 million, roughly
+neutral -- so the reported figure is not meaningfully working-capital-inflated, though the half-over-half
+swing alone would suggest otherwise.
+
+**Is the own-history read comparable?** The engine's 5.7th-percentile flag and its one closed 36-month
+replay episode (started 2023-05-03, itself at the 13.6th percentile) are measured on P/S and P/FCF, which
+do not net SBC. That is like-for-like only if SBC ran a similar share of revenue then and now; it did not:
+FY2023-FY2025 ran 20.9%-21.2%, H1 2026 ran 25.4% (TTM 22.4%, since H2 2025 alone was below trend at 19.7%).
+Today's multiple carries a larger non-cash addback than the 2023 entry did. This does not prove PINS is
+cheap or expensive against a true SBC-adjusted history -- that series is not rebuilt here, which would be
+recomputing engine arithmetic by hand -- so neither the percentile nor the replay's -86% median excess
+should be read as literal evidence about today. What the filings do support in absolute terms: a ~51x
+SBC-adjusted P/FCF and a ~52x normalized P/E (versus the ~11x non-GAAP forward P/E quoted around the
+market, GuruFocus, Aug. 21, 2026, which excludes SBC entirely) are both full for a business guiding to
+deceleration.
+
+**Demand side.** MAUs +11% YoY, revenue +18% YoY, ARPU up in every geography (U.S./Canada +14%, Europe
++4%, Rest of World +21%; 10-Q). The flat-to-down blended &quot;price of ads&quot; (+1% Q2, -2% six months, against
++16%/+20% more impressions) is a Rest-of-World mix effect -- ARPU there is $0.23 versus $8.30 in the U.S.
+-- not lost per-market pricing power. One reported segment (10-Q Note 1), so no decomposition applies.
+
+**Convert versus buyback, separated.** The $1.0 billion Notes added net debt and funded the ASR; the $3.5
+billion program is ordinary open-market buying from cash flow, not debt. Only $1.0 billion of the $2,024.9
+million spent on H1 2026 repurchases was debt-funded. The 54.8 million ASR shares were about 8% of the
+678.1 million shares outstanding at Sept. 30, 2025 (corrected from 15%); all three H1 programs together
+retired about 16%. Per 10-Q Note 8, the Notes settle in cash up to principal and dilute only when the
+average price exceeds $22.72.
+
+**Peer, same date, same method.** PINS's EV/Revenue is 2.85x (EV $13.0 billion less $274.9 million net
+cash, over TTM revenue $4,555.7 million; spot $23.40, 566.3 million shares) against Snap's 1.51x (EV $9.6
+billion, $721.7 million net debt, TTM revenue $6,351.1 million; Snap 10-Q; Aug. 21, 2026 close of $5.24 is
+secondary, stockanalysis.com). Snap posted a $164.0 million Q2 GAAP net loss ($311.2 million TTM), so a
+non-GAAP forward-P/E comparison is not apples-to-apples; EV/Revenue is. Both grew revenue about 18%-19% in
+Q2. PINS's ~1.9x premium is a real premium for GAAP profitability (FY2025 net income $416.9 million versus
+Snap's losses) and net cash versus Snap's net debt -- defensible, but it argues against &quot;cheap versus the
+market.&quot;
+
+## 3. Verdict and entry
+
+**Wait.** Section 2 does not prove PINS is cheap or expensive against a true SBC-adjusted own-history
+series -- that is not rebuilt here. It does establish that today's SBC-adjusted P/FCF (~51x) and normalized
+P/E (~52x) are both full for a business guiding to a Q3 deceleration, and that neither the 5.7th-percentile
+flag nor the 36-month replay's -86% median excess (a 2023 entry under a lower SBC regime) is literal
+evidence either way. That is enough not to treat the candidate flag's cheapness as established.
+
+fair_band.low ($40.71) sits 74% above spot, not usable as an entry. Given the SBC step-up's multi-year
+unrecognized-expense tail (section 4), this memo uses an event gate spanning the Q3 2026 10-Q through the
+FY2026 10-K, not one print. Tier is quality_compounder (9% hurdle); at the $0.45 normalized base, no case
+below clears it.
+
+    python scripts/scenario.py --spot 23.40 --base-eps 0.45 --shares 566.3 --net-debt -1274.9 --years 3 \
+        --tier quality_compounder --convert-debt 1000 --convert-shares 44.0 \
+        --case bear:0:12 --case base:10:20 --case bull:20:25
+
+| Case | Convert | Growth | exit P/E | EPS in 3y | Price | Total | Annualized | Growth needed at 9.0% |
+|---|---|---|---|---|---|---|---|---|
+| Bear | as debt | 0.0% | 12x | 0.45 | $5.40 | -76.9% | -38.7% | 77.7% |
+| Bear | as converted | 0.0% | 12x | 0.45 | $5.40 | -76.9% | -38.7% | 77.7% |
+| Base | as debt | 10.0% | 20x | 0.60 | $11.98 | -48.8% | -20.0% | 49.9% |
+| Base | as converted | 10.0% | 20x | 0.60 | $11.98 | -48.8% | -20.0% | 49.9% |
+| Bull | as debt | 20.0% | 25x | 0.78 | $19.44 | -16.9% | -6.0% | 39.1% |
+| Bull | as converted | 20.0% | 25x | 0.78 | $19.44 | -16.9% | -6.0% | 39.1% |
+
+At the base case's 20x exit, the price asks for 49.9% annual growth against the 10.0% assumed. Per 10-Q
+Note 8 (section 2), the Notes dilute only above $22.72; none of the three terminal prices reach it, so the
+as-debt reading governs throughout and the as-converted row (identical here, since the eps metric does not
+divide by shares) is not a live alternative.
+
+```json scenario
+{
+  &quot;base&quot;: 0.45,
+  &quot;convert_debt&quot;: 1000.0,
+  &quot;convert_shares&quot;: 44.0,
+  &quot;dividend_yield&quot;: 0.0,
+  &quot;hurdle&quot;: 0.09,
+  &quot;metric&quot;: &quot;eps&quot;,
+  &quot;net_debt&quot;: -1274.9,
+  &quot;rows&quot;: [
+    {&quot;annualized_return&quot;: -0.3866, &quot;case&quot;: &quot;bear&quot;, &quot;clears_hurdle&quot;: false, &quot;growth&quot;: 0.0, &quot;multiple&quot;: 12.0, &quot;required_growth_at_hurdle&quot;: 0.7771, &quot;terminal_metric&quot;: 0.45, &quot;terminal_price&quot;: 5.4, &quot;total_return&quot;: -0.7692, &quot;treatment&quot;: &quot;as debt&quot;},
+    {&quot;annualized_return&quot;: -0.3866, &quot;case&quot;: &quot;bear&quot;, &quot;clears_hurdle&quot;: false, &quot;growth&quot;: 0.0, &quot;multiple&quot;: 12.0, &quot;required_growth_at_hurdle&quot;: 0.7771, &quot;terminal_metric&quot;: 0.45, &quot;terminal_price&quot;: 5.4, &quot;total_return&quot;: -0.7692, &quot;treatment&quot;: &quot;as converted&quot;},
+    {&quot;annualized_return&quot;: -0.2, &quot;case&quot;: &quot;base&quot;, &quot;clears_hurdle&quot;: false, &quot;growth&quot;: 0.1, &quot;multiple&quot;: 20.0, &quot;required_growth_at_hurdle&quot;: 0.4988, &quot;terminal_metric&quot;: 0.599, &quot;terminal_price&quot;: 11.98, &quot;total_return&quot;: -0.4881, &quot;treatment&quot;: &quot;as debt&quot;},
+    {&quot;annualized_return&quot;: -0.2, &quot;case&quot;: &quot;base&quot;, &quot;clears_hurdle&quot;: false, &quot;growth&quot;: 0.1, &quot;multiple&quot;: 20.0, &quot;required_growth_at_hurdle&quot;: 0.4988, &quot;terminal_metric&quot;: 0.599, &quot;terminal_price&quot;: 11.98, &quot;total_return&quot;: -0.4881, &quot;treatment&quot;: &quot;as converted&quot;},
+    {&quot;annualized_return&quot;: -0.0599, &quot;case&quot;: &quot;bull&quot;, &quot;clears_hurdle&quot;: false, &quot;growth&quot;: 0.2, &quot;multiple&quot;: 25.0, &quot;required_growth_at_hurdle&quot;: 0.3914, &quot;terminal_metric&quot;: 0.7776, &quot;terminal_price&quot;: 19.44, &quot;total_return&quot;: -0.1692, &quot;treatment&quot;: &quot;as debt&quot;},
+    {&quot;annualized_return&quot;: -0.0599, &quot;case&quot;: &quot;bull&quot;, &quot;clears_hurdle&quot;: false, &quot;growth&quot;: 0.2, &quot;multiple&quot;: 25.0, &quot;required_growth_at_hurdle&quot;: 0.3914, &quot;terminal_metric&quot;: 0.7776, &quot;terminal_price&quot;: 19.44, &quot;total_return&quot;: -0.1692, &quot;treatment&quot;: &quot;as converted&quot;}
+  ],
+  &quot;shares&quot;: 566.3,
+  &quot;spot&quot;: 23.4,
+  &quot;tier&quot;: &quot;quality_compounder&quot;,
+  &quot;years&quot;: 3
+}
+</code></pre>
+<p>The replay record is poor -- the one closed 36-month episode underperformed SPY by a median 86 points --
+but per section 2 it entered under a materially lower SBC regime, so it is a base rate on "PINS being
+reported-cheap," not a clean read on today's SBC-adjusted setup. Elliott's buyback and the FY2025 profit
+turn argue "different this time"; neither has produced a clearing multiple yet.</p>
+<h2>4. Kill criteria -- pre-committed, falsifiable, dated</h2>
+<p>Each criterion is checked against the named filing on the date shown, not against a portfolio-system score.
+(1) Quarterly SBC/revenue at or above 22% for two consecutive quarters without an improving after-SBC
+operating margin -- re-underwrite; at or above 24% for two consecutive quarters on the same condition --
+treat the SBC step-up as durable and downgrade further (versus 20.9%-21.2% FY2023-FY2025 and H1 2026's
+25.4%), checked at the Q3 2026 10-Q, the FY2026 10-K, and if unresolved, the Q1 2027 10-Q. (2) Q3 2026
+revenue growth prints below the guided 13% floor -- re-underwrite, reading it alongside U.S./Canada ARPU
+growth, since a miss with intact per-user monetization differs from one with ARPU deceleration too. (3)
+Restructuring Plan charges exceed the disclosed $69.6 million cap, or a new restructuring action is
+announced -- an overrun beyond a ~10% timing true-up, or any new program, forces a re-underwrite of section
+2's EPS normalization. (4) U.S./Canada ARPU growth prints at or below 0% for two consecutive quarters --
+downgrade, as the first direct sign of per-market pricing-power loss in the highest-value geography. (5)
+TTM SBC-adjusted FCF per diluted share fails to improve from the current ~$0.46 run rate across two
+consecutive quarterly prints despite revenue growing at or above the guided rate -- downgrade further, since
+that would mean growth is not converting into real per-share cash economics regardless of the SBC/revenue
+ratio's path.</p>
+<p><code>json kill-criteria
+[
+  {
+    "metric": "Quarterly SBC as a share of quarterly revenue",
+    "operator": "remains_at_or_above",
+    "threshold": "22% for two consecutive quarters (re-underwrite tier); 24% for two consecutive quarters without an improving after-SBC operating margin (downgrade tier) -- versus the 20.9%-21.2% FY2023-FY2025 annual run rate and H1 2026's 25.4% half-year print",
+    "check_event": "Q3 2026 10-Q (~Nov. 4, 2026), the FY2026 10-K (~Feb. 2027), and if the downgrade tier is not yet resolved, the Q1 2027 10-Q (~May 2027)",
+    "response": "re-underwrite at the first tier; treat the SBC step-up as durable and downgrade further at the second tier",
+    "benign_exceptions": [
+      "the ratio falls because the Restructuring Plan concludes on schedule (through Q3 2026) and its associated SBC (about $14.1 million in H1 2026) stops recurring",
+      "a one-time equity grant tied to the Elliott investment agreement or a new executive hire inflates a single quarter"
+    ]
+  },
+  {
+    "metric": "Q3 2026 revenue year-over-year growth, read together with U.S./Canada ARPU growth",
+    "operator": "prints_below",
+    "threshold": "13% (the low end of the $1,190-$1,210 million guide, 8-K press-release exhibit filed Aug. 4, 2026)",
+    "check_event": "Q3 2026 earnings release, expected around Nov. 3-5, 2026",
+    "response": "re-underwrite; a miss alongside intact U.S./Canada ARPU growth is a demand-timing question, not the same signal as a miss alongside ARPU deceleration too",
+    "benign_exceptions": [
+      "a discrete FX or macro shock affects the whole online-ad sector, not just Pinterest",
+      "Q4 2026 guidance reaccelerates toward or above 15%, consistent with a comp-timing effect rather than a demand slowdown"
+    ]
+  },
+  {
+    "metric": "Cumulative charges under the 2026 Restructuring Plan",
+    "operator": "exceeds",
+    "threshold": "$69.6 million, the disclosed total (10-Q Note 11), or a new restructuring action is announced",
+    "check_event": "Q3 2026 10-Q, expected around Nov. 4, 2026 (the plan is disclosed to conclude by the end of Q3 2026)",
+    "response": "a true-up within roughly 10% of $69.6 million on severance timing leaves section 2's EPS normalization intact; an overrun beyond that, or a new program, forces a re-underwrite of it",
+    "benign_exceptions": [
+      "a true-up within roughly 10% of $69.6 million tied to severance timing, not a new program"
+    ]
+  },
+  {
+    "metric": "U.S. and Canada ARPU year-over-year growth",
+    "operator": "at_or_below_zero_for_two_quarters",
+    "threshold": "0% or below for two consecutive quarters",
+    "check_event": "Q3 2026 10-Q, expected around Nov. 4, 2026, and the FY2026 10-K, expected around Feb. 2027",
+    "response": "downgrade; treat as the first direct evidence of per-user pricing-power loss in the highest-value geography",
+    "benign_exceptions": [
+      "a mix-shift within the reported geography (e.g., faster growth in a lower-ARPU sub-market) drags the blended figure down even as U.S.-only pricing holds",
+      "a discrete FX or macro shock affects the whole online-ad sector, not just Pinterest"
+    ]
+  },
+  {
+    "metric": "TTM SBC-adjusted free cash flow per diluted share",
+    "operator": "fails_to_improve",
+    "threshold": "stays at or below the current run rate (about $0.46, from section 0's $258.6 million sbc_adjusted_fcf) across two consecutive quarterly prints despite revenue growing at or above the guided rate",
+    "check_event": "Q3 2026 10-Q, expected around Nov. 4, 2026, and the FY2026 10-K, expected around Feb. 2027",
+    "response": "downgrade further; revenue growth is not converting into real per-share cash economics regardless of the SBC/revenue ratio's path",
+    "benign_exceptions": [
+      "a working-capital-timing swing depresses a single quarter's print even as the underlying SBC/revenue ratio improves (see section 2's working-capital bridge)",
+      "the ratio improves once restructuring-related SBC concludes but the per-share print lags a quarter or two given the 2.1-year vesting tail on existing awards"
+    ]
+  }
+]</code></p>
+<h2>5. Sources</h2>
+<ul>
+<li>Pinterest, Inc. Form 10-Q for the quarter ended June 30, 2026, filed Aug. 4, 2026.
+  https://www.sec.gov/Archives/edgar/data/1506293/000150629326000104/pins-20260630.htm
+  (income statement, restructuring, SBC, RSU/RSA activity, convertible notes and capped calls (Notes 5,
+  8, 11), cash flow statement, ARPU/MAU by geography, revenue by geography, share counts, single-segment
+  disclosure, CFO officer certification).</li>
+<li>Pinterest, Inc. Form 10-K for the year ended Dec. 31, 2025, filed Feb. 12, 2026.
+  https://www.sec.gov/Archives/edgar/data/1506293/000150629326000021/pins-20251231.htm
+  (FY2025/FY2024/FY2023 net income, revenue, SBC and SBC tax benefit, the Q4 2024 valuation-allowance tax
+  benefit, full-year cash flow statement).</li>
+<li>Pinterest, Inc. Form 10-Q for the quarter ended Sept. 30, 2025, filed Nov. 4, 2025 (share count basis
+  for the buyback-percentage calculation). https://www.sec.gov/Archives/edgar/data/1506293/000150629325000229/pins-20250930.htm</li>
+<li>Pinterest, Inc. Form 8-K, filed March 3, 2026 (Elliott investment agreement, $3.5 billion buyback
+  authorization). https://www.sec.gov/Archives/edgar/data/1506293/000119312526086731/d22903d8k.htm</li>
+<li>Pinterest, Inc. Form 8-K press-release exhibit, filed Aug. 4, 2026 (Q2 2026 results and Q3 2026
+  guidance). https://www.sec.gov/Archives/edgar/data/1506293/000150629326000102/q2-26xpressrelease.htm</li>
+<li>Snap Inc. Form 10-Q for the quarter ended June 30, 2026, filed Aug. 4, 2026.
+  https://www.sec.gov/Archives/edgar/data/1564408/000156440826000052/snap-20260630.htm
+  (revenue, net loss, share counts, balance sheet, convertible/senior notes).</li>
+<li>Snap Inc. Form 10-K for the year ended Dec. 31, 2025, filed Feb. 5, 2026.
+  https://www.sec.gov/Archives/edgar/data/1564408/000156440826000013/snap-20251231.htm
+  (FY2025 revenue and net loss, used to build the TTM bridge).</li>
+<li>Secondary: "Pinterest shares pop 9% as activist Elliott Management takes $1 billion stake," CNBC, March
+  3, 2026; deal terms confirmed against the 8-K above.</li>
+<li>Secondary: Q2 2026 earnings coverage (revenue/MAU beat, after-hours reaction), Investing.com and CNBC,
+  Aug. 4, 2026. Q3 guidance figures are sourced to the primary 8-K exhibit above, not to this coverage.</li>
+<li>Secondary, used only for the peer-multiple sanity check in section 2, not as a valuation anchor:
+  GuruFocus, Pinterest forward P/E ratio, dated Aug. 21, 2026; Snap Inc. closing price of $5.24 on Aug. 21,
+  2026, stockanalysis.com, accessed Aug. 25, 2026.</li>
+</ul>
+  </div>
+
+  <footer>
+    <p>The personal half of this memo &mdash; position size, portfolio overlap, tax lots &mdash; is
+      fenced out of the published text by construction and is not on this page. What a name is worth
+      is public; what one investor should own is not.</p>
+    <p class="methodlink"><a href="memos.html">&larr; All memos</a> &middot;
+      <a href="./">The Ranker</a> &middot; <a href="approach.html">How this works</a></p>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -117,7 +117,7 @@
   <p class="standfirst">Written Aug. 17, 2026. The verdict was
     <span class="verdict-tag">wait</span> and the name reads
     <code class="rs">research</code> on tonight's table.</p>
-  <p class="stamp"><b>As of:</b> Aug. 17, 2026 &middot; 8 days old &middot; reviewed Aug. 24, 2026 &middot;
+  <p class="stamp"><b>As of:</b> Aug. 17, 2026 &middot; 8 days old &middot; reviewed Aug. 25, 2026 by codex &middot;
     a memo is a point-in-time judgment and does not update itself the way the nightly table does.</p>
 
 
@@ -125,176 +125,563 @@
   <div class="note"><p><b>What this is not.</b> The ledger behind this site holds 275 decisions, collapsed from 369 name-nights, and none of them has ever been actionable. One row is one decision, not one appearance. A company suggested on 40 consecutive nights is counted once, dated from the first of them, so a name that keeps qualifying cannot inflate the sample. The cohorts above are the other view of the same calls and do repeat a name every night, by design. The actionable date is the first night every condition of the actionable-suggestion contract held at once. It reads empty for a name that has never been actionable, and for every night frozen before the contract existed on Aug. 23, 2026. The engine's current rules are forward-only from Aug. 16, 2026, so the record is days long, not years. This is a personal research tool, not licensed financial advice, and nothing here is a recommendation to buy or sell any security.</p></div>
 
   <div class="memobody">
-<h2>0. Signals (from <code>build/signals.json → names.DECK</code>, as of 2026-08-17)</h2>
-<pre><code>ticker DECK  Deckers Outdoor Corporation  Consumer Discretionary
-close 90.11  as_of 2026-08-17  next_earnings 2026-10-22 (66 days)
-
-valuation:  cheap_pct 1.4 (basis pe+ps+pfcf; pe 1.2 / ps 8.8 / pfcf 1.4;
-            cheap_thin false), cheapness_source "de-rated",
-            eps_ttm_flag null, ttm_base_spikes null,
-            pe_ttm 12.7, pe_fwd 10.7, ev_ebitda 8.7, p_book 5.35
-            own 10y: pe cur 12.75 (p20 16.61, median 23.22, p80 30.37, 2,387 obs)
-                     ps cur 2.26  (p20 2.58,  median 3.24,  p80 4.27,  1,814 obs)
-                     pfcf cur 11.17 (p20 15.17, median 20.53, p80 31.72, 2,209 obs)
-            fair_band low 117.43 / mid 164.17 / high 214.72
-                      bases pe+ps+pfcf, rung_basis low=pe, caveats [] ,
-                      reliability "ok", low_implied_fwd_pe 14.0,
-                      upside_to_low_rung +30.3%, upside_to_mid_rung +82.2%
-            fair_band_by_basis pe 117.43 / ps 102.92 / pfcf 122.38 / pb 61.63
-            implied_eps_growth at_hurdle_median_exit +2.65%/yr,
-                      at_hurdle_p20_exit +6.15%, at_hurdle_20x_exit +4.20%,
-                      fwd_at_hurdle_median_exit +0.90%, fwd_at_hurdle_20x_exit +2.42%
-                      hurdle_used 9% (tier quality_compounder), exit_median_pe 23.22,
-                      eps_base_ttm 7.07, eps_base_fwd 8.40
-            compare trailing_5y_eps_cagr +22.4%, trailing_5y_rev_cagr +14.8%,
-                      consensus_eps_growth_1y +11.5%, consensus_ltg null
-            replay 3 episodes, all closed; hit_rate_vs_spy 67%,
-                      median_excess_12m +67.2%, worst/latest_closed_excess_12m −37.2%
-                      (latest started 2025-03-10), median_worst_dd_12m −34.3%,
-                      117 of 620 weeks in the zone; 36m: 2 closed, 100%, +139.9%
-quality:    gate PASS, hard [], soft [], fcf_conversion 1.1,
-            net_debt_to_ebitda −0.85 (net cash), share_count_chg_3y −12.3%,
-            gross_margin 57.8% vs 50.9% three years ago, op_margin 22.7%, roe 42.6%
-fund. mom.: rev_yoy +5.7% (prev +9.6%), rev_accel false, rev_decel_2q false,
-            eps_ttm_yoy +8.4%, fwd_eps_rev_30d +0.8%, fwd_eps_rev_90d null,
-            analyst_up_minus_down_30d +16, analysts 21
-trend:      dd_52w −28.2%, dist_200dma −11.8%, slope_200dma_1m −0.06%,
-            rs_spy_6m −36.1%, rs_spy_12m −34.4%, sector (XLY) dd_52w −5.9%,
-            rsi14 33.4, knife false, turned false, days_since_52w_low 195
-sentiment:  short_pct_float 6.7%, insider_net_count_6m 0, target_upside +36.3%
-economics:  ROIC 84.5% (69.8% three years ago), retention 0, buyback_yield 10.0%,
-            fundable_growth 10.0%, needed_at_hurdle_20x +4.2%, growth_gap −5.8%
-scores:     buy_score 57.5 (valuation 19.5, quality 25, fund. mom. 13, trend 0),
-            candidate true, tier "memo", blockers [], replay_warning null
+<p>Revised 2026-08-25 three times: addressing DECK-review-2026-08-21.md, then
+DECK-review-2026-08-25.md (7/10, stamped), then a narrow pass fixing a
+factual error in the stamped text - it wrongly said unit volume is not
+disclosed; the Q1 FY2027 10-Q reports units -1.4% and HOKA's DTC (+17.3%) /
+wholesale (+2.9%) split. The 2026-08-17 text was ANALYST REVIEWED 2026-08-24;
+none of the three revisions since have been read by a person.</p>
+<h2>0. Signals</h2>
+<p>Engine coverage for DECK, checked across every governed surface by <code>python
+scripts/memo_context.py DECK</code> on 2026-08-25T19:12:27Z. This block is
+generated; paste it verbatim and do not edit it by hand.</p>
+<pre><code>focused signals       COVERED       93 names, as of 2026-08-21
+                      build/signals.json - The narrower set the nightly engine scores in full, with estimate families layered on.
+full universe         COVERED       1,422 names, as of 2026-08-21
+                      build/universe.json - The filings-only engine over every S&amp;P 1500 name with an EDGAR history.
+committed universe    COVERED       1,422 names, as of 2026-08-21
+                      reports/universe.json - The committed fallback for the universe run, stored compact.
+cross-sectional rank  COVERED       1,340 names, as of 2026-08-24
+                      build/rank.json - A factor ranking, not own-history, and possibly an older window.
 </code></pre>
-<p><strong>What this memo argues with.</strong> One thing, and it is decisive: the band. Its
-low rung, $117.43, sits 30.3% ABOVE the $90.11 close. Under the template's own
-rule that makes it not an entry rung at all.</p>
-<p>The replay is not argued with: three episodes, 67%
-beating SPY by a median 67%, but the most recent one (March 2025) lost to SPY
-by 37%, which is the honest warning that the last time this name looked this
-cheap the cheapness kept going.</p>
-<h2>1. What changed — why is the multiple where it is?</h2>
-<p>Deckers is at the 1st percentile of its own decade on P/E and the 1.4th
-blended, and nothing in the filings looks like a break. It looks like a
-growth-rate reset, in four dated steps.</p>
+<p>Memo mode is <strong>covered</strong>: the engine has output for DECK in
+build/signals.json, and section 3 must choose its entry from the machine band
+below rather than building a new one.</p>
+<p>Where the factor row disagrees with the engine, the engine wins:</p>
 <ul>
-<li><strong>FY2026 (year ended Mar. 31, 2026; 10-K filed May 22, 2026).</strong> Net sales
-  +9.8% to $5,472.3M, +9.0% constant currency — the first single-digit year
-  after a run of 15%-plus. HOKA +15.9% to $2,587.3M, UGG +8.2% to $2,738.8M,
-  Other brands −33.9% to $146.2M on the Koolaburra phase-out. Diluted EPS
-  $7.02, +10.9%. Operating margin 23.1%, down 50bp.</li>
-<li><strong>The U.S. stopped growing.</strong> Domestic net sales rose 0.2% in FY2026 — the
-  whole year's growth was international (+26.8%). That is the single most
-  important line in the file, and it predates the de-rating.</li>
-<li><strong>Q1 FY2027 (quarter ended Jun. 30, 2026; released Jul. 23, 10-Q filed
-  Jul. 30).</strong> Net sales +5.7% to $1,019.5M (+4.8% cc). HOKA +7.7% to $703.5M.
-  UGG +4.9% to $278.0M. Domestic +3.2%, international +8.4%. Gross margin
-  56.4%, up 60bp. But SG&amp;A rose 12.7% to $419.9M, so <strong>operating income fell
-  6.0% to $155.3M</strong> and operating margin fell 190bp to 15.2%. Diluted EPS
-  $0.94, +1.1%.</li>
-<li><strong>Tariffs, quantified.</strong> The 10-Q says the company has paid about $120.0M
-  gross in IEEPA tariffs, has begun filing for refunds, has recognized none of
-  it, and does not expect mitigation to fully offset the incremental tariff
-  cost this fiscal year. FY2027 guidance excludes any refund.</li>
+<li>
+<p>The cross-sectional row in build/rank.json was generated at
+  2026-08-24T03:06:58+00:00, before the engine result at
+  2026-08-25T13:00:08+00:00, so it never supersedes it.</p>
+<p>ticker DECK | close 91.68 | as_of 2026-08-21 | next_earnings 2026-10-22 (days_to_earnings 62)
+per share:  eps_ttm 7.07, sales 39.89, fcf 8.07, book 16.61
+valuation:  cheap_pct 1.9 (basis pe+ps+pfcf; by basis pe 1.5, ps 10.7, pfcf 1.9; cheap_thin false)
+            cheapness_source de-rated, eps_ttm_flag none, ttm_base_spikes none
+            pe_ttm 13.00, pe_fwd 10.90, ev_ebitda 8.60, p_book 5.45
+            fair_band low 117.29 / mid 164.02 / high 214.72 on bases pe, ps, pfcf
+            fair_band reliability ok, upside_to_low_rung 27.9%, caveats none
+            fair_band_by_basis {"pe": {"low": 117.29, "mid": 164.02, "high": 214.72}, "ps": {"low": 102.52, "mid": 129.25, "high": 170.34}, "pfcf": {"low": 122.22, "mid": 165.22, "high": 255.25}, "pb": {"low": 61.8, "mid": 96.35, "high": 124.92}}
+            implied_eps_growth at_hurdle_median_exit 2.8%, at_hurdle_p20_exit 6.3%, at_hurdle_20x_exit 4.4%
+            implied_eps_growth fwd_at_hurdle_20x_exit 2.6%, tier quality_compounder, hurdle_used 9.0%, eps_base_ttm 7.07
+            compare trailing_5y_eps_cagr 22.4%, consensus_eps_growth_1y 11.5%, consensus_ltg none
+            replay episodes_closed 4, hit_rate_vs_spy 50.0%, median_excess_12m 17.8%, worst_excess_12m -37.0%
+            replay open_episodes 0, open_median_excess_to_date none, median_worst_dd_12m -29.2%
+quality:    gate pass, hard none, soft none, unknown none
+            fcf_conversion 1.10, net_debt_to_ebitda -0.85, share_count_chg_3y -12.3%, sbc_to_fcf 4.0%
+            sbc_adjusted_fcf 1,070,971,000.00 (8.6% of market cap) against reported fcf_ttm 1,117,808,000.00
+            gross_margin 57.8% against 50.9% three years ago
+economics:  roic 84.5% against 69.8% three years ago, fundable_growth 9.8%, needed_at_hurdle_20x 4.4%, growth_gap -5.5%
+fund. mom.: rev_yoy 5.7%, rev_accel false, rev_decel_2q false, eps_ttm_yoy 8.4%
+            fwd_eps_rev_30d 0.8%, fwd_eps_rev_90d none, analyst_up_minus_down_30d 16, rec_mean none against none three months ago
+trend:      dd_52w -26.9%, dist_200dma -10.4%, rs_spy_6m -34.4%, sector_dd_52w -4.8%, knife false, turned false
+sentiment:  short_pct_float 6.7%, insider_net_count_6m 0, target_upside 34.0%
+scores:     buy_score 57.4, cheap true, bases 3, candidate true, tier memo
+            candidate_reasons own-history pe+ps+pfcf at 2nd pct (10y), de-rated: -27% off the 52w high, -12% over 12m, -44% against own-median re-rating value 164.02, replay: 4 past entries into this zone, 50% beat SPY over 12m, median excess +18%, median worst drawdown -29% (worst -37%; latest 2025-05 -21%; all weeks in zone, median +55%), economics: ROIC 84% (3y ago 70%), 0% retained (payout + buybacks &gt;= net income), 9.8% buyback yield — enough to fund about +10% a year without outside capital; the price at a 20x exit needs +4% — capital is not the constraint; the memo's question is demand, buybacks: 29% of today's market cap spent at a dollar-weighted 48th pct of own history, replay 36m: 2 entries with 3y of data, 100% beat SPY, median excess +126%
+            candidate_blockers none
+            replay_warning none
+data notes: none
+portfolio:  held false (position size never appears in a memo)</p>
+</li>
 </ul>
-<p>So: (b) growth expectations fell and (a) earnings power is being squeezed at
-the margin line, together. Not (c) — there is no discrete risk event in the
-filings — and not only (d), though a −5.9% XLY against DECK's −28.2% says
-some of it is the sector too.</p>
-<h2>2. Is the impairment real?</h2>
-<p><strong>Partly, and the market is pricing much more than "partly."</strong> Take the three
-pieces separately.</p>
-<p><em>The U.S. slowdown is real and is not a one-quarter artifact.</em> Domestic sales
-were +0.2% for FY2026 and +3.2% in Q1 FY2027. HOKA's decelerating from +15.9%
-to +7.7% while management guides the full year to a low-double-digit increase
-(guidance of Jul. 23, 2026, reaffirmed at that level) means <strong>the guide
-requires a re-acceleration in the back half that has not started.</strong> That is a
-falsifiable claim with a date on it, and it is the most likely thing to break.</p>
-<p><em>The margin compression is real but is being disclosed as tariff-driven and
-partially reversible.</em> FY2027 guidance: revenue $5.86-5.91B, gross margin
-slightly better than 56.5%, SG&amp;A about 35% of sales, operating margin slightly
-better than 21.5%, EPS $7.35-$7.50. Use the midpoint: $7.425, up 5.8% on
-FY2026's $7.02, with about 160bp of operating margin given away. The $120.0M
-of IEEPA tariffs already paid is a real cash cost carried at zero recognized
-recovery — that is conservative accounting, not an impairment of the
-franchise, and any refund is upside nobody is booking.</p>
-<p><em>Nothing in the quality or capital picture is impaired.</em> Gross margin is 57.8%
-against 50.9% three years ago. ROIC is 84.5%, up from 69.8%. Net cash, no
-outstanding borrowings, $1.603B of cash, inventories DOWN year over year to
-$807.6M — inventory is not backing up behind the slowdown, which is what a
-real demand break looks like. The company bought back 3.3 million shares for
-$338.2M in the June quarter alone (vs $183.0M a year earlier) at an average
-$103.79, and guides to spending about 80% of FY2027 free cash flow on
-buybacks against a $4.7B remaining authorization.</p>
-<p><em>What the price implies.</em> At the 9% quality-compounder hurdle and an exit at
-its own median 23.2x, the $90.11 close implies <strong>+2.65% EPS growth a year for
-ten years</strong>. Against trailing five-year EPS CAGR of +22.4%, consensus +11.5%
-for next year, and management's own guided +5.8% for this year — with a 10%
-buyback yield that alone funds about 10% of share-count-driven EPS growth a
-year. The price is not asking whether growth slows; it is asking whether
-growth essentially stops, permanently, at a company that has already told you
-it will retire a tenth of its shares annually. <strong>I cannot name the structural
-reason for that, and the filings do not supply one.</strong> The nameable risks — a
-U.S. HOKA plateau, tariffs, wholesale over-shipping — are all worth several
-points of growth, not all of it.</p>
-<p>The honest counterweight is the replay: the last time DECK entered this zone
-(March 2025) it went on to lag SPY by 37% over the following year. Cheap on
-its own history has been a poor short-run signal for this name once already.</p>
-<h2>3. Verdict and entry</h2>
-<p><strong>Wait</strong> — but the reason is different from the one on file, and it is worth
-recording plainly.</p>
-<p>The band cannot be used as the entry rung here. <code>fair_band.low</code> is $117.43
-against a $90.11 close (<code>upside_to_low_rung</code> +30.3%), so the p20 rung sits
-above today's price; the template's own rule says do not arm a "margin of
-safety" above spot. That leaves spot or an event gate.</p>
-<p>The gate that would actually matter is an event, not a price: <strong>the H2
-FY2027 re-acceleration in HOKA, first testable at the Q2 print on Oct. 22,
-2026 and decided at Q3 in late January 2027.</strong> Tier is 9% (quality
-compounder — diversified across two brands, three channels, two geographies,
-net cash, 57.8% gross margin); at that tier the price implies +2.65% and the
-company guides +5.8% this year, so the hurdle is achievable on the arithmetic
-without heroic assumptions.</p>
-<h2>4. Kill criteria — pre-committed, falsifiable, dated</h2>
+<!-- memo-context: generated block, do not edit by hand. Regenerate with `python scripts/memo_context.py DECK`. -->
+
+<p>```json memo-context
+{
+  "checksum": "sha256:a9ec0f9699ab9adb542ec1e9100c5e9cbc603c95d87a62e86399d61de05a77e8",
+  "coverage": [
+    {
+      "as_of": "2026-08-21",
+      "covers_ticker": true,
+      "exists": true,
+      "generated_at": "2026-08-25T13:00:08+00:00",
+      "kind": "signals_focused",
+      "label": "focused signals",
+      "names": 93,
+      "note": "The narrower set the nightly engine scores in full, with estimate families layered on.",
+      "path": "build/signals.json"
+    },
+    {
+      "as_of": "2026-08-21",
+      "covers_ticker": true,
+      "exists": true,
+      "generated_at": "2026-08-25T12:59:58+00:00",
+      "kind": "universe_full",
+      "label": "full universe",
+      "names": 1422,
+      "note": "The filings-only engine over every S&amp;P 1500 name with an EDGAR history.",
+      "path": "build/universe.json"
+    },
+    {
+      "as_of": "2026-08-21",
+      "covers_ticker": true,
+      "exists": true,
+      "generated_at": "2026-08-25T12:41:29+00:00",
+      "kind": "universe_committed",
+      "label": "committed universe",
+      "names": 1422,
+      "note": "The committed fallback for the universe run, stored compact.",
+      "path": "reports/universe.json"
+    },
+    {
+      "as_of": null,
+      "covers_ticker": true,
+      "exists": true,
+      "generated_at": "2026-08-24T03:06:58+00:00",
+      "kind": "rank_cross_sectional",
+      "label": "cross-sectional rank",
+      "names": 1340,
+      "note": "A factor ranking, not own-history, and possibly an older window.",
+      "path": "build/rank.json"
+    }
+  ],
+  "data_as_of": "2026-08-21",
+  "engine_coverage": [
+    "build/signals.json",
+    "build/universe.json",
+    "reports/universe.json"
+  ],
+  "generated_at": "2026-08-25T19:12:27Z",
+  "held": false,
+  "instruction_locks": [
+    {
+      "commit": "0bf61dbf22e00df68b4a65693e6b2851205cd8fe",
+      "path": "research/MEMO-TEMPLATE.md",
+      "present": true,
+      "sha256": "8f03815494bf8592f5e20b586399c4e5c8f845d31b2b7a403eafcd20ac24c9b7",
+      "uncommitted": false
+    },
+    {
+      "commit": "0bf61dbf22e00df68b4a65693e6b2851205cd8fe",
+      "path": ".claude/agents/memo-writer.md",
+      "present": true,
+      "sha256": "54f427a4bce798d9862ca3da003ea048b155362a240349c4c333dcd9364925c8",
+      "uncommitted": false
+    },
+    {
+      "commit": "e15e584d690ab40cc199646239a4688ca25a3690",
+      "path": "scripts/memo_context.py",
+      "present": true,
+      "sha256": "f4ad0b34f3e17b72d91ae02263016183f30535da6715a629f7b1db58853969c3",
+      "uncommitted": false
+    }
+  ],
+  "mode": "covered",
+  "mode_derived": "covered",
+  "mode_forced": false,
+  "primary_kind": "signals_focused",
+  "primary_source": "build/signals.json",
+  "rank_conflicts": [
+    "The cross-sectional row in build/rank.json was generated at 2026-08-24T03:06:58+00:00, before the engine result at 2026-08-25T13:00:08+00:00, so it never supersedes it."
+  ],
+  "schema": "memo-context/1",
+  "spot": {
+    "as_of": "2026-08-21",
+    "close": 91.68,
+    "source": "build/signals.json"
+  },
+  "ticker": "DECK"
+}</p>
+<pre><code>
+**What this memo argues with.** Four things. First, the band: `fair_band.low`
+is $117.29, 27.9% ABOVE the $91.68 close (`upside_to_low_rung`), so under the
+template's own rule it is not an entry rung. Second, the tier: the block
+above defaults to `quality_compounder`/9% because DECK carries no per-name
+override, not because the engine considered DECK's mix. Section 2 shows HOKA
+and UGG were 97.3% of FY2026 revenue with no third act, and section 3 uses
+`cyclical_or_single_product`/12% instead. Third, the replay: this refreshed
+run shows 4 closed episodes at a 50% hit rate vs SPY and median excess +17.8%
+(worst -37.0%) — materially weaker than the 3-episode, 67%-hit-rate,
++67%-median read an earlier draft argued from three days of stale data. A
+coin flip on the 12-month clock is not the tailwind that read implied; the
+36-month read (2 entries, 100% beat SPY, median excess +126%) is the more
+supportive number here, and section 3 says so rather than blending the two.
+Fourth, `candidate_reasons`' &quot;9.8% buyback yield ... enough to fund about
++10% a year&quot; is dollars spent over market cap, not a net-share-count
+projection; section 2 uses the engine's own `share_count_chg_3y` instead.
+`cheap_pct`, `fair_band`, and the peer multiples in section 2 are all
+engine-computed from filed inputs against a governed price — useful, but
+themselves market/engine data, not primary-filing facts, and are labeled
+that way below wherever they carry an argument.
+
+## 1. What changed - why is the multiple where it is?
+
+Deckers is at the 2nd percentile of its own decade on P/E and the 1.9th
+blended (build/signals.json, as of 2026-08-21). Four dated steps, not a
+discrete break.
+
+- **FY2026 (year ended Mar. 31, 2026; 10-K filed May 22, 2026).** Net sales
+  +9.8% to $5,472.3M. HOKA +15.9% to $2,587.3M; UGG +8.2% to $2,738.8M; Other
+  brands -33.9% to $146.2M as Koolaburra and AHNU were wound down with &quot;no
+  material exit costs&quot; (10-K). Diluted EPS $7.02, +10.9%. Gross margin 57.7%
+  (-20bp); operating margin 23.1% (-50bp).
+- **The US stopped growing.** Domestic net sales +0.2% for FY2026 against
+  international +26.8% - the single most consequential line in the filing,
+  predating the de-rating.
+- **Q1 FY2027 (qtr ended Jun. 30, 2026; 8-K/press release Jul. 23; 10-Q filed
+  Jul. 30).** Net sales +5.7% to $1,019.5M (+4.8% cc, consolidated only -
+  Deckers does not disclose brand-level constant currency). HOKA +7.7% to
+  $703.5M; UGG +4.9% to $278.0M; DTC comparable net sales +6.8%. Gross margin
+  56.4% (+60bp), but SG&amp;A +12.7% to $419.9M, so operating income fell 6.0% to
+  $155.3M and operating margin fell 190bp to 15.2%.
+- **Tariffs, updated but not resolved.** The Supreme Court invalidated the
+  IEEPA tariffs already paid in Feb. 2026, and the Court of International
+  Trade ordered CBP to refund them in March 2026; Deckers began filing under
+  CBP's CAPE Phase 2 process in July 2026 against about $120.0M gross paid.
+  But the 10-Q is explicit that refund timing and net amount remain
+  uncertain, no benefit is recognized under ASC 450's gain-contingency
+  model, existing and proposed tariff regimes remain a live risk, and
+  mitigation is &quot;not expected to fully offset&quot; FY2027's incremental tariff
+  cost. This is a favorable legal development on one specific levy, not a
+  resolved risk.
+
+Category: (b) growth expectations fell and (a) earnings power is squeezed at
+the margin line - not (c) in the sense of a new discrete risk, though the
+tariff risk named in the FY2026 10-K remains open per that filing's own
+language, and not purely (d), though sector (XLY) dd_52w -4.8% against
+DECK's -26.9% shows some rotation too.
+
+## 2. Is the impairment real?
+
+**The earnings base needs no normalization.** No merger fee, impairment, or
+disposal gain in FY2026 or Q1 FY2027 GAAP results; the Koolaburra/AHNU
+wind-down carried &quot;no material exit costs&quot; (10-K). TTM EPS $7.07 and FY2026
+$7.02 are used as reported.
+
+**SBC-adjusted FCF is a real haircut but a small one, and the cash-flow
+timing is ordinary.** Reported FCF (TTM) $1,117.8M; stock-based compensation
+(SBC)-adjusted $1,071.0M (`sbc_to_fcf` 4.0%), yielding 8.6% of market cap
+against roughly 9.0% on the reported figure (both from section 0). Q1
+FY2027's operating cash flow was thin ($47.9M) because a $341.6M
+accounts-payable inflow largely offset a $320.6M inventory build (10-Q); the
+same pattern (smaller scale) shows in the prior-year quarter, so this reads
+as Deckers' ordinary seasonal financing of UGG's pre-holiday inventory
+build, not a one-time source propping up the TTM FCF figure the SBC
+adjustment above is applied to.
+
+**Marketing spend and price promotion are different mechanisms - keep them
+separate.** Total advertising/marketing/promotion expense rose from 8.48% of
+revenue in Q1 FY2026 to 9.03% in Q1 FY2027 ($81.8M/$964.5M to
+$92.1M/$1,019.5M, 10-Q) - a real, modest rise in customer-acquisition
+intensity, the metric the template's own framework flags for a subscription
+or platform business, here applied to a branded-goods one. That is a cost-
+of-growth signal, not itself evidence of discounting. Price promotion is a
+separate question: the FY2026 10-K says promotional activity &quot;slightly
+increased&quot; from &quot;exceptionally low levels&quot; in the prior year, but the
+company still achieved &quot;high levels of full-price sell through&quot; and
+&quot;largely maintained&quot; gross margin, and flags it &quot;may not realize similar
+gross margin benefits&quot; in FY2027. That is a genuine forward risk, not yet a
+filed impairment - Q1 FY2027 gross margin actually rose 60bp, and DTC
+comparable sales (+6.8%, which strips new-store effects and is the closest
+disclosed proxy to full-price demand) read as healthy, not eroding. The
+quarter's unit and price data corroborate this rather than undercut it:
+consolidated units fell 1.4% (10-Q) while net sales rose 5.7% and gross
+margin rose 60bp - a units-down/price-up/margin-up combination consistent
+with premiumization and full-price selling, not with discount-driven volume
+chasing. Both signals are real and both are shown; neither yet shows the
+loss of pricing power the FY2026 warning flags as a risk for FY2027.
+
+**Segment decomposition.** Q1 FY2027 segment operating margin: HOKA 36.3%
+(was 38.8%, -250bp), UGG 19.4% (was 20.4%, -100bp), Other 17.2% (was 16.7%,
+now immaterial post-wind-down); total segment margin 31.0% (was 32.7%,
+-170bp). Unallocated corporate costs rose faster than segment income -
+$149.977M to $160.723M, +7.2% - adding roughly another 20bp of
+consolidated-margin drag on top. HOKA is still highly profitable even after
+the compression; the corporate-overhead line grew about as fast as the
+brand-level pressure did.
+
+**Concentration is real and decides the tier.** HOKA plus UGG were 97.3% of
+FY2026 net sales ($2,587.3M + $2,738.8M of $5,472.3M). Channel and
+geographic diversification does not offset a loss of consumer relevance at
+either brand, since both would be hit together in that scenario. Section 3
+uses `cyclical_or_single_product`/12% rather than the engine's default
+`quality_compounder`/9% on this basis alone.
+
+**Buybacks: use the net share count, not the gross yield.** The
+candidate_reasons text's &quot;9.8% buyback yield ... enough to fund about +10% a
+year&quot; divides dollars spent by market cap; it does not net the price paid,
+offsetting employee issuance, or timing. The engine's own
+`share_count_chg_3y` is -12.3% over three years, about -4.3%/yr compounded -
+a real net reduction, materially below the raw yield figure, and the number
+section 3's bridge uses.
+
+**The US slowdown: cyclical or structural is not yet distinguishable, and
+the disclosed evidence is mixed, not silent.** Domestic net sales growth
+(+0.2% FY2026, +3.2% Q1 FY2027) is the clearest filed warning. Corrected
+from an earlier draft, which wrongly said Deckers does not disclose unit
+volume: the 10-Q reports consolidated units sold down 1.4% to 14,500
+thousand from 14,700 thousand, and HOKA brand net sales by channel - DTC
++17.3% to $256.8M, wholesale +2.9% to $446.8M (10-Q). Deckers still does not
+disclose brand-level domestic growth, US-specific wholesale or DTC trends,
+or DTC traffic - the geography-by-brand cut that would most directly settle
+whether the US slowdown is cyclical or structural. What it does disclose,
+enterprise-wide, leans toward intact demand: HOKA's DTC channel, the one
+closest to end consumers, grew far faster than its wholesale channel, and
+the 10-Q attributes part of the wholesale shortfall to a European 3PL
+transition that inflated the prior-year comparison, not to weaker current
+sell-in. The 1.4% unit decline against 5.7% revenue growth implies average
+selling price rose roughly 7%, and the prior-year unit count itself includes
+volume from the since-phased-out Koolaburra and AHNU brands, so the
+like-for-like decline is smaller than the headline. None of this is
+US-specific, so it does not resolve the domestic-growth warning - it is
+enterprise-wide evidence that reads as premiumization and channel mix, not
+as the promotional, volume-chasing pattern a real US HOKA maturation would
+show. International growth (+26.8% FY2026, +8.4% Q1 FY2027) and consolidated
+DTC comparable sales (+6.8%) point the same direction but likewise cannot
+prove the US runway specifically is intact.
+
+**One peer is a floor, not the whole answer; a second bounds it from
+above.** Crocs (CROX): governed close $122.11 (build/universe.json, same run
+as section 0); TTM P/E 10.7x, near its own ten-year median (43rd
+percentile) - engine-computed from filed EPS against that governed price,
+not itself a filed figure. CROX is a useful downside reference, not a clean
+read on &quot;cheap versus a comparable business&quot;: its HEYDUDE brand carried a
+$738.1M impairment (trademark $430.0M plus reporting-unit goodwill $307.0M)
+in Q2 2025 on a downward demand revision, and HEYDUDE revenue was still
+declining in Q2 2026 (-5.7%, Crocs Brand +4.3%, consolidated +2.6% - Crocs
+10-Q filed Jul. 30, 2026) against DECK's +5.7% consolidated. On Holding
+(ONON) bounds the set from above on growth: Q2 2026 net sales +21.6% constant
+currency, DTC +34.3% cc, gross margin 65.4% (On Holding's furnished Q2 2026
+MD&amp;A exhibit, Aug. 11, 2026) - well ahead of HOKA's +7.7%. On Holding is a
+Swiss issuer filing 6-Ks rather than 10-Ks and is outside this repo's
+governed universe (`build/universe.json` carries no ONON row), so no
+governed P/E is available for it here, and none is asserted. Read together:
+DECK's premium to CROX (13.0x vs 10.7x TTM P/E) is defensible - CROX's
+second brand is genuinely impaired where DECK's is not, and HOKA's growth
+still exceeds Crocs Brand's - but DECK is nowhere near the growth ON is
+posting, so DECK is not cheap against the best comparable business in the
+category, only against a comparable one carrying its own real damage.
+
+**What the price implies - a bridge, not a picked number.** Bear: 0% EPS
+growth - flat-to-declining revenue as HOKA's US growth stalls, roughly
+another 100bp of margin compression, and repurchases slowing as FCF tightens
+(the program has never been suspended, but the guided 80%-of-FCF spending
+assumes healthy FCF). Base: about 8% - roughly 4% revenue growth (a
+deceleration from FY2027's guided +7.55% consolidated pace as the domestic
+slowdown continues and international growth moderates), flat operating
+margin (holding near 21-22% rather than expanding further, since Q1's
+corporate-overhead growth offset brand-level leverage), and the buyback
+program continuing at its realized three-year pace of about -4.3%/yr net
+share count. Bull: about 16% - revenue growth reaccelerating toward the
+guided low-double-digit HOKA / mid-single-digit UGG pace and holding, about
+75bp of margin expansion as the promotional and tariff drag eases, and the
+same buyback pace. None of the three assumes a return to DECK's own 23.2x
+ten-year median exit multiple; section 3 pairs each with its own multiple.
+
+## 3. Verdict and entry
+
+**Wait.**
+
+Tier: `cyclical_or_single_product`, 12% (override; section 2). Band:
+`fair_band.low` $117.29 sits 27.9% above the $91.68 close, so it is not a
+usable entry rung under the template's own rule.
+
+    python scripts/scenario.py --spot 91.68 --base-eps 7.07 \
+        --tier cyclical_or_single_product \
+        --case bear:0:10 --case base:8:14 --case bull:16:19
+
+| Case | Growth | Exit P/E | EPS in 5y | Price | Annualized | Growth needed at 12.0% |
+|---|---:|---:|---:|---:|---:|---:|
+| Bear | 0.0% | 10x | $7.07 | $70.70 | -5.1% | 18.0% |
+| Base | 8.0% | 14x | $10.39 | $145.43 | 9.7% | 10.3% |
+| Bull | 16.0% | 19x | $14.85 | $282.14 | 25.2% | 3.8% |
+
+```json scenario
+{
+  &quot;base&quot;: 7.07, &quot;metric&quot;: &quot;eps&quot;, &quot;spot&quot;: 91.68, &quot;tier&quot;: &quot;cyclical_or_single_product&quot;,
+  &quot;hurdle&quot;: 0.12, &quot;years&quot;: 5,
+  &quot;rows&quot;: [
+    {&quot;case&quot;: &quot;bear&quot;, &quot;growth&quot;: 0.00, &quot;multiple&quot;: 10.0, &quot;annualized_return&quot;: -0.0506, &quot;required_growth_at_hurdle&quot;: 0.1797, &quot;clears_hurdle&quot;: false},
+    {&quot;case&quot;: &quot;base&quot;, &quot;growth&quot;: 0.08, &quot;multiple&quot;: 14.0, &quot;annualized_return&quot;: 0.0967, &quot;required_growth_at_hurdle&quot;: 0.1030, &quot;clears_hurdle&quot;: false},
+    {&quot;case&quot;: &quot;bull&quot;, &quot;growth&quot;: 0.16, &quot;multiple&quot;: 19.0, &quot;annualized_return&quot;: 0.2521, &quot;required_growth_at_hurdle&quot;: 0.0376, &quot;clears_hurdle&quot;: true}
+  ]
+}
+</code></pre>
+<p>Each case pairs its growth rate with an exit multiple bridged in section 2
+from revenue growth, margin, and the realized buyback pace - not a single
+reverse-multiple sentence, and not a picked-then-defended number. The bear
+case (no re-rating from today's 13.0x, in fact a step down to CROX's
+neighborhood) loses money. The base case (14x, a partial normalization,
+still well below the 23.2x historical median) clears only 9.7% annualized
+against the 12% hurdle - it needs 10.3% growth at that exit to actually
+clear it, 2.3 points above the 8% the bridge assumes. Only the bull case
+(16% growth, 19x, still below the historical median) clears the hurdle
+outright, and it requires both a reacceleration to the guided pace AND
+roughly 75bp of margin expansion holding at the same time.</p>
+<p><strong>Entry.</strong> No band rung is usable (the low rung sits above spot). Event
+gate: the H2 FY2027 HOKA re-acceleration implied by guidance, first testable
+at the Oct. 22, 2026 print and decided by the Q3 print in late January 2027.</p>
+<h2>4. Kill criteria - pre-committed, falsifiable, dated</h2>
 <ol>
-<li><strong>HOKA constant-currency growth below +5% in two straight quarters, or any
-   negative quarter.</strong> Checked on each quarterly release; next Oct. 22, 2026.
-   Q1 FY2027 reported +7.7% (as-reported; the release gives cc only at the
-   consolidated level, +4.8%) — PASS, with under 3 points of room.</li>
-<li><strong>H2 FY2027 re-acceleration missed</strong> — full-year HOKA lands below a
-   low-double-digit increase, or the FY2027 revenue guide of $5.86-5.91B is
-   cut. Checked Oct. 22, 2026 and late January 2027.</li>
-<li><strong>Full-year operating margin below 19.5%.</strong> Guided "slightly better than
-   21.5%" on Jul. 23, 2026. Checked at each guidance update.</li>
-<li><strong>Wholesale outrunning DTC by more than 5 points over a fiscal year.</strong>
-   FY2026 TRIPPED this: wholesale +12.3% vs DTC +6.3%, a 6.0-point gap.
-   Q1 FY2027 reversed it hard — DTC +13.0% vs wholesale +2.2%, comparable DTC
-   +6.8%. Re-checked at FY2027 year-end, May 2027; a second consecutive
-   fiscal year of it is a downgrade, not a discussion.</li>
-<li><strong>Buybacks paused or debt-funded.</strong> Currently the opposite: $338.2M in the
-   June quarter, no outstanding borrowings, $4.7B authorization remaining.
-   Checked each 10-Q.</li>
+<li><strong>HOKA reported net sales growth, tiered, with DTC comparable sales as
+   corroborating evidence rather than a required second leg.</strong> Monitor below
+   8%; formal review below 5%; immediate re-underwrite on any negative HOKA
+   quarter or a HOKA-specific guidance cut, regardless of the consolidated
+   DTC comparable-sales number (an earlier draft's AND-gated logic could
+   have masked HOKA weakness behind UGG strength). Checked each quarterly
+   release; next Oct. 22, 2026. Q1 FY2027 reported +7.7%, above monitoring.</li>
+<li><strong>Full-year HOKA growth versus the guided low-double-digit increase, or a
+   HOKA-specific guidance cut - an independent trigger.</strong> Either the
+   full-year miss or an interim guidance cut alone re-underwrites; full-price
+   selling, DTC comparable sales, and close-out commentary set the severity,
+   not whether it fires. Checked at each guidance update, and confirmed at
+   the Oct. 22, 2026 and late-January 2027 prints.</li>
+<li><strong>Operating margin, split into a guidance-level test and a segment-level
+   test so the seasonal Q1 print cannot mechanically trip a full-year
+   threshold.</strong> Guidance leg (checked only at guidance updates and the
+   FY2027 10-K, ~May 2027): above 21.5% guidance intact; 20.5-21.5%
+   deterioration requiring explanation; below 20.5% material impairment
+   unless clearly a temporary tariff item; below 19.5% severe impairment.
+   Segment leg (checked every quarter): HOKA or UGG segment operating margin
+   down more than 300bp year over year for two consecutive quarters
+   triggers a review, independent of the seasonally low consolidated number.</li>
+<li><strong>Wholesale growth outrunning DTC growth by more than 5 points over a
+   full fiscal year - an investigation trigger, corroborated quarterly
+   rather than judged only once a year.</strong> Each quarter, check receivables
+   growth relative to wholesale sales, DTC comparable sales, close-out
+   commentary, and inventory growth for early signs; the annual test is at
+   FY2027 year-end. Two consecutive fiscal years of the gap alongside
+   weakening DTC comparable sales is treated as structural.</li>
+<li><strong>Repurchases funded by debt - a capital-allocation escalation, not a
+   franchise signal.</strong> Trips if <code>net_debt_to_ebitda</code> moves from net cash
+   into positive leverage above 0.5x while repurchases continue. A
+   revenue or margin guidance cut is independently covered by criteria 2 and
+   3 regardless of repurchase activity; a pause in repurchases alone, with
+   guidance intact and net cash preserved, is not itself a trigger. Checked
+   each 10-Q. Currently net cash (-0.85x), $338.2M repurchased in Q1 FY2027,
+   $4.7B of authorization remaining.</li>
 </ol>
+<p><code>json kill-criteria
+[
+  {
+    "metric": "HOKA reported net sales growth",
+    "operator": "tiered_threshold",
+    "threshold": "monitor below 8%; formal review below 5%; immediate re-underwrite on any negative HOKA quarter or a HOKA-specific guidance cut, regardless of consolidated DTC comparable sales",
+    "check_event": "each quarterly release, next Oct. 22, 2026",
+    "response": "tiered: monitor, then review, then re-underwrite",
+    "benign_exceptions": [
+      "a single quarter's dip tied to product-launch phasing or FX, with consolidated DTC comparable sales and full-price sell-through still healthy, is corroborating evidence for a lighter response but does not cancel the monitor/review tiers"
+    ]
+  },
+  {
+    "metric": "Full-year HOKA growth versus the guided low-double-digit increase, or a HOKA-specific guidance cut",
+    "operator": "independent_trigger",
+    "threshold": "full-year HOKA growth lands below a low-double-digit increase, OR HOKA guidance is cut at any interim update - either alone re-underwrites; full-price selling, DTC comparable sales, and close-out commentary set the severity, not whether it fires",
+    "check_event": "each guidance update, confirmed at the Oct. 22, 2026 and late-January 2027 (Q3 FY2027) prints",
+    "response": "re-underwrite; severity set by full-price/DTC/close-out evidence",
+    "benign_exceptions": [
+      "a wholesale sell-in timing shift ahead of a product launch, with DTC comparable sales and full-price selling still healthy, softens the severity assessment but does not cancel the trigger"
+    ]
+  },
+  {
+    "metric": "Operating margin - full-year guidance level and quarterly segment-margin trend, tested separately",
+    "operator": "two_leg_tiered_threshold",
+    "threshold": "guidance leg (checked only at guidance updates and the FY2027 10-K): above 21.5% guidance intact; 20.5%-21.5% deterioration requiring explanation; below 20.5% material impairment unless clearly a temporary tariff item; below 19.5% severe impairment. Segment leg (checked every quarter): HOKA or UGG segment operating margin down more than 300bp year over year for two consecutive quarters triggers a review",
+    "check_event": "guidance leg: each guidance update and the FY2027 10-K (~May 2027); segment leg: each quarterly report, next Oct. 22, 2026",
+    "response": "guidance leg tiered per threshold; segment leg triggers a review, not an automatic re-underwrite",
+    "benign_exceptions": [
+      "the seasonally low Q1 consolidated operating margin (15.2%) is excluded from the guidance-leg test by design and is not evidence against the full-year guide",
+      "a one-quarter segment-margin dip tied to a marketing campaign or product launch ahead of a strong season is not the same as a sustained two-quarter decline"
+    ]
+  },
+  {
+    "metric": "Wholesale channel growth outrunning DTC channel growth by more than 5 points over a full fiscal year",
+    "operator": "investigation_trigger_with_quarterly_corroboration",
+    "threshold": "wholesale growth exceeds DTC growth by more than 5 points over a fiscal year; each quarter, check receivables growth relative to wholesale sales, DTC comparable sales, close-out commentary, and inventory growth for earlier corroboration; two consecutive fiscal years of the gap alongside weakening DTC comparable sales is treated as structural",
+    "check_event": "quarterly corroboration each report; annual test at FY2027 year-end (~May 2027 10-K)",
+    "response": "investigate first; re-underwrite only if paired with weakening DTC comparable sales for two consecutive fiscal years",
+    "benign_exceptions": [
+      "international wholesale expansion can outrun a still-healthy DTC channel without representing channel stuffing"
+    ]
+  },
+  {
+    "metric": "Stock repurchases funded by debt",
+    "operator": "leverage_threshold",
+    "threshold": "net_debt_to_ebitda moves from net cash into positive leverage above 0.5x while repurchases continue",
+    "check_event": "each 10-Q",
+    "response": "review the capital-allocation decision; a revenue or margin guidance cut is independently covered by criteria 2 and 3 regardless of repurchase activity",
+    "benign_exceptions": [
+      "a pause in repurchases alone, with guidance intact and net cash preserved, is a rational capital-allocation choice and not itself a trigger"
+    ]
+  }
+]</code></p>
 <h2>5. Sources</h2>
 <ul>
-<li>Deckers Outdoor 10-Q for the quarter ended Jun. 30, 2026, filed Jul. 30,
-  2026 (accession 0000910521-26-000022): financial highlights, brand and
-  channel net sales, operating margin, IEEPA tariff disclosure, stock
-  repurchase note.</li>
-<li>Deckers Outdoor 8-K filed Jul. 23, 2026 (accession 0000910521-26-000015),
-  Exhibit 99.1 press release: Q1 FY2027 results, constant-currency net sales,
-  DTC comparable sales, balance sheet, and the full FY2027 outlook.</li>
-<li>Deckers Outdoor 10-K for the fiscal year ended Mar. 31, 2026, filed
-  May 22, 2026 (accession 0001628280-26-037664): FY2026 brand, channel and
-  geographic net sales, operating margin, diluted EPS, segment operating
-  margins.</li>
-<li><code>build/signals.json</code> as of 2026-08-17 for every number in §0; EDGAR
-  companyfacts (split-rebased) via <code>scripts/fetch_facts.py</code> for the quarterly
-  series behind them.</li>
-<li>Not verified: the Q1 FY2027 conference call of Jul. 23, 2026. The transcript
-  is not on EDGAR and was not reachable from this run, so no management
-  commentary beyond the furnished press release is relied on here.</li>
+<li>Deckers Outdoor, Form 10-K for the fiscal year ended Mar. 31, 2026, filed
+  May 22, 2026 (accession 0001628280-26-037664): FY2026 net sales by brand,
+  channel, and geography; gross and operating margin; diluted EPS; the
+  Koolaburra/AHNU wind-down ("no material exit costs"); "the retail
+  environment became more promotional," full-price sell-through, and
+  close-out language.
+  https://www.sec.gov/Archives/edgar/data/910521/000162828026037664/deck-20260331.htm</li>
+<li>Deckers Outdoor, Form 10-Q for the quarter ended Jun. 30, 2026, filed
+  Jul. 30, 2026 (accession 0000910521-26-000022): segment net sales, gross
+  profit, and operating margin by brand (HOKA 36.3%, UGG 19.4%, Other 17.2%,
+  unallocated corporate costs $160.723M); SG&amp;A driver bridge ($12.5M payroll,
+  $11.8M other SG&amp;A, $10.3M advertising/marketing/promotion, $8.4M rent);
+  segment advertising/marketing/promotion expense by brand; balance-sheet
+  inventory $807,580K; cash-flow accounts payable +$341,579K and
+  inventories -$320,562K; consolidated unit volume -1.4% to 14,500 thousand
+  from 14,700 thousand (prior period includes phased-out-brand units); HOKA
+  brand net sales by channel, DTC +17.3% to $256,775K and wholesale +2.9% to
+  $446,763K, with the wholesale figure partly depressed by a European 3PL
+  transition timing effect in the prior-year comparison; IEEPA tariff refund
+  process (Supreme Court
+  invalidation, CBP CAPE Phase 2 filing, ASC 450 gain-contingency treatment,
+  and the filing's own statements that refund timing/amount and other
+  tariff-regime risk remain uncertain).
+  https://www.sec.gov/Archives/edgar/data/910521/000091052126000022/deck-20260630.htm</li>
+<li>Deckers Outdoor, Form 10-Q for the quarter ended Jun. 30, 2025, filed
+  Jul. 31, 2025 (accession 0000910521-25-000037): prior-year comparison
+  balance-sheet inventory $849,351K, segment operating margins (HOKA 38.8%,
+  UGG 20.4%, Other 16.7%, unallocated corporate costs $149.977M), and
+  advertising/marketing/promotion expense $81,764K, used for the
+  year-over-year reads in section 2.
+  https://www.sec.gov/Archives/edgar/data/910521/000091052125000037/deck-20250630.htm</li>
+<li>Deckers Outdoor, 8-K Exhibit 99.1 press release, filed Jul. 23, 2026
+  (accession 0000910521-26-000015): Q1 FY2027 results by brand, channel, and
+  geography; DTC comparable net sales +6.8%; repurchase detail (3.3M shares,
+  $338.2M, $103.79 average, $4.7B authorization remaining); FY2027 outlook
+  (HOKA low-double-digit, UGG mid-single-digit, revenue $5.86bn-$5.91bn,
+  gross margin, operating margin, EPS $7.35-$7.50, ~80% of FCF to buybacks).
+  https://www.sec.gov/Archives/edgar/data/910521/000091052126000015/deckex991pressrelease-6302.htm</li>
+<li>Crocs, Inc., Form 10-Q for the quarter ended Jun. 30, 2026, filed
+  Jul. 30, 2026: Crocs Brand revenue +4.3% (Q2), HEYDUDE Brand revenue -5.7%
+  (Q2), consolidated +2.6% (Q2); the $738.1M HEYDUDE trademark and
+  reporting-unit goodwill impairment recognized in Q2 2025 on a downward
+  demand revision. Used only as one peer input for section 2's "floor" read;
+  CROX's own TTM P/E (10.7x) and own-history percentile are engine-computed
+  (build/universe.json), not taken from this filing.
+  https://www.sec.gov/Archives/edgar/data/1334036/000133403626000052/crox-20260630.htm</li>
+<li>On Holding AG, Exhibit 99.2 (MD&amp;A) to its Form 6-K furnished Aug. 11, 2026
+  for the quarter ended Jun. 30, 2026: net sales +21.6% constant currency,
+  DTC net sales +34.3% constant currency, gross margin 65.4% (vs. 61.5%).
+  Used only as a qualitative growth ceiling; On Holding is a Swiss filer of
+  6-Ks rather than 10-Ks and carries no row in this repo's governed
+  universe, so no governed P/E is asserted for it.
+  https://www.sec.gov/Archives/edgar/data/1858985/000185898526000018/a26q2-exhibit992xmda.htm</li>
+<li><code>build/signals.json</code> and <code>build/universe.json</code> (both generated
+  2026-08-25, as of 2026-08-21) - every figure in section 0, reused
+  verbatim throughout (fair_band, sbc_adjusted_fcf, net_debt_to_ebitda,
+  share_count_chg_3y); CROX's governed close, own-history P/E percentile,
+  net_debt_to_ebitda, and sbc_adjusted_fcf_yield (same run) for the peer
+  comparison in section 2.</li>
 </ul>
+<p><strong>Could not verify.</strong>
+- The Q1 FY2027 conference call of Jul. 23, 2026. The transcript is not on
+  EDGAR and was not reachable from this run, so no management commentary
+  beyond the furnished press release and the two 10-Qs is relied on here.
+- Independent (Circana or similar) market-share data for HOKA or UGG. The
+  standing watchlist note references a Circana share threshold; this
+  revision does not use one, because it is not a filed fact this run could
+  check, and the kill criteria above are built only from figures the company
+  itself discloses.
+- The exact after-tax effect of netting stock-based compensation from FCF.
+  Section 0's <code>sbc_adjusted_fcf</code> is pre-tax by construction (per the
+  quality-block field definition); no separate tax bridge is available for
+  this name, and the effect is small either way given <code>sbc_to_fcf</code> of 4.0%.
+- A governed P/E multiple for On Holding (ONON). It is outside this repo's
+  covered universe (foreign private issuer filing 6-Ks); section 2 uses its
+  filed growth and margin figures only, not a multiple.</p>
   </div>
 
   <footer>

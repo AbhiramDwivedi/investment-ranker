@@ -128,13 +128,13 @@
 <p>Revised 2026-08-25 addressing research/memos/DELL-review-2026-08-25.md.</p>
 <h2>0. Signals</h2>
 <p>Engine coverage for DELL, checked across every governed surface by <code>python
-scripts/memo_context.py DELL</code> on 2026-08-25T12:31:27Z. This block is
+scripts/memo_context.py DELL</code> on 2026-08-25T19:12:27Z. This block is
 generated; paste it verbatim and do not edit it by hand.</p>
 <pre><code>focused signals       not covered   93 names, as of 2026-08-21
                       build/signals.json - The narrower set the nightly engine scores in full, with estimate families layered on.
-full universe         COVERED       1,423 names, as of 2026-08-21
+full universe         COVERED       1,422 names, as of 2026-08-21
                       build/universe.json - The filings-only engine over every S&amp;P 1500 name with an EDGAR history.
-committed universe    COVERED       1,423 names, as of 2026-08-21
+committed universe    COVERED       1,422 names, as of 2026-08-21
                       reports/universe.json - The committed fallback for the universe run, stored compact.
 cross-sectional rank  COVERED       1,340 names, as of 2026-08-24
                       build/rank.json - A factor ranking, not own-history, and possibly an older window.
@@ -147,7 +147,7 @@ below rather than building a new one.</p>
 <li>
 <p>The cross-sectional row in build/rank.json was generated at
   2026-08-24T03:06:58+00:00, before the engine result at
-  2026-08-24T11:42:30+00:00, so it never supersedes it.</p>
+  2026-08-25T12:59:58+00:00, so it never supersedes it.</p>
 <p>ticker DELL | close 442.08 | as_of 2026-08-21 | next_earnings none (days_to_earnings none)
 per share:  eps_ttm 12.56, sales 204.27, fcf 14.39, book -2.14
 valuation:  cheap_pct 90.9 (basis pe+ps+pfcf; by basis pe 70.8, ps 99.1, pfcf 90.9; cheap_thin false)
@@ -182,13 +182,13 @@ portfolio:  held false (position size never appears in a memo)</p>
 
 <p>```json memo-context
 {
-  "checksum": "sha256:8adea020ccd638c2a69dcef8ed196e6287f972a896a2b99f7a37c0bd5d1d29ae",
+  "checksum": "sha256:355bf1852e2d3433dd76f0d5e6741bb80e99deec628172f64221e3ed842fd50a",
   "coverage": [
     {
       "as_of": "2026-08-21",
       "covers_ticker": false,
       "exists": true,
-      "generated_at": "2026-08-24T11:42:41+00:00",
+      "generated_at": "2026-08-25T13:00:08+00:00",
       "kind": "signals_focused",
       "label": "focused signals",
       "names": 93,
@@ -199,10 +199,10 @@ portfolio:  held false (position size never appears in a memo)</p>
       "as_of": "2026-08-21",
       "covers_ticker": true,
       "exists": true,
-      "generated_at": "2026-08-24T11:42:30+00:00",
+      "generated_at": "2026-08-25T12:59:58+00:00",
       "kind": "universe_full",
       "label": "full universe",
-      "names": 1423,
+      "names": 1422,
       "note": "The filings-only engine over every S&amp;P 1500 name with an EDGAR history.",
       "path": "build/universe.json"
     },
@@ -210,10 +210,10 @@ portfolio:  held false (position size never appears in a memo)</p>
       "as_of": "2026-08-21",
       "covers_ticker": true,
       "exists": true,
-      "generated_at": "2026-08-24T11:24:21+00:00",
+      "generated_at": "2026-08-25T12:41:29+00:00",
       "kind": "universe_committed",
       "label": "committed universe",
-      "names": 1423,
+      "names": 1422,
       "note": "The committed fallback for the universe run, stored compact.",
       "path": "reports/universe.json"
     },
@@ -234,28 +234,28 @@ portfolio:  held false (position size never appears in a memo)</p>
     "build/universe.json",
     "reports/universe.json"
   ],
-  "generated_at": "2026-08-25T12:31:27Z",
+  "generated_at": "2026-08-25T19:12:27Z",
   "held": false,
   "instruction_locks": [
     {
       "commit": "0bf61dbf22e00df68b4a65693e6b2851205cd8fe",
       "path": "research/MEMO-TEMPLATE.md",
       "present": true,
-      "sha256": "baa999933a4facf5a8fd324a5394a56d7a5cfa50f23bf6b419de0615da1bc4c1",
+      "sha256": "8f03815494bf8592f5e20b586399c4e5c8f845d31b2b7a403eafcd20ac24c9b7",
       "uncommitted": false
     },
     {
       "commit": "0bf61dbf22e00df68b4a65693e6b2851205cd8fe",
       "path": ".claude/agents/memo-writer.md",
       "present": true,
-      "sha256": "1c4ecd15f2a119c608b3ba99734cd18feef9a7c049d606d81d6e783a73c4546a",
+      "sha256": "54f427a4bce798d9862ca3da003ea048b155362a240349c4c333dcd9364925c8",
       "uncommitted": false
     },
     {
-      "commit": "b1a37ce929e9e9146fadbd51dce18d218f9ae8c3",
+      "commit": "e15e584d690ab40cc199646239a4688ca25a3690",
       "path": "scripts/memo_context.py",
       "present": true,
-      "sha256": "2af4479dcad1e3a2316f5e028d1ab61eae85dc31250f69c33e7861638b556efd",
+      "sha256": "f4ad0b34f3e17b72d91ae02263016183f30535da6715a629f7b1db58853969c3",
       "uncommitted": false
     }
   ],
@@ -265,7 +265,7 @@ portfolio:  held false (position size never appears in a memo)</p>
   "primary_kind": "universe_full",
   "primary_source": "build/universe.json",
   "rank_conflicts": [
-    "The cross-sectional row in build/rank.json was generated at 2026-08-24T03:06:58+00:00, before the engine result at 2026-08-24T11:42:30+00:00, so it never supersedes it."
+    "The cross-sectional row in build/rank.json was generated at 2026-08-24T03:06:58+00:00, before the engine result at 2026-08-25T12:59:58+00:00, so it never supersedes it."
   ],
   "schema": "memo-context/1",
   "spot": {

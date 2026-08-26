@@ -144,6 +144,12 @@
 
   <h2>How a night runs</h2>
 
+  <p>A scheduled task on one machine starts the run at 6 p.m. Eastern, Monday through Friday, about an
+    hour and three quarters after the close. Twenty-four programs then run one after another, never two
+    at once. That is deliberate rather than lazy: the price vendor throttles anyone who asks for too
+    much at once, and it once returned a panel quietly missing a third of the market. The whole
+    deterministic half takes about 45 minutes and costs nothing to run.</p>
+
   <p>The numbers in this note are from the mid-August 2026 run; the Ranker's step-by-step panel shows
     tonight's.</p>
 
@@ -151,7 +157,8 @@
     <li><b>Data.</b> <span class="f">fetch_facts.py · fetch_estimates.py</span><br>
       SEC EDGAR company facts for every S&amp;P 1500 name — 10 to 15 years of quarterly earnings,
       revenue, cash flow, share count, debt and cash, each point stamped with its filing date — cached
-      and refreshed on a rolling budget. Prices from Yahoo. Free, and about 15 minutes.</li>
+      and refreshed on a rolling budget. Prices from Yahoo, back to 2013, in one shared download that
+      every later step reads rather than fetching again. Free, and about 20 minutes.</li>
     <li><b>Signal engine.</b> <span class="f">signals.evaluate() · universe_own_history.py</span><br>
       One function per name: valuation, quality gate, economics, fundamental momentum, trend and events,
       sentiment, market window. Filings only for the roughly 1,420 index names, with analyst estimates
@@ -164,9 +171,21 @@
       Deterministic. It annotates each candidate, says whether the machine agrees with every entry price
       a person has already set, and lists the next action. It downgrades; it never upgrades.</li>
     <li class="j"><b>The memo.</b><br>
-      One per night, two pages, judgment only. It pastes the engine's numbers verbatim, sources what
+      One a night at most, judgment only. It pastes the engine's numbers verbatim, sources what
       changed from filings, and answers whether the impairment is real. It never recomputes, never
       projects and never discounts.</li>
+    <li class="j"><b>The review.</b><br>
+      An independent model that did not write the memo argues with it against a fixed rubric, scores it
+      out of 10 and has to clear seven before the memo may be marked reviewed. It cannot change the
+      verdict, it cannot move an entry price and it never writes "buy." What it is unable to check is
+      listed below.</li>
+    <li><b>The guards.</b> <span class="f">selfcheck.py &middot; publish_site.py &middot; check_provenance.py</span><br>
+      Three checks run before anything reaches this site. The self-check walks the chain end to end and
+      asserts that each step produced what the next one reads. The privacy guard refuses to publish if a
+      personal number reached the page, and it builds its list of forbidden values out of the private
+      files themselves. The provenance check asserts that every figure printed here is the number the
+      engine behind it actually holds, and that those figures all come from one run rather than several
+      nights. A failure stops the publish. None of them ever edits the number.</li>
     <li class="j"><b>The analyst.</b><br>
       Reads the memo and decides whether to believe it. Only a person sets an entry price. Automation
       never upgrades, never arms and never trades.</li>
@@ -317,10 +336,12 @@
     the franchise intact and the multiple due to mean-revert? That is the only question the memo exists to
     answer.</p>
 
-  <p>Two pages: what changed, dated and sourced from filings and transcripts; whether the impairment is
-    cyclical or structural, item by item; a verdict; and three to five <b>kill criteria</b> — metric,
-    threshold, and the report it gets checked against. Entry, if any, is chosen from the machine's own
-    band, never invented. No unsourced numbers.</p>
+  <p>The shape is fixed: what changed, dated and sourced from filings and transcripts; whether the
+    impairment is cyclical or structural, item by item; a verdict; and three to five <b>kill
+    criteria</b> — metric, threshold, and the report it gets checked against. Entry, if any, is chosen
+    from the machine's own band, never invented. No unsourced numbers. The template asks for about 750
+    words of argument. Most memos run several times longer than that, which is a habit the template is
+    losing rather than a standard it sets.</p>
 
   <h2>What it cannot see</h2>
 
@@ -338,6 +359,12 @@
       question "what is different this time?" — never as a probability.</li>
     <li><b>The premise is backtested, and alone it failed.</b> The rules that failure motivated carry no
       historical claim and are evaluated forward from Aug. 16, 2026.</li>
+    <li><b>The reviewer cannot open a filing.</b> An independent model argues with every memo, but it
+      runs in a sandbox with no network access, so it cannot fetch a primary document and check a figure
+      at the source. It argues from the memo, from the engine's own numbers and from what it already
+      knows. That is a real second opinion and it has caught real errors. It is not source verification,
+      and until Aug. 26, 2026 the reviews described it as though it were. A review that fetched nothing
+      now says so on its face, and the memo pages name the reviewer so a reader can weigh it.</li>
     <li><b>The stress leg of the window is untested</b> — the replay cache holds no point-in-time volatility
       or credit data — and is the next thing to pre-register.</li>
   </ul>

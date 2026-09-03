@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UFCS memo &mdash; United Fire Group, Inc.</title>
+<meta name="description" content="United Fire Group, Inc. (UFCS): the research memo behind
+  its row on the S&amp;P 1500 Ranker, written Sept. 1, 2026.">
+<link rel="canonical" href="https://abhiramdwivedi.github.io/investment-ranker/memo-UFCS.html">
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --baseline: #c3c2b7; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --accent-soft: #cde2fb;
+    --machine: #1c5cab; --judge: #b5462b; --warn: #fab219;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+      --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+      --accent: #6da7ec; --accent-soft: #184f95;
+      --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+    --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+    --accent: #6da7ec; --accent-soft: #184f95;
+    --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--page); color: var(--ink); margin: 0; line-height: 1.6;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 16px; }
+  .wrap { max-width: 78ch; margin: 0 auto; padding: 28px 24px 72px; }
+  .masthead { display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+    flex-wrap: wrap; border-bottom: 2px solid var(--ink); padding-bottom: 14px; }
+  .masthead .home { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    font-weight: 650; color: var(--accent); text-decoration: none; }
+  .masthead .home:hover { text-decoration: underline; }
+  h1 { font-size: 30px; font-weight: 750; letter-spacing: -0.015em; margin: 26px 0 0; }
+  .standfirst { font-size: 17px; color: var(--ink-2); margin: 10px 0 0; }
+  .kicker { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); font-weight: 650; margin: 0; }
+  h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; margin: 40px 0 0;
+    padding-top: 14px; border-top: 1px solid var(--grid); }
+  h3 { font-size: 15.5px; font-weight: 700; margin: 24px 0 0; }
+  p { margin: 12px 0 0; }
+  ul { margin: 12px 0 0; padding-left: 20px; }
+  li { margin: 7px 0; }
+  a { color: var(--accent); }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.88em;
+    background: color-mix(in srgb, var(--muted) 14%, var(--surface)); padding: 1px 5px; border-radius: 4px; }
+  .lede { font-size: 17px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 14px;
+    font-variant-numeric: tabular-nums; }
+  caption { caption-side: bottom; text-align: left; font-size: 12px; color: var(--muted);
+    margin-top: 8px; line-height: 1.5; }
+  th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--muted); font-weight: 650; padding: 0 10px 7px 0; border-bottom: 1px solid var(--baseline); }
+  td { padding: 8px 10px 8px 0; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  td.n, th.n { text-align: right; padding-right: 0; }
+  tr.hi td { background: color-mix(in srgb, var(--accent) 8%, transparent); font-weight: 600; }
+  .scroll { overflow-x: auto; }
+  .rule { background: var(--surface); border: 1px solid var(--ring); border-radius: 8px;
+    padding: 16px 18px; margin-top: 16px; }
+  .rule ul { list-style: none; padding-left: 0; }
+  .rule li { display: grid; grid-template-columns: 13ch 1fr; gap: 12px; align-items: baseline;
+    padding: 7px 0; border-bottom: 1px solid var(--grid); font-size: 14.5px; }
+  .rule li:last-child { border-bottom: 0; }
+  .rule li b { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12.5px; color: var(--machine); font-weight: 650; }
+  .steps { counter-reset: s; list-style: none; padding-left: 0; }
+  .steps li { counter-increment: s; position: relative; padding-left: 34px; margin: 14px 0; font-size: 15px; }
+  .steps li::before { content: counter(s); position: absolute; left: 0; top: 1px; width: 23px; height: 23px;
+    border-radius: 50%; background: var(--accent-soft); color: var(--machine); font-size: 12px;
+    font-weight: 700; display: grid; place-items: center; }
+  .steps li.j::before { background: color-mix(in srgb, var(--judge) 20%, var(--surface)); color: var(--judge); }
+  .steps b { font-weight: 700; }
+  .steps .f { color: var(--muted); font-size: 12.5px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .verdict { border-left: 3px solid var(--accent); padding: 2px 0 2px 16px; margin-top: 18px;
+    font-size: 16px; }
+  .note { background: color-mix(in srgb, var(--warn) 10%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--warn) 45%, var(--surface));
+    border-radius: 8px; padding: 12px 16px; margin-top: 18px; font-size: 14.5px; }
+  footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--grid);
+    font-size: 13px; color: var(--muted); }
+
+  .memobody h2 { font-size: 19px; }
+  .memobody table { font-size: 13px; }
+  .memobody blockquote { margin: 14px 0 0; padding: 2px 0 2px 16px;
+    border-left: 3px solid var(--baseline); color: var(--ink-2); }
+  .memobody pre { background: color-mix(in srgb, var(--muted) 12%, var(--surface));
+    border: 1px solid var(--ring); border-radius: 8px; padding: 12px 14px; overflow-x: auto;
+    font-size: 12.5px; line-height: 1.5; }
+  .memobody pre code { background: none; padding: 0; }
+  .stamp { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+  .stamp b { color: var(--ink-2); }
+  .verdict-tag { display: inline-block; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.06em; font-weight: 700; border: 1px solid var(--baseline);
+    border-radius: 999px; padding: 2px 9px; }
+  .rs { font-size: 12px; border: 1px solid var(--baseline); border-radius: 999px;
+    padding: 1px 8px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="kicker">Memo &middot; S&amp;P 1500 Ranker</p>
+    <a class="home" href="memos.html">&larr; All memos</a>
+  </header>
+
+  <h1>UFCS &mdash; United Fire Group, Inc.</h1>
+  <p class="standfirst">Written Sept. 1, 2026. The verdict was
+    <span class="verdict-tag">wait</span> and the name reads
+    <code class="rs">research</code> on tonight's table.</p>
+  <p class="stamp"><b>As of:</b> Sept. 1, 2026 &middot; 2 days old &middot; reviewed Sept. 2, 2026 by claude &middot;
+    a memo is a point-in-time judgment and does not update itself the way the nightly table does.</p>
+
+
+
+  <div class="note"><p><b>What this is not.</b> The ledger behind this site holds 309 decisions, collapsed from 2,306 name-nights, and none of them has ever been actionable. One row is one decision, not one appearance. A company suggested on 40 consecutive nights is counted once, dated from the first of them, so a name that keeps qualifying cannot inflate the sample. The cohorts above are the other view of the same calls and do repeat a name every night, by design. The actionable date is the first night every condition of the actionable-suggestion contract held at once. It reads empty for a name that has never been actionable, and for every night frozen before the contract existed on Aug. 23, 2026. The engine's current rules are forward-only from Aug. 16, 2026, so the record is days long, not years. This is a personal research tool, not licensed financial advice, and nothing here is a recommendation to buy or sell any security.</p></div>
+
+  <div class="memobody">
+<h2>0. Signals</h2>
+<p>Engine coverage for UFCS, checked across every governed surface by <code>python
+scripts/memo_context.py UFCS</code> on 2026-09-02T23:26:50Z. This block is
+generated; paste it verbatim and do not edit it by hand.</p>
+<pre><code>focused signals       not covered   102 names, as of 2026-09-02
+                      build/signals.json - The narrower set the nightly engine scores in full, with estimate families layered on.
+full universe         COVERED       1,422 names, as of 2026-09-02
+                      build/universe.json - The filings-only engine over every S&amp;P 1500 name with an EDGAR history.
+committed universe    COVERED       1,422 names, as of 2026-09-02
+                      reports/universe.json - The committed fallback for the universe run, stored compact.
+cross-sectional rank  COVERED       1,341 names, as of 2026-09-02
+                      build/rank.json - A factor ranking, not own-history, and possibly an older window.
+</code></pre>
+<p>Memo mode is <strong>covered</strong>: the engine has output for UFCS in
+build/universe.json, and section 3 must choose its entry from the machine band
+below rather than building a new one.</p>
+<p>Where the factor row disagrees with the engine, the engine wins:</p>
+<ul>
+<li>
+<p>The cross-sectional row in build/rank.json was generated at
+  2026-09-02T22:07:10+00:00, before the engine result at
+  2026-09-02T22:14:34+00:00, so it never supersedes it.</p>
+<p>ticker UFCS | close 54.85 | as_of 2026-09-02 | next_earnings none (days_to_earnings none)
+per share:  eps_ttm 5.38, sales 56.88, fcf none, book 37.74
+valuation:  cheap_pct 96.0 (basis pe+pb; by basis pe 23.8, pb 96.0; cheap_thin false)
+            cheapness_source earned, eps_ttm_flag none, ttm_base_spikes none
+            pe_ttm 10.20, pe_fwd none, ev_ebitda none, p_book none
+            fair_band low 29.44 / mid 37.36 / high 46.80 on bases pe, pb
+            fair_band reliability ok, upside_to_low_rung -46.3%, caveats none
+            fair_band_by_basis {"pe": {"low": 52.67, "mid": 77.58, "high": 235.91}, "ps": {"low": 31.29, "mid": 41.52, "high": 58.02}, "pb": {"low": 29.44, "mid": 37.36, "high": 46.8}}
+            implied_eps_growth at_hurdle_median_exit 4.2%, at_hurdle_p20_exit 8.0%, at_hurdle_20x_exit 1.0%
+            implied_eps_growth fwd_at_hurdle_20x_exit none, tier quality_compounder, hurdle_used 9.0%, eps_base_ttm 5.38
+            compare trailing_5y_eps_cagr none, consensus_eps_growth_1y none, consensus_ltg none
+            replay episodes_closed 2, hit_rate_vs_spy 50.0%, median_excess_12m 9.9%, worst_excess_12m -24.1%
+            replay open_episodes 0, open_median_excess_to_date none, median_worst_dd_12m -14.0%
+quality:    gate pass, hard none, soft none, unknown gross margin
+            fcf_conversion none, net_debt_to_ebitda none, share_count_chg_3y 2.6%, sbc_to_fcf none
+            sbc_adjusted_fcf not published on this surface; net TTM SBC off reported fcf_ttm none yourself and show both
+            gross_margin none against none three years ago
+economics:  roic none against none three years ago, fundable_growth 12.5%, needed_at_hurdle_20x 1.0%, growth_gap -11.6%
+fund. mom.: rev_yoy 14.4%, rev_accel true, rev_decel_2q false, eps_ttm_yoy 53.3%
+            fwd_eps_rev_30d none, fwd_eps_rev_90d none, analyst_up_minus_down_30d none, rec_mean none against none three months ago
+trend:      dd_52w -0.1%, dist_200dma 29.1%, rs_spy_6m 30.9%, sector_dd_52w -1.1%, knife false, turned true
+sentiment:  short_pct_float none, insider_net_count_6m none, target_upside none
+scores:     buy_score 31.0, cheap false, bases 2, candidate false, tier none
+            candidate_reasons none
+            candidate_blockers none
+            replay_warning none
+data notes: stale EDGAR series: buybacks (last 2022-12-31), acquisition_expense (last 2017-06-30), no Yahoo forward-EPS revision history (30/90d revisions unavailable)
+portfolio:  held false (position size never appears in a memo)</p>
+</li>
+</ul>
+<!-- memo-context: generated block, do not edit by hand. Regenerate with `python scripts/memo_context.py UFCS`. -->
+
+<p>```json memo-context
+{"checksum":"sha256:bfdca763f0f79dac31a5fbb8dd6c6476dda15dda85ab803a6de0695f6df98651","coverage":[{"as_of":"2026-09-02","covers_ticker":false,"exists":true,"generated_at":"2026-09-02T22:15:25+00:00","kind":"signals_focused","label":"focused signals","names":102,"note":"The narrower set the nightly engine scores in full, with estimate families layered on.","path":"build/signals.json"},{"as_of":"2026-09-02","covers_ticker":true,"exists":true,"generated_at":"2026-09-02T22:14:34+00:00","kind":"universe_full","label":"full universe","names":1422,"note":"The filings-only engine over every S&amp;P 1500 name with an EDGAR history.","path":"build/universe.json"},{"as_of":"2026-09-02","covers_ticker":true,"exists":true,"generated_at":"2026-09-02T22:14:34+00:00","kind":"universe_committed","label":"committed universe","names":1422,"note":"The committed fallback for the universe run, stored compact.","path":"reports/universe.json"},{"as_of":null,"covers_ticker":true,"exists":true,"generated_at":"2026-09-02T22:07:10+00:00","kind":"rank_cross_sectional","label":"cross-sectional rank","names":1341,"note":"A factor ranking, not own-history, and possibly an older window.","path":"build/rank.json"}],"data_as_of":"2026-09-02","engine_coverage":["build/universe.json","reports/universe.json"],"generated_at":"2026-09-02T23:26:50Z","held":false,"instruction_locks":[{"commit":"0bf61dbf22e00df68b4a65693e6b2851205cd8fe","path":"research/MEMO-TEMPLATE.md","present":true,"sha256":"8f03815494bf8592f5e20b586399c4e5c8f845d31b2b7a403eafcd20ac24c9b7","uncommitted":false},{"commit":"412f8966b94cd408739f59d2ae0500d1a9dca9bf","path":".claude/agents/memo-writer.md","present":true,"sha256":"d94a49d8e206c1615cc6f017853d7305930d2550b43dbb71737026d2a6e03b2d","uncommitted":false},{"commit":"412f8966b94cd408739f59d2ae0500d1a9dca9bf","path":"scripts/memo_context.py","present":true,"sha256":"8dc37786b895bd9053f6ec73a4bf884416d31a7eda8d6b9d43ca160336e7ba17","uncommitted":false}],"mode":"covered","mode_derived":"covered","mode_forced":false,"primary_kind":"universe_full","primary_source":"build/universe.json","rank_conflicts":["The cross-sectional row in build/rank.json was generated at 2026-09-02T22:07:10+00:00, before the engine result at 2026-09-02T22:14:34+00:00, so it never supersedes it."],"schema":"memo-context/1","spot":{"as_of":"2026-09-02","close":54.85,"source":"build/universe.json"},"ticker":"UFCS"}</p>
+<pre><code>
+The memo accepts the blended band as directionally useful because normalized earnings and return on equity support the book-value basis better than the catastrophe-flattered P/E basis.
+
+## 1. What changed — why is the multiple where it is?
+
+On Aug. 4, 2026, UFCS reported Q2 net income of $33.4 million versus $22.9 million and diluted EPS of $1.29 versus $0.87. The combined ratio improved to 95.3% from 96.4%, while the underlying combined ratio worsened 0.1 percentage point to 92.6%. Catastrophe losses fell to 2.7 points from 5.5 points, but neutral consolidated reserve development netted adverse movements in four lines against improvement in other liability. Net investment income supplied $7.3 million, or 57%, of the $12.7 million increase in pretax income as the fixed-income yield rose to 4.57% from 4.32%. The shares are 0.1% below their 52-week high and 29.1% above their 200-day average. The 10.2x TTM P/E therefore reflects elevated cyclical earnings, not a fresh selloff, while the price is about 1.44x the engine's $37.74 book value.
+
+## 2. Is the impairment real?
+
+UFCS reports one operating segment, but its business lines reveal mixed economics. Core commercial's Q2 net loss ratio improved to 59.5% from 61.9%. Workers' compensation net earned premium grew 43.6% while its net loss ratio worsened 15.0 points to 71.1%. Renewal data imply workers' compensation pricing lagged the rest of core commercial. Rapid growth into a softening line is the clearest impairment risk. Assumed reinsurance generated 14.7% of Q2 earned premium, and its loss ratio worsened 4.1 points to 65.6%. The half-year reinsurance loss ratio worsened 5.9 points to 69.3% because of mix and adverse development. Commercial auto, workers' compensation, surety and assumed reinsurance all cited worse reserve development, despite the consolidated zero.
+
+The flat underlying combined ratio was not caused by loss deterioration. The underlying loss ratio improved 0.4 point, while the expense ratio rose 0.5 point because of real-estate footprint reduction. The half-year underlying combined ratio improved 1.2 points, partly because the prior-year period included final policy-system development costs. These discrete expenses temper both quarterly and half-year comparisons. Investment income is more durable: Q2 fixed-income yield improved as the portfolio grew.
+
+Reported TTM EPS is $5.38. Catastrophe loads were 6.2, 5.4 and 3.2 points in 2023 through 2025, each below the disclosed 10-year average, versus 2.2 points TTM. Restating the TTM load to the 4.9-point three-year average reduces EPS by about $1.13 after tax to normalized EPS of about $4.25. On normalized earnings and roughly $959 million of average equity, normalized ROE is about 11.5%. That supports about 1.0x to 1.2x the filing's $38.02 June book value, or $38 to $46, consistent with the engine's P/B band and below spot.
+
+UFCS bought back no shares in 2023 through Q2 2026. The 2.6% three-year share increase therefore had no repurchase offset, although Q2 diluted weighted-average shares fell 1.9% year over year. The dividend rose 25% to $0.20 quarterly. As a peer check, Selective Insurance traded at 11.32x TTM earnings on Aug. 31, 2026, according to secondary data, but P/B against ROE is the more useful insurer check. UFCS's smaller scale and reserve history do not support its current premium to normalized book value. The engine's 4.2% implied growth is achievable, but it is calculated at the less appropriate 9% tier and on reported EPS. The replay has only two episodes, a 50% hit rate and 9.9% median excess return, which is too thin to overturn the normalized valuation.
+
+## 3. Verdict and entry
+
+**wait** - underwriting remains profitable, but normalized earnings, book value and deterioration in fast-growing workers' compensation and assumed reinsurance do not support spot.
+
+Entry: use the machine's $29.44 blended low rung because normalized P/B validates the book-value basis, while P/E uses catastrophe-flattered earnings. The `cyclical_or_single_product` tier and 12% hurdle apply because catastrophe and reserve cycles produced a 109.3% combined ratio and a net loss in 2023. The engine's 4.2% growth is achievable, but the normalized base needs 17.9% growth to clear the hurdle. The 1.46% dividend yield is included.
+
+| Case | Growth | exit P/E | EPS in 5y | Price | Total | Annualized | Growth needed at 12.0% |
+|---|---|---|---|---|---|---|---|
+| Bear | -10.0% | 8x | 2.51 | $20.08 | -63.4% | -16.8% | 23.2% |
+| Base | 3.0% | 10x | 4.93 | $49.27 | -10.2% | -0.7% | 17.9% |
+| Bull | 7.0% | 12x | 5.96 | $71.53 | 30.4% | 6.9% | 13.6% |
+
+At a 10x exit, spot requires 17.9% growth to clear the 12% hurdle, 14.9 percentage points above the base assumption. The bear earnings case captures a reserve relapse, but 0.9x book, or about $34, is the better trough anchor because P/E is unreliable near zero earnings.
+
+```json scenario
+{&quot;base&quot;:4.25,&quot;convert_debt&quot;:0.0,&quot;convert_shares&quot;:0.0,&quot;dividend_yield&quot;:0.0146,&quot;hurdle&quot;:0.12,&quot;metric&quot;:&quot;eps&quot;,&quot;net_debt&quot;:0.0,&quot;rows&quot;:[{&quot;annualized_return&quot;:-0.1675,&quot;case&quot;:&quot;bear&quot;,&quot;clears_hurdle&quot;:false,&quot;growth&quot;:-0.1,&quot;multiple&quot;:8.0,&quot;required_growth_at_hurdle&quot;:0.2324,&quot;terminal_metric&quot;:2.5096,&quot;terminal_price&quot;:20.08,&quot;total_return&quot;:-0.634,&quot;treatment&quot;:&quot;single&quot;},{&quot;annualized_return&quot;:-0.0066,&quot;case&quot;:&quot;base&quot;,&quot;clears_hurdle&quot;:false,&quot;growth&quot;:0.03,&quot;multiple&quot;:10.0,&quot;required_growth_at_hurdle&quot;:0.1786,&quot;terminal_metric&quot;:4.9269,&quot;terminal_price&quot;:49.27,&quot;total_return&quot;:-0.1017,&quot;treatment&quot;:&quot;single&quot;},{&quot;annualized_return&quot;:0.0691,&quot;case&quot;:&quot;bull&quot;,&quot;clears_hurdle&quot;:false,&quot;growth&quot;:0.07,&quot;multiple&quot;:12.0,&quot;required_growth_at_hurdle&quot;:0.1364,&quot;terminal_metric&quot;:5.9608,&quot;terminal_price&quot;:71.53,&quot;total_return&quot;:0.3041,&quot;treatment&quot;:&quot;single&quot;}],&quot;shares&quot;:1.0,&quot;spot&quot;:54.85,&quot;tier&quot;:&quot;cyclical_or_single_product&quot;,&quot;years&quot;:5}
+</code></pre>
+<h2>4. Kill criteria — pre-committed, falsifiable, dated</h2>
+<ul>
+<li>Underlying combined ratio above 94% for one quarter triggers a flag, above 94% for two consecutive quarters triggers a re-underwrite and above 96% in any quarter triggers an immediate re-underwrite. Check each filing beginning with Q3 2026, with the two-quarter test first able to trip at FY2026 results.</li>
+<li>Workers' compensation net earned premium growth above 25% year over year while its net loss ratio exceeds 70% triggers a re-underwrite at each quarterly filing beginning with Q3 2026.</li>
+<li>Consolidated adverse non-catastrophe development above 2 points in one quarter, or adverse development cited in three or more business lines, triggers a re-underwrite. Development above 2 points in two of four quarters, or above 4 points once, triggers a pass.</li>
+<li>TTM catastrophe losses above 6 combined-ratio points trigger a re-underwrite at each quarterly filing beginning with Q3 2026.</li>
+</ul>
+<p><code>json kill-criteria
+[
+  {"metric":"underlying combined ratio","condition":"above 94% for one quarter flags; above 94% for two consecutive quarters or above 96% once requires re-underwriting","check_event":"each quarterly filing beginning Q3 2026; two-quarter test first at FY2026 results","response":"flag or re-underwrite by tier","benign_exceptions":["a disclosed discrete expense fully explains the excess"]},
+  {"metric":"workers' compensation net earned premium growth and net loss ratio","condition":"year-over-year earned premium growth above 25% while net loss ratio exceeds 70%","check_event":"each quarterly filing beginning Q3 2026","response":"re-underwrite","benign_exceptions":["a disclosed portfolio transfer or acquisition fully explains premium growth"]},
+  {"metric":"non-catastrophe prior-year reserve development","condition":"above 2 combined-ratio points once or adverse development cited in at least three business lines requires re-underwriting; above 2 points in two of four quarters or above 4 points once requires a pass","check_event":"each quarterly filing beginning Q3 2026","response":"re-underwrite or pass by tier","benign_exceptions":["clearly isolated discontinued-book adjustment"]},
+  {"metric":"TTM catastrophe points on combined ratio","operator":"greater_than","threshold":"6 points","check_event":"each quarterly filing beginning Q3 2026","response":"re-underwrite","benign_exceptions":["a disclosed reinstatement premium or reserve reclassification distorts the ratio without changing economic loss"]}
+]</code></p>
+<h2>5. Sources</h2>
+<ul>
+<li>United Fire Group, Q2 2026 Form 10-Q, filed Aug. 4, 2026: https://www.sec.gov/Archives/edgar/data/101199/000010119926000052/ufcs-20260630.htm</li>
+<li>United Fire Group, 2025 Form 10-K, filed Feb. 26, 2026: https://www.sec.gov/Archives/edgar/data/101199/000010119926000015/ufcs-20251231.htm</li>
+<li>StockAnalysis, SIGI valuation as of Aug. 31, 2026, secondary market data: https://stockanalysis.com/stocks/sigi/</li>
+</ul>
+  </div>
+
+  <footer>
+    <p>The personal half of this memo &mdash; position size, portfolio overlap, tax lots &mdash; is
+      fenced out of the published text by construction and is not on this page. What a name is worth
+      is public; what one investor should own is not.</p>
+    <p class="methodlink"><a href="memos.html">&larr; All memos</a> &middot;
+      <a href="./">The Ranker</a> &middot; <a href="approach.html">How this works</a></p>
+  </footer>
+
+</div>
+</body>
+</html>

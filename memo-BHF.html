@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BHF memo &mdash; Brighthouse Financial</title>
+<meta name="description" content="Brighthouse Financial (BHF): the research memo behind
+  its row on the S&amp;P 1500 Ranker, written Sept. 1, 2026.">
+<link rel="canonical" href="https://abhiramdwivedi.github.io/investment-ranker/memo-BHF.html">
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --baseline: #c3c2b7; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --accent-soft: #cde2fb;
+    --machine: #1c5cab; --judge: #b5462b; --warn: #fab219;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+      --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+      --accent: #6da7ec; --accent-soft: #184f95;
+      --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+    --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+    --accent: #6da7ec; --accent-soft: #184f95;
+    --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--page); color: var(--ink); margin: 0; line-height: 1.6;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 16px; }
+  .wrap { max-width: 78ch; margin: 0 auto; padding: 28px 24px 72px; }
+  .masthead { display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+    flex-wrap: wrap; border-bottom: 2px solid var(--ink); padding-bottom: 14px; }
+  .masthead .home { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    font-weight: 650; color: var(--accent); text-decoration: none; }
+  .masthead .home:hover { text-decoration: underline; }
+  h1 { font-size: 30px; font-weight: 750; letter-spacing: -0.015em; margin: 26px 0 0; }
+  .standfirst { font-size: 17px; color: var(--ink-2); margin: 10px 0 0; }
+  .kicker { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); font-weight: 650; margin: 0; }
+  h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; margin: 40px 0 0;
+    padding-top: 14px; border-top: 1px solid var(--grid); }
+  h3 { font-size: 15.5px; font-weight: 700; margin: 24px 0 0; }
+  p { margin: 12px 0 0; }
+  ul { margin: 12px 0 0; padding-left: 20px; }
+  li { margin: 7px 0; }
+  a { color: var(--accent); }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.88em;
+    background: color-mix(in srgb, var(--muted) 14%, var(--surface)); padding: 1px 5px; border-radius: 4px; }
+  .lede { font-size: 17px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 14px;
+    font-variant-numeric: tabular-nums; }
+  caption { caption-side: bottom; text-align: left; font-size: 12px; color: var(--muted);
+    margin-top: 8px; line-height: 1.5; }
+  th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--muted); font-weight: 650; padding: 0 10px 7px 0; border-bottom: 1px solid var(--baseline); }
+  td { padding: 8px 10px 8px 0; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  td.n, th.n { text-align: right; padding-right: 0; }
+  tr.hi td { background: color-mix(in srgb, var(--accent) 8%, transparent); font-weight: 600; }
+  .scroll { overflow-x: auto; }
+  .rule { background: var(--surface); border: 1px solid var(--ring); border-radius: 8px;
+    padding: 16px 18px; margin-top: 16px; }
+  .rule ul { list-style: none; padding-left: 0; }
+  .rule li { display: grid; grid-template-columns: 13ch 1fr; gap: 12px; align-items: baseline;
+    padding: 7px 0; border-bottom: 1px solid var(--grid); font-size: 14.5px; }
+  .rule li:last-child { border-bottom: 0; }
+  .rule li b { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12.5px; color: var(--machine); font-weight: 650; }
+  .steps { counter-reset: s; list-style: none; padding-left: 0; }
+  .steps li { counter-increment: s; position: relative; padding-left: 34px; margin: 14px 0; font-size: 15px; }
+  .steps li::before { content: counter(s); position: absolute; left: 0; top: 1px; width: 23px; height: 23px;
+    border-radius: 50%; background: var(--accent-soft); color: var(--machine); font-size: 12px;
+    font-weight: 700; display: grid; place-items: center; }
+  .steps li.j::before { background: color-mix(in srgb, var(--judge) 20%, var(--surface)); color: var(--judge); }
+  .steps b { font-weight: 700; }
+  .steps .f { color: var(--muted); font-size: 12.5px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .verdict { border-left: 3px solid var(--accent); padding: 2px 0 2px 16px; margin-top: 18px;
+    font-size: 16px; }
+  .note { background: color-mix(in srgb, var(--warn) 10%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--warn) 45%, var(--surface));
+    border-radius: 8px; padding: 12px 16px; margin-top: 18px; font-size: 14.5px; }
+  footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--grid);
+    font-size: 13px; color: var(--muted); }
+
+  .memobody h2 { font-size: 19px; }
+  .memobody table { font-size: 13px; }
+  .memobody blockquote { margin: 14px 0 0; padding: 2px 0 2px 16px;
+    border-left: 3px solid var(--baseline); color: var(--ink-2); }
+  .memobody pre { background: color-mix(in srgb, var(--muted) 12%, var(--surface));
+    border: 1px solid var(--ring); border-radius: 8px; padding: 12px 14px; overflow-x: auto;
+    font-size: 12.5px; line-height: 1.5; }
+  .memobody pre code { background: none; padding: 0; }
+  .stamp { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+  .stamp b { color: var(--ink-2); }
+  .verdict-tag { display: inline-block; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.06em; font-weight: 700; border: 1px solid var(--baseline);
+    border-radius: 999px; padding: 2px 9px; }
+  .rs { font-size: 12px; border: 1px solid var(--baseline); border-radius: 999px;
+    padding: 1px 8px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="kicker">Memo &middot; S&amp;P 1500 Ranker</p>
+    <a class="home" href="memos.html">&larr; All memos</a>
+  </header>
+
+  <h1>BHF &mdash; Brighthouse Financial</h1>
+  <p class="standfirst">Written Sept. 1, 2026. The verdict was
+    <span class="verdict-tag">unclear</span> and the name reads
+    <code class="rs">research</code> on tonight's table.</p>
+  <p class="stamp"><b>As of:</b> Sept. 1, 2026 &middot; 2 days old &middot; reviewed Sept. 2, 2026 by claude &middot;
+    a memo is a point-in-time judgment and does not update itself the way the nightly table does.</p>
+
+
+
+  <div class="note"><p><b>What this is not.</b> The ledger behind this site holds 309 decisions, collapsed from 2,306 name-nights, and none of them has ever been actionable. One row is one decision, not one appearance. A company suggested on 40 consecutive nights is counted once, dated from the first of them, so a name that keeps qualifying cannot inflate the sample. The cohorts above are the other view of the same calls and do repeat a name every night, by design. The actionable date is the first night every condition of the actionable-suggestion contract held at once. It reads empty for a name that has never been actionable, and for every night frozen before the contract existed on Aug. 23, 2026. The engine's current rules are forward-only from Aug. 16, 2026, so the record is days long, not years. This is a personal research tool, not licensed financial advice, and nothing here is a recommendation to buy or sell any security.</p></div>
+
+  <div class="memobody">
+<h2>0. Signals</h2>
+<p>Engine coverage for BHF, checked across every governed surface by <code>python
+scripts/memo_context.py BHF</code> on 2026-09-02T22:46:56Z. This block is generated;
+paste it verbatim and do not edit it by hand.</p>
+<pre><code>focused signals       not covered   102 names, as of 2026-09-02
+                      build/signals.json - The narrower set the nightly engine scores in full, with estimate families layered on.
+full universe         COVERED       1,422 names, as of 2026-09-02
+                      build/universe.json - The filings-only engine over every S&amp;P 1500 name with an EDGAR history.
+committed universe    COVERED       1,422 names, as of 2026-09-02
+                      reports/universe.json - The committed fallback for the universe run, stored compact.
+cross-sectional rank  COVERED       1,341 names, as of 2026-09-02
+                      build/rank.json - A factor ranking, not own-history, and possibly an older window.
+</code></pre>
+<p>Memo mode is <strong>covered</strong>: the engine has output for BHF in
+build/universe.json, and section 3 must choose its entry from the machine band
+below rather than building a new one.</p>
+<p>Where the factor row disagrees with the engine, the engine wins:</p>
+<ul>
+<li>
+<p>The cross-sectional row in build/rank.json was generated at
+  2026-09-02T22:07:10+00:00, before the engine result at
+  2026-09-02T22:14:34+00:00, so it never supersedes it.</p>
+<p>ticker BHF | close 53.62 | as_of 2026-09-02 | next_earnings none (days_to_earnings none)
+per share:  eps_ttm 12.53, sales 115.04, fcf -9.30, book 113.24
+valuation:  cheap_pct 56.0 (basis pe+pb; by basis pe 41.7, pb 56.0; cheap_thin false)
+            cheapness_source mixed, eps_ttm_flag none, ttm_base_spikes none
+            pe_ttm 4.30, pe_fwd none, ev_ebitda none, p_book none
+            fair_band low 29.44 / mid 46.43 / high 72.48 on bases pe, pb
+            fair_band reliability ok, upside_to_low_rung -45.1%, caveats none
+            fair_band_by_basis {"pe": {"low": 33.08, "mid": 56.64, "high": 76.81}, "ps": {"low": 41.41, "mid": 60.97, "high": 85.13}, "pb": {"low": 29.44, "mid": 46.43, "high": 72.48}}
+            implied_eps_growth at_hurdle_median_exit 8.4%, at_hurdle_p20_exit 14.4%, at_hurdle_20x_exit -6.6%
+            implied_eps_growth fwd_at_hurdle_20x_exit none, tier quality_compounder, hurdle_used 9.0%, eps_base_ttm 12.53
+            compare trailing_5y_eps_cagr none, consensus_eps_growth_1y none, consensus_ltg none
+            replay episodes_closed 4, hit_rate_vs_spy 75.0%, median_excess_12m 5.5%, worst_excess_12m -9.2%
+            replay open_episodes 0, open_median_excess_to_date none, median_worst_dd_12m -10.8%
+quality:    gate pass, hard none, soft none, unknown gross margin
+            fcf_conversion -0.65, net_debt_to_ebitda none, share_count_chg_3y -13.3%, sbc_to_fcf none
+            sbc_adjusted_fcf not published on this surface; net TTM SBC off reported fcf_ttm -538,000,000.00 yourself and show both
+            gross_margin none against none three years ago
+economics:  roic none against none three years ago, fundable_growth 12.7%, needed_at_hurdle_20x -6.6%, growth_gap -19.3%
+fund. mom.: rev_yoy 86.2%, rev_accel true, rev_decel_2q false, eps_ttm_yoy 40.6%
+            fwd_eps_rev_30d none, fwd_eps_rev_90d none, analyst_up_minus_down_30d none, rec_mean none against none three months ago
+trend:      dd_52w -19.5%, dist_200dma -14.1%, rs_spy_6m -22.6%, sector_dd_52w -1.1%, knife false, turned false
+sentiment:  short_pct_float none, insider_net_count_6m none, target_upside none
+scores:     buy_score 32.0, cheap false, bases 2, candidate false, tier none
+            candidate_reasons none
+            candidate_blockers none
+            replay_warning none
+data notes: shares_out filled gaps in shares_diluted, no Yahoo forward-EPS revision history (30/90d revisions unavailable)
+portfolio:  held false (position size never appears in a memo)</p>
+</li>
+</ul>
+<!-- memo-context: generated block, do not edit by hand. Regenerate with `python scripts/memo_context.py BHF`. -->
+
+<p>```json memo-context
+{
+  "checksum": "sha256:35f54f5b8a00c2bd275471c4d3bd8fec6db564d351b321885c82cdbc115a3478",
+  "coverage": [
+    {
+      "as_of": "2026-09-02",
+      "covers_ticker": false,
+      "exists": true,
+      "generated_at": "2026-09-02T22:15:25+00:00",
+      "kind": "signals_focused",
+      "label": "focused signals",
+      "names": 102,
+      "note": "The narrower set the nightly engine scores in full, with estimate families layered on.",
+      "path": "build/signals.json"
+    },
+    {
+      "as_of": "2026-09-02",
+      "covers_ticker": true,
+      "exists": true,
+      "generated_at": "2026-09-02T22:14:34+00:00",
+      "kind": "universe_full",
+      "label": "full universe",
+      "names": 1422,
+      "note": "The filings-only engine over every S&amp;P 1500 name with an EDGAR history.",
+      "path": "build/universe.json"
+    },
+    {
+      "as_of": "2026-09-02",
+      "covers_ticker": true,
+      "exists": true,
+      "generated_at": "2026-09-02T22:14:34+00:00",
+      "kind": "universe_committed",
+      "label": "committed universe",
+      "names": 1422,
+      "note": "The committed fallback for the universe run, stored compact.",
+      "path": "reports/universe.json"
+    },
+    {
+      "as_of": null,
+      "covers_ticker": true,
+      "exists": true,
+      "generated_at": "2026-09-02T22:07:10+00:00",
+      "kind": "rank_cross_sectional",
+      "label": "cross-sectional rank",
+      "names": 1341,
+      "note": "A factor ranking, not own-history, and possibly an older window.",
+      "path": "build/rank.json"
+    }
+  ],
+  "data_as_of": "2026-09-02",
+  "engine_coverage": [
+    "build/universe.json",
+    "reports/universe.json"
+  ],
+  "generated_at": "2026-09-02T22:46:56Z",
+  "held": false,
+  "instruction_locks": [
+    {
+      "commit": "0bf61dbf22e00df68b4a65693e6b2851205cd8fe",
+      "path": "research/MEMO-TEMPLATE.md",
+      "present": true,
+      "sha256": "8f03815494bf8592f5e20b586399c4e5c8f845d31b2b7a403eafcd20ac24c9b7",
+      "uncommitted": false
+    },
+    {
+      "commit": "412f8966b94cd408739f59d2ae0500d1a9dca9bf",
+      "path": ".claude/agents/memo-writer.md",
+      "present": true,
+      "sha256": "d94a49d8e206c1615cc6f017853d7305930d2550b43dbb71737026d2a6e03b2d",
+      "uncommitted": false
+    },
+    {
+      "commit": "412f8966b94cd408739f59d2ae0500d1a9dca9bf",
+      "path": "scripts/memo_context.py",
+      "present": true,
+      "sha256": "8dc37786b895bd9053f6ec73a4bf884416d31a7eda8d6b9d43ca160336e7ba17",
+      "uncommitted": false
+    }
+  ],
+  "mode": "covered",
+  "mode_derived": "covered",
+  "mode_forced": false,
+  "primary_kind": "universe_full",
+  "primary_source": "build/universe.json",
+  "rank_conflicts": [
+    "The cross-sectional row in build/rank.json was generated at 2026-09-02T22:07:10+00:00, before the engine result at 2026-09-02T22:14:34+00:00, so it never supersedes it."
+  ],
+  "schema": "memo-context/1",
+  "spot": {
+    "as_of": "2026-09-02",
+    "close": 53.62,
+    "source": "build/universe.json"
+  },
+  "ticker": "BHF"
+}</p>
+<pre><code>
+The memo disputes the engine's book-value input, revenue-acceleration flag and ordinary valuation framing. The engine's $113.24 book value includes preferred equity, while common book value was $84.35 and book value excluding accumulated other comprehensive income was $156.10 on June 30. GAAP revenue rose with derivative marks, but adjusted revenue fell 2.5%. The signed merger makes outcome and price more useful than the engine band.
+
+## 1. What changed - why is the multiple where it is?
+
+On November 6, 2025, Brighthouse agreed to Aquarian Capital's approximately $4.1 billion acquisition for $70 cash per common share. Shareholders approved it on February 12, 2026. The Hart-Scott-Rodino waiting period expired, FINRA approved the transaction on May 19 and the Committee on Foreign Investment in the United States concluded its review on June 18. Delaware, New York and Massachusetts insurance approvals remained outstanding in the August 6 Form 10-Q.
+
+The merger agreement's original September 6 outside date automatically extends to December 6 when only those insurance approvals remain open. Financing is not a closing condition. Aquarian has equity and debt commitment letters. Parent owes a $225.5 million reverse termination fee in specified Parent-fault outcomes, while Brighthouse may owe $143.5 million in specified company-fault outcomes. The agreement bars common dividends and repurchases before closing or termination.
+
+At the September 2 close of $53.62, the stock was 23.4% below contractual consideration. Regulatory execution and the break price, rather than ordinary multiple mean reversion, now determine the return.
+
+## 2. Is the impairment real?
+
+The live question is regulatory, not simply whether the franchise is impaired. The proxy makes approval free of a Parent-defined Burdensome Condition a closing condition. Delaware, New York and Massachusetts can therefore approve the acquisition with capital-maintenance or other conditions that Aquarian refuses, even without a formal disapproval. The filings do not explain why those reviews remain open, so the memo cannot assign a narrow closing probability without the state Form A dockets and hearing calendars.
+
+Standalone evidence is mixed. Shield Level Annuity sales reached $2.119 billion in Q2, up 10.1% year over year, but first-half Shield sales rose only 2.7% to $3.987 billion. Total Q2 annuity sales fell 7% to $2.425 billion, and fixed and income annuity sales fell to $133 million from $505 million. This can reflect spread-driven pricing discipline rather than lost demand.
+
+Combined risk-based capital rose to 430%-450% from 405%-425% a year earlier, but total adjusted capital fell 12% from $5.560 billion to $4.900 billion over the five-quarter span. It was relatively flat sequentially in Q2, so this was not five consecutive declines. Holding-company liquid assets were $0.9 billion, unchanged from a year earlier. As an inference from disclosed capital and ratio data, required capital fell faster than total adjusted capital.
+
+GAAP EPS of $12.53 and the engine's revenue growth are distorted by hedge and market-risk-benefit marks. Adjusted revenue fell 2.5% to $4.201 billion in the first half. Adjusted EPS less notable items totaled $17.27 over four quarters, but it systematically excludes recurring derivative effects; first-half net derivative losses were $986 million. A conservative normalized starting EPS of $14 reflects that limitation without treating all hedge marks as economic loss. Reported TTM free cash flow was negative $538 million, but consolidated GAAP free cash flow is not a useful life-insurer measure because policyholder flows are financing activities. The SBC expense needed for an adjusted figure was not verified, so SBC-adjusted FCF remains unverified.
+
+For a signed cash deal, the useful comparators are the proxy's $51.09 undisturbed price and $43.36 52-week low, not noisy peer P/E figures. Goldman's 0.25x-0.45x range was a terminal price-to-book-ex-AOCI assumption applied to projected book value, not a current fairness range.
+
+## 3. Verdict and entry
+
+**Verdict: wait.** Implied closing probability ranges from 13.4% using the $51.09 undisturbed price to 47.1% using the unproven $39.03 break anchor. State Form A evidence is needed to narrow it. Use an event gate: all three approvals without a Burdensome Condition and a firm closing date, or resolution on December 6. The machine's $29.44 low rung includes preferred equity and is not an entry.
+
+The quality_compounder tier uses a 9% hurdle. The engine's 8.4% implied growth uses GAAP EPS and is not established against adjusted EPS.
+
+| Case | Outcome and anchor | Price | Return vs. $53.62 |
+|---|---|---:|---:|
+| Bear | A Burdensome Condition prevents closing; midpoint of the proxy's $43.36 low and $51.09 undisturbed price. | $46.00 | -14.2% |
+| Mid | The parties recut the consideration after regulatory conditions. | $62.50 | +16.6% |
+| Base | Merger closes at contract by December 6, a 95-day horizon. | $70.00 | +30.5%, about +178% annualized |
+| Bull | Merger closes at contract in mid-October, about a 45-day horizon. | $70.00 | +30.5%, about +680% annualized |
+
+The $3.92-per-share reverse fee applies only to narrow Parent-fault terminations, not a Burdensome Condition. Earlier closing improves the capped upside's annualized return.
+
+The standalone sensitivity is diagnostic, not the live scenario.
+
+| Case | Growth | exit P/E | EPS in 5y | Price | Total | Annualized | Growth needed at 9.0% |
+|---|---|---|---|---|---|---|---|
+| Bear | -10.0% | 3x | 8.27 | $24.80 | -53.8% | -14.3% | 14.5% |
+| Base | 0.0% | 4x | 14.00 | $56.00 | 4.4% | 0.9% | 8.1% |
+| Bull | 3.0% | 5x | 16.23 | $81.15 | 51.3% | 8.6% | 3.3% |
+
+At a 4x exit, the price asks for 8.1% annual growth, above the base assumption.
+
+```json scenario
+{&quot;base&quot;:14.0,&quot;convert_debt&quot;:0.0,&quot;convert_shares&quot;:0.0,&quot;dividend_yield&quot;:0.0,&quot;hurdle&quot;:0.09,&quot;metric&quot;:&quot;eps&quot;,&quot;net_debt&quot;:0.0,&quot;rows&quot;:[{&quot;annualized_return&quot;:-0.1429,&quot;case&quot;:&quot;bear&quot;,&quot;clears_hurdle&quot;:false,&quot;growth&quot;:-0.1,&quot;multiple&quot;:3.0,&quot;required_growth_at_hurdle&quot;:0.1446,&quot;terminal_metric&quot;:8.2669,&quot;terminal_price&quot;:24.8,&quot;total_return&quot;:-0.5375,&quot;treatment&quot;:&quot;single&quot;},{&quot;annualized_return&quot;:0.0087,&quot;case&quot;:&quot;base&quot;,&quot;clears_hurdle&quot;:false,&quot;growth&quot;:0.0,&quot;multiple&quot;:4.0,&quot;required_growth_at_hurdle&quot;:0.0806,&quot;terminal_metric&quot;:14.0,&quot;terminal_price&quot;:56.0,&quot;total_return&quot;:0.0444,&quot;treatment&quot;:&quot;single&quot;},{&quot;annualized_return&quot;:0.0864,&quot;case&quot;:&quot;bull&quot;,&quot;clears_hurdle&quot;:false,&quot;growth&quot;:0.03,&quot;multiple&quot;:5.0,&quot;required_growth_at_hurdle&quot;:0.0334,&quot;terminal_metric&quot;:16.2298,&quot;terminal_price&quot;:81.15,&quot;total_return&quot;:0.5134,&quot;treatment&quot;:&quot;single&quot;}],&quot;shares&quot;:1.0,&quot;spot&quot;:53.62,&quot;tier&quot;:&quot;quality_compounder&quot;,&quot;years&quot;:5}
+</code></pre>
+<h2>4. Kill criteria - pre-committed, falsifiable, dated</h2>
+<ul>
+<li>Merger status: A termination or consideration below $70 triggers pass. A disapproval, hearing, Form A withdrawal and refiling, or approval subject to a condition Aquarian calls a Burdensome Condition triggers re-underwrite. Check each Form 8-K and public state insurance notice through December 6, 2026.</li>
+<li>Timing: If no state has issued an approval order by November 1, re-underwrite closing odds and the break anchor. Passage of December 6 without closing, or a negotiated extension, triggers pass. Check state dockets on November 1 and company filings on December 6.</li>
+<li>Capital: Combined total adjusted capital below $4.6 billion or holding-company liquid assets below $0.7 billion triggers watch; RBC below 400% triggers re-underwrite. Check the Q3 supplement expected in November.</li>
+<li>Acquirer and insurer standing: An Aquarian credit impairment, financing commitment lapse or downgrade of a principal BHF insurance subsidiary triggers re-underwrite. Check each Form 8-K and rating-agency release through December 6.</li>
+<li>Market-implied break risk: A discount to $70 above 30% without an adverse merger filing triggers re-underwrite of the break-price range. Check each Friday close through December 6.</li>
+</ul>
+<p><code>json kill-criteria
+[
+  {"metric":"merger consideration and regulatory status","operator":"termination_or_reduction_or_adverse_regulatory_event","threshold":"termination, consideration below $70, a disapproval, hearing, Form A withdrawal and refiling, or approval subject to a condition Parent characterizes as a Burdensome Condition","check_event":"each Form 8-K and public state insurance notice through December 6, 2026","response":"pass or re-underwrite","benign_exceptions":["an approval condition that Parent confirms is not a Burdensome Condition"]},
+  {"metric":"state insurance approval and closing timing","operator":"tiered_deadline","threshold":"no state approval order by November 1 for re-underwrite; not closed or extended by December 6 for pass","check_event":"state dockets on November 1, 2026 and company filings on December 6, 2026","response":"re-underwrite or pass","benign_exceptions":["company filing confirms all substantive review is complete and gives a firm near-term order date"]},
+  {"metric":"statutory capital and holding-company liquidity","operator":"tiered_less_than","threshold":"combined total adjusted capital $4.6 billion or liquid assets $0.7 billion for watch; RBC 400% for re-underwrite","check_event":"Q3 2026 financial supplement expected November 2026","response":"watch or re-underwrite","benign_exceptions":["disclosed denominator-method change with unchanged total adjusted capital"]},
+  {"metric":"Aquarian credit and BHF insurance-subsidiary ratings standing","operator":"credit_impairment_or_downgrade","threshold":"Aquarian credit impairment, financing commitment lapse, or downgrade of a principal BHF insurance subsidiary","check_event":"each Form 8-K and rating-agency release through December 6, 2026","response":"re-underwrite","benign_exceptions":["replacement financing on terms that do not weaken closing certainty","rating action caused solely by the announced change of control with no capital concern"]},
+  {"metric":"discount to $70 merger consideration without adverse filing","operator":"greater_than","threshold":"30%","check_event":"each Friday close through December 6, 2026","response":"re-underwrite","benign_exceptions":["mechanical ex-distribution price adjustment disclosed by the company"]}
+]</code></p>
+<h2>5. Sources</h2>
+<ul>
+<li>Brighthouse Financial Form 8-K and merger agreement, November 6, 2025: https://www.sec.gov/Archives/edgar/data/1685040/000168504025000065/bhf-20251106.htm</li>
+<li>Brighthouse Financial definitive proxy statement, January 7, 2026: https://www.sec.gov/Archives/edgar/data/1685040/000114036126000522/ny20060599x2_defm14a.htm</li>
+<li>Brighthouse Financial Form 8-K reporting shareholder approval, February 12, 2026: https://www.sec.gov/Archives/edgar/data/1685040/000168504026000005/bhf-20260212.htm</li>
+<li>Brighthouse Financial Q2 2026 earnings release, August 5, 2026: https://www.sec.gov/Archives/edgar/data/1685040/000168504026000026/q22026bhfearningspressrele.htm</li>
+<li>Brighthouse Financial Q2 2026 financial supplement, August 5, 2026: https://www.sec.gov/Archives/edgar/data/1685040/000168504026000026/q22026bhffinancialsuppleme.htm</li>
+<li>Brighthouse Financial Q2 2026 Form 10-Q, filed August 6, 2026: https://www.sec.gov/Archives/edgar/data/1685040/000168504026000028/bhf-20260630.htm</li>
+<li>Brighthouse Financial Q2 2025 earnings release, August 7, 2025: https://www.sec.gov/Archives/edgar/data/1685040/000168504025000046/q22025bhfearningspressrele.htm</li>
+<li>Brighthouse Financial Form 8-K, August 18, 2026: https://www.sec.gov/Archives/edgar/data/1685040/000168504026000031/bhf-20260818.htm</li>
+<li>EDGAR submissions index, checked September 2, 2026: https://data.sec.gov/submissions/CIK0001685040.json</li>
+<li>Engine snapshot, generated September 2, 2026: build/universe.json.</li>
+</ul>
+  </div>
+
+  <footer>
+    <p>The personal half of this memo &mdash; position size, portfolio overlap, tax lots &mdash; is
+      fenced out of the published text by construction and is not on this page. What a name is worth
+      is public; what one investor should own is not.</p>
+    <p class="methodlink"><a href="memos.html">&larr; All memos</a> &middot;
+      <a href="./">The Ranker</a> &middot; <a href="approach.html">How this works</a></p>
+  </footer>
+
+</div>
+</body>
+</html>

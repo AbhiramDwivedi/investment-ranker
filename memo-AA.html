@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AA memo &mdash; Alcoa</title>
+<meta name="description" content="Alcoa (AA): the research memo behind
+  its row on the S&amp;P 1500 Ranker, written Sept. 1, 2026.">
+<link rel="canonical" href="https://abhiramdwivedi.github.io/investment-ranker/memo-AA.html">
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --baseline: #c3c2b7; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --accent-soft: #cde2fb;
+    --machine: #1c5cab; --judge: #b5462b; --warn: #fab219;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+      --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+      --accent: #6da7ec; --accent-soft: #184f95;
+      --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+    --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+    --accent: #6da7ec; --accent-soft: #184f95;
+    --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--page); color: var(--ink); margin: 0; line-height: 1.6;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 16px; }
+  .wrap { max-width: 78ch; margin: 0 auto; padding: 28px 24px 72px; }
+  .masthead { display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+    flex-wrap: wrap; border-bottom: 2px solid var(--ink); padding-bottom: 14px; }
+  .masthead .home { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    font-weight: 650; color: var(--accent); text-decoration: none; }
+  .masthead .home:hover { text-decoration: underline; }
+  h1 { font-size: 30px; font-weight: 750; letter-spacing: -0.015em; margin: 26px 0 0; }
+  .standfirst { font-size: 17px; color: var(--ink-2); margin: 10px 0 0; }
+  .kicker { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); font-weight: 650; margin: 0; }
+  h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; margin: 40px 0 0;
+    padding-top: 14px; border-top: 1px solid var(--grid); }
+  h3 { font-size: 15.5px; font-weight: 700; margin: 24px 0 0; }
+  p { margin: 12px 0 0; }
+  ul { margin: 12px 0 0; padding-left: 20px; }
+  li { margin: 7px 0; }
+  a { color: var(--accent); }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.88em;
+    background: color-mix(in srgb, var(--muted) 14%, var(--surface)); padding: 1px 5px; border-radius: 4px; }
+  .lede { font-size: 17px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 14px;
+    font-variant-numeric: tabular-nums; }
+  caption { caption-side: bottom; text-align: left; font-size: 12px; color: var(--muted);
+    margin-top: 8px; line-height: 1.5; }
+  th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--muted); font-weight: 650; padding: 0 10px 7px 0; border-bottom: 1px solid var(--baseline); }
+  td { padding: 8px 10px 8px 0; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  td.n, th.n { text-align: right; padding-right: 0; }
+  tr.hi td { background: color-mix(in srgb, var(--accent) 8%, transparent); font-weight: 600; }
+  .scroll { overflow-x: auto; }
+  .rule { background: var(--surface); border: 1px solid var(--ring); border-radius: 8px;
+    padding: 16px 18px; margin-top: 16px; }
+  .rule ul { list-style: none; padding-left: 0; }
+  .rule li { display: grid; grid-template-columns: 13ch 1fr; gap: 12px; align-items: baseline;
+    padding: 7px 0; border-bottom: 1px solid var(--grid); font-size: 14.5px; }
+  .rule li:last-child { border-bottom: 0; }
+  .rule li b { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12.5px; color: var(--machine); font-weight: 650; }
+  .steps { counter-reset: s; list-style: none; padding-left: 0; }
+  .steps li { counter-increment: s; position: relative; padding-left: 34px; margin: 14px 0; font-size: 15px; }
+  .steps li::before { content: counter(s); position: absolute; left: 0; top: 1px; width: 23px; height: 23px;
+    border-radius: 50%; background: var(--accent-soft); color: var(--machine); font-size: 12px;
+    font-weight: 700; display: grid; place-items: center; }
+  .steps li.j::before { background: color-mix(in srgb, var(--judge) 20%, var(--surface)); color: var(--judge); }
+  .steps b { font-weight: 700; }
+  .steps .f { color: var(--muted); font-size: 12.5px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .verdict { border-left: 3px solid var(--accent); padding: 2px 0 2px 16px; margin-top: 18px;
+    font-size: 16px; }
+  .note { background: color-mix(in srgb, var(--warn) 10%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--warn) 45%, var(--surface));
+    border-radius: 8px; padding: 12px 16px; margin-top: 18px; font-size: 14.5px; }
+  footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--grid);
+    font-size: 13px; color: var(--muted); }
+
+  .memobody h2 { font-size: 19px; }
+  .memobody table { font-size: 13px; }
+  .memobody blockquote { margin: 14px 0 0; padding: 2px 0 2px 16px;
+    border-left: 3px solid var(--baseline); color: var(--ink-2); }
+  .memobody pre { background: color-mix(in srgb, var(--muted) 12%, var(--surface));
+    border: 1px solid var(--ring); border-radius: 8px; padding: 12px 14px; overflow-x: auto;
+    font-size: 12.5px; line-height: 1.5; }
+  .memobody pre code { background: none; padding: 0; }
+  .stamp { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+  .stamp b { color: var(--ink-2); }
+  .verdict-tag { display: inline-block; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.06em; font-weight: 700; border: 1px solid var(--baseline);
+    border-radius: 999px; padding: 2px 9px; }
+  .rs { font-size: 12px; border: 1px solid var(--baseline); border-radius: 999px;
+    padding: 1px 8px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="kicker">Memo &middot; S&amp;P 1500 Ranker</p>
+    <a class="home" href="memos.html">&larr; All memos</a>
+  </header>
+
+  <h1>AA &mdash; Alcoa</h1>
+  <p class="standfirst">Written Sept. 1, 2026. The verdict was
+    <span class="verdict-tag">unclear</span> and the name reads
+    <code class="rs">research</code> on tonight's table.</p>
+  <p class="stamp"><b>As of:</b> Sept. 1, 2026 &middot; 2 days old &middot; reviewed Sept. 2, 2026 by claude &middot;
+    a memo is a point-in-time judgment and does not update itself the way the nightly table does.</p>
+
+
+
+  <div class="note"><p><b>What this is not.</b> The ledger behind this site holds 309 decisions, collapsed from 2,306 name-nights, and none of them has ever been actionable. One row is one decision, not one appearance. A company suggested on 40 consecutive nights is counted once, dated from the first of them, so a name that keeps qualifying cannot inflate the sample. The cohorts above are the other view of the same calls and do repeat a name every night, by design. The actionable date is the first night every condition of the actionable-suggestion contract held at once. It reads empty for a name that has never been actionable, and for every night frozen before the contract existed on Aug. 23, 2026. The engine's current rules are forward-only from Aug. 16, 2026, so the record is days long, not years. This is a personal research tool, not licensed financial advice, and nothing here is a recommendation to buy or sell any security.</p></div>
+
+  <div class="memobody">
+<h2>0. Signals</h2>
+<p>Engine coverage for AA, checked across every governed surface by <code>python
+scripts/memo_context.py AA</code> on 2026-09-02T22:21:59Z. This block is generated;
+paste it verbatim and do not edit it by hand.</p>
+<pre><code>focused signals       not covered   102 names, as of 2026-09-02
+                      build/signals.json - The narrower set the nightly engine scores in full, with estimate families layered on.
+full universe         COVERED       1,422 names, as of 2026-09-02
+                      build/universe.json - The filings-only engine over every S&amp;P 1500 name with an EDGAR history.
+committed universe    COVERED       1,422 names, as of 2026-09-02
+                      reports/universe.json - The committed fallback for the universe run, stored compact.
+cross-sectional rank  COVERED       1,341 names, as of 2026-09-02
+                      build/rank.json - A factor ranking, not own-history, and possibly an older window.
+</code></pre>
+<p>Memo mode is <strong>covered</strong>: the engine has output for AA in build/universe.json,
+and section 3 must choose its entry from the machine band below rather than
+building a new one.</p>
+<p>Where the factor row disagrees with the engine, the engine wins:</p>
+<ul>
+<li>
+<p>The cross-sectional row in build/rank.json was generated at
+  2026-09-02T22:07:10+00:00, before the engine result at
+  2026-09-02T22:14:34+00:00, so it never supersedes it.</p>
+<p>ticker AA | close 51.05 | as_of 2026-09-02 | next_earnings none (days_to_earnings none)
+per share:  eps_ttm 4.81, sales 51.14, fcf 1.32, book 27.71
+valuation:  cheap_pct 69.1 (basis pe+ps+pfcf; by basis pe 27.8, ps 87.4, pfcf 69.1; cheap_thin false)
+            cheapness_source mixed, eps_ttm_flag none, ttm_base_spikes none
+            pe_ttm 10.60, pe_fwd none, ev_ebitda none, p_book none
+            fair_band low 20.46 / mid 31.71 / high 71.56 on bases pe, ps, pfcf
+            fair_band reliability ok, upside_to_low_rung -59.9%, caveats none
+            fair_band_by_basis {"pe": {"low": 44.11, "mid": 69.94, "high": 191.25}, "ps": {"low": 20.46, "mid": 31.71, "high": 46.03}, "pfcf": {"low": 11.34, "mid": 28.08, "high": 71.56}, "pb": {"low": 19.67, "mid": 30.2, "high": 42.95}}
+            implied_eps_growth at_hurdle_median_exit 4.9%, at_hurdle_p20_exit 9.7%, at_hurdle_20x_exit 1.7%
+            implied_eps_growth fwd_at_hurdle_20x_exit none, tier quality_compounder, hurdle_used 9.0%, eps_base_ttm 4.81
+            compare trailing_5y_eps_cagr 16.1%, consensus_eps_growth_1y none, consensus_ltg none
+            replay episodes_closed 2, hit_rate_vs_spy 50.0%, median_excess_12m 0.2%, worst_excess_12m -42.8%
+            replay open_episodes 1, open_median_excess_to_date 14.5%, median_worst_dd_12m -18.5%
+quality:    gate fail, hard share count is up 49% over three years, soft free cash flow converts only 28% of net income, unknown leverage, gross margin
+            fcf_conversion 0.28, net_debt_to_ebitda none, share_count_chg_3y 49.4%, sbc_to_fcf 14.0%
+            sbc_adjusted_fcf 304,000,000.00 (2.3% of market cap) against reported fcf_ttm 352,000,000.00
+            gross_margin none against none three years ago
+economics:  roic none against none three years ago, fundable_growth none, needed_at_hurdle_20x 1.7%, growth_gap none
+fund. mom.: rev_yoy 31.4%, rev_accel true, rev_decel_2q false, eps_ttm_yoy 18.8%
+            fwd_eps_rev_30d none, fwd_eps_rev_90d none, analyst_up_minus_down_30d none, rec_mean none against none three months ago
+trend:      dd_52w -39.0%, dist_200dma -10.9%, rs_spy_6m -31.9%, sector_dd_52w -1.3%, knife false, turned false
+sentiment:  short_pct_float none, insider_net_count_6m none, target_upside none
+scores:     buy_score 6.0, cheap false, bases 3, candidate false, tier none
+            candidate_reasons none
+            candidate_blockers none
+            replay_warning none
+data notes: stale EDGAR series: buybacks (last 2022-12-31), shares_out filled gaps in shares_diluted, no Yahoo forward-EPS revision history (30/90d revisions unavailable)
+portfolio:  held false (position size never appears in a memo)</p>
+</li>
+</ul>
+<!-- memo-context: generated block, do not edit by hand. Regenerate with `python scripts/memo_context.py AA`. -->
+
+<p>```json memo-context
+{
+  "checksum": "sha256:41752f69231b68148e4316c5a6c449e9cc2cec15ea46667a32e290b110d11731",
+  "coverage": [
+    {"as_of":"2026-09-02","covers_ticker":false,"exists":true,"generated_at":"2026-09-02T22:15:25+00:00","kind":"signals_focused","label":"focused signals","names":102,"note":"The narrower set the nightly engine scores in full, with estimate families layered on.","path":"build/signals.json"},
+    {"as_of":"2026-09-02","covers_ticker":true,"exists":true,"generated_at":"2026-09-02T22:14:34+00:00","kind":"universe_full","label":"full universe","names":1422,"note":"The filings-only engine over every S&amp;P 1500 name with an EDGAR history.","path":"build/universe.json"},
+    {"as_of":"2026-09-02","covers_ticker":true,"exists":true,"generated_at":"2026-09-02T22:14:34+00:00","kind":"universe_committed","label":"committed universe","names":1422,"note":"The committed fallback for the universe run, stored compact.","path":"reports/universe.json"},
+    {"as_of":null,"covers_ticker":true,"exists":true,"generated_at":"2026-09-02T22:07:10+00:00","kind":"rank_cross_sectional","label":"cross-sectional rank","names":1341,"note":"A factor ranking, not own-history, and possibly an older window.","path":"build/rank.json"}
+  ],
+  "data_as_of":"2026-09-02","engine_coverage":["build/universe.json","reports/universe.json"],"generated_at":"2026-09-02T22:21:59Z","held":false,
+  "instruction_locks":[
+    {"commit":"0bf61dbf22e00df68b4a65693e6b2851205cd8fe","path":"research/MEMO-TEMPLATE.md","present":true,"sha256":"8f03815494bf8592f5e20b586399c4e5c8f845d31b2b7a403eafcd20ac24c9b7","uncommitted":false},
+    {"commit":"412f8966b94cd408739f59d2ae0500d1a9dca9bf","path":".claude/agents/memo-writer.md","present":true,"sha256":"d94a49d8e206c1615cc6f017853d7305930d2550b43dbb71737026d2a6e03b2d","uncommitted":false},
+    {"commit":"412f8966b94cd408739f59d2ae0500d1a9dca9bf","path":"scripts/memo_context.py","present":true,"sha256":"8dc37786b895bd9053f6ec73a4bf884416d31a7eda8d6b9d43ca160336e7ba17","uncommitted":false}
+  ],
+  "mode":"covered","mode_derived":"covered","mode_forced":false,"primary_kind":"universe_full","primary_source":"build/universe.json",
+  "rank_conflicts":["The cross-sectional row in build/rank.json was generated at 2026-09-02T22:07:10+00:00, before the engine result at 2026-09-02T22:14:34+00:00, so it never supersedes it."],
+  "schema":"memo-context/1","spot":{"as_of":"2026-09-02","close":51.05,"source":"build/universe.json"},"ticker":"AA"
+}</p>
+<pre><code>
+The memo rejects the apparent cheapness: AA is low only on peak-cycle earnings, while its price-to-sales and price-to-book readings sit near the expensive end of their own histories.
+
+## 1. What changed — why is the multiple where it is?
+
+On June 30, 2026, Alcoa agreed to acquire South32's AliGroup interests for $3.1 billion in cash, 17,008,960 shares, a 5% annual ticking fee on the cash consideration and up to $750 million linked to future commodity prices. The deal added integration and dilution risk. On July 16, Alcoa reported Q2 revenue of $3.966 billion and adjusted EBITDA excluding special items of $901 million. The July 30 10-Q reported Total Segment Adjusted EBITDA of $977 million and reduced 2026 alumina production guidance to 9.5 million to 9.6 million metric tons because of Pinjarra instability. Aluminum benefited from higher prices and shipments, while Alumina lost money. On Sept. 1, the S-4 quantified AliGroup's earnings, pro forma leverage and management's approximately $900 million synergy estimate. The 39% drawdown from the 52-week high therefore reflects transaction and execution risk layered onto commodity cyclicality.
+
+## 2. Is the impairment real?
+
+The impairment is partly cyclical and partly operational. Aluminum produced a record $1.073 billion of Q2 segment adjusted EBITDA because realized aluminum reached $4,752 per metric ton and shipments improved. Alumina lost $96 million at a $307-per-metric-ton alumina price index. Management guided to only about $10 million of sequential benefit from Pinjarra stability and lower energy, partly offset by planned maintenance, implying Alumina remains deeply negative absent other changes.
+
+Reported earnings are not normalized. Q2 GAAP EPS was $1.53 versus adjusted EPS of $2.12 after $155 million of net special items. Reported TTM FCF was $352 million versus $304 million after SBC, or 2.3% of market capitalization. First-half operating cash flow was $429 million after a $571 million working-capital use, including a $440 million receivables build tied to higher aluminum prices. Q2 alone produced $608 million of operating cash flow and $422 million of FCF, showing timing helped drive the weak first-half conversion. The hard quality failure is broader: shares rose 49.4% in three years, no Q2 repurchases occurred and the deal adds another 17 million shares.
+
+The S-4 pro forma balance sheet gives $1.160 billion of cash and $5.882 billion of debt, or about $4.722 billion of net debt. Against $3.221 billion of combined normalized EBITDA, leverage is about 1.5x; it becomes dangerous mainly in a trough, where $1.6 billion of EBITDA would put it near 2.9x. The retained $1.360 billion Ma'aden stake remains a partial funding source. AliGroup includes bauxite and alumina assets plus Hillside and Alumar smelter exposure, so it is not purely upstream.
+
+The better peer is the transaction itself. AliGroup's S-4 column shows $871 million of FY2025 segment-EBITDA-equivalent earnings, so approximately $4.1 billion of upfront consideration is about 4.7x, below Alcoa's roughly 6.2x on the memo's normalized standalone base. The filing also shows H1 2026 pro forma diluted EPS of $3.55 versus $3.13 standalone and cites approximately $900 million of synergy NPV, although FY2025 pro forma EPS was lower and the statements exclude synergies. The own-history band still does not establish cheapness because sales and book sit near the expensive ends of their histories.
+
+## 3. Verdict and entry
+
+**Verdict: wait.** The tier is `cyclical_or_single_product`, overriding the engine's `quality_compounder` label, so the hurdle is 12%. Use Q3 2026 earnings as the event gate for Pinjarra output, Alumina losses and the aluminum price deck. The $20.46 machine rung is unreliable because its bases disagree. Pro forma leverage is comfortable, but the price requires a result above base and the implied growth is not achievable without sustained commodity strength.
+
+| Case | Growth | exit EV/EBITDA | EBITDA ($M) in 5y | Price | Total | Annualized | Growth needed at 12.0% |
+|---|---|---|---|---|---|---|---|
+| Bear | -12.0% | 5x | 1,699.82 | $13.36 | -73.8% | -23.5% | 13.4% |
+| Base | -2.0% | 5.5x | 2,911.53 | $39.93 | -21.8% | -4.8% | 11.2% |
+| Bull | 5.0% | 6.5x | 4,110.90 | $77.79 | 52.4% | 8.8% | 7.6% |
+
+At a 5.5x exit, the price asks for 11.2% annual growth to clear the 12.0% hurdle, 13.2 percentage points above the -2.0% base assumption. Spot implies a result between base and bull, but even the bull does not clear the hurdle. The $3.221 billion base combines $2.350 billion of standalone normalized EBITDA with AliGroup's $871 million FY2025 equivalent, excludes synergies and uses S-4 pro forma shares and net debt.
+
+## 4. Kill criteria — pre-committed, falsifiable, dated
+
+- Alumina segment adjusted EBITDA below $100 million negative while the alumina price index is at least $307 per metric ton at the Q3 2026 filing triggers a re-underwrite.
+- A 2026 alumina production-guidance midpoint below 9.45 million metric tons, or 2027 guidance below the 2026 exit rate, triggers a re-underwrite unless curtailment is value-accretive.
+- Aluminum segment adjusted EBITDA below $600 million in any quarter through Q2 2027 triggers a re-underwrite unless shipment timing reverses next quarter.
+- Pro forma net debt above 3.0x a $1.6 billion trough EBITDA base at closing triggers a re-underwrite; above 3.5x triggers a pass unless committed asset sales cure it within 12 months.
+- Management reducing its approximately $900 million AliGroup synergy NPV by more than 25% in a merger update through the first post-close annual filing triggers a re-underwrite.
+
+```json kill-criteria
+[
+  {&quot;metric&quot;:&quot;Alumina segment adjusted EBITDA at a stated alumina price index&quot;,&quot;condition&quot;:&quot;adjusted EBITDA is below negative $100 million while the alumina price index is at least $307 per metric ton&quot;,&quot;check_event&quot;:&quot;Q3 2026 earnings filing, expected October 2026&quot;,&quot;response&quot;:&quot;re-underwrite&quot;,&quot;benign_exceptions&quot;:[&quot;planned maintenance is the disclosed cause and Pinjarra throughput has normalized&quot;]},
+  {&quot;metric&quot;:&quot;Alumina production guidance&quot;,&quot;condition&quot;:&quot;2026 midpoint is below 9.45 million metric tons, or 2027 guidance is below the 2026 exit production rate&quot;,&quot;check_event&quot;:&quot;Q3 2026 and Q4 2026 earnings filings&quot;,&quot;response&quot;:&quot;re-underwrite&quot;,&quot;benign_exceptions&quot;:[&quot;value-accretive curtailment responding to alumina price&quot;]},
+  {&quot;metric&quot;:&quot;Aluminum segment adjusted EBITDA&quot;,&quot;condition&quot;:&quot;below $600 million in any quarter&quot;,&quot;check_event&quot;:&quot;each quarterly earnings filing through Q2 2027&quot;,&quot;response&quot;:&quot;re-underwrite&quot;,&quot;benign_exceptions&quot;:[&quot;temporary shipment timing that reverses in the following quarter&quot;]},
+  {&quot;metric&quot;:&quot;Pro forma net debt to trough EBITDA&quot;,&quot;condition&quot;:&quot;above 3.0x on a $1.6 billion trough EBITDA base triggers re-underwrite; above 3.5x triggers pass&quot;,&quot;check_event&quot;:&quot;transaction closing filing expected in the first half of 2027&quot;,&quot;response&quot;:&quot;re-underwrite or pass at the stated tier&quot;,&quot;benign_exceptions&quot;:[&quot;committed asset-sale proceeds reduce leverage below the threshold within 12 months&quot;]},
+  {&quot;metric&quot;:&quot;AliGroup synergy net present value&quot;,&quot;condition&quot;:&quot;management reduces the approximately $900 million estimate by more than 25%&quot;,&quot;check_event&quot;:&quot;each merger update through the first post-close annual filing&quot;,&quot;response&quot;:&quot;re-underwrite&quot;,&quot;benign_exceptions&quot;:[&quot;the reduction reflects faster realized synergies already captured in reported earnings&quot;]}
+]
+</code></pre>
+<h2>5. Sources</h2>
+<ul>
+<li>Alcoa Form 10-Q for quarter ended June 30, 2026, filed July 30, 2026: https://www.sec.gov/Archives/edgar/data/1675149/000119312526326265/aa-20260630.htm</li>
+<li>Alcoa Q2 2026 results release, July 16, 2026: https://investors.alcoa.com/press-releases/press-release-details/2026/Alcoa-Corporation-Reports-Second-Quarter-2026-Results/default.aspx</li>
+<li>Alcoa Form 8-K announcing AliGroup agreement, filed July 2, 2026: https://www.sec.gov/Archives/edgar/data/1675149/000095010326010155/0000950103-26-010155-index.htm</li>
+<li>Alcoa Form S-4, filed Sept. 1, 2026: https://www.sec.gov/Archives/edgar/data/1675149/000119312526377619/d17745ds4.htm</li>
+</ul>
+  </div>
+
+  <footer>
+    <p>The personal half of this memo &mdash; position size, portfolio overlap, tax lots &mdash; is
+      fenced out of the published text by construction and is not on this page. What a name is worth
+      is public; what one investor should own is not.</p>
+    <p class="methodlink"><a href="memos.html">&larr; All memos</a> &middot;
+      <a href="./">The Ranker</a> &middot; <a href="approach.html">How this works</a></p>
+  </footer>
+
+</div>
+</body>
+</html>

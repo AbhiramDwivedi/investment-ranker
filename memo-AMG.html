@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AMG memo &mdash; Affiliated Managers Group</title>
+<meta name="description" content="Affiliated Managers Group (AMG): the research memo behind
+  its row on the S&amp;P 1500 Ranker, written Sept. 1, 2026.">
+<link rel="canonical" href="https://abhiramdwivedi.github.io/investment-ranker/memo-AMG.html">
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --baseline: #c3c2b7; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --accent-soft: #cde2fb;
+    --machine: #1c5cab; --judge: #b5462b; --warn: #fab219;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+      --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+      --accent: #6da7ec; --accent-soft: #184f95;
+      --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+    --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+    --accent: #6da7ec; --accent-soft: #184f95;
+    --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--page); color: var(--ink); margin: 0; line-height: 1.6;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 16px; }
+  .wrap { max-width: 78ch; margin: 0 auto; padding: 28px 24px 72px; }
+  .masthead { display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+    flex-wrap: wrap; border-bottom: 2px solid var(--ink); padding-bottom: 14px; }
+  .masthead .home { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    font-weight: 650; color: var(--accent); text-decoration: none; }
+  .masthead .home:hover { text-decoration: underline; }
+  h1 { font-size: 30px; font-weight: 750; letter-spacing: -0.015em; margin: 26px 0 0; }
+  .standfirst { font-size: 17px; color: var(--ink-2); margin: 10px 0 0; }
+  .kicker { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); font-weight: 650; margin: 0; }
+  h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; margin: 40px 0 0;
+    padding-top: 14px; border-top: 1px solid var(--grid); }
+  h3 { font-size: 15.5px; font-weight: 700; margin: 24px 0 0; }
+  p { margin: 12px 0 0; }
+  ul { margin: 12px 0 0; padding-left: 20px; }
+  li { margin: 7px 0; }
+  a { color: var(--accent); }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.88em;
+    background: color-mix(in srgb, var(--muted) 14%, var(--surface)); padding: 1px 5px; border-radius: 4px; }
+  .lede { font-size: 17px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 14px;
+    font-variant-numeric: tabular-nums; }
+  caption { caption-side: bottom; text-align: left; font-size: 12px; color: var(--muted);
+    margin-top: 8px; line-height: 1.5; }
+  th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--muted); font-weight: 650; padding: 0 10px 7px 0; border-bottom: 1px solid var(--baseline); }
+  td { padding: 8px 10px 8px 0; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  td.n, th.n { text-align: right; padding-right: 0; }
+  tr.hi td { background: color-mix(in srgb, var(--accent) 8%, transparent); font-weight: 600; }
+  .scroll { overflow-x: auto; }
+  .rule { background: var(--surface); border: 1px solid var(--ring); border-radius: 8px;
+    padding: 16px 18px; margin-top: 16px; }
+  .rule ul { list-style: none; padding-left: 0; }
+  .rule li { display: grid; grid-template-columns: 13ch 1fr; gap: 12px; align-items: baseline;
+    padding: 7px 0; border-bottom: 1px solid var(--grid); font-size: 14.5px; }
+  .rule li:last-child { border-bottom: 0; }
+  .rule li b { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12.5px; color: var(--machine); font-weight: 650; }
+  .steps { counter-reset: s; list-style: none; padding-left: 0; }
+  .steps li { counter-increment: s; position: relative; padding-left: 34px; margin: 14px 0; font-size: 15px; }
+  .steps li::before { content: counter(s); position: absolute; left: 0; top: 1px; width: 23px; height: 23px;
+    border-radius: 50%; background: var(--accent-soft); color: var(--machine); font-size: 12px;
+    font-weight: 700; display: grid; place-items: center; }
+  .steps li.j::before { background: color-mix(in srgb, var(--judge) 20%, var(--surface)); color: var(--judge); }
+  .steps b { font-weight: 700; }
+  .steps .f { color: var(--muted); font-size: 12.5px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .verdict { border-left: 3px solid var(--accent); padding: 2px 0 2px 16px; margin-top: 18px;
+    font-size: 16px; }
+  .note { background: color-mix(in srgb, var(--warn) 10%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--warn) 45%, var(--surface));
+    border-radius: 8px; padding: 12px 16px; margin-top: 18px; font-size: 14.5px; }
+  footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--grid);
+    font-size: 13px; color: var(--muted); }
+
+  .memobody h2 { font-size: 19px; }
+  .memobody table { font-size: 13px; }
+  .memobody blockquote { margin: 14px 0 0; padding: 2px 0 2px 16px;
+    border-left: 3px solid var(--baseline); color: var(--ink-2); }
+  .memobody pre { background: color-mix(in srgb, var(--muted) 12%, var(--surface));
+    border: 1px solid var(--ring); border-radius: 8px; padding: 12px 14px; overflow-x: auto;
+    font-size: 12.5px; line-height: 1.5; }
+  .memobody pre code { background: none; padding: 0; }
+  .stamp { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+  .stamp b { color: var(--ink-2); }
+  .verdict-tag { display: inline-block; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.06em; font-weight: 700; border: 1px solid var(--baseline);
+    border-radius: 999px; padding: 2px 9px; }
+  .rs { font-size: 12px; border: 1px solid var(--baseline); border-radius: 999px;
+    padding: 1px 8px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="kicker">Memo &middot; S&amp;P 1500 Ranker</p>
+    <a class="home" href="memos.html">&larr; All memos</a>
+  </header>
+
+  <h1>AMG &mdash; Affiliated Managers Group</h1>
+  <p class="standfirst">Written Sept. 1, 2026. The verdict was
+    <span class="verdict-tag">wait</span> and the name reads
+    <code class="rs">research</code> on tonight's table.</p>
+  <p class="stamp"><b>As of:</b> Sept. 1, 2026 &middot; 2 days old &middot; reviewed Sept. 2, 2026 by claude &middot;
+    a memo is a point-in-time judgment and does not update itself the way the nightly table does.</p>
+
+
+
+  <div class="note"><p><b>What this is not.</b> The ledger behind this site holds 309 decisions, collapsed from 2,306 name-nights, and none of them has ever been actionable. One row is one decision, not one appearance. A company suggested on 40 consecutive nights is counted once, dated from the first of them, so a name that keeps qualifying cannot inflate the sample. The cohorts above are the other view of the same calls and do repeat a name every night, by design. The actionable date is the first night every condition of the actionable-suggestion contract held at once. It reads empty for a name that has never been actionable, and for every night frozen before the contract existed on Aug. 23, 2026. The engine's current rules are forward-only from Aug. 16, 2026, so the record is days long, not years. This is a personal research tool, not licensed financial advice, and nothing here is a recommendation to buy or sell any security.</p></div>
+
+  <div class="memobody">
+<h2>0. Signals</h2>
+<p>Engine coverage for AMG, checked across every governed surface by <code>python
+scripts/memo_context.py AMG</code> on 2026-09-02T23:08:08Z. This block is generated;
+paste it verbatim and do not edit it by hand.</p>
+<pre><code>focused signals       not covered   102 names, as of 2026-09-02
+                      build/signals.json - The narrower set the nightly engine scores in full, with estimate families layered on.
+full universe         COVERED       1,422 names, as of 2026-09-02
+                      build/universe.json - The filings-only engine over every S&amp;P 1500 name with an EDGAR history.
+committed universe    COVERED       1,422 names, as of 2026-09-02
+                      reports/universe.json - The committed fallback for the universe run, stored compact.
+cross-sectional rank  COVERED       1,341 names, as of 2026-09-02
+                      build/rank.json - A factor ranking, not own-history, and possibly an older window.
+</code></pre>
+<p>Memo mode is <strong>covered</strong>: the engine has output for AMG in
+build/universe.json, and section 3 must choose its entry from the machine band
+below rather than building a new one.</p>
+<p>Where the factor row disagrees with the engine, the engine wins:</p>
+<ul>
+<li>
+<p>The cross-sectional row in build/rank.json was generated at
+  2026-09-02T22:07:10+00:00, before the engine result at
+  2026-09-02T22:14:34+00:00, so it never supersedes it.</p>
+<p>ticker AMG | close 356.47 | as_of 2026-09-02 | next_earnings none (days_to_earnings none)
+per share:  eps_ttm 28.57, sales 84.39, fcf 39.59, book 112.94
+valuation:  cheap_pct 95.5 (basis pe+pb; by basis pe 43.1, pb 95.5; cheap_thin false)
+            cheapness_source earned, eps_ttm_flag none, ttm_base_spikes none
+            pe_ttm 12.50, pe_fwd none, ev_ebitda none, p_book none
+            fair_band low 184.09 / mid 238.30 / high 310.58 on bases pe, pb
+            fair_band reliability ok, upside_to_low_rung -48.4%, caveats none
+            fair_band_by_basis {"pe": {"low": 265.42, "mid": 397.12, "high": 565.11}, "ps": {"low": 171.32, "mid": 243.9, "high": 288.63}, "pfcf": {"low": 193.98, "mid": 253.36, "high": 324.22}, "pb": {"low": 184.09, "mid": 238.3, "high": 310.58}}
+            implied_eps_growth at_hurdle_median_exit 7.8%, at_hurdle_p20_exit 12.2%, at_hurdle_20x_exit 4.0%
+            implied_eps_growth fwd_at_hurdle_20x_exit none, tier quality_compounder, hurdle_used 9.0%, eps_base_ttm 28.57
+            compare trailing_5y_eps_cagr 23.4%, consensus_eps_growth_1y none, consensus_ltg none
+            replay episodes_closed 3, hit_rate_vs_spy 33.0%, median_excess_12m -16.3%, worst_excess_12m -27.5%
+            replay open_episodes 0, open_median_excess_to_date none, median_worst_dd_12m -31.6%
+quality:    gate pass, hard none, soft none, unknown stock-based compensation sign (negative TTM value; adjusted FCF withheld), gross margin
+            fcf_conversion 1.24, net_debt_to_ebitda none, share_count_chg_3y -36.1%, sbc_to_fcf none
+            sbc_adjusted_fcf withheld: TTM SBC is negative, so the engine will not net it. Do NOT subtract it by hand - cite reported fcf_ttm 1,064,900,000.00 and say the SBC sign is unverified, or read the cash-flow statement and show it
+            gross_margin none against none three years ago
+economics:  roic none against none three years ago, fundable_growth 10.6%, needed_at_hurdle_20x 4.0%, growth_gap -6.7%
+fund. mom.: rev_yoy 29.9%, rev_accel true, rev_decel_2q false, eps_ttm_yoy 109.2%
+            fwd_eps_rev_30d none, fwd_eps_rev_90d none, analyst_up_minus_down_30d none, rec_mean none against none three months ago
+trend:      dd_52w -7.0%, dist_200dma 13.9%, rs_spy_6m 2.6%, sector_dd_52w -1.1%, knife false, turned true
+sentiment:  short_pct_float none, insider_net_count_6m none, target_upside none
+scores:     buy_score 26.0, cheap false, bases 2, candidate false, tier none
+            candidate_reasons none
+            candidate_blockers none
+            replay_warning replay WARNING: 3 past entries into the &lt;=30th-pct zone, only 33% beat SPY over 12m (median excess -16%) — the de-rating may be secular; the memo must say why this time differs
+data notes: stale EDGAR series: operating_income (last 2017-12-31), no Yahoo forward-EPS revision history (30/90d revisions unavailable)
+portfolio:  held false (position size never appears in a memo)</p>
+</li>
+</ul>
+<!-- memo-context: generated block, do not edit by hand. Regenerate with `python scripts/memo_context.py AMG`. -->
+
+<p>```json memo-context
+{
+  "checksum": "sha256:c55c0776df3fb9b60b5bc550930a8fb478a5227930eb3decbba2904124e6a032",
+  "coverage": [
+    {
+      "as_of": "2026-09-02",
+      "covers_ticker": false,
+      "exists": true,
+      "generated_at": "2026-09-02T22:15:25+00:00",
+      "kind": "signals_focused",
+      "label": "focused signals",
+      "names": 102,
+      "note": "The narrower set the nightly engine scores in full, with estimate families layered on.",
+      "path": "build/signals.json"
+    },
+    {
+      "as_of": "2026-09-02",
+      "covers_ticker": true,
+      "exists": true,
+      "generated_at": "2026-09-02T22:14:34+00:00",
+      "kind": "universe_full",
+      "label": "full universe",
+      "names": 1422,
+      "note": "The filings-only engine over every S&amp;P 1500 name with an EDGAR history.",
+      "path": "build/universe.json"
+    },
+    {
+      "as_of": "2026-09-02",
+      "covers_ticker": true,
+      "exists": true,
+      "generated_at": "2026-09-02T22:14:34+00:00",
+      "kind": "universe_committed",
+      "label": "committed universe",
+      "names": 1422,
+      "note": "The committed fallback for the universe run, stored compact.",
+      "path": "reports/universe.json"
+    },
+    {
+      "as_of": null,
+      "covers_ticker": true,
+      "exists": true,
+      "generated_at": "2026-09-02T22:07:10+00:00",
+      "kind": "rank_cross_sectional",
+      "label": "cross-sectional rank",
+      "names": 1341,
+      "note": "A factor ranking, not own-history, and possibly an older window.",
+      "path": "build/rank.json"
+    }
+  ],
+  "data_as_of": "2026-09-02",
+  "engine_coverage": [
+    "build/universe.json",
+    "reports/universe.json"
+  ],
+  "generated_at": "2026-09-02T23:08:08Z",
+  "held": false,
+  "instruction_locks": [
+    {
+      "commit": "0bf61dbf22e00df68b4a65693e6b2851205cd8fe",
+      "path": "research/MEMO-TEMPLATE.md",
+      "present": true,
+      "sha256": "8f03815494bf8592f5e20b586399c4e5c8f845d31b2b7a403eafcd20ac24c9b7",
+      "uncommitted": false
+    },
+    {
+      "commit": "412f8966b94cd408739f59d2ae0500d1a9dca9bf",
+      "path": ".claude/agents/memo-writer.md",
+      "present": true,
+      "sha256": "d94a49d8e206c1615cc6f017853d7305930d2550b43dbb71737026d2a6e03b2d",
+      "uncommitted": false
+    },
+    {
+      "commit": "412f8966b94cd408739f59d2ae0500d1a9dca9bf",
+      "path": "scripts/memo_context.py",
+      "present": true,
+      "sha256": "8dc37786b895bd9053f6ec73a4bf884416d31a7eda8d6b9d43ca160336e7ba17",
+      "uncommitted": false
+    }
+  ],
+  "mode": "covered",
+  "mode_derived": "covered",
+  "mode_forced": false,
+  "primary_kind": "universe_full",
+  "primary_source": "build/universe.json",
+  "rank_conflicts": [
+    "The cross-sectional row in build/rank.json was generated at 2026-09-02T22:07:10+00:00, before the engine result at 2026-09-02T22:14:34+00:00, so it never supersedes it."
+  ],
+  "schema": "memo-context/1",
+  "spot": {
+    "as_of": "2026-09-02",
+    "close": 356.47,
+    "source": "build/universe.json"
+  },
+  "ticker": "AMG"
+}</p>
+<pre><code>
+The memo does not override the blended band. The engine says AMG is not cheap: spot is 15% above the $310.58 band high, `cheap` and `candidate` are false, and the 95.5 percentile means valuation is near the expensive end of its own history. The replay warning describes low-valuation entries that do not apply at today's price, so it is context rather than evidence for this verdict.
+
+## 1. What changed — why is the multiple where it is?
+
+On July 30, AMG reported Q2 diluted EPS of $6.95 and economic EPS of $8.29, up 54% year over year. AUM reached $942.4 billion and quarterly net client inflows were $12.9 billion. Private markets and liquid alternatives added $28.9 billion, while equities lost $14.5 billion and multi-asset and fixed income lost $1.5 billion. Aggregate fees rose 42% in Q2. The filing attributes $437.5 million, or 37 percentage points, of that increase to asset-based fees and $58.7 million, or five percentage points, to performance-based fees. First-half aggregate fees rose 46% to $3.57 billion; a derived annualized fee rate increased about 11.7 basis points, but that is memo arithmetic, not a company-reported metric. TTM GAAP earnings also include about $100 million after tax from Peppertree in Q3 2025, $183.3 million from Comvest and Montrusco in Q4 2025 and $11.0 million from myCIO in Q2 2026. These disposal gains total about $294 million, or 34% of calculated TTM controlling net income of $856.7 million.
+
+## 2. Is the impairment real?
+
+The impairment case is mixed. Alternatives produced $57.8 billion of first-half inflows, but about $69 billion of the $171 billion increase in AUM over 12 months came from new Affiliates. AMG spent $242.3 million on Affiliate investments, so growth reflects organic flows and purchased assets. Differentiated long-only equities had $14.5 billion of Q2 outflows.
+
+AMG reports one segment, but its disclosed Affiliate groups have different economics. Consolidated Affiliate revenue was $1.19 billion in the first half, up 20%. Equity-method income was $272.2 million, up 93%, while related revenue rose 64%. Equity-method pre-tax earnings of $343.0 million were most of total pre-tax income of $500.2 million. About 39% of equity-method AUM could earn performance fees, versus 12% at consolidated Affiliates. The alternatives-heavy minority interests therefore drive more earnings variability than the consolidated group.
+
+Reported TTM GAAP EPS is $28.57. Removing roughly 34% attributable to disposal gains gives a normalized GAAP base near $18.75. TTM economic EPS of $32.10 is a different basis: it excludes transaction gains, intangible amortization, related deferred taxes and Affiliate equity items. A $30.00 economic-EPS base applies a 7% haircut for performance-fee normalization. Management provides no quantitative EPS guidance, and consensus growth estimates could not be verified.
+
+Reported TTM free cash flow is $1.065 billion, but first-half operating cash flow includes $464.5 million of distributions from equity-method investments against $272.2 million of booked equity-method income. That $192.3 million excess is cash, but its recurrence depends on Affiliate distributions. A broader reinvestment view also subtracts $242.3 million of first-half Affiliate investments. The engine withholds SBC-adjusted FCF because its TTM SBC sign is unverified. The filing identifies only $17.1 million of first-half share-based compensation, versus $66.7 million of Affiliate equity expense; they are economically distinct. AMG deployed $936.1 million across repurchases, convertible repayments and conversion payments, and $56.7 million of Affiliate equity purchases, while adding $650 million of net revolver debt. Net debt was about $2.59 billion, or 2.05x annualized first-half adjusted EBITDA attributable to controlling interests.
+
+T. Rowe Price at about 10.9x GAAP TTM earnings is a secondary traditional-manager reference. It can anchor only the normalized-GAAP table, not an economic-EPS valuation. Current alternatives-peer multiples could not be verified. The engine's 7.8% required growth uses reported GAAP EPS and its own historical median; the economic and normalized-GAAP tables below are separate diagnostics.
+
+## 3. Verdict and entry
+
+**wait.** Spot is above the engine band, and neither earnings basis supports an entry without stronger alternatives growth. Use the Q3 2026 report, expected in November 2026, as the event gate; the exact date is unverified. The quality-compounder tier uses a 9% hurdle.
+
+Economic EPS, kept consistently non-GAAP:
+
+| Case | Growth | exit P/E | EPS in 5y | Price | Total | Annualized | Growth needed at 9.0% |
+|---|---|---|---|---|---|---|---|
+| Bear | -4.0% | 9x | 24.46 | $220.15 | -38.2% | -9.2% | 15.2% |
+| Base | 5.0% | 12x | 38.29 | $459.46 | 28.9% | 5.2% | 8.8% |
+| Bull | 10.0% | 15x | 48.32 | $724.73 | 103.3% | 15.2% | 4.0% |
+
+At 12x, spot requires 8.8% growth, above the 5% base assumption. Spot implies between base and bull.
+
+Normalized GAAP EPS cross-check:
+
+| Case | Growth | exit P/E | EPS in 5y | Price | Total | Annualized | Growth needed at 9.0% |
+|---|---|---|---|---|---|---|---|
+| Bear | -3.0% | 9x | 16.10 | $144.91 | -59.4% | -16.5% | 26.6% |
+| Base | 6.0% | 12x | 25.09 | $301.10 | -15.5% | -3.3% | 19.5% |
+| Bull | 11.0% | 15x | 31.59 | $473.92 | 33.0% | 5.9% | 14.3% |
+
+At 12x, spot requires 19.5% growth, above the 6% base assumption. Spot exceeds the bull case.
+
+## 4. Kill criteria — pre-committed, falsifiable, dated
+
+- Alternatives net client cash flow below $5 billion for two consecutive quarters, or negative in any quarter without a realizations exception, triggers a re-underwrite. Check each quarterly report starting with Q3 2026 in November 2026.
+- The Equities line within Differentiated Long-Only outflows worse than $18 billion in one quarter, or $30 billion over two quarters, triggers a re-underwrite. Escalate to pass only if total-company net flows are also negative. Check quarterly starting with Q3 2026 in November 2026.
+- A disclosed year-over-year decrease in performance-based fees worse than $100 million for two consecutive quarters triggers a re-underwrite, checked quarterly starting with Q3 2026 in November 2026. Trailing-four-quarter GAAP EPS excluding after-tax Affiliate transaction gains below $20 also triggers a re-underwrite.
+- Net debt to adjusted EBITDA attributable to the controlling interest above 2.75x, or gross debt above $3.5 billion, triggers a re-underwrite at any quarterly report starting with Q3 2026 in November 2026.
+
+```json kill-criteria
+[
+  {&quot;metric&quot;:&quot;private-markets plus liquid-alternative net client cash flow&quot;,&quot;condition&quot;:&quot;below $5 billion for two consecutive quarters or below $0 in any quarter&quot;,&quot;check_event&quot;:&quot;Each quarterly report starting with Q3 2026 earnings, November 2026&quot;,&quot;response&quot;:&quot;re-underwrite&quot;,&quot;benign_exceptions&quot;:[&quot;realizations and distributions exceeded gross fundraising&quot;]},
+  {&quot;metric&quot;:&quot;Equities line within Differentiated Long-Only net client cash flow&quot;,&quot;condition&quot;:&quot;outflows worse than $18 billion in one quarter or $30 billion over two quarters; pass only if total-company net flows are also negative&quot;,&quot;check_event&quot;:&quot;Each quarterly report starting with Q3 2026 earnings, November 2026&quot;,&quot;response&quot;:&quot;re-underwrite or pass by tier&quot;,&quot;benign_exceptions&quot;:[&quot;A mandate transition creates timing noise that reverses in the following quarter&quot;]},
+  {&quot;metric&quot;:&quot;disclosed dollar change in performance-based fees&quot;,&quot;condition&quot;:&quot;year-over-year decrease worse than $100 million for two consecutive quarters&quot;,&quot;check_event&quot;:&quot;Each quarterly report starting with Q3 2026 earnings, November 2026&quot;,&quot;response&quot;:&quot;re-underwrite&quot;,&quot;benign_exceptions&quot;:[&quot;A disclosed contractual timing shift reverses within one quarter&quot;]},
+  {&quot;metric&quot;:&quot;trailing-four-quarter GAAP EPS excluding after-tax Affiliate transaction gains&quot;,&quot;operator&quot;:&quot;less_than&quot;,&quot;threshold&quot;:&quot;$20.00&quot;,&quot;check_event&quot;:&quot;Each quarterly report starting with Q3 2026 earnings, November 2026&quot;,&quot;response&quot;:&quot;re-underwrite&quot;,&quot;benign_exceptions&quot;:[&quot;A disclosed tax item temporarily depresses GAAP EPS and reverses within one quarter&quot;]},
+  {&quot;metric&quot;:&quot;net debt to adjusted EBITDA attributable to the controlling interest or gross debt&quot;,&quot;condition&quot;:&quot;net leverage exceeds 2.75x or gross debt exceeds $3.5 billion&quot;,&quot;check_event&quot;:&quot;Each quarterly report starting with Q3 2026 earnings, November 2026&quot;,&quot;response&quot;:&quot;re-underwrite&quot;,&quot;benign_exceptions&quot;:[&quot;Debt temporarily funds an announced transaction that closes with committed asset-sale proceeds in the same quarter&quot;]}
+]
+</code></pre>
+<h2>5. Sources</h2>
+<ul>
+<li>AMG Q2 2026 earnings release, July 30, 2026: https://www.sec.gov/Archives/edgar/data/1004434/000162828026050793/amgq22026ex991.htm</li>
+<li>AMG Form 10-Q for quarter ended June 30, 2026, filed August 7, 2026: https://www.sec.gov/Archives/edgar/data/1004434/000162828026054930/amg-20260630.htm</li>
+<li>AMG Q3 2025 earnings release, Nov. 3, 2025: https://www.sec.gov/Archives/edgar/data/1004434/000162828025047923/amgq32025ex991.htm</li>
+<li>AMG Q4 and FY2025 earnings release, Feb. 12, 2026: https://www.sec.gov/Archives/edgar/data/1004434/000162828026007464/amgq42025ex991.htm</li>
+<li>T. Rowe Price TTM P/E and price, secondary market data, September 1, 2026: finance market feed, 10.9x.</li>
+</ul>
+  </div>
+
+  <footer>
+    <p>The personal half of this memo &mdash; position size, portfolio overlap, tax lots &mdash; is
+      fenced out of the published text by construction and is not on this page. What a name is worth
+      is public; what one investor should own is not.</p>
+    <p class="methodlink"><a href="memos.html">&larr; All memos</a> &middot;
+      <a href="./">The Ranker</a> &middot; <a href="approach.html">How this works</a></p>
+  </footer>
+
+</div>
+</body>
+</html>

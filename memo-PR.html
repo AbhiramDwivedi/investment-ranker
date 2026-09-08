@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PR memo &mdash; Permian Resources</title>
+<meta name="description" content="Permian Resources (PR): the research memo behind
+  its row on the S&amp;P 1500 Ranker, written Sept. 4, 2026.">
+<link rel="canonical" href="https://abhiramdwivedi.github.io/investment-ranker/memo-PR.html">
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --baseline: #c3c2b7; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --accent-soft: #cde2fb;
+    --machine: #1c5cab; --judge: #b5462b; --warn: #fab219;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+      --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+      --accent: #6da7ec; --accent-soft: #184f95;
+      --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+    --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+    --accent: #6da7ec; --accent-soft: #184f95;
+    --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--page); color: var(--ink); margin: 0; line-height: 1.6;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 16px; }
+  .wrap { max-width: 78ch; margin: 0 auto; padding: 28px 24px 72px; }
+  .masthead { display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+    flex-wrap: wrap; border-bottom: 2px solid var(--ink); padding-bottom: 14px; }
+  .masthead .home { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    font-weight: 650; color: var(--accent); text-decoration: none; }
+  .masthead .home:hover { text-decoration: underline; }
+  h1 { font-size: 30px; font-weight: 750; letter-spacing: -0.015em; margin: 26px 0 0; }
+  .standfirst { font-size: 17px; color: var(--ink-2); margin: 10px 0 0; }
+  .kicker { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); font-weight: 650; margin: 0; }
+  h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; margin: 40px 0 0;
+    padding-top: 14px; border-top: 1px solid var(--grid); }
+  h3 { font-size: 15.5px; font-weight: 700; margin: 24px 0 0; }
+  p { margin: 12px 0 0; }
+  ul { margin: 12px 0 0; padding-left: 20px; }
+  li { margin: 7px 0; }
+  a { color: var(--accent); }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.88em;
+    background: color-mix(in srgb, var(--muted) 14%, var(--surface)); padding: 1px 5px; border-radius: 4px; }
+  .lede { font-size: 17px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 14px;
+    font-variant-numeric: tabular-nums; }
+  caption { caption-side: bottom; text-align: left; font-size: 12px; color: var(--muted);
+    margin-top: 8px; line-height: 1.5; }
+  th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--muted); font-weight: 650; padding: 0 10px 7px 0; border-bottom: 1px solid var(--baseline); }
+  td { padding: 8px 10px 8px 0; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  td.n, th.n { text-align: right; padding-right: 0; }
+  tr.hi td { background: color-mix(in srgb, var(--accent) 8%, transparent); font-weight: 600; }
+  .scroll { overflow-x: auto; }
+  .rule { background: var(--surface); border: 1px solid var(--ring); border-radius: 8px;
+    padding: 16px 18px; margin-top: 16px; }
+  .rule ul { list-style: none; padding-left: 0; }
+  .rule li { display: grid; grid-template-columns: 13ch 1fr; gap: 12px; align-items: baseline;
+    padding: 7px 0; border-bottom: 1px solid var(--grid); font-size: 14.5px; }
+  .rule li:last-child { border-bottom: 0; }
+  .rule li b { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12.5px; color: var(--machine); font-weight: 650; }
+  .steps { counter-reset: s; list-style: none; padding-left: 0; }
+  .steps li { counter-increment: s; position: relative; padding-left: 34px; margin: 14px 0; font-size: 15px; }
+  .steps li::before { content: counter(s); position: absolute; left: 0; top: 1px; width: 23px; height: 23px;
+    border-radius: 50%; background: var(--accent-soft); color: var(--machine); font-size: 12px;
+    font-weight: 700; display: grid; place-items: center; }
+  .steps li.j::before { background: color-mix(in srgb, var(--judge) 20%, var(--surface)); color: var(--judge); }
+  .steps b { font-weight: 700; }
+  .steps .f { color: var(--muted); font-size: 12.5px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .verdict { border-left: 3px solid var(--accent); padding: 2px 0 2px 16px; margin-top: 18px;
+    font-size: 16px; }
+  .note { background: color-mix(in srgb, var(--warn) 10%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--warn) 45%, var(--surface));
+    border-radius: 8px; padding: 12px 16px; margin-top: 18px; font-size: 14.5px; }
+  footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--grid);
+    font-size: 13px; color: var(--muted); }
+
+  .memobody h2 { font-size: 19px; }
+  .memobody table { font-size: 13px; }
+  .memobody blockquote { margin: 14px 0 0; padding: 2px 0 2px 16px;
+    border-left: 3px solid var(--baseline); color: var(--ink-2); }
+  .memobody pre { background: color-mix(in srgb, var(--muted) 12%, var(--surface));
+    border: 1px solid var(--ring); border-radius: 8px; padding: 12px 14px; overflow-x: auto;
+    font-size: 12.5px; line-height: 1.5; }
+  .memobody pre code { background: none; padding: 0; }
+  .stamp { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+  .stamp b { color: var(--ink-2); }
+  .verdict-tag { display: inline-block; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.06em; font-weight: 700; border: 1px solid var(--baseline);
+    border-radius: 999px; padding: 2px 9px; }
+  .rs { font-size: 12px; border: 1px solid var(--baseline); border-radius: 999px;
+    padding: 1px 8px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="kicker">Memo &middot; S&amp;P 1500 Ranker</p>
+    <a class="home" href="memos.html">&larr; All memos</a>
+  </header>
+
+  <h1>PR &mdash; Permian Resources</h1>
+  <p class="standfirst">Written Sept. 4, 2026. The verdict was
+    <span class="verdict-tag">pass</span> and the name reads
+    <code class="rs">research</code> on tonight's table.</p>
+  <p class="stamp"><b>As of:</b> Sept. 4, 2026 &middot; 4 days old &middot; reviewed Sept. 8, 2026 by claude &middot;
+    a memo is a point-in-time judgment and does not update itself the way the nightly table does.</p>
+
+
+
+  <div class="note"><p><b>What this is not.</b> The ledger behind this site holds 313 decisions, collapsed from 2,870 name-nights, and none of them has ever been actionable. One row is one decision, not one appearance. A company suggested on 40 consecutive nights is counted once, dated from the first of them, so a name that keeps qualifying cannot inflate the sample. The cohorts above are the other view of the same calls and do repeat a name every night, by design. The actionable date is the first night every condition of the actionable-suggestion contract held at once. It reads empty for a name that has never been actionable, and for every night frozen before the contract existed on Aug. 23, 2026. The engine's current rules are forward-only from Aug. 16, 2026, so the record is days long, not years. This is a personal research tool, not licensed financial advice, and nothing here is a recommendation to buy or sell any security.</p></div>
+
+  <div class="memobody">
+<p>Revised 2026-09-08 addressing research/memos/PR-review-2026-09-08.md.</p>
+<h2>0. Signals</h2>
+<p>Engine coverage for PR, checked across every governed surface by <code>python
+scripts/memo_context.py PR</code> on 2026-09-08T04:31:45Z. This block is generated;
+paste it verbatim and do not edit it by hand.</p>
+<pre><code>focused signals       not covered   103 names, as of 2026-09-07
+                      build/signals.json - The narrower set the nightly engine scores in full, with estimate families layered on.
+full universe         COVERED       1,421 names, as of 2026-09-04
+                      build/universe.json - The filings-only engine over every S&amp;P 1500 name with an EDGAR history.
+committed universe    COVERED       1,421 names, as of 2026-09-04
+                      reports/universe.json - The committed fallback for the universe run, stored compact.
+cross-sectional rank  COVERED       1,340 names, as of 2026-09-07
+                      build/rank.json - A factor ranking, not own-history, and possibly an older window.
+</code></pre>
+<p>Memo mode is <strong>covered</strong>: the engine has output for PR in build/universe.json,
+and section 3 must choose its entry from the machine band below rather than
+building a new one.</p>
+<p>Where the factor row disagrees with the engine, the engine wins:</p>
+<ul>
+<li>
+<p>The cross-sectional row in build/rank.json was generated at
+  2026-09-07T22:13:10+00:00, before the engine result at
+  2026-09-07T22:22:20+00:00, so it never supersedes it.</p>
+<p>ticker PR | close 23.36 | as_of 2026-09-04 | next_earnings none (days_to_earnings none)
+per share:  eps_ttm 1.51, sales 6.71, fcf 4.67, book 14.04
+valuation:  cheap_pct 77.9 (basis pe+ps+pfcf; by basis pe 69.8, ps 99.4, pfcf 77.9; cheap_thin false)
+            cheapness_source mixed, eps_ttm_flag none, ttm_base_spikes none
+            pe_ttm 15.50, pe_fwd none, ev_ebitda none, p_book none
+            fair_band low 10.41 / mid 14.42 / high 24.64 on bases pe, ps, pfcf
+            fair_band reliability ok, upside_to_low_rung -55.4%, caveats none
+            fair_band_by_basis {"pe": {"low": 12.29, "mid": 19.37, "high": 28.28}, "ps": {"low": 9.32, "mid": 13.22, "high": 16.91}, "pfcf": {"low": 10.41, "mid": 14.42, "high": 24.64}, "pb": {"low": 6.88, "mid": 15.02, "high": 21.48}}
+            implied_eps_growth at_hurdle_median_exit 7.9%, at_hurdle_p20_exit 12.0%, at_hurdle_20x_exit 3.8%
+            implied_eps_growth fwd_at_hurdle_20x_exit none, tier quality_compounder, hurdle_used 9.0%, eps_base_ttm 1.51
+            compare trailing_5y_eps_cagr none, consensus_eps_growth_1y none, consensus_ltg none
+            replay episodes_closed 2, hit_rate_vs_spy 50.0%, median_excess_12m -0.7%, worst_excess_12m -21.7%
+            replay open_episodes 0, open_median_excess_to_date none, median_worst_dd_12m -21.1%
+quality:    gate fail, hard share count is up 143% over three years, soft none, unknown gross margin
+            fcf_conversion 3.23, net_debt_to_ebitda 1.39, share_count_chg_3y 143.0%, sbc_to_fcf 2.0%
+            sbc_adjusted_fcf 3,922,776,000.00 (20.1% of market cap) against reported fcf_ttm 3,991,577,000.00
+            gross_margin none against none three years ago
+economics:  roic 10.9% against 14.6% three years ago, fundable_growth 6.5%, needed_at_hurdle_20x 3.8%, growth_gap -2.6%
+fund. mom.: rev_yoy 55.1%, rev_accel true, rev_decel_2q false, eps_ttm_yoy -1.9%
+            fwd_eps_rev_30d none, fwd_eps_rev_90d none, analyst_up_minus_down_30d none, rec_mean none against none three months ago
+trend:      dd_52w -2.1%, dist_200dma 26.7%, rs_spy_6m 10.9%, sector_dd_52w -1.6%, knife false, turned true
+sentiment:  short_pct_float none, insider_net_count_6m none, target_upside none
+scores:     buy_score 11.0, cheap false, bases 3, candidate false, tier none
+            candidate_reasons none
+            candidate_blockers none
+            replay_warning none
+data notes: no Yahoo forward-EPS revision history (30/90d revisions unavailable)
+portfolio:  held false (position size never appears in a memo)</p>
+</li>
+</ul>
+<!-- memo-context: generated block, do not edit by hand. Regenerate with `python scripts/memo_context.py PR`. -->
+
+<p>```json memo-context
+{
+  "checksum": "sha256:1e94ad3bfa5e1fbce6ba38c25c425867ba50c691853a21d51e01ea3ce48a02a7",
+  "coverage": [
+    {
+      "as_of": "2026-09-07",
+      "covers_ticker": false,
+      "exists": true,
+      "generated_at": "2026-09-07T22:23:10+00:00",
+      "kind": "signals_focused",
+      "label": "focused signals",
+      "names": 103,
+      "note": "The narrower set the nightly engine scores in full, with estimate families layered on.",
+      "path": "build/signals.json"
+    },
+    {
+      "as_of": "2026-09-04",
+      "covers_ticker": true,
+      "exists": true,
+      "generated_at": "2026-09-07T22:22:20+00:00",
+      "kind": "universe_full",
+      "label": "full universe",
+      "names": 1421,
+      "note": "The filings-only engine over every S&amp;P 1500 name with an EDGAR history.",
+      "path": "build/universe.json"
+    },
+    {
+      "as_of": "2026-09-04",
+      "covers_ticker": true,
+      "exists": true,
+      "generated_at": "2026-09-07T22:22:20+00:00",
+      "kind": "universe_committed",
+      "label": "committed universe",
+      "names": 1421,
+      "note": "The committed fallback for the universe run, stored compact.",
+      "path": "reports/universe.json"
+    },
+    {
+      "as_of": null,
+      "covers_ticker": true,
+      "exists": true,
+      "generated_at": "2026-09-07T22:13:10+00:00",
+      "kind": "rank_cross_sectional",
+      "label": "cross-sectional rank",
+      "names": 1340,
+      "note": "A factor ranking, not own-history, and possibly an older window.",
+      "path": "build/rank.json"
+    }
+  ],
+  "data_as_of": "2026-09-04",
+  "engine_coverage": [
+    "build/universe.json",
+    "reports/universe.json"
+  ],
+  "generated_at": "2026-09-08T04:31:45Z",
+  "held": false,
+  "instruction_locks": [
+    {
+      "commit": "0bf61dbf22e00df68b4a65693e6b2851205cd8fe",
+      "path": "research/MEMO-TEMPLATE.md",
+      "present": true,
+      "sha256": "8f03815494bf8592f5e20b586399c4e5c8f845d31b2b7a403eafcd20ac24c9b7",
+      "uncommitted": false
+    },
+    {
+      "commit": "412f8966b94cd408739f59d2ae0500d1a9dca9bf",
+      "path": ".claude/agents/memo-writer.md",
+      "present": true,
+      "sha256": "d94a49d8e206c1615cc6f017853d7305930d2550b43dbb71737026d2a6e03b2d",
+      "uncommitted": false
+    },
+    {
+      "commit": "412f8966b94cd408739f59d2ae0500d1a9dca9bf",
+      "path": "scripts/memo_context.py",
+      "present": true,
+      "sha256": "8dc37786b895bd9053f6ec73a4bf884416d31a7eda8d6b9d43ca160336e7ba17",
+      "uncommitted": false
+    }
+  ],
+  "mode": "covered",
+  "mode_derived": "covered",
+  "mode_forced": false,
+  "primary_kind": "universe_full",
+  "primary_source": "build/universe.json",
+  "rank_conflicts": [
+    "The cross-sectional row in build/rank.json was generated at 2026-09-07T22:13:10+00:00, before the engine result at 2026-09-07T22:22:20+00:00, so it never supersedes it."
+  ],
+  "schema": "memo-context/1",
+  "spot": {
+    "as_of": "2026-09-04",
+    "close": 23.36,
+    "source": "build/universe.json"
+  },
+  "ticker": "PR"
+}</p>
+<pre><code>
+This memo disagrees with two things section 0 states as-read. First, `tier
+quality_compounder` is the engine's software default for every energy name
+checked (also assigned to MTDR, FANG, DVN, OVV, SM, CHRD, APA, EOG, COP and
+MUR), not a considered classification; section 2 argues for
+`cyclical_or_single_product` instead. Second, `fair_band`'s dominant rung is
+built on `fcf_ttm`, and that field is TTM operating cash flow with no capital
+expenditure deducted, not free cash flow -- section 2 reconciles it against
+the filings. It agrees with section 0 that the 143% three-year share increase
+is a red flag worth resolving, and resolves it in section 2.
+
+## 1. What changed — why is the multiple where it is? (≤ 200 words)
+
+On Aug. 5, 2026, Permian Resources reported second-quarter oil production of 198,071 barrels per day, up 3% sequentially, and raised full-year oil guidance to a 199,000-barrel-per-day midpoint while widening the cash capital-spending range to $1.9 billion to $2.0 billion. Total company production fell to 376,409 barrels of oil equivalent per day from 385,118 a year earlier, entirely a natural-gas story: NGL volumes fell 12% and gas volumes fell 17% as the company curtailed high-gas wells during a Waha price collapse that made second-quarter natural gas sales negative $120.7 million (negative $139.2 million for the six months). The 10-Q filed Aug. 6 showed why the quarter's earnings looked so strong: oil realized $97.81 per barrel, and a $256.6 million noncash derivative gain helped lift GAAP diluted EPS to $0.93 versus adjusted EPS of $0.69. Year to date the company also closed about 190 ground-game transactions for roughly $530 million and, separately, a $520.0 million Ward County bolt-on that closed July 31, after quarter-end -- together the $1.05 billion figure often quoted for the half. This is stronger oil pricing and a larger acquisition program, not a new impairment. The shares sit only 2.1% below their 52-week high.
+
+## 2. Is the impairment real? (the memo's only real job, ≤ 400 words)
+
+There is no impairment to defend; the question is whether today's price already pays for a cyclical peak. One segment, so no blended-multiple problem to decompose.
+
+**Oil economics.** First-half oil volume rose 11% and realized oil price rose 27%, lifting oil and gas sales 26% -- but total volume fell 2.3% (376,409 Boe/d versus 385,118), so section 0's rev_yoy 55.1% is a price artifact, not production growth. Six-month LOE held flat at $5.36/Boe; the Q2 rise to $5.55/Boe is a curtailment-shrunk denominator, not cost inflation (absolute LOE flat: $190.0mm versus $188.0mm). H1 development capital ($987.7mm) was funded entirely from operating cash flow.
+
+**Gas and Ward County.** Natural gas sales were negative $120.7 million in Q2, negative $139.2 million for the half; curtailment and firm transport mitigate Waha exposure, not eliminate it. The $1.05 billion year-to-date &quot;ground game&quot; blends about $530 million of true small-deal activity (190 deals, no existing production by design) with a separate $520.0 million Ward County bolt-on -- roughly half the dollars in one deal. H1 depletion of $14.37/Boe versus $14.29 a year earlier shows no overpayment signal, but the acreage is too new to judge on returns.
+
+**Cash flow, corrected.** Section 0's fcf_ttm ($3,991,577,000, a stated 20.1% SBC-adjusted yield) is TTM operating cash flow with no capex deducted -- it reconciles exactly to FY2025 operating cash flow less H1 2025 plus H1 2026. The company's own adjusted free cash flow, summed from four releases, is $2,135.6 million TTM (Q3'25 $468.8mm, Q4'25 $403.1mm, Q1'26 $512.7mm, Q2'26 $751.0mm) -- a 10.7% yield against a roughly $20.0 billion market cap, about half the reported figure. Six-month SBC of $35.5 million is immaterial against that base (about 3.3% annualized), so the SBC conclusion survives; the yield used to reach it does not, and sbc_adjusted_fcf/sbc_to_fcf inherit the same error.
+
+**Peer and tier.** Normalized TTM adjusted EPS of $1.82 puts PR at 12.8x, not the reported 15.5x. Matador trades at 10.1x; across the wider shale cohort (SM 7.2x, APA 9.0x, CHRD 9.8x, MTDR 10.1x, EOG 11.3x, DVN 11.4x), PR sits above every direct comparable, partly offset by lower leverage (0.5x net debt-to-LQA EBITDAX versus higher peer ratios). Section 0's `quality_compounder` tier is the engine's default for every energy name checked -- FANG, DVN, OVV, SM, CHRD, APA, EOG, COP and MUR carry it too, not a considered classification. A single-basin, single-commodity pure-play is `cyclical_or_single_product`; section 3 uses its 12% hurdle.
+
+## 3. Verdict and entry (≤ 150 words)
+
+**pass.** Shares trade 2.1% below their 52-week high after a quarter flattered by $97.81 realized oil. Entry: none. The machine fair band is unreliable because P/FCF uses the mistagged cash-flow field and its history spans two transformative mergers. I correct the tier to `cyclical_or_single_product` (12% hurdle). Because earnings track the oil-price deck, the table uses TTM Adjusted EBITDAX and reported net debt rather than peak-weighted EPS. Only the bull case clears the hurdle.
+
+</code></pre>
+<p>python scripts/scenario.py --spot 23.36 --metric ebitda --base 4359.6 \
+    --shares 855.243 --net-debt 2893.278 --years 5 \
+    --tier cyclical_or_single_product --dividend-yield 0.0274 \
+    --case bear:-8%:3.5 --case base:4%:4.5 --case bull:10%:5.5</p>
+<pre><code>
+| Case | Growth | exit EV/EBITDA | EBITDA ($M) in 5y | Price | Total | Annualized | Growth needed at 12.0% |
+|---|---|---|---|---|---|---|---|
+| Bear | -8.0% | 3.5x | 2,873.33 | $8.38 | -64.1% | -15.8% | 20.1% |
+| Base | 4.0% | 4.5x | 5,304.12 | $24.53 | 5.0% | 3.7% | 14.2% |
+| Bull | 10.0% | 5.5x | 7,021.18 | $41.77 | 78.8% | 15.1% | 9.7% |
+
+At a 4.5x exit, the price asks for 14.2% annual growth versus the base case's 4.0%.
+
+```json scenario
+{
+  &quot;base&quot;: 4359.6,
+  &quot;convert_debt&quot;: 0.0,
+  &quot;convert_shares&quot;: 0.0,
+  &quot;dividend_yield&quot;: 0.0274,
+  &quot;hurdle&quot;: 0.12,
+  &quot;metric&quot;: &quot;ebitda&quot;,
+  &quot;net_debt&quot;: 2893.278,
+  &quot;rows&quot;: [
+    {
+      &quot;annualized_return&quot;: -0.1581,
+      &quot;case&quot;: &quot;bear&quot;,
+      &quot;clears_hurdle&quot;: false,
+      &quot;growth&quot;: -0.08,
+      &quot;multiple&quot;: 3.5,
+      &quot;required_growth_at_hurdle&quot;: 0.2008,
+      &quot;terminal_metric&quot;: 2873.3318,
+      &quot;terminal_price&quot;: 8.38,
+      &quot;total_return&quot;: -0.6414,
+      &quot;treatment&quot;: &quot;single&quot;
+    },
+    {
+      &quot;annualized_return&quot;: 0.0372,
+      &quot;case&quot;: &quot;base&quot;,
+      &quot;clears_hurdle&quot;: false,
+      &quot;growth&quot;: 0.04,
+      &quot;multiple&quot;: 4.5,
+      &quot;required_growth_at_hurdle&quot;: 0.142,
+      &quot;terminal_metric&quot;: 5304.12,
+      &quot;terminal_price&quot;: 24.53,
+      &quot;total_return&quot;: 0.0499,
+      &quot;treatment&quot;: &quot;single&quot;
+    },
+    {
+      &quot;annualized_return&quot;: 0.1507,
+      &quot;case&quot;: &quot;bull&quot;,
+      &quot;clears_hurdle&quot;: true,
+      &quot;growth&quot;: 0.1,
+      &quot;multiple&quot;: 5.5,
+      &quot;required_growth_at_hurdle&quot;: 0.0971,
+      &quot;terminal_metric&quot;: 7021.1794,
+      &quot;terminal_price&quot;: 41.77,
+      &quot;total_return&quot;: 0.7881,
+      &quot;treatment&quot;: &quot;single&quot;
+    }
+  ],
+  &quot;shares&quot;: 855.243,
+  &quot;spot&quot;: 23.36,
+  &quot;tier&quot;: &quot;cyclical_or_single_product&quot;,
+  &quot;years&quot;: 5
+}
+</code></pre>
+<p>TTM Adjusted EBITDAX is $4,359.6mm (Q3'25 $1,018.8mm, Q4'25 $949.6mm, Q1'26 $1,047.7mm, Q2'26 $1,343.5mm); net debt $2,893.3mm at June 30, both company-reported. Only bull, holding today's multiple through five years of $85-plus oil, clears the hurdle. PR pays $0.64 annualized (2.74% yield), included above.</p>
+<h2>4. Kill criteria — pre-committed, falsifiable, dated (3-5 lines)</h2>
+<ul>
+<li>Initial 2027 oil-production guidance below 200,000 Bbls/d while cash capital expenditure guidance is above $2.0 billion is a first flag; below 195,000 Bbls/d while capex is above $2.1 billion is the re-underwrite trigger. Checked when initial 2027 guidance is issued, expected with Q4 2026 earnings in February 2027. A disclosed weather outage, pipeline force majeure, or voluntary gas curtailment with unchanged per-well productivity is a benign exception.</li>
+<li>Total controllable cash costs (LOE, GP&amp;T and cash G&amp;A) exceed $7.90 per Boe for two consecutive quarters, checked at each quarterly release through 2027: re-underwrite the claimed cost advantage. Cost per Boe rising because voluntary high-gas-ratio curtailment shrank the Boe denominator while absolute controllable cash cost dollars stayed flat, or a one-quarter storm or pipeline outage, are benign exceptions.</li>
+<li>Total debt, net exceeds $3.5 billion, or unproved-property impairment expense exceeds $75 million in a single quarter, checked at each quarterly release through 2027: re-underwrite acquisition and capital-allocation discipline. A signed, individually disclosed accretive acquisition with a specific stated deleveraging plan, or a portfolio-wide high-grading decision unrelated to the 2026-2027 ground-game program, is a benign exception.</li>
+<li>Diluted weighted-average shares outstanding rise more than 2% year over year from the 855.2 million reported for the quarter ended June 30, 2026 (the baseline now that the Class C-to-A conversion is complete) without a disclosed stock-funded acquisition, checked at each 10-Q through 2027: re-underwrite per-share compounding.</li>
+<li>Realized oil price stays below $65 per barrel for two consecutive quarters while the company's own adjusted (capex-deducted) free cash flow turns negative, checked at each quarterly earnings release through 2027: re-underwrite the cyclical and valuation thesis entirely. Realized price suppressed by hedge-settlement timing while unhedged realizations and the forward strip both stay above $65 is a benign exception.</li>
+</ul>
+<p><code>json kill-criteria
+[
+  {
+    "metric": "Initial 2027 oil-production guidance versus cash capital-expenditure guidance",
+    "condition": "oil production below 200,000 Bbls/d while cash capex above $2.0 billion is a first flag; oil production below 195,000 Bbls/d while cash capex above $2.1 billion is the re-underwrite trigger",
+    "check_event": "initial 2027 guidance, expected with Q4 2026 earnings in February 2027",
+    "response": "flag at the first tier; re-underwrite capital efficiency at the second",
+    "benign_exceptions": ["a disclosed weather outage, pipeline force majeure, or voluntary gas curtailment with unchanged per-well productivity"]
+  },
+  {
+    "metric": "Total controllable cash costs per Boe (LOE + GP&amp;T + cash G&amp;A)",
+    "threshold": "$7.90 per Boe for two consecutive quarters",
+    "check_event": "each quarterly earnings release through 2027",
+    "response": "re-underwrite the claimed cost advantage",
+    "benign_exceptions": ["cost per Boe rising because voluntary high-gas-ratio curtailment shrank the Boe denominator while absolute controllable cash cost dollars stayed flat", "a one-quarter storm or pipeline outage"]
+  },
+  {
+    "metric": "Total debt, net, or unproved-property impairment expense",
+    "condition": "total debt, net exceeds $3.5 billion, or unproved-property impairment expense exceeds $75 million in a single quarter",
+    "check_event": "each quarterly release through 2027",
+    "response": "re-underwrite acquisition and capital-allocation discipline",
+    "benign_exceptions": ["a signed, individually disclosed accretive acquisition with a specific stated deleveraging plan", "a portfolio-wide high-grading decision unrelated to the 2026-2027 ground-game program"]
+  },
+  {
+    "metric": "Diluted weighted-average shares outstanding",
+    "operator": "above_without_acquisition",
+    "condition": "more than 2% year-over-year growth from the 855.2 million reported for the quarter ended June 30, 2026 (the baseline now that the Class C-to-A conversion is complete), without a disclosed stock-funded acquisition",
+    "check_event": "each 10-Q through 2027",
+    "response": "re-underwrite per-share compounding",
+    "benign_exceptions": []
+  },
+  {
+    "metric": "Realized oil price and the company's own adjusted (capex-deducted) free cash flow",
+    "condition": "realized oil price below $65 per barrel for two consecutive quarters while adjusted free cash flow turns negative",
+    "check_event": "each quarterly earnings release through 2027",
+    "response": "re-underwrite the cyclical and valuation thesis entirely",
+    "benign_exceptions": ["realized price suppressed by hedge-settlement timing while unhedged realizations and the forward strip both stay above $65"]
+  }
+]</code></p>
+<h2>5. Sources</h2>
+<ul>
+<li>Permian Resources Corporation, Form 10-Q for the quarter ended June 30, 2026, filed Aug. 6, 2026 (Accession 0001658566-26-000101): https://www.sec.gov/Archives/edgar/data/1658566/000165856626000101/pr-20260630.htm</li>
+<li>Permian Resources Corporation, Form 8-K, filed Aug. 5, 2026 (Accession 0001658566-26-000094), Exhibit 99.1, Q2 2026 earnings release: https://www.sec.gov/Archives/edgar/data/1658566/000165856626000094/ex991prq22026earningsrelea.htm</li>
+<li>Permian Resources Corporation, Q3 2025 earnings release, filed Nov. 5, 2025, Exhibit 99.1: https://www.sec.gov/Archives/edgar/data/1658566/000165856625000088/ex991prq32025earningsrelea.htm</li>
+<li>Permian Resources Corporation, Q4 and full-year 2025 earnings release, filed Feb. 25, 2026, Exhibit 99.1: https://www.sec.gov/Archives/edgar/data/1658566/000165856626000031/ex991prpressrelease12312025.htm</li>
+<li>Permian Resources Corporation, Q1 2026 earnings release, filed May 6, 2026, Exhibit 99.1: https://www.sec.gov/Archives/edgar/data/1658566/000165856626000069/ex991prq12026earningsrelea.htm</li>
+<li><code>build/universe.json</code> (engine run 2026-09-04T22:17:59+00:00, re-checked 2026-09-07T22:22:20+00:00) -- PR and peer P/E, tier and leverage fields for MTDR, FANG, DVN, OVV, SM, CHRD, APA, EOG, COP and MUR.</li>
+<li><code>python scripts/memo_context.py PR</code>, run Sept. 8, 2026.</li>
+<li><code>python scripts/scenario.py</code>, run Sept. 8, 2026.</li>
+<li><code>python scripts/edgar_get.py</code>, used Sept. 8, 2026 to fetch and verify all five filings above: the 10-Q's income statement, balance sheet, cash-flow statement, Note 6 (Stock-Based Compensation), the Reorganization/Class C conversion disclosures and the Ward County subsequent event; and each release's adjusted EBITDAX reconciliation, adjusted free cash flow, adjusted net income per adjusted diluted share, dividend declaration and net debt-to-LQA EBITDAX tables.</li>
+</ul>
+  </div>
+
+  <footer>
+    <p>The personal half of this memo &mdash; position size, portfolio overlap, tax lots &mdash; is
+      fenced out of the published text by construction and is not on this page. What a name is worth
+      is public; what one investor should own is not.</p>
+    <p class="methodlink"><a href="memos.html">&larr; All memos</a> &middot;
+      <a href="./">The Ranker</a> &middot; <a href="approach.html">How this works</a></p>
+  </footer>
+
+</div>
+</body>
+</html>

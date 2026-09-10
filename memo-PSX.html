@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PSX memo &mdash; Phillips 66</title>
+<meta name="description" content="Phillips 66 (PSX): the research memo behind
+  its row on the S&amp;P 1500 Ranker, written Sept. 9, 2026.">
+<link rel="canonical" href="https://abhiramdwivedi.github.io/investment-ranker/memo-PSX.html">
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --baseline: #c3c2b7; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --accent-soft: #cde2fb;
+    --machine: #1c5cab; --judge: #b5462b; --warn: #fab219;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+      --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+      --accent: #6da7ec; --accent-soft: #184f95;
+      --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+    --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+    --accent: #6da7ec; --accent-soft: #184f95;
+    --machine: #6da7ec; --judge: #e08b6f; --warn: #fab219;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--page); color: var(--ink); margin: 0; line-height: 1.6;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 16px; }
+  .wrap { max-width: 78ch; margin: 0 auto; padding: 28px 24px 72px; }
+  .masthead { display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+    flex-wrap: wrap; border-bottom: 2px solid var(--ink); padding-bottom: 14px; }
+  .masthead .home { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    font-weight: 650; color: var(--accent); text-decoration: none; }
+  .masthead .home:hover { text-decoration: underline; }
+  h1 { font-size: 30px; font-weight: 750; letter-spacing: -0.015em; margin: 26px 0 0; }
+  .standfirst { font-size: 17px; color: var(--ink-2); margin: 10px 0 0; }
+  .kicker { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); font-weight: 650; margin: 0; }
+  h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; margin: 40px 0 0;
+    padding-top: 14px; border-top: 1px solid var(--grid); }
+  h3 { font-size: 15.5px; font-weight: 700; margin: 24px 0 0; }
+  p { margin: 12px 0 0; }
+  ul { margin: 12px 0 0; padding-left: 20px; }
+  li { margin: 7px 0; }
+  a { color: var(--accent); }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.88em;
+    background: color-mix(in srgb, var(--muted) 14%, var(--surface)); padding: 1px 5px; border-radius: 4px; }
+  .lede { font-size: 17px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 14px;
+    font-variant-numeric: tabular-nums; }
+  caption { caption-side: bottom; text-align: left; font-size: 12px; color: var(--muted);
+    margin-top: 8px; line-height: 1.5; }
+  th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--muted); font-weight: 650; padding: 0 10px 7px 0; border-bottom: 1px solid var(--baseline); }
+  td { padding: 8px 10px 8px 0; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  td.n, th.n { text-align: right; padding-right: 0; }
+  tr.hi td { background: color-mix(in srgb, var(--accent) 8%, transparent); font-weight: 600; }
+  .scroll { overflow-x: auto; }
+  .rule { background: var(--surface); border: 1px solid var(--ring); border-radius: 8px;
+    padding: 16px 18px; margin-top: 16px; }
+  .rule ul { list-style: none; padding-left: 0; }
+  .rule li { display: grid; grid-template-columns: 13ch 1fr; gap: 12px; align-items: baseline;
+    padding: 7px 0; border-bottom: 1px solid var(--grid); font-size: 14.5px; }
+  .rule li:last-child { border-bottom: 0; }
+  .rule li b { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12.5px; color: var(--machine); font-weight: 650; }
+  .steps { counter-reset: s; list-style: none; padding-left: 0; }
+  .steps li { counter-increment: s; position: relative; padding-left: 34px; margin: 14px 0; font-size: 15px; }
+  .steps li::before { content: counter(s); position: absolute; left: 0; top: 1px; width: 23px; height: 23px;
+    border-radius: 50%; background: var(--accent-soft); color: var(--machine); font-size: 12px;
+    font-weight: 700; display: grid; place-items: center; }
+  .steps li.j::before { background: color-mix(in srgb, var(--judge) 20%, var(--surface)); color: var(--judge); }
+  .steps b { font-weight: 700; }
+  .steps .f { color: var(--muted); font-size: 12.5px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .verdict { border-left: 3px solid var(--accent); padding: 2px 0 2px 16px; margin-top: 18px;
+    font-size: 16px; }
+  .note { background: color-mix(in srgb, var(--warn) 10%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--warn) 45%, var(--surface));
+    border-radius: 8px; padding: 12px 16px; margin-top: 18px; font-size: 14.5px; }
+  footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--grid);
+    font-size: 13px; color: var(--muted); }
+
+  .memobody h2 { font-size: 19px; }
+  .memobody table { font-size: 13px; }
+  .memobody blockquote { margin: 14px 0 0; padding: 2px 0 2px 16px;
+    border-left: 3px solid var(--baseline); color: var(--ink-2); }
+  .memobody pre { background: color-mix(in srgb, var(--muted) 12%, var(--surface));
+    border: 1px solid var(--ring); border-radius: 8px; padding: 12px 14px; overflow-x: auto;
+    font-size: 12.5px; line-height: 1.5; }
+  .memobody pre code { background: none; padding: 0; }
+  .stamp { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+  .stamp b { color: var(--ink-2); }
+  .verdict-tag { display: inline-block; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.06em; font-weight: 700; border: 1px solid var(--baseline);
+    border-radius: 999px; padding: 2px 9px; }
+  .rs { font-size: 12px; border: 1px solid var(--baseline); border-radius: 999px;
+    padding: 1px 8px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="kicker">Memo &middot; S&amp;P 1500 Ranker</p>
+    <a class="home" href="memos.html">&larr; All memos</a>
+  </header>
+
+  <h1>PSX &mdash; Phillips 66</h1>
+  <p class="standfirst">Written Sept. 9, 2026. The verdict was
+    <span class="verdict-tag">wait</span> and the name reads
+    <code class="rs">research</code> on tonight's table.</p>
+  <p class="stamp"><b>As of:</b> Sept. 9, 2026 &middot; 1 days old &middot; reviewed Sept. 9, 2026 by claude &middot;
+    a memo is a point-in-time judgment and does not update itself the way the nightly table does.</p>
+
+
+
+  <div class="note"><p><b>What this is not.</b> The ledger behind this site holds 329 decisions, collapsed from 3,488 name-nights, and none of them has ever been actionable. One row is one decision, not one appearance. A company suggested on 40 consecutive nights is counted once, dated from the first of them, so a name that keeps qualifying cannot inflate the sample. The cohorts above are the other view of the same calls and do repeat a name every night, by design. The actionable date is the first night every condition of the actionable-suggestion contract held at once. It reads empty for a name that has never been actionable, and for every night frozen before the contract existed on Aug. 23, 2026. The engine's current rules are forward-only from Aug. 16, 2026, so the record is days long, not years. This is a personal research tool, not licensed financial advice, and nothing here is a recommendation to buy or sell any security.</p></div>
+
+  <div class="memobody">
+<p>Revised 2026-09-09 addressing research/memos/PSX-review-2026-09-09.md.</p>
+<h2>0. Signals</h2>
+<p>Engine coverage for PSX, checked across every governed surface by <code>python
+scripts/memo_context.py PSX</code> on 2026-09-09T22:54:58Z. This block is generated;
+paste it verbatim and do not edit it by hand.</p>
+<pre><code>focused signals       not covered   104 names, as of 2026-09-09
+                      build/signals.json - The narrower set the nightly engine scores in full, with estimate families layered on.
+full universe         COVERED       1,421 names, as of 2026-09-09
+                      build/universe.json - The filings-only engine over every S&amp;P 1500 name with an EDGAR history.
+committed universe    COVERED       1,421 names, as of 2026-09-09
+                      reports/universe.json - The committed fallback for the universe run, stored compact.
+cross-sectional rank  COVERED       1,340 names, as of 2026-09-09
+                      build/rank.json - A factor ranking, not own-history, and possibly an older window.
+</code></pre>
+<p>Memo mode is <strong>covered</strong>: the engine has output for PSX in
+build/universe.json, and section 3 must choose its entry from the machine band
+below rather than building a new one.</p>
+<p>Where the factor row disagrees with the engine, the engine wins:</p>
+<ul>
+<li>
+<p>The cross-sectional row in build/rank.json was generated at
+  2026-09-09T22:14:29+00:00, before the engine result at
+  2026-09-09T22:22:37+00:00, so it never supersedes it.</p>
+<p>ticker PSX | close 260.78 | as_of 2026-09-09 | next_earnings none (days_to_earnings none)
+per share:  eps_ttm 17.51, sales 377.94, fcf 22.17, book 78.25
+valuation:  cheap_pct 77.4 (basis pe+ps+pfcf; by basis pe 60.4, ps 100.0, pfcf 77.4; cheap_thin false)
+            cheapness_source earned, eps_ttm_flag none, ttm_base_spikes none
+            pe_ttm 14.90, pe_fwd none, ev_ebitda none, p_book none
+            fair_band low 133.95 / mid 186.21 / high 282.41 on bases pe, ps, pfcf
+            fair_band reliability ok, upside_to_low_rung -48.6%, caveats none
+            fair_band_by_basis {"pe": {"low": 133.95, "mid": 196.29, "high": 449.13}, "ps": {"low": 120.94, "mid": 151.18, "high": 188.97}, "pfcf": {"low": 135.22, "mid": 186.21, "high": 282.41}, "pb": {"low": 132.25, "mid": 147.9, "high": 165.9}}
+            implied_eps_growth at_hurdle_median_exit 9.7%, at_hurdle_p20_exit 13.4%, at_hurdle_20x_exit 4.2%
+            implied_eps_growth fwd_at_hurdle_20x_exit none, tier quality_compounder, hurdle_used 9.0%, eps_base_ttm 17.51
+            compare trailing_5y_eps_cagr none, consensus_eps_growth_1y none, consensus_ltg none
+            replay episodes_closed 6, hit_rate_vs_spy 83.0%, median_excess_12m 37.9%, worst_excess_12m -71.7%
+            replay open_episodes 0, open_median_excess_to_date none, median_worst_dd_12m -8.4%
+quality:    gate pass, hard none, soft none, unknown leverage
+            fcf_conversion 1.26, net_debt_to_ebitda none, share_count_chg_3y -11.7%, sbc_to_fcf none
+            sbc_adjusted_fcf not published on this surface; net TTM SBC off reported fcf_ttm 8,925,000,000.00 yourself and show both
+            gross_margin 13.1% against 13.6% three years ago
+economics:  roic none against none three years ago, fundable_growth none, needed_at_hurdle_20x 4.2%, growth_gap none
+fund. mom.: rev_yoy 53.1%, rev_accel true, rev_decel_2q false, eps_ttm_yoy 316.9%
+            fwd_eps_rev_30d none, fwd_eps_rev_90d none, analyst_up_minus_down_30d none, rec_mean none against none three months ago
+trend:      dd_52w 0.0%, dist_200dma 51.8%, rs_spy_6m 49.3%, sector_dd_52w 0.0%, knife false, turned true
+sentiment:  short_pct_float none, insider_net_count_6m none, target_upside none
+scores:     buy_score 36.0, cheap false, bases 3, candidate false, tier none
+            candidate_reasons none
+            candidate_blockers none
+            replay_warning none
+data notes: no Yahoo forward-EPS revision history (30/90d revisions unavailable)
+portfolio:  held false (position size never appears in a memo)</p>
+</li>
+</ul>
+<!-- memo-context: generated block, do not edit by hand. Regenerate with `python scripts/memo_context.py PSX`. -->
+
+<p>```json memo-context
+{
+  "checksum": "sha256:c1a855270954b6f9321d6deca5e1ca3e490d0615de23b66126a77fd4f9ac5156",
+  "coverage": [
+    {
+      "as_of": "2026-09-09",
+      "covers_ticker": false,
+      "exists": true,
+      "generated_at": "2026-09-09T22:23:30+00:00",
+      "kind": "signals_focused",
+      "label": "focused signals",
+      "names": 104,
+      "note": "The narrower set the nightly engine scores in full, with estimate families layered on.",
+      "path": "build/signals.json"
+    },
+    {
+      "as_of": "2026-09-09",
+      "covers_ticker": true,
+      "exists": true,
+      "generated_at": "2026-09-09T22:22:37+00:00",
+      "kind": "universe_full",
+      "label": "full universe",
+      "names": 1421,
+      "note": "The filings-only engine over every S&amp;P 1500 name with an EDGAR history.",
+      "path": "build/universe.json"
+    },
+    {
+      "as_of": "2026-09-09",
+      "covers_ticker": true,
+      "exists": true,
+      "generated_at": "2026-09-09T22:22:37+00:00",
+      "kind": "universe_committed",
+      "label": "committed universe",
+      "names": 1421,
+      "note": "The committed fallback for the universe run, stored compact.",
+      "path": "reports/universe.json"
+    },
+    {
+      "as_of": null,
+      "covers_ticker": true,
+      "exists": true,
+      "generated_at": "2026-09-09T22:14:29+00:00",
+      "kind": "rank_cross_sectional",
+      "label": "cross-sectional rank",
+      "names": 1340,
+      "note": "A factor ranking, not own-history, and possibly an older window.",
+      "path": "build/rank.json"
+    }
+  ],
+  "data_as_of": "2026-09-09",
+  "engine_coverage": [
+    "build/universe.json",
+    "reports/universe.json"
+  ],
+  "generated_at": "2026-09-09T22:54:58Z",
+  "held": false,
+  "instruction_locks": [
+    {
+      "commit": "0bf61dbf22e00df68b4a65693e6b2851205cd8fe",
+      "path": "research/MEMO-TEMPLATE.md",
+      "present": true,
+      "sha256": "8f03815494bf8592f5e20b586399c4e5c8f845d31b2b7a403eafcd20ac24c9b7",
+      "uncommitted": false
+    },
+    {
+      "commit": "412f8966b94cd408739f59d2ae0500d1a9dca9bf",
+      "path": ".claude/agents/memo-writer.md",
+      "present": true,
+      "sha256": "d94a49d8e206c1615cc6f017853d7305930d2550b43dbb71737026d2a6e03b2d",
+      "uncommitted": false
+    },
+    {
+      "commit": "412f8966b94cd408739f59d2ae0500d1a9dca9bf",
+      "path": "scripts/memo_context.py",
+      "present": true,
+      "sha256": "8dc37786b895bd9053f6ec73a4bf884416d31a7eda8d6b9d43ca160336e7ba17",
+      "uncommitted": false
+    }
+  ],
+  "mode": "covered",
+  "mode_derived": "covered",
+  "mode_forced": false,
+  "primary_kind": "universe_full",
+  "primary_source": "build/universe.json",
+  "rank_conflicts": [
+    "The cross-sectional row in build/rank.json was generated at 2026-09-09T22:14:29+00:00, before the engine result at 2026-09-09T22:22:37+00:00, so it never supersedes it."
+  ],
+  "schema": "memo-context/1",
+  "spot": {
+    "as_of": "2026-09-09",
+    "close": 260.78,
+    "source": "build/universe.json"
+  },
+  "ticker": "PSX"
+}</p>
+<pre><code>
+The memo agrees with the engine rather than arguing with it: at a 77.4 own-history percentile, a 52-week high and a price above the $186.21 mid-band rung, PSX is not presently cheap despite unusually strong trailing earnings.
+
+## 1. What changed - why is the multiple where it is?
+
+On April 29, Phillips 66 reported first-quarter adjusted EPS of $0.49 and $699 million of operating cash flow excluding working capital; commodity volatility produced a $2.3 billion operating cash outflow. On Aug. 5, second-quarter adjusted EPS reached $9.41, realized refining margin rose to $24.08 per barrel from $10.11 in the first quarter and operating cash flow excluding working capital reached $4.3 billion. The reported $7.3 billion of operating cash flow also included favorable payment timing, lower inventory and accruals. The $6.7 billion of second-quarter net debt repayments merely unwound first-quarter borrowing: total debt rose $849 million from Dec. 31 to $20.565 billion at June 30, versus management's $17 billion year-end 2027 target. Revenue rose 31% in the first half, but the comparison includes WRB consolidation, the Coastal Bend acquisition and April 2026's $115 million Lindsey asset purchase; higher prices also mattered. The 2025 10-K records a $948 million WRB impairment, not a step-acquisition gain, rebutting that possible normalization concern. On Aug. 11, partners approved Western Gateway. The re-rating reflects peak margins, acquisition-affected growth and project optionality, not deleveraging.
+
+## 2. Is the impairment real?
+
+The risk is peak conditions, not franchise failure. Refining supplied $3.062 billion of second-quarter adjusted pretax income versus $208 million in the first quarter as worldwide realized margin reached $24.08 per barrel. Margin would weaken earnings before utilization does. The 96% utilization headline also uses a smaller, better denominator: Los Angeles fuel production ceased in late 2025 and its capacity was excluded beginning Oct. 1. It is therefore not clean evidence of organic execution.
+
+Segment economics differ. Second-quarter adjusted pretax income was $785 million in Midstream, $404 million in Chemicals, $514 million in Marketing and Specialties and $544 million in Renewable Fuels. Adding $284 million of Midstream depreciation gives a current quarterly EBITDA bridge of about $1.069 billion. That stable cash source matters, while Chemicals and Renewable Fuels remain margin-sensitive. A defensible sum-of-parts could not be verified because PSX does not disclose segment FCF or segment net debt and M&amp;S lacks a clean pure-play peer; inventing allocations would create false precision. The absence of a supportable refining-stub value strengthens the event-gated wait.
+
+Reported TTM EPS is $17.51; $14.89 is the sum of the last four company-adjusted quarters. This consistently excludes disposal and accelerated-depreciation noise rather than claiming both adjustments move in one direction. More important, reported TTM FCF of $8.925 billion includes working-capital timing. First-half ex-working-capital operating cash flow of $4.999 billion less $1.308 billion of capex annualizes to $7.382 billion. The FY2025 $220 million SBC proxy reduces the §3 base to $7.18 billion, with no tax benefit; TTM SBC remains unverified. Three-year shares fell 11.7%, but first-half repurchases net of 1.784 million compensation shares reduced shares only about 0.5%, so current buyback pace is slower.
+
+The engine's current multiple is 9.0x P/FCF for MPC versus 11.8x for PSX. Both use peak-contaminated trailing cash flow, so this is directional, not proof of cheapness. MPC's primary release shows $2.8 billion returned in Q2; PSX returned $887 million, 20.6% of its ex-working-capital operating cash flow, below PSX's greater-than-50% target. PSX does not merit that premium today.
+
+## 3. Verdict and entry
+
+**wait** - normalized cash flow and a cyclical hurdle make the current price fail even the bull case.
+
+Entry: use the Q3 2026 earnings release and 10-Q as an event gate. The $133.95 low rung is not an entry by itself: a p20 multiple on cyclical peak cash flow is not a margin of safety. The engine's 9% quality_compounder tier is wrong; a refiner warrants the 12% cyclical_or_single_product hurdle. Reconsider only after ex-working-capital cash flow holds through lower margins and a segment valuation is supportable. This table is a downside screen, not a sum-of-parts. Total is price-only; annualized includes the 1.95% dividend, while growth needed excludes it.
+
+| Case | Growth | exit P/FCF | FCF ($M) in 5y | Price | Total | Annualized | Growth needed at 12.0% |
+|---|---|---|---|---|---|---|---|
+| Bear | 0.0% | 7x | 7,180.00 | $124.84 | -52.1% | -11.8% | 29.8% |
+| Base | 2.0% | 9x | 7,927.30 | $177.21 | -32.0% | -5.5% | 23.4% |
+| Bull | 4.0% | 11x | 8,735.57 | $238.68 | -8.5% | 0.2% | 18.6% |
+
+At the base case's 9x exit, the price asks for 23.4% annual FCF growth to clear the 12% price hurdle, 21.4 points above the case assumption.
+
+## 4. Kill criteria - pre-committed, falsifiable, dated
+
+- Monitor if worldwide realized refining margin is below $16 per barrel for one quarter; re-underwrite below $13 for two quarters regardless of utilization; pass below $10 for two quarters or if utilization falls below 90% for a reason other than a disclosed turnaround. Check each quarterly release beginning Q3 2026.
+- Re-underwrite if quarterly Midstream adjusted EBITDA falls below $900 million for two quarters, versus the current $1.069 billion bridge, checked each quarterly filing beginning Q3 2026; an asset sale is benign only if proceeds reduce debt.
+- Pass if total debt exceeds $19 billion at the FY2026 10-K and management also withdraws or defers its $17 billion year-end 2027 target; there is no benign exception.
+- Re-underwrite if shareholder returns remain below 50% of operating cash flow excluding working capital for two quarters, checked each quarterly release beginning Q3 2026; debt repayment explicitly advancing the $17 billion target is benign.
+- Re-underwrite if Golden Triangle Polymers or Ras Laffan is no longer expected to reach full operations in 2027, checked in each 2026 and 2027 10-Q or 10-K; a short commissioning delay is benign only if budget and 2027 completion are preserved.
+
+```json kill-criteria
+[
+  {
+    &quot;metric&quot;: &quot;worldwide realized refining margin and crude capacity utilization&quot;,
+    &quot;condition&quot;: &quot;monitor below $16 per barrel for one quarter; re-underwrite below $13 for two consecutive quarters regardless of utilization; pass below $10 for two consecutive quarters or utilization below 90% for a non-turnaround reason&quot;,
+    &quot;check_event&quot;: &quot;Q3 2026 and later quarterly earnings releases&quot;,
+    &quot;response&quot;: &quot;monitor, re-underwrite, or pass according to the stated tier&quot;,
+    &quot;benign_exceptions&quot;: [
+      &quot;only the utilization branch is excepted when the decline is entirely attributable to a disclosed planned turnaround&quot;
+    ]
+  },
+  {
+    &quot;metric&quot;: &quot;quarterly Midstream adjusted EBITDA&quot;,
+    &quot;operator&quot;: &quot;two_consecutive_quarters_below&quot;,
+    &quot;threshold&quot;: &quot;$900 million versus the current $1.069 billion bridge&quot;,
+    &quot;check_event&quot;: &quot;Q3 2026 and later quarterly earnings releases&quot;,
+    &quot;response&quot;: &quot;re-underwrite&quot;,
+    &quot;benign_exceptions&quot;: [
+      &quot;a disclosed asset sale lowers EBITDA and the proceeds reduce debt&quot;
+    ]
+  },
+  {
+    &quot;metric&quot;: &quot;total debt and management's year-end 2027 debt target&quot;,
+    &quot;condition&quot;: &quot;total debt exceeds $19 billion at FY2026 and management withdraws or defers the $17 billion year-end 2027 target&quot;,
+    &quot;check_event&quot;: &quot;FY2026 10-K&quot;,
+    &quot;response&quot;: &quot;pass&quot;,
+    &quot;benign_exceptions&quot;: []
+  },
+  {
+    &quot;metric&quot;: &quot;shareholder returns as a percentage of operating cash flow excluding working capital&quot;,
+    &quot;operator&quot;: &quot;two_consecutive_quarters_below&quot;,
+    &quot;threshold&quot;: &quot;50%&quot;,
+    &quot;check_event&quot;: &quot;Q3 2026 and later quarterly earnings releases&quot;,
+    &quot;response&quot;: &quot;re-underwrite&quot;,
+    &quot;benign_exceptions&quot;: [
+      &quot;retained cash is used for debt repayment that explicitly advances the $17 billion year-end 2027 target&quot;
+    ]
+  },
+  {
+    &quot;metric&quot;: &quot;Golden Triangle Polymers and Ras Laffan full-operations schedule&quot;,
+    &quot;condition&quot;: &quot;either project is no longer expected to reach full operations in 2027&quot;,
+    &quot;check_event&quot;: &quot;each 2026 and 2027 10-Q or 10-K&quot;,
+    &quot;response&quot;: &quot;re-underwrite&quot;,
+    &quot;benign_exceptions&quot;: [
+      &quot;a short commissioning delay preserves the disclosed budget and 2027 completion&quot;
+    ]
+  }
+]
+</code></pre>
+<h2>5. Sources</h2>
+<ul>
+<li>Phillips 66, Q2 2026 Form 10-Q, filed Aug. 5, 2026: https://www.sec.gov/Archives/edgar/data/1534701/000153470126000032/psx-20260630.htm</li>
+<li>Phillips 66, second-quarter 2026 results and reconciliations, Aug. 5, 2026: https://investor.phillips66.com/financial-information/news-releases/news-release-details/2026/Phillips-66-Delivers-Strong-Second-Quarter-Results-and-Operating-Performance</li>
+<li>Phillips 66, first-quarter 2026 results and reconciliations, April 29, 2026: https://investor.phillips66.com/financial-information/news-releases/news-release-details/2026/Phillips-66-Reports-First-Quarter-Results-Expanded-Capacity-and-Continued-Strong-Operations</li>
+<li>Phillips 66, fourth-quarter and full-year 2025 results and reconciliations, Feb. 4, 2026: https://investor.phillips66.com/financial-information/news-releases/news-release-details/2026/Phillips-66-Delivers-Strong-4Q-Operating-Results-While-Enhancing-Portfolio</li>
+<li>Phillips 66, third-quarter 2025 results and reconciliations, Oct. 29, 2025: https://investor.phillips66.com/financial-information/news-releases/news-release-details/2025/Phillips-66-Highlights-Strong-3Q-Results-Attractive-Growth-Opportunities</li>
+<li>Phillips 66, 2025 Form 10-K share-based compensation note, filed Feb. 20, 2026: https://www.sec.gov/Archives/edgar/data/1534701/000153470126000006/R32.htm</li>
+<li>Phillips 66, 2025 Form 10-K, filed Feb. 20, 2026, used for the WRB impairment: https://www.sec.gov/Archives/edgar/data/1534701/000153470126000006/psx-20251231.htm</li>
+<li>Phillips 66, Western Gateway final investment decision, Aug. 11, 2026: https://investor.phillips66.com/financial-information/news-releases/news-release-details/2026/Phillips-66-Kinder-Morgan-and-HF-Sinclair-Announce-Final-Investment-Decision-for-Western-Gateway-Pipeline/default.aspx</li>
+<li>Marathon Petroleum, second-quarter 2026 results filed Aug. 4, 2026, used with the Sept. 9, 2026 engine close for the peer multiple: https://www.sec.gov/Archives/edgar/data/1510295/000151029526000060/mpcq22026earningsrelease.htm</li>
+</ul>
+  </div>
+
+  <footer>
+    <p>The personal half of this memo &mdash; position size, portfolio overlap, tax lots &mdash; is
+      fenced out of the published text by construction and is not on this page. What a name is worth
+      is public; what one investor should own is not.</p>
+    <p class="methodlink"><a href="memos.html">&larr; All memos</a> &middot;
+      <a href="./">The Ranker</a> &middot; <a href="approach.html">How this works</a></p>
+  </footer>
+
+</div>
+</body>
+</html>

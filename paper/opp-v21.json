@@ -1,0 +1,274 @@
+{
+  "schema": "paper-book-public/v1",
+  "book": "opp-v21",
+  "generated_at": "2026-09-14T21:26:39Z",
+  "config": {
+    "benchmark": "SPY",
+    "cost_bps": 10,
+    "max_names": 40,
+    "min_names": 1,
+    "max_weight": 0.04,
+    "max_turnover_per_rebalance": 2.0,
+    "rebalance": "M",
+    "start_capital": 100000,
+    "start_date": "2026-09-14",
+    "stale_days_refuse": 3,
+    "unfilled_after_sessions": 3,
+    "vetoes_apply": false,
+    "primary": false
+  },
+  "strategy": null,
+  "status": {
+    "as_of": "2026-09-14",
+    "filled": false,
+    "start_capital": 100000,
+    "start_date": "2026-09-14",
+    "cash": 100000.0,
+    "nav": 100000.0,
+    "benchmark": "SPY",
+    "benchmark_nav": 100000.0,
+    "nav_low": null,
+    "nav_high": null,
+    "unresolved": [],
+    "performance_status": "eligible",
+    "performance_status_reasons": [],
+    "pending_orders": 15
+  },
+  "pending_orders": [
+    {
+      "ticker": "AGX",
+      "name": null,
+      "side": "buy",
+      "target_weight": 0.026379,
+      "order_session": "2026-09-14",
+      "fills_at_close": "2026-09-15",
+      "note": ""
+    },
+    {
+      "ticker": "COCO",
+      "name": null,
+      "side": "buy",
+      "target_weight": 0.021872,
+      "order_session": "2026-09-14",
+      "fills_at_close": "2026-09-15",
+      "note": ""
+    },
+    {
+      "ticker": "DDOG",
+      "name": null,
+      "side": "buy",
+      "target_weight": 0.029366,
+      "order_session": "2026-09-14",
+      "fills_at_close": "2026-09-15",
+      "note": ""
+    },
+    {
+      "ticker": "EXEL",
+      "name": null,
+      "side": "buy",
+      "target_weight": 0.023491,
+      "order_session": "2026-09-14",
+      "fills_at_close": "2026-09-15",
+      "note": ""
+    },
+    {
+      "ticker": "FIVE",
+      "name": null,
+      "side": "buy",
+      "target_weight": 0.026179,
+      "order_session": "2026-09-14",
+      "fills_at_close": "2026-09-15",
+      "note": ""
+    },
+    {
+      "ticker": "FTNT",
+      "name": null,
+      "side": "buy",
+      "target_weight": 0.026278,
+      "order_session": "2026-09-14",
+      "fills_at_close": "2026-09-15",
+      "note": ""
+    },
+    {
+      "ticker": "GMED",
+      "name": null,
+      "side": "buy",
+      "target_weight": 0.021739,
+      "order_session": "2026-09-14",
+      "fills_at_close": "2026-09-15",
+      "note": ""
+    },
+    {
+      "ticker": "LRCX",
+      "name": null,
+      "side": "buy",
+      "target_weight": 0.032323,
+      "order_session": "2026-09-14",
+      "fills_at_close": "2026-09-15",
+      "note": ""
+    },
+    {
+      "ticker": "NVDA",
+      "name": null,
+      "side": "buy",
+      "target_weight": 0.029405,
+      "order_session": "2026-09-14",
+      "fills_at_close": "2026-09-15",
+      "note": ""
+    },
+    {
+      "ticker": "PLTR",
+      "name": null,
+      "side": "buy",
+      "target_weight": 0.023636,
+      "order_session": "2026-09-14",
+      "fills_at_close": "2026-09-15",
+      "note": ""
+    },
+    {
+      "ticker": "ROST",
+      "name": null,
+      "side": "buy",
+      "target_weight": 0.037331,
+      "order_session": "2026-09-14",
+      "fills_at_close": "2026-09-15",
+      "note": ""
+    },
+    {
+      "ticker": "STRL",
+      "name": null,
+      "side": "buy",
+      "target_weight": 0.024939,
+      "order_session": "2026-09-14",
+      "fills_at_close": "2026-09-15",
+      "note": ""
+    },
+    {
+      "ticker": "TER",
+      "name": null,
+      "side": "buy",
+      "target_weight": 0.033832,
+      "order_session": "2026-09-14",
+      "fills_at_close": "2026-09-15",
+      "note": ""
+    },
+    {
+      "ticker": "TPR",
+      "name": null,
+      "side": "buy",
+      "target_weight": 0.021881,
+      "order_session": "2026-09-14",
+      "fills_at_close": "2026-09-15",
+      "note": ""
+    },
+    {
+      "ticker": "VRT",
+      "name": null,
+      "side": "buy",
+      "target_weight": 0.02,
+      "order_session": "2026-09-14",
+      "fills_at_close": "2026-09-15",
+      "note": ""
+    }
+  ],
+  "orders": {
+    "as_of": "2026-09-14",
+    "order_date": "2026-09-14",
+    "strategy": "opportunity-v2.1-hypothesis1 2026-09-14-close_opportunity-v2_eb7db422",
+    "targets": [
+      {
+        "rank": 1,
+        "ticker": "COCO",
+        "weight": 0.021872
+      },
+      {
+        "rank": 2,
+        "ticker": "EXEL",
+        "weight": 0.023491
+      },
+      {
+        "rank": 3,
+        "ticker": "NVDA",
+        "weight": 0.029405
+      },
+      {
+        "rank": 4,
+        "ticker": "TPR",
+        "weight": 0.021881
+      },
+      {
+        "rank": 5,
+        "ticker": "TER",
+        "weight": 0.033832
+      },
+      {
+        "rank": 6,
+        "ticker": "VRT",
+        "weight": 0.02
+      },
+      {
+        "rank": 7,
+        "ticker": "AGX",
+        "weight": 0.026379
+      },
+      {
+        "rank": 8,
+        "ticker": "FTNT",
+        "weight": 0.026278
+      },
+      {
+        "rank": 9,
+        "ticker": "STRL",
+        "weight": 0.024939
+      },
+      {
+        "rank": 10,
+        "ticker": "FIVE",
+        "weight": 0.026179
+      },
+      {
+        "rank": 11,
+        "ticker": "GMED",
+        "weight": 0.021739
+      },
+      {
+        "rank": 12,
+        "ticker": "PLTR",
+        "weight": 0.023636
+      },
+      {
+        "rank": 13,
+        "ticker": "LRCX",
+        "weight": 0.032323
+      },
+      {
+        "rank": 14,
+        "ticker": "DDOG",
+        "weight": 0.029366
+      },
+      {
+        "rank": 15,
+        "ticker": "ROST",
+        "weight": 0.037331
+      }
+    ]
+  },
+  "positions": {
+    "as_of": "2026-09-14",
+    "cash": 100000.0,
+    "first_order_date": "2026-09-14",
+    "last_order_date": "2026-09-14",
+    "nav_history": [
+      [
+        "2026-09-14",
+        100000.0,
+        100000.0
+      ]
+    ],
+    "positions": {},
+    "start_capital": 100000,
+    "start_date": "2026-09-14"
+  },
+  "ledger": [],
+  "desk_notes": []
+}

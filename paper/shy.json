@@ -1,7 +1,7 @@
 {
   "schema": "paper-book-public/v1",
   "book": "shy",
-  "generated_at": "2026-09-14T18:36:55Z",
+  "generated_at": "2026-09-14T21:26:39Z",
   "config": {
     "benchmark": "SPY",
     "cost_bps": 10,
@@ -20,667 +20,27 @@
   },
   "strategy": "Buys the 30 S&P 500 companies returning the most cash to shareholders through buybacks and dividends, measured against their market value, in equal weights and rebalanced monthly.",
   "status": {
-    "as_of": "2026-09-11",
-    "filled": false,
+    "as_of": "2026-09-14",
+    "filled": true,
     "start_capital": 100000,
     "start_date": "2026-09-11",
-    "cash": 100000.0,
-    "nav": 100000.0,
+    "cash": 0.1,
+    "nav": 99900.1,
     "benchmark": "SPY",
-    "benchmark_nav": 100000.0,
+    "benchmark_nav": 99553.84,
     "nav_low": null,
     "nav_high": null,
     "unresolved": [],
     "performance_status": "eligible",
     "performance_status_reasons": [],
-    "pending_orders": 30
+    "pending_orders": 0
   },
-  "pending_orders": [
-    {
-      "ticker": "ACGL",
-      "name": "Arch Capital Group",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "AIG",
-      "name": "American International Group",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "CMCSA",
-      "name": "Comcast",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "CPT",
-      "name": "Camden Property Trust",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "CRM",
-      "name": "Salesforce",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "DECK",
-      "name": "Deckers Brands",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "EG",
-      "name": "Everest Group",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "FICO",
-      "name": "Fair Isaac",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "FTV",
-      "name": "Fortive",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "GDDY",
-      "name": "GoDaddy",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "GIS",
-      "name": "General Mills",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": "Promoted in place of CHTR"
-    },
-    {
-      "ticker": "GM",
-      "name": "General Motors",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "HCA",
-      "name": "HCA Healthcare",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "IT",
-      "name": "Gartner",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "KR",
-      "name": "Kroger",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "LULU",
-      "name": "Lululemon Athletica",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "LUV",
-      "name": "Southwest Airlines",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "LVS",
-      "name": "Las Vegas Sands",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "MTB",
-      "name": "M&T Bank",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "NVR",
-      "name": "NVR, Inc.",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "OMC",
-      "name": "Omnicom Group",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "PTC",
-      "name": "PTC Inc.",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "PYPL",
-      "name": "PayPal",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "SYF",
-      "name": "Synchrony Financial",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "TAP",
-      "name": "Molson Coors Beverage Company",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "TFC",
-      "name": "Truist Financial",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "TTD",
-      "name": "Trade Desk (The)",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "UHS",
-      "name": "Universal Health Services",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "WDAY",
-      "name": "Workday, Inc.",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    },
-    {
-      "ticker": "ZTS",
-      "name": "Zoetis",
-      "side": "buy",
-      "target_weight": 0.033333,
-      "order_session": "2026-09-11",
-      "fills_at_close": "2026-09-14",
-      "note": ""
-    }
-  ],
-  "orders": {
-    "applied_vetoes": [
-      "CHTR vetoed, GIS promoted"
-    ],
-    "as_of": "2026-09-11",
-    "order_date": "2026-09-11",
-    "strategy": "shy v2026-09-13",
-    "targets": [
-      {
-        "close": 35.85,
-        "components": {
-          "shareholder_yield": 0.0949
-        },
-        "name": "General Mills",
-        "promoted_for": "CHTR",
-        "rank": 31,
-        "score": 0.09489,
-        "sector": "Consumer Staples",
-        "ticker": "GIS",
-        "weight": 0.033333
-      },
-      {
-        "close": 179.59,
-        "components": {
-          "shareholder_yield": 0.2324
-        },
-        "name": "Gartner",
-        "rank": 2,
-        "score": 0.23241,
-        "sector": "Information Technology",
-        "ticker": "IT",
-        "weight": 0.033333
-      },
-      {
-        "close": 79.01,
-        "components": {
-          "shareholder_yield": 0.1807
-        },
-        "name": "Omnicom Group",
-        "rank": 3,
-        "score": 0.18066,
-        "sector": "Communication Services",
-        "ticker": "OMC",
-        "weight": 0.033333
-      },
-      {
-        "close": 247.72,
-        "components": {
-          "shareholder_yield": 0.1794
-        },
-        "name": "Salesforce",
-        "rank": 4,
-        "score": 0.17945,
-        "sector": "Information Technology",
-        "ticker": "CRM",
-        "weight": 0.033333
-      },
-      {
-        "close": 985.39,
-        "components": {
-          "shareholder_yield": 0.1689
-        },
-        "name": "Fair Isaac",
-        "rank": 5,
-        "score": 0.16887,
-        "sector": "Information Technology",
-        "ticker": "FICO",
-        "weight": 0.033333
-      },
-      {
-        "close": 75.99,
-        "components": {
-          "shareholder_yield": 0.163
-        },
-        "name": "Synchrony Financial",
-        "rank": 6,
-        "score": 0.16299,
-        "sector": "Financials",
-        "ticker": "SYF",
-        "weight": 0.033333
-      },
-      {
-        "close": 72.97,
-        "components": {
-          "shareholder_yield": 0.1503
-        },
-        "name": "Zoetis",
-        "rank": 7,
-        "score": 0.15033,
-        "sector": "Health Care",
-        "ticker": "ZTS",
-        "weight": 0.033333
-      },
-      {
-        "close": 14.34,
-        "components": {
-          "shareholder_yield": 0.1446
-        },
-        "name": "Trade Desk (The)",
-        "rank": 8,
-        "score": 0.14463,
-        "sector": "Communication Services",
-        "ticker": "TTD",
-        "weight": 0.033333
-      },
-      {
-        "close": 38.93,
-        "components": {
-          "shareholder_yield": 0.1402
-        },
-        "name": "Molson Coors Beverage Company",
-        "rank": 9,
-        "score": 0.14016,
-        "sector": "Consumer Staples",
-        "ticker": "TAP",
-        "weight": 0.033333
-      },
-      {
-        "close": 98.07,
-        "components": {
-          "shareholder_yield": 0.1315
-        },
-        "name": "GoDaddy",
-        "rank": 10,
-        "score": 0.13154,
-        "sector": "Information Technology",
-        "ticker": "GDDY",
-        "weight": 0.033333
-      },
-      {
-        "close": 53.72,
-        "components": {
-          "shareholder_yield": 0.1277
-        },
-        "name": "PayPal",
-        "rank": 11,
-        "score": 0.12772,
-        "sector": "Financials",
-        "ticker": "PYPL",
-        "weight": 0.033333
-      },
-      {
-        "close": 42.83,
-        "components": {
-          "shareholder_yield": 0.1254
-        },
-        "name": "Las Vegas Sands",
-        "rank": 12,
-        "score": 0.12545,
-        "sector": "Consumer Discretionary",
-        "ticker": "LVS",
-        "weight": 0.033333
-      },
-      {
-        "close": 54.69,
-        "components": {
-          "shareholder_yield": 0.1194
-        },
-        "name": "Fortive",
-        "rank": 13,
-        "score": 0.11942,
-        "sector": "Industrials",
-        "ticker": "FTV",
-        "weight": 0.033333
-      },
-      {
-        "close": 25.2,
-        "components": {
-          "shareholder_yield": 0.1163
-        },
-        "name": "Comcast",
-        "rank": 14,
-        "score": 0.11627,
-        "sector": "Communication Services",
-        "ticker": "CMCSA",
-        "weight": 0.033333
-      },
-      {
-        "close": 185.7,
-        "components": {
-          "shareholder_yield": 0.1143
-        },
-        "name": "Workday, Inc.",
-        "rank": 15,
-        "score": 0.11434,
-        "sector": "Information Technology",
-        "ticker": "WDAY",
-        "weight": 0.033333
-      },
-      {
-        "close": 103.01,
-        "components": {
-          "shareholder_yield": 0.1122
-        },
-        "name": "Camden Property Trust",
-        "rank": 16,
-        "score": 0.11222,
-        "sector": "Real Estate",
-        "ticker": "CPT",
-        "weight": 0.033333
-      },
-      {
-        "close": 81.27,
-        "components": {
-          "shareholder_yield": 0.111
-        },
-        "name": "Deckers Brands",
-        "rank": 17,
-        "score": 0.11097,
-        "sector": "Consumer Discretionary",
-        "ticker": "DECK",
-        "weight": 0.033333
-      },
-      {
-        "close": 98.97,
-        "components": {
-          "shareholder_yield": 0.1108
-        },
-        "name": "Lululemon Athletica",
-        "rank": 18,
-        "score": 0.11079,
-        "sector": "Consumer Discretionary",
-        "ticker": "LULU",
-        "weight": 0.033333
-      },
-      {
-        "close": 6160.76,
-        "components": {
-          "shareholder_yield": 0.1087
-        },
-        "name": "NVR, Inc.",
-        "rank": 19,
-        "score": 0.10867,
-        "sector": "Consumer Discretionary",
-        "ticker": "NVR",
-        "weight": 0.033333
-      },
-      {
-        "close": 174.83,
-        "components": {
-          "shareholder_yield": 0.1073
-        },
-        "name": "Universal Health Services",
-        "rank": 20,
-        "score": 0.10727,
-        "sector": "Health Care",
-        "ticker": "UHS",
-        "weight": 0.033333
-      },
-      {
-        "close": 96.09,
-        "components": {
-          "shareholder_yield": 0.1061
-        },
-        "name": "Arch Capital Group",
-        "rank": 21,
-        "score": 0.1061,
-        "sector": "Financials",
-        "ticker": "ACGL",
-        "weight": 0.033333
-      },
-      {
-        "close": 85.62,
-        "components": {
-          "shareholder_yield": 0.1061
-        },
-        "name": "General Motors",
-        "rank": 22,
-        "score": 0.10607,
-        "sector": "Consumer Discretionary",
-        "ticker": "GM",
-        "weight": 0.033333
-      },
-      {
-        "close": 426.94,
-        "components": {
-          "shareholder_yield": 0.1036
-        },
-        "name": "HCA Healthcare",
-        "rank": 23,
-        "score": 0.10362,
-        "sector": "Health Care",
-        "ticker": "HCA",
-        "weight": 0.033333
-      },
-      {
-        "close": 371.71,
-        "components": {
-          "shareholder_yield": 0.1015
-        },
-        "name": "Everest Group",
-        "rank": 24,
-        "score": 0.10146,
-        "sector": "Financials",
-        "ticker": "EG",
-        "weight": 0.033333
-      },
-      {
-        "close": 239.83,
-        "components": {
-          "shareholder_yield": 0.1013
-        },
-        "name": "M&T Bank",
-        "rank": 25,
-        "score": 0.10134,
-        "sector": "Financials",
-        "ticker": "MTB",
-        "weight": 0.033333
-      },
-      {
-        "close": 58.49,
-        "components": {
-          "shareholder_yield": 0.101
-        },
-        "name": "Kroger",
-        "rank": 26,
-        "score": 0.10102,
-        "sector": "Consumer Staples",
-        "ticker": "KR",
-        "weight": 0.033333
-      },
-      {
-        "close": 75.33,
-        "components": {
-          "shareholder_yield": 0.1009
-        },
-        "name": "American International Group",
-        "rank": 27,
-        "score": 0.10089,
-        "sector": "Financials",
-        "ticker": "AIG",
-        "weight": 0.033333
-      },
-      {
-        "close": 50.4,
-        "components": {
-          "shareholder_yield": 0.1005
-        },
-        "name": "Truist Financial",
-        "rank": 28,
-        "score": 0.1005,
-        "sector": "Financials",
-        "ticker": "TFC",
-        "weight": 0.033333
-      },
-      {
-        "close": 39.24,
-        "components": {
-          "shareholder_yield": 0.1
-        },
-        "name": "Southwest Airlines",
-        "rank": 29,
-        "score": 0.10002,
-        "sector": "Industrials",
-        "ticker": "LUV",
-        "weight": 0.033333
-      },
-      {
-        "close": 130.78,
-        "components": {
-          "shareholder_yield": 0.0987
-        },
-        "name": "PTC Inc.",
-        "rank": 30,
-        "score": 0.09874,
-        "sector": "Information Technology",
-        "ticker": "PTC",
-        "weight": 0.033333
-      }
-    ]
-  },
+  "pending_orders": [],
+  "orders": null,
   "positions": {
-    "as_of": "2026-09-11",
-    "cash": 100000.0,
+    "as_of": "2026-09-14",
+    "cash": 0.1,
+    "last_fill_date": "2026-09-14",
     "last_order_date": "2026-09-11",
     "last_vetoes": {
       "applied": [
@@ -693,13 +53,770 @@
         "2026-09-11",
         100000.0,
         100000.0
+      ],
+      [
+        "2026-09-14",
+        99900.1,
+        99553.84
       ]
     ],
-    "positions": {},
+    "positions": {
+      "ACGL": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 97.95,
+        "last_price_raw": 97.95,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 97.95
+          }
+        ]
+      },
+      "AIG": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 76.29,
+        "last_price_raw": 76.29,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 76.29
+          }
+        ]
+      },
+      "CMCSA": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 24.88,
+        "last_price_raw": 24.88,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 24.88
+          }
+        ]
+      },
+      "CPT": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 103.83,
+        "last_price_raw": 103.83,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 103.83
+          }
+        ]
+      },
+      "CRM": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 259.43,
+        "last_price_raw": 259.43,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 259.43
+          }
+        ]
+      },
+      "DECK": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 80.54,
+        "last_price_raw": 80.54,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 80.54
+          }
+        ]
+      },
+      "EG": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 379.54,
+        "last_price_raw": 379.54,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 379.54
+          }
+        ]
+      },
+      "FICO": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 1001.5,
+        "last_price_raw": 1001.5,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 1001.5
+          }
+        ]
+      },
+      "FTV": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 55.19,
+        "last_price_raw": 55.19,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 55.19
+          }
+        ]
+      },
+      "GDDY": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 104.47,
+        "last_price_raw": 104.47,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 104.47
+          }
+        ]
+      },
+      "GIS": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 36.47,
+        "last_price_raw": 36.47,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 36.47
+          }
+        ]
+      },
+      "GM": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 87.16,
+        "last_price_raw": 87.16,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 87.16
+          }
+        ]
+      },
+      "HCA": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 425.49,
+        "last_price_raw": 425.49,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 425.49
+          }
+        ]
+      },
+      "IT": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 197.07,
+        "last_price_raw": 197.07,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 197.07
+          }
+        ]
+      },
+      "KR": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 60.91,
+        "last_price_raw": 60.91,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 60.91
+          }
+        ]
+      },
+      "LULU": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 100.3,
+        "last_price_raw": 100.3,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 100.3
+          }
+        ]
+      },
+      "LUV": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 39.52,
+        "last_price_raw": 39.52,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 39.52
+          }
+        ]
+      },
+      "LVS": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 42.4,
+        "last_price_raw": 42.4,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 42.4
+          }
+        ]
+      },
+      "MTB": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 237.82,
+        "last_price_raw": 237.82,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 237.82
+          }
+        ]
+      },
+      "NVR": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 6299.5601,
+        "last_price_raw": 6299.5601,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 6299.5601
+          }
+        ]
+      },
+      "OMC": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 81.07,
+        "last_price_raw": 81.07,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 81.07
+          }
+        ]
+      },
+      "PTC": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 136.65,
+        "last_price_raw": 136.65,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 136.65
+          }
+        ]
+      },
+      "PYPL": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 54.03,
+        "last_price_raw": 54.03,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 54.03
+          }
+        ]
+      },
+      "SYF": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 75.88,
+        "last_price_raw": 75.88,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 75.88
+          }
+        ]
+      },
+      "TAP": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 39.08,
+        "last_price_raw": 39.08,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 39.08
+          }
+        ]
+      },
+      "TFC": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 50.1,
+        "last_price_raw": 50.1,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 50.1
+          }
+        ]
+      },
+      "TTD": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 14.97,
+        "last_price_raw": 14.97,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 14.97
+          }
+        ]
+      },
+      "UHS": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 173.25,
+        "last_price_raw": 173.25,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 173.25
+          }
+        ]
+      },
+      "WDAY": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 194.21,
+        "last_price_raw": 194.21,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 194.21
+          }
+        ]
+      },
+      "ZTS": {
+        "dollars_at_fill": 3330.0,
+        "fill_date": "2026-09-14",
+        "fill_price_raw": 73.67,
+        "last_price_raw": 73.67,
+        "last_value": 3330.0,
+        "last_value_date": "2026-09-14",
+        "lots": [
+          {
+            "dollars_at_fill": 3330.0,
+            "fill_date": "2026-09-14",
+            "fill_price_raw": 73.67
+          }
+        ]
+      }
+    },
     "start_capital": 100000,
     "start_date": "2026-09-11"
   },
-  "ledger": [],
+  "ledger": [
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 97.95,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "ACGL"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 76.29,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "AIG"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 24.88,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "CMCSA"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 103.83,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "CPT"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 259.43,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "CRM"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 80.54,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "DECK"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 379.54,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "EG"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 1001.5,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "FICO"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 55.19,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "FTV"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 104.47,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "GDDY"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 36.47,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "GIS"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 87.16,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "GM"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 425.49,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "HCA"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 197.07,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "IT"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 60.91,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "KR"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 100.3,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "LULU"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 39.52,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "LUV"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 42.4,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "LVS"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 237.82,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "MTB"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 6299.5601,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "NVR"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 81.07,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "OMC"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 136.65,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "PTC"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 54.03,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "PYPL"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 75.88,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "SYF"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 39.08,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "TAP"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 50.1,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "TFC"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 14.97,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "TTD"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 173.25,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "UHS"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 194.21,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "WDAY"
+    },
+    {
+      "cost": 3.33,
+      "date": "2026-09-14",
+      "dollars": 3330.0,
+      "order_date": "2026-09-11",
+      "price_raw": 73.67,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-09-11",
+      "side": "buy",
+      "ticker": "ZTS"
+    }
+  ],
   "desk_notes": [
     {
       "generated": "2026-09-13",
@@ -923,6 +1040,18 @@
         "CHTR"
       ],
       "rule_messages": []
+    },
+    {
+      "generated": "2026-09-14",
+      "as_of": "2026-09-14",
+      "strategy": "shy v2026-09-13",
+      "status": "no-rebalance-tonight",
+      "note": "",
+      "verdicts": [],
+      "vetoes": [],
+      "rule_messages": [
+        "orders already pending"
+      ]
     }
   ]
 }

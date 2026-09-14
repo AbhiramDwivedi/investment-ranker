@@ -1,29 +1,30 @@
 {
   "schema": "paper-books-public/v1",
-  "generated_at": "2026-09-14T18:36:55Z",
+  "generated_at": "2026-09-14T21:26:39Z",
   "books": [
     {
       "book": "shy",
-      "status": "no_fills",
+      "status": "filled",
       "performance_status": "eligible",
       "file": "paper/shy.json"
     },
     {
       "book": "mom",
-      "status": "no_fills",
+      "status": "filled",
       "performance_status": "eligible",
       "file": "paper/mom.json"
     },
     {
-      "book": "quality",
+      "book": "opp-v21",
       "status": "no_fills",
       "performance_status": "eligible",
-      "file": "paper/quality.json"
+      "file": "paper/opp-v21.json"
     },
     {
-      "book": "opportunity-v2.1",
-      "status": "planned",
-      "starts": "first orders after the 2026-09-14 close"
+      "book": "quality",
+      "status": "filled",
+      "performance_status": "eligible",
+      "file": "paper/quality.json"
     }
   ]
 }

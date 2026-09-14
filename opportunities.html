@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Opportunities</title>
+<meta name="description" content="Up to five researched buy and watch decisions from the opportunity-v2 strategy, each with the completed-session price, dated SEC evidence, valuation cases, the main downside and what would prove it wrong. Research notes, not investment advice.">
+<meta name="opportunity-run-id" content="2026-09-11-close_opportunity-v2_06cfa696">
+<style>
+/* shared:css */
+/* The CSS both public pages share: the front page (template/ranker.html,
+   tonight's cut) and the pattern page (template/patterns.html, what is
+   moving). scripts/render_ranker.py splices this file between the shared:css
+   markers in each template's style block, so a colour token or a table rule is
+   defined once and a fix to it reaches both pages.
+
+   What stays in a template is what only that page draws: the funnel and
+   distribution charts, the step-by-step method panel, the track-record tables
+   and the readiness badges on the front page; the pattern legend, the honesty
+   cards and the whole score pop-up on the pattern page.
+*/
+
+  /* ---- palette, page frame, masthead, both tables ---- */
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --baseline: #c3c2b7; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --accent-soft: #cde2fb;
+    --trough: #2a78d6; --inflect: #1baf7a; --newlist: #eda100;
+    --warn: #fab219; --pos: #006300;
+    /* Funnel ramp: ONE hue, monotone lightness, light -> dark as the screen
+       narrows. Blue steps 250/400/500/600; validated --ordinal, light end
+       #86b6ef at 2.06:1 on this surface. */
+    --f1: #86b6ef; --f2: #3987e5; --f3: #256abf; --f4: #184f95;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+      --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+      --accent: #6da7ec; --accent-soft: #184f95;
+      --trough: #3987e5; --inflect: #199e70; --newlist: #c98500;
+      --warn: #fab219; --pos: #0ca30c;
+      /* Same ramp, anchor flipped for the dark surface (dark -> light as the
+         screen narrows). Dark end #184f95 at 2.15:1 on #1a1a19. */
+      --f1: #184f95; --f2: #256abf; --f3: #3987e5; --f4: #86b6ef;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+    --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+    --accent: #6da7ec; --accent-soft: #184f95;
+    --trough: #3987e5; --inflect: #199e70; --newlist: #c98500;
+    --warn: #fab219; --pos: #0ca30c;
+    --f1: #184f95; --f2: #256abf; --f3: #3987e5; --f4: #86b6ef;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--page); color: var(--ink); margin: 0; line-height: 1.5;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 15px; }
+  .wrap { max-width: 1560px; margin: 0 auto; padding: 28px 24px 64px; }
+  .masthead { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    border-bottom: 2px solid var(--ink); padding-bottom: 14px; }
+  .masthead h1 { font-size: 26px; font-weight: 750; letter-spacing: -0.01em; margin: 0; }
+  .masthead h1 span { color: var(--accent); }
+  .issue { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-2); font-weight: 600; }
+  .methodlink { color: var(--accent); text-decoration: none; }
+  .methodlink:hover { text-decoration: underline; }
+  .banner { margin-top: 16px; border: 1px solid color-mix(in srgb, var(--warn) 50%, var(--surface));
+    background: color-mix(in srgb, var(--warn) 10%, var(--surface)); border-radius: 8px; padding: 12px 16px;
+    font-size: 13.5px; }
+  .eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 650; margin: 30px 0 12px; }
+  .eyebrow small { text-transform: none; letter-spacing: 0; font-weight: 400; }
+  .card { background: var(--surface); border: 1px solid var(--ring); border-radius: 8px; padding: 8px 14px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 0 0 10px; }
+  .controls label { font-size: 12px; color: var(--muted); font-weight: 650; text-transform: uppercase; letter-spacing: 0.06em; }
+  .controls select, .controls input[type="search"] {
+    background: var(--surface); color: var(--ink); border: 1px solid var(--baseline); border-radius: 6px;
+    padding: 6px 10px; font-size: 13.5px; font-family: inherit; }
+  .controls input[type="search"] { width: 170px; }
+  .controls select:focus-visible, .controls input:focus-visible, th button:focus-visible, .showall:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 1px; }
+  .count { font-size: 12.5px; color: var(--muted); margin-left: auto; }
+  .table-scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th { text-align: left; padding: 0; border-bottom: 1px solid var(--baseline); white-space: nowrap; }
+  th button { all: unset; cursor: pointer; display: block; width: 100%; padding: 10px;
+    font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); font-weight: 650; }
+  th button:hover { color: var(--ink); }
+  th .dir { color: var(--accent); font-weight: 750; }
+  td { padding: 8px 10px; border-bottom: 1px solid var(--grid); vertical-align: middle; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tr:last-child td { border-bottom: none; }
+  .tk { font-weight: 700; }
+  .tk small { display: block; font-weight: 400; color: var(--muted); font-size: 11px; max-width: 20ch;
+    overflow: hidden; text-overflow: ellipsis; }
+  .score { font-size: 15px; font-weight: 750; color: var(--accent); }
+  .arch { display: inline-block; font-size: 10.5px; font-weight: 700; border-radius: 999px; padding: 1px 9px;
+    text-transform: uppercase; letter-spacing: 0.04em; color: var(--page); }
+  .arch.t { background: var(--trough); }
+  .arch.i { background: var(--inflect); }
+  .arch.n { background: var(--newlist); }
+  .flag { display: inline-block; font-size: 10.5px; font-weight: 700; border-radius: 999px; padding: 1px 8px;
+    margin-left: 6px; border: 1px solid color-mix(in srgb, var(--warn) 60%, var(--surface));
+    background: color-mix(in srgb, var(--warn) 16%, var(--surface)); color: var(--ink); cursor: help; }
+  .pos { color: var(--pos); }
+  .sec { font-size: 12px; color: var(--ink-2); }
+  .showall { all: unset; cursor: pointer; display: inline-block; margin-top: 10px; padding: 5px 14px;
+    border: 1px solid var(--baseline); border-radius: 999px; font-size: 12.5px; color: var(--accent); font-weight: 650; }
+  .showall:hover { border-color: var(--accent); }
+
+  /* ---- chips: the theme sleeves on the front page, the momentum
+     leaders on the pattern page ---- */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { border: 1px solid var(--baseline); border-radius: 999px; padding: 3px 12px; font-size: 12.5px; color: var(--ink-2); }
+  .chip b { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+  /* ---- coverage tiles and the page footer ---- */
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
+  .tile { background: var(--surface); border: 1px solid var(--ring); border-radius: 6px; padding: 12px 14px; }
+  .tile .k { font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); font-weight: 650; }
+  .tile .v { font-size: 21px; font-weight: 700; margin-top: 2px; }
+  .tile .d { font-size: 12.5px; color: var(--ink-2); margin-top: 2px; }
+  .foot { margin-top: 40px; padding-top: 14px; border-top: 1px solid var(--baseline); font-size: 12px; color: var(--muted); max-width: 82ch; }
+  .foot p { margin: 6px 0; }
+
+  /* ---- table rows. The pattern table's rows open a pop-up, so they take
+     the pointer; the cut's rows open nothing and the front page turns the
+     affordance back off for its own table. ---- */
+  tbody tr { cursor: pointer; }
+  tbody tr:hover td { background: color-mix(in srgb, var(--accent) 5%, var(--surface)); }
+  tbody tr:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+  /* ---- the floating tooltip. Both pages have one #ctip: the front page's
+     charts hover, and so do the two per-ticker charts inside the pattern
+     page's pop-up. ---- */
+  #ctip { position: fixed; z-index: 40; pointer-events: none; opacity: 0; transition: opacity .1s;
+    background: var(--surface); border: 1px solid var(--baseline); border-radius: 6px;
+    box-shadow: 0 4px 14px var(--ring); padding: 7px 10px; font-size: 12.5px; max-width: 260px;
+    color: var(--ink); line-height: 1.45; }
+  #ctip b { font-variant-numeric: tabular-nums; }
+  @media (prefers-reduced-motion: reduce) { #ctip { transition: none; } }
+/* /shared:css */
+
+  /* ---- opportunities page. The palette, masthead, tables, tiles, banner
+     and footer come from template/shared.css (spliced above), so this page
+     follows the Ranker's light and dark themes without its own colours. ---- */
+  .wrap { max-width: 980px; }
+  .lead { font-size: 13.5px; color: var(--ink-2); max-width: 82ch; margin: 12px 0 0; }
+  .banner p { margin: 4px 0; }
+  .banner.stale { border: 2px solid var(--warn); background: color-mix(in srgb, var(--warn) 24%, var(--surface));
+    font-size: 15px; }
+  .banner.stale b { font-size: 16px; }
+  .opps { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; margin-top: 18px; }
+  /* A grid or flex child defaults to min-width: auto, which lets a wide table
+     stretch the card and the page instead of scrolling inside .table-scroll
+     (the Ranker's .chart sets min-width: 0 for the same reason). */
+  .opp, .opp-head > *, details.more { min-width: 0; }
+  .issue { overflow-wrap: anywhere; }
+  .opp th, .more th { white-space: normal; vertical-align: bottom; }
+  .opp { background: var(--surface); border: 1px solid var(--ring); border-radius: 8px; padding: 16px 20px 14px; }
+  .opp-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start;
+    gap: 8px 20px; border-bottom: 1px solid var(--grid); padding-bottom: 10px; }
+  .opp-head h2 { margin: 0; font-size: 24px; font-weight: 750; letter-spacing: -0.01em; }
+  .opp-id .co { color: var(--ink-2); font-size: 13px; }
+  .opp-id .rk { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+  .opp-px { text-align: right; }
+  .opp-px .px { font-size: 22px; font-weight: 750; font-variant-numeric: tabular-nums; }
+  .act { display: inline-block; font-size: 12px; font-weight: 700; border-radius: 999px; padding: 2px 11px;
+    text-transform: uppercase; letter-spacing: 0.04em; border: 1px solid var(--baseline); }
+  .act.buy { border-color: color-mix(in srgb, var(--pos) 60%, var(--surface)); color: var(--pos); }
+  .act.watch { border-color: color-mix(in srgb, var(--warn) 70%, var(--surface)); color: var(--ink);
+    background: color-mix(in srgb, var(--warn) 12%, var(--surface)); }
+  .opp h3 { font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted);
+    font-weight: 650; margin: 14px 0 4px; }
+  .opp p, .opp li { font-size: 14px; margin: 4px 0; max-width: 78ch; }
+  .opp ul { margin: 4px 0; padding-left: 20px; }
+  .opp a, .more a { color: var(--accent); }
+  .opp .pxnote { font-size: 12.5px; color: var(--ink-2); margin: 2px 0 0; text-align: right; max-width: 34ch; }
+  .opp table, .more table { font-size: 13px; }
+  .opp tbody tr, .more tbody tr { cursor: default; }
+  .opp td.n, .opp th.n, .more td.n, .more th.n { text-align: right; }
+  .opp th, .more th { padding: 8px 10px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--muted); font-weight: 650; }
+  .opp td.basis, .more td.wrap-cell { white-space: normal; min-width: 22ch; color: var(--ink-2); }
+  .opp .note { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  details.inputs { margin-top: 8px; }
+  details.inputs > summary, details.more > summary { cursor: pointer; color: var(--accent); font-weight: 650; }
+  details.inputs > summary { font-size: 12.5px; }
+  details.more { margin-top: 14px; background: var(--surface); border: 1px solid var(--ring); border-radius: 8px;
+    padding: 10px 16px; }
+  details.more > summary { font-size: 14px; }
+  details.more p, details.more li, details.more dd { font-size: 13.5px; color: var(--ink-2); max-width: 82ch; }
+  details.more dt { font-weight: 650; margin-top: 10px; }
+  details.more dd { margin: 2px 0 0; }
+  details summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .empty { background: var(--surface); border: 1px solid var(--ring); border-radius: 8px; padding: 18px 20px;
+    margin-top: 18px; }
+  .empty h2 { margin: 0 0 6px; font-size: 20px; }
+  .tiles { margin: 10px 0; }
+  @media (max-width: 640px) {
+    .wrap { padding: 18px 16px 48px; }
+    .opp { padding: 14px 14px 12px; }
+    .opp-px { text-align: left; }
+    .opp .pxnote { text-align: left; }
+    .opp-head h2 { font-size: 21px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="masthead">
+    <h1>Opportunities <span>/ v2</span></h1>
+    <div class="issue">Completed session: Friday, Sept. 11, 2026 &middot; generated Sept. 12, 2026, at 3:59 a.m. UTC &middot; model opportunity-v2.1-hypothesis1 &middot; strategy experimental &middot; <a class="methodlink" href="index.html">Ranker</a></div>
+  </header>
+
+  <!--status-banner--><!--/status-banner-->
+
+  <div class="banner">
+    <p><b>Experimental strategy.</b> A buy candidate from this experimental strategy means the current facts and the economic case were checked. It does not mean the strategy has been shown to beat the market in the future.</p><p>Nothing on this page is investment advice.</p>
+  </div>
+
+  <p class="lead">This report has one decision from the Sept. 11, 2026, close, listed in rank order. Rank and evidence quality are separate, and neither is a probability.</p>
+<section class="opps">
+<article class="opp" id="opp-ter">
+<header class="opp-head">
+<div class="opp-id"><h2>TER</h2><div class="co">Teradyne</div><div class="rk">Rank 4 &middot; Information Technology</div></div>
+<div class="opp-px"><span class="act watch">Watch below $224.30</span><div class="px">$379.72</div><p class="pxnote">Close on Sept. 11, 2026, confirmed by an independent price source.</p></div>
+</header>
+<h3>Why now</h3>
+<p>Sales per diluted share rose 62.2% from a year earlier, and operating margin widened by 11.9 percentage points.</p>
+<p>Revenue growth was driven by higher Semiconductor Test, Product Test, and Robotics sales tied to AI-related demand.</p>
+<h3>What changed</h3>
+<p>No earlier report is available to compare with this one.</p>
+<h3>Dated facts</h3><ul>
+<li>One-year change in sales per diluted share was 62.2% for the period ended June 28, 2026, according to the <a href="https://www.sec.gov/Archives/edgar/data/97210/000119312526327715/0001193125-26-327715-index.htm" rel="noopener">SEC filing</a>.</li>
+<li>One-year change in operating margin was 11.9 percentage points for the period ended June 28, 2026, according to the <a href="https://www.sec.gov/Archives/edgar/data/97210/000119312526327715/0001193125-26-327715-index.htm" rel="noopener">SEC filing</a>.</li>
+<li>Free cash flow margin was 17.9% for the period ended June 28, 2026, according to the <a href="https://www.sec.gov/Archives/edgar/data/97210/000119312526327715/0001193125-26-327715-index.htm" rel="noopener">SEC filing</a>.</li>
+</ul>
+<h3>Valuation cases</h3>
+<div class="table-scroll"><table aria-label="Bear, base and bull valuation cases"><thead><tr><th>Case</th><th class="n">Annual return</th><th class="n">Revenue growth a year</th><th class="n">Net margin in year three</th><th class="n">Share count change a year</th><th class="n">Dividend payout ratio</th><th class="n">Exit price to earnings</th></tr></thead><tbody><tr><td>Bear</td><td class="n">-35.3%</td><td class="n">2.5%</td><td class="n">15.5%</td><td class="n">-1.0%</td><td class="n">6.8%</td><td class="n">21.0 times</td></tr><tr><td>Base</td><td class="n">-6.1%</td><td class="n">10.5%</td><td class="n">25.8%</td><td class="n">-2.0%</td><td class="n">6.8%</td><td class="n">30.0 times</td></tr><tr><td>Bull</td><td class="n">5.3%</td><td class="n">15.5%</td><td class="n">27.7%</td><td class="n">-2.0%</td><td class="n">6.8%</td><td class="n">34.5 times</td></tr></tbody></table></div>
+<p>At the $379.72 close, the base case returns negative 6.1% a year, which falls short of the 12% hurdle.</p>
+<p>The maximum entry price, where the base case just earns the hurdle, is $224.30, and the watch price is $224.30.</p>
+<p>To earn the 12% hurdle from $379.72, revenue would need to grow 31.7% a year with the other base-case inputs held. With base-case growth instead, the year-three net margin would need to reach 43.7%.</p>
+<p>The hurdle and the assumed SPY return of 7% a year in the base case are policy assumptions from valuation-2026-09-13, not forecasts. No probability is assigned to any case.</p>
+<details class="inputs"><summary>Every labelled input</summary><div class="table-scroll"><table aria-label="Labelled valuation inputs"><thead><tr><th>Case</th><th>Input</th><th class="n">Value</th><th>Source</th><th>Basis</th></tr></thead><tbody><tr><td>Bear</td><td>Revenue growth a year</td><td class="n">2.5%</td><td>Assumption</td><td class="basis">Base revenue growth 10.5% -8% (bear offset, valuation.json).</td></tr><tr><td>Bear</td><td>Net margin in year three</td><td class="n">15.5%</td><td>Reported</td><td class="basis">Lowest TTM net margin in the prior 5 fiscal years (2025-09-28), below 0.75 x TTM.</td></tr><tr><td>Bear</td><td>Share count change a year</td><td class="n">-1.0%</td><td>Assumption</td><td class="basis">Base dilution -2.0% +1% a year (bear offset, valuation.json).</td></tr><tr><td>Bear</td><td>Dividend payout ratio</td><td class="n">6.8%</td><td>Reported</td><td class="basis">TTM dividends paid / TTM net income ended 2026-06-28.</td></tr><tr><td>Bear</td><td>Exit price to earnings</td><td class="n">21.0 times</td><td>Assumption</td><td class="basis">max(8, 0.7 x base P/E 30.0).</td></tr><tr><td>Base</td><td>Revenue growth a year</td><td class="n">10.5%</td><td>Assumption</td><td class="basis">0.5 x reported 3-year TTM revenue CAGR from 2023-07-02 to 2026-06-28 of 16.0% + 0.5 x assumed 5.0% long-run nominal growth, clamped to [-5.0%, 25.0%].</td></tr><tr><td>Base</td><td>Net margin in year three</td><td class="n">25.8%</td><td>Reported</td><td class="basis">TTM net margin ended 2026-06-28, held for year 3.</td></tr><tr><td>Base</td><td>Share count change a year</td><td class="n">-2.0%</td><td>Reported</td><td class="basis">Annualized change in fiscal-year diluted weighted-average shares over 3 years, FY ended 2022-12-31 to FY ended 2025-12-31.</td></tr><tr><td>Base</td><td>Dividend payout ratio</td><td class="n">6.8%</td><td>Reported</td><td class="basis">TTM dividends paid / TTM net income ended 2026-06-28.</td></tr><tr><td>Base</td><td>Exit price to earnings</td><td class="n">30.0 times</td><td>Assumption</td><td class="basis">Median month-end P/E 33.1 over 5 years clamped to [10, 30].</td></tr><tr><td>Bull</td><td>Revenue growth a year</td><td class="n">15.5%</td><td>Assumption</td><td class="basis">Base revenue growth 10.5% +5% (bull offset, valuation.json).</td></tr><tr><td>Bull</td><td>Net margin in year three</td><td class="n">27.7%</td><td>Reported</td><td class="basis">Highest TTM net margin in the prior 5 fiscal years (2021-07-04).</td></tr><tr><td>Bull</td><td>Share count change a year</td><td class="n">-2.0%</td><td>Reported</td><td class="basis">Annualized change in fiscal-year diluted weighted-average shares over 3 years, FY ended 2022-12-31 to FY ended 2025-12-31.</td></tr><tr><td>Bull</td><td>Dividend payout ratio</td><td class="n">6.8%</td><td>Reported</td><td class="basis">TTM dividends paid / TTM net income ended 2026-06-28.</td></tr><tr><td>Bull</td><td>Exit price to earnings</td><td class="n">34.5 times</td><td>Assumption</td><td class="basis">min(35, 1.15 x base P/E 30.0).</td></tr></tbody></table></div></details>
+<h3>Main downside</h3>
+<p>Cash flow strength partly reflects growth in customer advances and payables/deferred revenue, a working-capital swing that could reverse.</p>
+<h3>What would prove this wrong</h3><ul>
+<li>Net margin falls below the bear case&#x27;s 15.5% for two quarters in a row.</li>
+<li>Revenue grows more slowly than the bear case&#x27;s 2.5% a year over four reported quarters.</li>
+<li>The diluted share count shrinks more slowly than the bear case&#x27;s 1.0% a year.</li>
+<li>Tariff and trade regulation changes could permanently raise costs or restrict sales, impairing margins.</li>
+<li>Failure to realize acquisition benefits could impair per-share earnings power given material acquired goodwill.</li>
+<li>China-related business risks could disrupt a concentrated customer base and permanently reduce earnings power.</li>
+</ul>
+<h3>Next event</h3>
+<p>No next event date is on record for this name.</p>
+<p class="note">The research horizon is six to 36 months. The evidence review is clear for evidence hash 0871f643d631.</p>
+</article>
+</section>
+
+  <details class="more"><summary>Coverage</summary><div class="tiles"><div class="tile"><div class="k">Universe</div><div class="v">1,506</div></div><div class="tile"><div class="k">Eligible for v2</div><div class="v">365</div></div><div class="tile"><div class="k">Ranked</div><div class="v">240</div></div></div><p>Names outside the v2 cohort wait in separate queues. Being outside the cohort is a limit of the model's coverage, not a verdict on the company.</p><div class="table-scroll"><table aria-label="Coverage by sector"><thead><tr><th>Sector</th><th class="n">Eligible</th><th class="n">Complete</th><th class="n">Ranked</th></tr></thead><tbody><tr><td>Communication Services</td><td class="n">13</td><td class="n">5</td><td class="n">0</td></tr><tr><td>Consumer Discretionary</td><td class="n">75</td><td class="n">47</td><td class="n">47</td></tr><tr><td>Consumer Staples</td><td class="n">34</td><td class="n">30</td><td class="n">30</td></tr><tr><td>Energy</td><td class="n">0</td><td class="n">0</td><td class="n">0</td></tr><tr><td>Financials</td><td class="n">0</td><td class="n">0</td><td class="n">0</td></tr><tr><td>Health Care</td><td class="n">47</td><td class="n">37</td><td class="n">37</td></tr><tr><td>Industrials</td><td class="n">107</td><td class="n">60</td><td class="n">60</td></tr><tr><td>Information Technology</td><td class="n">85</td><td class="n">66</td><td class="n">66</td></tr><tr><td>Materials</td><td class="n">0</td><td class="n">0</td><td class="n">0</td></tr><tr><td>Real Estate</td><td class="n">0</td><td class="n">0</td><td class="n">0</td></tr><tr><td>Utilities</td><td class="n">4</td><td class="n">3</td><td class="n">0</td></tr></tbody></table></div><div class="table-scroll"><table aria-label="Names in separate queues"><thead><tr><th>Queue</th><th class="n">Names</th></tr></thead><tbody><tr><td>Banks and insurers</td><td class="n">211</td></tr><tr><td>Binary-event health care</td><td class="n">8</td></tr><tr><td>Cyclical businesses</td><td class="n">130</td></tr><tr><td>Data repair</td><td class="n">327</td></tr><tr><td>Duplicate issuer line</td><td class="n">6</td></tr><tr><td>Emerging companies</td><td class="n">66</td></tr><tr><td>Hard rule excluded</td><td class="n">196</td></tr><tr><td>Margin volatile</td><td class="n">90</td></tr><tr><td>Real estate investment trusts</td><td class="n">78</td></tr><tr><td>Large acquisitions</td><td class="n">94</td></tr><tr><td>Sector too small</td><td class="n">8</td></tr><tr><td>Young listings and spin-offs</td><td class="n">52</td></tr></tbody></table></div></details>
+<details class="more"><summary>Verification queue (13)</summary><ul><li>TPR (rank 1) has incomplete evidence. It still needs an evidence review. The next attempt is on Sept. 14, 2026.</li><li>EXEL (rank 3) has incomplete evidence. It still needs an evidence review. The next attempt is on Sept. 14, 2026.</li><li>VRT (rank 5) has incomplete evidence. It still needs its turn for an evidence review, which the per-run review budget has not reached, an evidence review, the improvement mechanism check, the organic growth check check and the impairment review completed check. The next attempt is on Sept. 14, 2026.</li><li>NVDA (rank 6) has incomplete evidence. It still needs its turn for an evidence review, which the per-run review budget has not reached, an evidence review, the improvement mechanism check, the organic growth check check and the impairment review completed check. The next attempt is on Sept. 14, 2026.</li><li>AGX (rank 7) has incomplete evidence. It still needs its turn for an evidence review, which the per-run review budget has not reached, an evidence review, the improvement mechanism check and the impairment review completed check. The next attempt is on Sept. 14, 2026.</li><li>STRL (rank 8) has incomplete evidence. It still needs its turn for an evidence review, which the per-run review budget has not reached, an evidence review, the improvement mechanism check, the organic growth check check and the impairment review completed check. The next attempt is on Sept. 14, 2026.</li><li>FTNT (rank 9) has incomplete evidence. It still needs its turn for an evidence review, which the per-run review budget has not reached, an evidence review, the improvement mechanism check, the organic growth check check and the impairment review completed check. The next attempt is on Sept. 14, 2026.</li><li>GMED (rank 10) has incomplete evidence. It still needs an evidence review, the improvement mechanism check, the organic growth check check, the impairment review completed check and the plausible assumptions check. The next attempt is on Sept. 14, 2026.</li><li>FIVE (rank 11) has incomplete evidence. It still needs its turn for an evidence review, which the per-run review budget has not reached, an evidence review, the improvement mechanism check and the impairment review completed check. The next attempt is on Sept. 14, 2026.</li><li>LRCX (rank 12) has incomplete evidence. It still needs its turn for an evidence review, which the per-run review budget has not reached, an evidence review, the improvement mechanism check and the impairment review completed check. The next attempt is on Sept. 14, 2026.</li><li>ROST (rank 13) has incomplete evidence. It still needs its turn for an evidence review, which the per-run review budget has not reached, an evidence review, the improvement mechanism check, the organic growth check check and the impairment review completed check. The next attempt is on Sept. 14, 2026.</li><li>DDOG (rank 14) has conflicting evidence. It still needs the reconciliation check, the scenario complete check, an evidence review, the improvement mechanism check, the organic growth check check, the impairment review completed check and the plausible assumptions check. The next attempt is on Sept. 14, 2026.</li><li>CIEN (rank 15) has incomplete evidence. It still needs its turn for an evidence review, which the per-run review budget has not reached, an evidence review, the improvement mechanism check and the impairment review completed check. The next attempt is on Sept. 14, 2026.</li></ul></details>
+<details class="more"><summary>Resolved with no action (1)</summary><ul><li>COCO (rank 2) needs no action. Evidence review blocked the thesis: Cash-flow and margin strength both rest on a one-time tariff refund and a reversible working-capital timing benefit per the flagged excerpt.</li></ul></details>
+<details class="more"><summary>How to read this page</summary><p>Each name carries three separate statuses, and none of them is a probability.</p><p><b>Evidence status.</b> Verified means the displayed facts and price passed lineage, freshness and independent price checks. Incomplete, conflict and stale mean they did not, and the name waits in the verification queue.</p><p><b>Investment opinion.</b> A buy candidate clears the company-level economic tests at the completed-session price. Watch below means the case holds but the price is too high, so a watch price is shown. No action means one deciding fact failed.</p><p><b>Strategy status.</b> Experimental means the selection rule has no completed forward record yet. Historically supported and forward supported require predeclared return and uncertainty tests.</p><p>The strategy is experimental. A buy candidate from an experimental strategy means the current facts and the economic case were checked. It does not establish that the strategy will outperform in the future.</p><p>The three valuation cases use Python arithmetic on reported figures and labelled assumptions. A model may review the evidence, but it never supplies a number shown here.</p></details>
+
+  <div class="foot">
+    <p><b>Method.</b> Each weekday after the close, the opportunity-v2 model ranks established, profitable
+    nonfinancial companies on business improvement, economic quality and market confirmation. The top names
+    are then checked one at a time against their SEC filings, an independent price source and three valuation
+    cases. Only names that clear every check appear as cards, and the page never shows more than five.</p>
+    <p><b>Honesty box.</b> Every number on this page is computed from filings, prices and stated assumptions.
+    No probability is assigned to any case, and the hurdle is a policy choice rather than a forecast. This page
+    contains general research only and is not investment advice.</p>
+  </div>
+</div>
+
+</body>
+</html>

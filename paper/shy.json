@@ -1,0 +1,928 @@
+{
+  "schema": "paper-book-public/v1",
+  "book": "shy",
+  "generated_at": "2026-09-14T18:36:55Z",
+  "config": {
+    "benchmark": "SPY",
+    "cost_bps": 10,
+    "max_names": 40,
+    "min_names": 15,
+    "max_weight": 0.06,
+    "max_turnover_per_rebalance": 1.6,
+    "rebalance": "M",
+    "start_capital": 100000,
+    "start_date": "2026-09-11",
+    "stale_days_refuse": 3,
+    "unfilled_after_sessions": 3,
+    "vetoes_apply": true,
+    "targets_file": "build/alpha-shy.json",
+    "primary": true
+  },
+  "strategy": "Buys the 30 S&P 500 companies returning the most cash to shareholders through buybacks and dividends, measured against their market value, in equal weights and rebalanced monthly.",
+  "status": {
+    "as_of": "2026-09-11",
+    "filled": false,
+    "start_capital": 100000,
+    "start_date": "2026-09-11",
+    "cash": 100000.0,
+    "nav": 100000.0,
+    "benchmark": "SPY",
+    "benchmark_nav": 100000.0,
+    "nav_low": null,
+    "nav_high": null,
+    "unresolved": [],
+    "performance_status": "eligible",
+    "performance_status_reasons": [],
+    "pending_orders": 30
+  },
+  "pending_orders": [
+    {
+      "ticker": "ACGL",
+      "name": "Arch Capital Group",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "AIG",
+      "name": "American International Group",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "CMCSA",
+      "name": "Comcast",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "CPT",
+      "name": "Camden Property Trust",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "CRM",
+      "name": "Salesforce",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "DECK",
+      "name": "Deckers Brands",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "EG",
+      "name": "Everest Group",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "FICO",
+      "name": "Fair Isaac",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "FTV",
+      "name": "Fortive",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "GDDY",
+      "name": "GoDaddy",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "GIS",
+      "name": "General Mills",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": "Promoted in place of CHTR"
+    },
+    {
+      "ticker": "GM",
+      "name": "General Motors",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "HCA",
+      "name": "HCA Healthcare",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "IT",
+      "name": "Gartner",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "KR",
+      "name": "Kroger",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "LULU",
+      "name": "Lululemon Athletica",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "LUV",
+      "name": "Southwest Airlines",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "LVS",
+      "name": "Las Vegas Sands",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "MTB",
+      "name": "M&T Bank",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "NVR",
+      "name": "NVR, Inc.",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "OMC",
+      "name": "Omnicom Group",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "PTC",
+      "name": "PTC Inc.",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "PYPL",
+      "name": "PayPal",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "SYF",
+      "name": "Synchrony Financial",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "TAP",
+      "name": "Molson Coors Beverage Company",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "TFC",
+      "name": "Truist Financial",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "TTD",
+      "name": "Trade Desk (The)",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "UHS",
+      "name": "Universal Health Services",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "WDAY",
+      "name": "Workday, Inc.",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "ZTS",
+      "name": "Zoetis",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    }
+  ],
+  "orders": {
+    "applied_vetoes": [
+      "CHTR vetoed, GIS promoted"
+    ],
+    "as_of": "2026-09-11",
+    "order_date": "2026-09-11",
+    "strategy": "shy v2026-09-13",
+    "targets": [
+      {
+        "close": 35.85,
+        "components": {
+          "shareholder_yield": 0.0949
+        },
+        "name": "General Mills",
+        "promoted_for": "CHTR",
+        "rank": 31,
+        "score": 0.09489,
+        "sector": "Consumer Staples",
+        "ticker": "GIS",
+        "weight": 0.033333
+      },
+      {
+        "close": 179.59,
+        "components": {
+          "shareholder_yield": 0.2324
+        },
+        "name": "Gartner",
+        "rank": 2,
+        "score": 0.23241,
+        "sector": "Information Technology",
+        "ticker": "IT",
+        "weight": 0.033333
+      },
+      {
+        "close": 79.01,
+        "components": {
+          "shareholder_yield": 0.1807
+        },
+        "name": "Omnicom Group",
+        "rank": 3,
+        "score": 0.18066,
+        "sector": "Communication Services",
+        "ticker": "OMC",
+        "weight": 0.033333
+      },
+      {
+        "close": 247.72,
+        "components": {
+          "shareholder_yield": 0.1794
+        },
+        "name": "Salesforce",
+        "rank": 4,
+        "score": 0.17945,
+        "sector": "Information Technology",
+        "ticker": "CRM",
+        "weight": 0.033333
+      },
+      {
+        "close": 985.39,
+        "components": {
+          "shareholder_yield": 0.1689
+        },
+        "name": "Fair Isaac",
+        "rank": 5,
+        "score": 0.16887,
+        "sector": "Information Technology",
+        "ticker": "FICO",
+        "weight": 0.033333
+      },
+      {
+        "close": 75.99,
+        "components": {
+          "shareholder_yield": 0.163
+        },
+        "name": "Synchrony Financial",
+        "rank": 6,
+        "score": 0.16299,
+        "sector": "Financials",
+        "ticker": "SYF",
+        "weight": 0.033333
+      },
+      {
+        "close": 72.97,
+        "components": {
+          "shareholder_yield": 0.1503
+        },
+        "name": "Zoetis",
+        "rank": 7,
+        "score": 0.15033,
+        "sector": "Health Care",
+        "ticker": "ZTS",
+        "weight": 0.033333
+      },
+      {
+        "close": 14.34,
+        "components": {
+          "shareholder_yield": 0.1446
+        },
+        "name": "Trade Desk (The)",
+        "rank": 8,
+        "score": 0.14463,
+        "sector": "Communication Services",
+        "ticker": "TTD",
+        "weight": 0.033333
+      },
+      {
+        "close": 38.93,
+        "components": {
+          "shareholder_yield": 0.1402
+        },
+        "name": "Molson Coors Beverage Company",
+        "rank": 9,
+        "score": 0.14016,
+        "sector": "Consumer Staples",
+        "ticker": "TAP",
+        "weight": 0.033333
+      },
+      {
+        "close": 98.07,
+        "components": {
+          "shareholder_yield": 0.1315
+        },
+        "name": "GoDaddy",
+        "rank": 10,
+        "score": 0.13154,
+        "sector": "Information Technology",
+        "ticker": "GDDY",
+        "weight": 0.033333
+      },
+      {
+        "close": 53.72,
+        "components": {
+          "shareholder_yield": 0.1277
+        },
+        "name": "PayPal",
+        "rank": 11,
+        "score": 0.12772,
+        "sector": "Financials",
+        "ticker": "PYPL",
+        "weight": 0.033333
+      },
+      {
+        "close": 42.83,
+        "components": {
+          "shareholder_yield": 0.1254
+        },
+        "name": "Las Vegas Sands",
+        "rank": 12,
+        "score": 0.12545,
+        "sector": "Consumer Discretionary",
+        "ticker": "LVS",
+        "weight": 0.033333
+      },
+      {
+        "close": 54.69,
+        "components": {
+          "shareholder_yield": 0.1194
+        },
+        "name": "Fortive",
+        "rank": 13,
+        "score": 0.11942,
+        "sector": "Industrials",
+        "ticker": "FTV",
+        "weight": 0.033333
+      },
+      {
+        "close": 25.2,
+        "components": {
+          "shareholder_yield": 0.1163
+        },
+        "name": "Comcast",
+        "rank": 14,
+        "score": 0.11627,
+        "sector": "Communication Services",
+        "ticker": "CMCSA",
+        "weight": 0.033333
+      },
+      {
+        "close": 185.7,
+        "components": {
+          "shareholder_yield": 0.1143
+        },
+        "name": "Workday, Inc.",
+        "rank": 15,
+        "score": 0.11434,
+        "sector": "Information Technology",
+        "ticker": "WDAY",
+        "weight": 0.033333
+      },
+      {
+        "close": 103.01,
+        "components": {
+          "shareholder_yield": 0.1122
+        },
+        "name": "Camden Property Trust",
+        "rank": 16,
+        "score": 0.11222,
+        "sector": "Real Estate",
+        "ticker": "CPT",
+        "weight": 0.033333
+      },
+      {
+        "close": 81.27,
+        "components": {
+          "shareholder_yield": 0.111
+        },
+        "name": "Deckers Brands",
+        "rank": 17,
+        "score": 0.11097,
+        "sector": "Consumer Discretionary",
+        "ticker": "DECK",
+        "weight": 0.033333
+      },
+      {
+        "close": 98.97,
+        "components": {
+          "shareholder_yield": 0.1108
+        },
+        "name": "Lululemon Athletica",
+        "rank": 18,
+        "score": 0.11079,
+        "sector": "Consumer Discretionary",
+        "ticker": "LULU",
+        "weight": 0.033333
+      },
+      {
+        "close": 6160.76,
+        "components": {
+          "shareholder_yield": 0.1087
+        },
+        "name": "NVR, Inc.",
+        "rank": 19,
+        "score": 0.10867,
+        "sector": "Consumer Discretionary",
+        "ticker": "NVR",
+        "weight": 0.033333
+      },
+      {
+        "close": 174.83,
+        "components": {
+          "shareholder_yield": 0.1073
+        },
+        "name": "Universal Health Services",
+        "rank": 20,
+        "score": 0.10727,
+        "sector": "Health Care",
+        "ticker": "UHS",
+        "weight": 0.033333
+      },
+      {
+        "close": 96.09,
+        "components": {
+          "shareholder_yield": 0.1061
+        },
+        "name": "Arch Capital Group",
+        "rank": 21,
+        "score": 0.1061,
+        "sector": "Financials",
+        "ticker": "ACGL",
+        "weight": 0.033333
+      },
+      {
+        "close": 85.62,
+        "components": {
+          "shareholder_yield": 0.1061
+        },
+        "name": "General Motors",
+        "rank": 22,
+        "score": 0.10607,
+        "sector": "Consumer Discretionary",
+        "ticker": "GM",
+        "weight": 0.033333
+      },
+      {
+        "close": 426.94,
+        "components": {
+          "shareholder_yield": 0.1036
+        },
+        "name": "HCA Healthcare",
+        "rank": 23,
+        "score": 0.10362,
+        "sector": "Health Care",
+        "ticker": "HCA",
+        "weight": 0.033333
+      },
+      {
+        "close": 371.71,
+        "components": {
+          "shareholder_yield": 0.1015
+        },
+        "name": "Everest Group",
+        "rank": 24,
+        "score": 0.10146,
+        "sector": "Financials",
+        "ticker": "EG",
+        "weight": 0.033333
+      },
+      {
+        "close": 239.83,
+        "components": {
+          "shareholder_yield": 0.1013
+        },
+        "name": "M&T Bank",
+        "rank": 25,
+        "score": 0.10134,
+        "sector": "Financials",
+        "ticker": "MTB",
+        "weight": 0.033333
+      },
+      {
+        "close": 58.49,
+        "components": {
+          "shareholder_yield": 0.101
+        },
+        "name": "Kroger",
+        "rank": 26,
+        "score": 0.10102,
+        "sector": "Consumer Staples",
+        "ticker": "KR",
+        "weight": 0.033333
+      },
+      {
+        "close": 75.33,
+        "components": {
+          "shareholder_yield": 0.1009
+        },
+        "name": "American International Group",
+        "rank": 27,
+        "score": 0.10089,
+        "sector": "Financials",
+        "ticker": "AIG",
+        "weight": 0.033333
+      },
+      {
+        "close": 50.4,
+        "components": {
+          "shareholder_yield": 0.1005
+        },
+        "name": "Truist Financial",
+        "rank": 28,
+        "score": 0.1005,
+        "sector": "Financials",
+        "ticker": "TFC",
+        "weight": 0.033333
+      },
+      {
+        "close": 39.24,
+        "components": {
+          "shareholder_yield": 0.1
+        },
+        "name": "Southwest Airlines",
+        "rank": 29,
+        "score": 0.10002,
+        "sector": "Industrials",
+        "ticker": "LUV",
+        "weight": 0.033333
+      },
+      {
+        "close": 130.78,
+        "components": {
+          "shareholder_yield": 0.0987
+        },
+        "name": "PTC Inc.",
+        "rank": 30,
+        "score": 0.09874,
+        "sector": "Information Technology",
+        "ticker": "PTC",
+        "weight": 0.033333
+      }
+    ]
+  },
+  "positions": {
+    "as_of": "2026-09-11",
+    "cash": 100000.0,
+    "last_order_date": "2026-09-11",
+    "last_vetoes": {
+      "applied": [
+        "CHTR vetoed, GIS promoted"
+      ],
+      "order_date": "2026-09-11"
+    },
+    "nav_history": [
+      [
+        "2026-09-11",
+        100000.0,
+        100000.0
+      ]
+    ],
+    "positions": {},
+    "start_capital": 100000,
+    "start_date": "2026-09-11"
+  },
+  "ledger": [],
+  "desk_notes": [
+    {
+      "generated": "2026-09-13",
+      "as_of": "2026-09-11",
+      "strategy": "shy v2026-09-13",
+      "status": "ok",
+      "note": "Tonight's book is 30 new names picked on shareholder yield: dividends plus buybacks. Most are large buyback programs at companies whose shares have fallen, like Gartner (down 48% over 12 months), Salesforce ($25B debt-funded accelerated buyback), Trade Desk (down 90% from its peak), Omnicom and PayPal. Financials are 23% of the book (SYF, ACGL, EG, MTB, AIG, TFC). Information Technology is 20% and is mostly software and data (IT, CRM, FICO, GDDY, WDAY, PTC). Advertising, cable and media together make up another 13% (CHTR, OMC, TTD, CMCSA). Charter is vetoed: its Cox merger closed 2026-08-20 and gave Cox Enterprises about 26% of the combined company. That dilution is not in the trailing yield, and Charter ranked first on that figure. Workday is in reported buyout talks with Silver Lake, with no signed deal. The Stripe/Advent bid for PayPal ended 2026-08-27. GoDaddy faces a securities class action.",
+      "verdicts": [
+        {
+          "ticker": "CHTR",
+          "action": "veto",
+          "category": "merger_distorts_fundamentals",
+          "reason": "The $34.5B Cox merger closed 2026-08-20. Cox Enterprises received 33.6M common units and $6B of convertible preferred units, about 26% of the combined company. The trailing 26.9% yield is pre-merger and leaves out that issuance.",
+          "source": "https://www.thewrap.com/industry-news/deals-ma/charter-cox-merger-closes/"
+        },
+        {
+          "ticker": "IT",
+          "action": "keep",
+          "category": "none",
+          "reason": "Q2 beat and the stock rose 31% in August. Down about 48% over 12 months. No disqualifying event found.",
+          "source": "https://www.fool.com/investing/2026/09/08/why-gartner-stock-skyrocketed-312-last-month/"
+        },
+        {
+          "ticker": "OMC",
+          "action": "flag",
+          "category": "merger_distorts_fundamentals",
+          "reason": "The IPG acquisition closed 2025-11-26 as an all-stock deal. The trailing window mixes pre- and post-merger figures, and the $2.5B accelerated buyback is measured against the enlarged share base. Not a veto: the deal is more than 9 months old.",
+          "source": "https://www.omc.com/newsroom/omnicom-completes-acquisition-of-interpublic-forming-the-worlds-leading-marketing-and-sales-company-built-for-intelligent-growth-in-the-next-era/"
+        },
+        {
+          "ticker": "CRM",
+          "action": "keep",
+          "category": "none",
+          "reason": "$25B accelerated buyback, funded with $25B of new notes, inside a $50B program. The yield is real but paid for with debt.",
+          "source": "https://www.tikr.com/blog/salesforce-stock-is-down-30-in-2026-heres-what-the-25-billion-buyback-means-for-crm-investors"
+        },
+        {
+          "ticker": "FICO",
+          "action": "keep",
+          "category": "none",
+          "reason": "Q3 revenue missed, one downgrade and a price-target cut, all tied to VantageScore competition. No disqualifying event.",
+          "source": "https://finance.yahoo.com/markets/stocks/articles/fair-isaac-fico-stock-jumped-131006148.html"
+        },
+        {
+          "ticker": "SYF",
+          "action": "keep",
+          "category": "none",
+          "reason": "$6.5B buyback authorization. No disqualifying event found.",
+          "source": "https://www.chartmill.com/news/SYF/Chartmill-45604-Synchrony-Financial-NYSESYF-Beats-Q1-2026-Estimates-Announces-65-Billion-Buyback"
+        },
+        {
+          "ticker": "ZTS",
+          "action": "keep",
+          "category": "none",
+          "reason": "Cut 2026 guidance and appointed a combined CFO/COO. No disqualifying event.",
+          "source": "https://news.zoetis.com/press-releases/press-release-details/2026/Zoetis-Announces-Second-Quarter-2026-Results/default.aspx"
+        },
+        {
+          "ticker": "TTD",
+          "action": "keep",
+          "category": "none",
+          "reason": "Q2 revenue growth slowed to 3% and the stock fell about 25% after earnings. An operating problem, not a veto category.",
+          "source": "https://adage.com/technology/ad-tech/aa-the-trade-desk-q2-2026-ad-revenue-disappoints/"
+        },
+        {
+          "ticker": "TAP",
+          "action": "keep",
+          "category": "none",
+          "reason": "Volumes down, Q2 EPS beat, guidance reaffirmed.",
+          "source": "https://finance.yahoo.com/markets/stocks/articles/molson-coors-beverage-co-tap-231824316.html"
+        },
+        {
+          "ticker": "GDDY",
+          "action": "flag",
+          "category": "restatement_or_fraud",
+          "reason": "Securities class action (lead-plaintiff deadline 2026-10-20) alleges bookings deceleration was concealed. Only law-firm solicitations so far, with no restatement or regulator action.",
+          "source": "https://www.globenewswire.com/news-release/2026/08/25/3350833/0/en/gddy-shareholder-alert-october-20-2026-lead-plaintiff-deadline-in-godaddy-inc-securities-class-action-contact-suewallst.html"
+        },
+        {
+          "ticker": "PYPL",
+          "action": "flag",
+          "category": "none",
+          "reason": "The Stripe/Advent $60.50/share bid was rejected, and the consortium walked away 2026-08-27. No pending acquisition, but the price moved on deal news.",
+          "source": "https://www.bloomberg.com/news/articles/2026-08-28/advent-stripe-consortium-is-said-to-drop-pursuit-of-paypal"
+        },
+        {
+          "ticker": "LVS",
+          "action": "keep",
+          "category": "none",
+          "reason": "Q2 miss and one downgrade. No disqualifying event.",
+          "source": "https://www.prnewswire.com/news-releases/las-vegas-sands-reports-second-quarter-2026-results-302832499.html"
+        },
+        {
+          "ticker": "FTV",
+          "action": "keep",
+          "category": "none",
+          "reason": "The Ralliant spin completed 2025-06-28, outside the 90-day window. No new event found.",
+          "source": "https://investors.fortive.com/news-events/press-releases/detail/269/fortive-announces-completion-of-the-ralliant-separation-and-appointment-of-olumide-soroye-as-president-ceo-and-director-of-fortive"
+        },
+        {
+          "ticker": "CMCSA",
+          "action": "flag",
+          "category": "merger_distorts_fundamentals",
+          "reason": "The Versant spin-off completed in January 2026, and on 2026-06-29 Comcast announced a further separation of NBCUniversal/Sky. Trailing figures cover a shrinking perimeter.",
+          "source": "https://www.cnbc.com/2026/06/29/comcast-announces-it-will-spin-off-media-and-tech-wings-into-separate-public-companies.html"
+        },
+        {
+          "ticker": "WDAY",
+          "action": "flag",
+          "category": "acquisition_pending",
+          "reason": "Silver Lake take-private talks were reported 2026-08-13, and the stock jumped 18%. No definitive agreement has been announced.",
+          "source": "https://www.axios.com/2026/08/14/silver-lake-workday-take-private"
+        },
+        {
+          "ticker": "CPT",
+          "action": "keep",
+          "category": "none",
+          "reason": "Sold its California portfolio for $1.625B. One search summary claimed an EQR merger, but that was wrong: EQR merged with AVB. No disqualifying event.",
+          "source": "https://www.sec.gov/Archives/edgar/data/0000906345/000162828026051327/cpt-20260630.htm"
+        },
+        {
+          "ticker": "DECK",
+          "action": "keep",
+          "category": "none",
+          "reason": "No disqualifying event found.",
+          "source": "https://ir.deckers.com/news-events/press-releases/detail/656/deckers-brands-reports-fourth-quarter-and-full-fiscal-year-2026-financial-results"
+        },
+        {
+          "ticker": "LULU",
+          "action": "keep",
+          "category": "none",
+          "reason": "CEO transition, executive departures and a lowered outlook. No disqualifying event.",
+          "source": "https://www.bloomberg.com/news/features/2026-08-05/new-lululemon-ceo-faces-off-with-alo-vuori-and-chip-wilson"
+        },
+        {
+          "ticker": "NVR",
+          "action": "keep",
+          "category": "none",
+          "reason": "Lower Q2 profit amid affordability pressure. No disqualifying event.",
+          "source": "https://www.marketscreener.com/news/homebuilder-nvr-posts-lower-quarterly-profit-revenue-amid-affordability-pressures-ce7f51dedf8df623"
+        },
+        {
+          "ticker": "UHS",
+          "action": "keep",
+          "category": "none",
+          "reason": "Closed the $835M Talkspace acquisition 2026-08-17, small next to UHS. Issued $1.1B of secured notes.",
+          "source": "https://uhs.com/news/universal-health-services-inc-completes-acquisition-of-talkspace-inc/"
+        },
+        {
+          "ticker": "ACGL",
+          "action": "keep",
+          "category": "none",
+          "reason": "No disqualifying event found. Only routine insider sales.",
+          "source": "https://www.stocktitan.net/sec-filings/ACGL/144-arch-capital-group-ltd-sec-filing-94d7d9aa3943.html"
+        },
+        {
+          "ticker": "GM",
+          "action": "keep",
+          "category": "none",
+          "reason": "Raised 2026 outlook and announced shareholder payouts. No disqualifying event.",
+          "source": "https://www.just-auto.com/news/gm-raises-2026-outlook/"
+        },
+        {
+          "ticker": "HCA",
+          "action": "keep",
+          "category": "none",
+          "reason": "Q2 slightly beat, revenue up 8.7%. No disqualifying event.",
+          "source": "https://www.ad-hoc-news.de/boerse/news/corporate-news/hca-healthcare-stock-holds-above-429-as-investors-digest-q2-2026/69986197"
+        },
+        {
+          "ticker": "EG",
+          "action": "keep",
+          "category": "none",
+          "reason": "Dividend declared and loss triangles published. Selling its Colombia unit to AIG, which is immaterial.",
+          "source": "https://www.sec.gov/Archives/edgar/data/1095073/000109507326000035/everestre-20260831.htm"
+        },
+        {
+          "ticker": "MTB",
+          "action": "keep",
+          "category": "none",
+          "reason": "No announced merger or disqualifying event found.",
+          "source": "https://www.americanbanker.com/news/m-t-seeks-northeast-growth-optimistic-on-trump-era-mergers"
+        },
+        {
+          "ticker": "KR",
+          "action": "keep",
+          "category": "none",
+          "reason": "Q2 adjusted EPS up 5% and EPS guidance reaffirmed. Lowered identical-sales guidance.",
+          "source": "https://finance.yahoo.com/markets/stocks/articles/kroger-reports-second-quarter-2026-104500615.html"
+        },
+        {
+          "ticker": "AIG",
+          "action": "keep",
+          "category": "none",
+          "reason": "Minority stakes in Convex and Onex, plus a small Everest Colombia purchase. No disqualifying event.",
+          "source": "https://www.stocktitan.net/news/AIG/aig-completes-acquisitions-of-strategic-minority-ownership-stakes-in-59upipt2roj8.html"
+        },
+        {
+          "ticker": "TFC",
+          "action": "keep",
+          "category": "none",
+          "reason": "No announced merger or disqualifying event found.",
+          "source": "https://www.bankingdive.com/news/truist-ceo-bill-rogers-growth-bank-earnings-acquisition-succession/817836/"
+        },
+        {
+          "ticker": "LUV",
+          "action": "keep",
+          "category": "none",
+          "reason": "Elliott activist campaign is ongoing and Elliott has cut its stake. No disqualifying event.",
+          "source": "https://www.bloomberg.com/opinion/articles/2026-08-03/southwest-airlines-is-defying-the-odds-in-elliott-s-activist-overhaul"
+        },
+        {
+          "ticker": "PTC",
+          "action": "keep",
+          "category": "none",
+          "reason": "No disqualifying event found. The August news under that name was about PTC Therapeutics, a different company.",
+          "source": "https://kalkinemedia.com/us/news/announcements/ptc-inc-cpo-jon-stevenson-reports-august-2026-rsu-vesting-and-share-withholding"
+        }
+      ],
+      "vetoes": [
+        "CHTR"
+      ],
+      "rule_messages": []
+    }
+  ]
+}

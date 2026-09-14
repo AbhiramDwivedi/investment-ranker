@@ -1,0 +1,694 @@
+{
+  "schema": "paper-book-public/v1",
+  "book": "mom",
+  "generated_at": "2026-09-14T18:36:55Z",
+  "config": {
+    "benchmark": "SPY",
+    "cost_bps": 10,
+    "max_names": 40,
+    "min_names": 15,
+    "max_weight": 0.06,
+    "max_turnover_per_rebalance": 2.0,
+    "rebalance": "M",
+    "start_capital": 100000,
+    "start_date": "2026-09-11",
+    "stale_days_refuse": 3,
+    "unfilled_after_sessions": 3,
+    "vetoes_apply": false,
+    "targets_file": "build/alpha-mom.json",
+    "primary": false
+  },
+  "strategy": "Buys the 30 S&P 500 stocks with the strongest price gain over the past year, skipping the most recent month, in equal weights and rebalanced monthly.",
+  "status": {
+    "as_of": "2026-09-11",
+    "filled": false,
+    "start_capital": 100000,
+    "start_date": "2026-09-11",
+    "cash": 100000.0,
+    "nav": 100000.0,
+    "benchmark": "SPY",
+    "benchmark_nav": 100000.0,
+    "nav_low": null,
+    "nav_high": null,
+    "unresolved": [],
+    "performance_status": "eligible",
+    "performance_status_reasons": [],
+    "pending_orders": 30
+  },
+  "pending_orders": [
+    {
+      "ticker": "AMAT",
+      "name": "Applied Materials",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "AMD",
+      "name": "Advanced Micro Devices",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "CAT",
+      "name": "Caterpillar Inc.",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "CIEN",
+      "name": "Ciena",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "CNC",
+      "name": "Centene Corporation",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "COHR",
+      "name": "Coherent Corp.",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "CRWD",
+      "name": "CrowdStrike",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "DELL",
+      "name": "Dell Technologies",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "FIX",
+      "name": "Comfort Systems USA",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "FLEX",
+      "name": "Flex Ltd.",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "FTNT",
+      "name": "Fortinet",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "GLW",
+      "name": "Corning Inc.",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "HPE",
+      "name": "Hewlett Packard Enterprise",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "INTC",
+      "name": "Intel",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "JBHT",
+      "name": "J.B. Hunt",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "KEYS",
+      "name": "Keysight Technologies",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "KLAC",
+      "name": "KLA Corporation",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "LITE",
+      "name": "Lumentum",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "LRCX",
+      "name": "Lam Research",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "MRNA",
+      "name": "Moderna",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "MRVL",
+      "name": "Marvell Technology",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "MU",
+      "name": "Micron Technology",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "SNDK",
+      "name": "Sandisk",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "STLD",
+      "name": "Steel Dynamics",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "STX",
+      "name": "Seagate Technology",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "TER",
+      "name": "Teradyne",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "VLO",
+      "name": "Valero Energy",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "VRT",
+      "name": "Vertiv",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "WBD",
+      "name": "Warner Bros. Discovery",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "WDC",
+      "name": "Western Digital",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    }
+  ],
+  "orders": {
+    "as_of": "2026-09-11",
+    "order_date": "2026-09-11",
+    "strategy": "mom v2026-09-13",
+    "targets": [
+      {
+        "close": 1633.35,
+        "components": {
+          "ret_12_1": 17.1857
+        },
+        "name": "Sandisk",
+        "rank": 1,
+        "score": 17.18574,
+        "sector": "Information Technology",
+        "ticker": "SNDK",
+        "weight": 0.033333
+      },
+      {
+        "close": 975.26,
+        "components": {
+          "ret_12_1": 5.5197
+        },
+        "name": "Micron Technology",
+        "rank": 2,
+        "score": 5.51966,
+        "sector": "Information Technology",
+        "ticker": "MU",
+        "weight": 0.033333
+      },
+      {
+        "close": 927.03,
+        "components": {
+          "ret_12_1": 4.6554
+        },
+        "name": "Lumentum",
+        "rank": 3,
+        "score": 4.65545,
+        "sector": "Information Technology",
+        "ticker": "LITE",
+        "weight": 0.033333
+      },
+      {
+        "close": 447.18,
+        "components": {
+          "ret_12_1": 3.7864
+        },
+        "name": "Western Digital",
+        "rank": 4,
+        "score": 3.78637,
+        "sector": "Information Technology",
+        "ticker": "WDC",
+        "weight": 0.033333
+      },
+      {
+        "close": 830.17,
+        "components": {
+          "ret_12_1": 3.5869
+        },
+        "name": "Seagate Technology",
+        "rank": 5,
+        "score": 3.58693,
+        "sector": "Information Technology",
+        "ticker": "STX",
+        "weight": 0.033333
+      },
+      {
+        "close": 102.94,
+        "components": {
+          "ret_12_1": 3.0755
+        },
+        "name": "Intel",
+        "rank": 6,
+        "score": 3.07549,
+        "sector": "Information Technology",
+        "ticker": "INTC",
+        "weight": 0.033333
+      },
+      {
+        "close": 567.29,
+        "components": {
+          "ret_12_1": 2.9427
+        },
+        "name": "Dell Technologies",
+        "rank": 7,
+        "score": 2.94274,
+        "sector": "Information Technology",
+        "ticker": "DELL",
+        "weight": 0.033333
+      },
+      {
+        "close": 305.37,
+        "components": {
+          "ret_12_1": 2.4365
+        },
+        "name": "Coherent Corp.",
+        "rank": 8,
+        "score": 2.43647,
+        "sector": "Information Technology",
+        "ticker": "COHR",
+        "weight": 0.033333
+      },
+      {
+        "close": 379.72,
+        "components": {
+          "ret_12_1": 2.4236
+        },
+        "name": "Teradyne",
+        "rank": 9,
+        "score": 2.42357,
+        "sector": "Information Technology",
+        "ticker": "TER",
+        "weight": 0.033333
+      },
+      {
+        "close": 456.49,
+        "components": {
+          "ret_12_1": 2.3692
+        },
+        "name": "Applied Materials",
+        "rank": 10,
+        "score": 2.36919,
+        "sector": "Information Technology",
+        "ticker": "AMAT",
+        "weight": 0.033333
+      },
+      {
+        "close": 349.54,
+        "components": {
+          "ret_12_1": 2.327
+        },
+        "name": "Ciena",
+        "rank": 11,
+        "score": 2.32704,
+        "sector": "Information Technology",
+        "ticker": "CIEN",
+        "weight": 0.033333
+      },
+      {
+        "close": 236.1,
+        "components": {
+          "ret_12_1": 2.2421
+        },
+        "name": "Marvell Technology",
+        "rank": 12,
+        "score": 2.24206,
+        "sector": "Information Technology",
+        "ticker": "MRVL",
+        "weight": 0.033333
+      },
+      {
+        "close": 298.22,
+        "components": {
+          "ret_12_1": 2.0543
+        },
+        "name": "Lam Research",
+        "rank": 13,
+        "score": 2.05435,
+        "sector": "Information Technology",
+        "ticker": "LRCX",
+        "weight": 0.033333
+      },
+      {
+        "close": 516.13,
+        "components": {
+          "ret_12_1": 2.027
+        },
+        "name": "Advanced Micro Devices",
+        "rank": 14,
+        "score": 2.02702,
+        "sector": "Information Technology",
+        "ticker": "AMD",
+        "weight": 0.033333
+      },
+      {
+        "close": 143.97,
+        "components": {
+          "ret_12_1": 1.6191
+        },
+        "name": "Moderna",
+        "rank": 15,
+        "score": 1.61909,
+        "sector": "Health Care",
+        "ticker": "MRNA",
+        "weight": 0.033333
+      },
+      {
+        "close": 62.09,
+        "components": {
+          "ret_12_1": 1.4556
+        },
+        "name": "Hewlett Packard Enterprise",
+        "rank": 16,
+        "score": 1.45559,
+        "sector": "Information Technology",
+        "ticker": "HPE",
+        "weight": 0.033333
+      },
+      {
+        "close": 1690.82,
+        "components": {
+          "ret_12_1": 1.3155
+        },
+        "name": "Comfort Systems USA",
+        "rank": 17,
+        "score": 1.31549,
+        "sector": "Industrials",
+        "ticker": "FIX",
+        "weight": 0.033333
+      },
+      {
+        "close": 166.4,
+        "components": {
+          "ret_12_1": 1.2499
+        },
+        "name": "Corning Inc.",
+        "rank": 18,
+        "score": 1.24987,
+        "sector": "Information Technology",
+        "ticker": "GLW",
+        "weight": 0.033333
+      },
+      {
+        "close": 180.64,
+        "components": {
+          "ret_12_1": 1.2424
+        },
+        "name": "KLA Corporation",
+        "rank": 19,
+        "score": 1.24244,
+        "sector": "Information Technology",
+        "ticker": "KLAC",
+        "weight": 0.033333
+      },
+      {
+        "close": 28.04,
+        "components": {
+          "ret_12_1": 1.2049
+        },
+        "name": "Warner Bros. Discovery",
+        "rank": 20,
+        "score": 1.20494,
+        "sector": "Communication Services",
+        "ticker": "WBD",
+        "weight": 0.033333
+      },
+      {
+        "close": 115.78,
+        "components": {
+          "ret_12_1": 1.1452
+        },
+        "name": "Flex Ltd.",
+        "rank": 21,
+        "score": 1.14522,
+        "sector": "Information Technology",
+        "ticker": "FLEX",
+        "weight": 0.033333
+      },
+      {
+        "close": 66.42,
+        "components": {
+          "ret_12_1": 1.1449
+        },
+        "name": "Centene Corporation",
+        "rank": 22,
+        "score": 1.14487,
+        "sector": "Health Care",
+        "ticker": "CNC",
+        "weight": 0.033333
+      },
+      {
+        "close": 390.42,
+        "components": {
+          "ret_12_1": 1.1275
+        },
+        "name": "Valero Energy",
+        "rank": 23,
+        "score": 1.12751,
+        "sector": "Energy",
+        "ticker": "VLO",
+        "weight": 0.033333
+      },
+      {
+        "close": 257.06,
+        "components": {
+          "ret_12_1": 1.1111
+        },
+        "name": "Vertiv",
+        "rank": 24,
+        "score": 1.11114,
+        "sector": "Industrials",
+        "ticker": "VRT",
+        "weight": 0.033333
+      },
+      {
+        "close": 206.74,
+        "components": {
+          "ret_12_1": 1.088
+        },
+        "name": "CrowdStrike",
+        "rank": 25,
+        "score": 1.08798,
+        "sector": "Information Technology",
+        "ticker": "CRWD",
+        "weight": 0.033333
+      },
+      {
+        "close": 338.64,
+        "components": {
+          "ret_12_1": 1.0827
+        },
+        "name": "Keysight Technologies",
+        "rank": 26,
+        "score": 1.08272,
+        "sector": "Information Technology",
+        "ticker": "KEYS",
+        "weight": 0.033333
+      },
+      {
+        "close": 818.57,
+        "components": {
+          "ret_12_1": 1.0413
+        },
+        "name": "Caterpillar Inc.",
+        "rank": 27,
+        "score": 1.04134,
+        "sector": "Industrials",
+        "ticker": "CAT",
+        "weight": 0.033333
+      },
+      {
+        "close": 270.45,
+        "components": {
+          "ret_12_1": 1.0317
+        },
+        "name": "J.B. Hunt",
+        "rank": 28,
+        "score": 1.03168,
+        "sector": "Industrials",
+        "ticker": "JBHT",
+        "weight": 0.033333
+      },
+      {
+        "close": 156.07,
+        "components": {
+          "ret_12_1": 1.0237
+        },
+        "name": "Fortinet",
+        "rank": 29,
+        "score": 1.02365,
+        "sector": "Information Technology",
+        "ticker": "FTNT",
+        "weight": 0.033333
+      },
+      {
+        "close": 239.79,
+        "components": {
+          "ret_12_1": 1.0067
+        },
+        "name": "Steel Dynamics",
+        "rank": 30,
+        "score": 1.00669,
+        "sector": "Materials",
+        "ticker": "STLD",
+        "weight": 0.033333
+      }
+    ]
+  },
+  "positions": {
+    "as_of": "2026-09-11",
+    "cash": 100000.0,
+    "last_order_date": "2026-09-11",
+    "nav_history": [
+      [
+        "2026-09-11",
+        100000.0,
+        100000.0
+      ]
+    ],
+    "positions": {},
+    "start_capital": 100000,
+    "start_date": "2026-09-11"
+  },
+  "ledger": [],
+  "desk_notes": []
+}

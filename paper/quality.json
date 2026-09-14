@@ -1,0 +1,844 @@
+{
+  "schema": "paper-book-public/v1",
+  "book": "quality",
+  "generated_at": "2026-09-14T18:36:55Z",
+  "config": {
+    "benchmark": "SPY",
+    "cost_bps": 10,
+    "max_names": 40,
+    "min_names": 15,
+    "max_weight": 0.06,
+    "max_turnover_per_rebalance": 1.6,
+    "rebalance": "M",
+    "start_capital": 100000,
+    "start_date": "2026-09-11",
+    "stale_days_refuse": 3,
+    "unfilled_after_sessions": 3,
+    "vetoes_apply": false,
+    "targets_file": "build/alpha-quality.json",
+    "primary": false
+  },
+  "strategy": "Buys the 30 S&P 500 companies that score best on a five-part quality measure of operating margin, return on invested capital, free cash flow margin, low accruals and shareholder yield, in equal weights and rebalanced monthly.",
+  "status": {
+    "as_of": "2026-09-11",
+    "filled": false,
+    "start_capital": 100000,
+    "start_date": "2026-09-11",
+    "cash": 100000.0,
+    "nav": 100000.0,
+    "benchmark": "SPY",
+    "benchmark_nav": 100000.0,
+    "nav_low": null,
+    "nav_high": null,
+    "unresolved": [],
+    "performance_status": "eligible",
+    "performance_status_reasons": [],
+    "pending_orders": 30
+  },
+  "pending_orders": [
+    {
+      "ticker": "ACGL",
+      "name": "Arch Capital Group",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "AMT",
+      "name": "American Tower",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "ARE",
+      "name": "Alexandria Real Estate Equities",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "BAC",
+      "name": "Bank of America",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "CCI",
+      "name": "Crown Castle",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "COF",
+      "name": "Capital One",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "CPT",
+      "name": "Camden Property Trust",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "CRM",
+      "name": "Salesforce",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "DECK",
+      "name": "Deckers Brands",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "DHI",
+      "name": "D. R. Horton",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "EG",
+      "name": "Everest Group",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "ESS",
+      "name": "Essex Property Trust",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "EXR",
+      "name": "Extra Space Storage",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "FICO",
+      "name": "Fair Isaac",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "GDDY",
+      "name": "GoDaddy",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "GM",
+      "name": "General Motors",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "HCA",
+      "name": "HCA Healthcare",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "HIG",
+      "name": "Hartford (The)",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "IT",
+      "name": "Gartner",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "LULU",
+      "name": "Lululemon Athletica",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "LVS",
+      "name": "Las Vegas Sands",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "MCK",
+      "name": "McKesson Corporation",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "MET",
+      "name": "MetLife",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "MTB",
+      "name": "M&T Bank",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "NTAP",
+      "name": "NetApp",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "NVR",
+      "name": "NVR, Inc.",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "OMC",
+      "name": "Omnicom Group",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "PYPL",
+      "name": "PayPal",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "UDR",
+      "name": "UDR, Inc.",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    },
+    {
+      "ticker": "ZTS",
+      "name": "Zoetis",
+      "side": "buy",
+      "target_weight": 0.033333,
+      "order_session": "2026-09-11",
+      "fills_at_close": "2026-09-14",
+      "note": ""
+    }
+  ],
+  "orders": {
+    "as_of": "2026-09-11",
+    "order_date": "2026-09-11",
+    "strategy": "quality v2026-09-13",
+    "targets": [
+      {
+        "close": 103.01,
+        "components": {
+          "accrual": 36.6767,
+          "fcf_margin": 61.5383,
+          "legs_present": 3.0,
+          "op_margin": null,
+          "roic": null,
+          "shy": 0.1122
+        },
+        "name": "Camden Property Trust",
+        "rank": 1,
+        "score": 2.74015,
+        "sector": "Real Estate",
+        "ticker": "CPT",
+        "weight": 0.033333
+      },
+      {
+        "close": 35.12,
+        "components": {
+          "accrual": 32.6568,
+          "fcf_margin": 53.6712,
+          "legs_present": 5.0,
+          "op_margin": 56.1447,
+          "roic": 0.0739,
+          "shy": 0.0498
+        },
+        "name": "UDR, Inc.",
+        "rank": 2,
+        "score": 1.81002,
+        "sector": "Real Estate",
+        "ticker": "UDR",
+        "weight": 0.033333
+      },
+      {
+        "close": 137.64,
+        "components": {
+          "accrual": 6.9812,
+          "fcf_margin": 11.3823,
+          "legs_present": 4.0,
+          "op_margin": 10.4325,
+          "roic": null,
+          "shy": 0.052
+        },
+        "name": "Extra Space Storage",
+        "rank": 3,
+        "score": 1.71931,
+        "sector": "Real Estate",
+        "ticker": "EXR",
+        "weight": 0.033333
+      },
+      {
+        "close": 272.91,
+        "components": {
+          "accrual": 73.2025,
+          "fcf_margin": null,
+          "legs_present": 4.0,
+          "op_margin": 67.4665,
+          "roic": 0.0538,
+          "shy": 0.0378
+        },
+        "name": "Essex Property Trust",
+        "rank": 4,
+        "score": 1.41325,
+        "sector": "Real Estate",
+        "ticker": "ESS",
+        "weight": 0.033333
+      },
+      {
+        "close": 72.97,
+        "components": {
+          "accrual": 0.0285,
+          "fcf_margin": 0.2486,
+          "legs_present": 3.0,
+          "op_margin": null,
+          "roic": null,
+          "shy": 0.1503
+        },
+        "name": "Zoetis",
+        "rank": 5,
+        "score": 0.9434,
+        "sector": "Health Care",
+        "ticker": "ZTS",
+        "weight": 0.033333
+      },
+      {
+        "close": 97.14,
+        "components": {
+          "accrual": 4.4539,
+          "fcf_margin": 5.8074,
+          "legs_present": 4.0,
+          "op_margin": 2.4502,
+          "roic": null,
+          "shy": 0.0639
+        },
+        "name": "MetLife",
+        "rank": 6,
+        "score": 0.86255,
+        "sector": "Financials",
+        "ticker": "MET",
+        "weight": 0.033333
+      },
+      {
+        "close": 75.62,
+        "components": {
+          "accrual": 8.6798,
+          "fcf_margin": 11.8522,
+          "legs_present": 5.0,
+          "op_margin": 9.7685,
+          "roic": 0.089,
+          "shy": -0.0413
+        },
+        "name": "Crown Castle",
+        "rank": 7,
+        "score": 0.82718,
+        "sector": "Real Estate",
+        "ticker": "CCI",
+        "weight": 0.033333
+      },
+      {
+        "close": 208.3,
+        "components": {
+          "accrual": 2.1141,
+          "fcf_margin": 2.9998,
+          "legs_present": 3.0,
+          "op_margin": null,
+          "roic": null,
+          "shy": 0.086
+        },
+        "name": "Capital One",
+        "rank": 8,
+        "score": 0.81425,
+        "sector": "Financials",
+        "ticker": "COF",
+        "weight": 0.033333
+      },
+      {
+        "close": 239.83,
+        "components": {
+          "accrual": 0.4527,
+          "fcf_margin": 2.2337,
+          "legs_present": 3.0,
+          "op_margin": null,
+          "roic": null,
+          "shy": 0.1013
+        },
+        "name": "M&T Bank",
+        "rank": 9,
+        "score": 0.77295,
+        "sector": "Financials",
+        "ticker": "MTB",
+        "weight": 0.033333
+      },
+      {
+        "close": 881.51,
+        "components": {
+          "accrual": 0.0055,
+          "fcf_margin": 0.0156,
+          "legs_present": 5.0,
+          "op_margin": 0.0158,
+          "roic": 19.9846,
+          "shy": 0.069
+        },
+        "name": "McKesson Corporation",
+        "rank": 10,
+        "score": 0.69801,
+        "sector": "Health Care",
+        "ticker": "MCK",
+        "weight": 0.033333
+      },
+      {
+        "close": 985.39,
+        "components": {
+          "accrual": 0.0779,
+          "fcf_margin": 0.4161,
+          "legs_present": 5.0,
+          "op_margin": 0.5165,
+          "roic": 0.8045,
+          "shy": 0.1689
+        },
+        "name": "Fair Isaac",
+        "rank": 11,
+        "score": 0.66072,
+        "sector": "Information Technology",
+        "ticker": "FICO",
+        "weight": 0.033333
+      },
+      {
+        "close": 179.59,
+        "components": {
+          "accrual": 0.094,
+          "fcf_margin": 0.1994,
+          "legs_present": 5.0,
+          "op_margin": 0.1725,
+          "roic": 0.8428,
+          "shy": 0.2324
+        },
+        "name": "Gartner",
+        "rank": 12,
+        "score": 0.64194,
+        "sector": "Information Technology",
+        "ticker": "IT",
+        "weight": 0.033333
+      },
+      {
+        "close": 6160.76,
+        "components": {
+          "accrual": -0.0078,
+          "fcf_margin": 0.1098,
+          "legs_present": 3.0,
+          "op_margin": null,
+          "roic": null,
+          "shy": 0.1087
+        },
+        "name": "NVR, Inc.",
+        "rank": 13,
+        "score": 0.63118,
+        "sector": "Consumer Discretionary",
+        "ticker": "NVR",
+        "weight": 0.033333
+      },
+      {
+        "close": 96.09,
+        "components": {
+          "accrual": 0.0732,
+          "fcf_margin": 0.3148,
+          "legs_present": 3.0,
+          "op_margin": null,
+          "roic": null,
+          "shy": 0.1061
+        },
+        "name": "Arch Capital Group",
+        "rank": 14,
+        "score": 0.62829,
+        "sector": "Financials",
+        "ticker": "ACGL",
+        "weight": 0.033333
+      },
+      {
+        "close": 136.36,
+        "components": {
+          "accrual": 1.1864,
+          "fcf_margin": 4.419,
+          "legs_present": 3.0,
+          "op_margin": null,
+          "roic": null,
+          "shy": 0.0634
+        },
+        "name": "Hartford (The)",
+        "rank": 15,
+        "score": 0.61913,
+        "sector": "Financials",
+        "ticker": "HIG",
+        "weight": 0.033333
+      },
+      {
+        "close": 426.94,
+        "components": {
+          "accrual": 0.0812,
+          "fcf_margin": 0.1038,
+          "legs_present": 3.0,
+          "op_margin": null,
+          "roic": null,
+          "shy": 0.1036
+        },
+        "name": "HCA Healthcare",
+        "rank": 16,
+        "score": 0.58474,
+        "sector": "Health Care",
+        "ticker": "HCA",
+        "weight": 0.033333
+      },
+      {
+        "close": 98.07,
+        "components": {
+          "accrual": 0.1604,
+          "fcf_margin": 0.3336,
+          "legs_present": 5.0,
+          "op_margin": 0.2482,
+          "roic": 0.4824,
+          "shy": 0.1315
+        },
+        "name": "GoDaddy",
+        "rank": 17,
+        "score": 0.55992,
+        "sector": "Information Technology",
+        "ticker": "GDDY",
+        "weight": 0.033333
+      },
+      {
+        "close": 371.71,
+        "components": {
+          "accrual": 0.0052,
+          "fcf_margin": 0.1193,
+          "legs_present": 3.0,
+          "op_margin": null,
+          "roic": null,
+          "shy": 0.1015
+        },
+        "name": "Everest Group",
+        "rank": 18,
+        "score": 0.55693,
+        "sector": "Financials",
+        "ticker": "EG",
+        "weight": 0.033333
+      },
+      {
+        "close": 247.72,
+        "components": {
+          "accrual": 0.1386,
+          "fcf_margin": 0.3449,
+          "legs_present": 5.0,
+          "op_margin": 0.1988,
+          "roic": 0.1259,
+          "shy": 0.1794
+        },
+        "name": "Salesforce",
+        "rank": 19,
+        "score": 0.52944,
+        "sector": "Information Technology",
+        "ticker": "CRM",
+        "weight": 0.033333
+      },
+      {
+        "close": 199.28,
+        "components": {
+          "accrual": 0.1142,
+          "fcf_margin": 0.2699,
+          "legs_present": 5.0,
+          "op_margin": 0.2417,
+          "roic": 6.5906,
+          "shy": 0.0349
+        },
+        "name": "NetApp",
+        "rank": 20,
+        "score": 0.51033,
+        "sector": "Information Technology",
+        "ticker": "NTAP",
+        "weight": 0.033333
+      },
+      {
+        "close": 79.01,
+        "components": {
+          "accrual": 0.1568,
+          "fcf_margin": 0.1508,
+          "legs_present": 5.0,
+          "op_margin": 0.0322,
+          "roic": 0.0443,
+          "shy": 0.1807
+        },
+        "name": "Omnicom Group",
+        "rank": 21,
+        "score": 0.49907,
+        "sector": "Communication Services",
+        "ticker": "OMC",
+        "weight": 0.033333
+      },
+      {
+        "close": 81.27,
+        "components": {
+          "accrual": 0.0324,
+          "fcf_margin": 0.2022,
+          "legs_present": 4.0,
+          "op_margin": 0.2267,
+          "roic": null,
+          "shy": 0.111
+        },
+        "name": "Deckers Brands",
+        "rank": 22,
+        "score": 0.48001,
+        "sector": "Consumer Discretionary",
+        "ticker": "DECK",
+        "weight": 0.033333
+      },
+      {
+        "close": 53.72,
+        "components": {
+          "accrual": 0.0395,
+          "fcf_margin": 0.1631,
+          "legs_present": 5.0,
+          "op_margin": 0.1785,
+          "roic": 0.2518,
+          "shy": 0.1277
+        },
+        "name": "PayPal",
+        "rank": 23,
+        "score": 0.47821,
+        "sector": "Financials",
+        "ticker": "PYPL",
+        "weight": 0.033333
+      },
+      {
+        "close": 42.83,
+        "components": {
+          "accrual": 0.1461,
+          "fcf_margin": 0.197,
+          "legs_present": 5.0,
+          "op_margin": 0.2149,
+          "roic": 0.2705,
+          "shy": 0.1254
+        },
+        "name": "Las Vegas Sands",
+        "rank": 24,
+        "score": 0.47569,
+        "sector": "Consumer Discretionary",
+        "ticker": "LVS",
+        "weight": 0.033333
+      },
+      {
+        "close": 98.97,
+        "components": {
+          "accrual": 0.0508,
+          "fcf_margin": 0.1221,
+          "legs_present": 4.0,
+          "op_margin": 0.1784,
+          "roic": null,
+          "shy": 0.1108
+        },
+        "name": "Lululemon Athletica",
+        "rank": 25,
+        "score": 0.4719,
+        "sector": "Consumer Discretionary",
+        "ticker": "LULU",
+        "weight": 0.033333
+      },
+      {
+        "close": 177.85,
+        "components": {
+          "accrual": 2.5291,
+          "fcf_margin": 4.4323,
+          "legs_present": 5.0,
+          "op_margin": 5.4869,
+          "roic": 0.1252,
+          "shy": 0.0375
+        },
+        "name": "American Tower",
+        "rank": 26,
+        "score": 0.45968,
+        "sector": "Real Estate",
+        "ticker": "AMT",
+        "weight": 0.033333
+      },
+      {
+        "close": 85.62,
+        "components": {
+          "accrual": 0.1262,
+          "fcf_margin": 0.0855,
+          "legs_present": 4.0,
+          "op_margin": 0.0108,
+          "roic": null,
+          "shy": 0.1061
+        },
+        "name": "General Motors",
+        "rank": 27,
+        "score": 0.42775,
+        "sector": "Consumer Discretionary",
+        "ticker": "GM",
+        "weight": 0.033333
+      },
+      {
+        "close": 62.69,
+        "components": {
+          "accrual": 0.5044,
+          "fcf_margin": 0.7824,
+          "legs_present": 3.0,
+          "op_margin": null,
+          "roic": null,
+          "shy": 0.079
+        },
+        "name": "Bank of America",
+        "rank": 28,
+        "score": 0.4175,
+        "sector": "Financials",
+        "ticker": "BAC",
+        "weight": 0.033333
+      },
+      {
+        "close": 137.89,
+        "components": {
+          "accrual": 0.009,
+          "fcf_margin": 0.096,
+          "legs_present": 3.0,
+          "op_margin": null,
+          "roic": null,
+          "shy": 0.0883
+        },
+        "name": "D. R. Horton",
+        "rank": 29,
+        "score": 0.41666,
+        "sector": "Consumer Discretionary",
+        "ticker": "DHI",
+        "weight": 0.033333
+      },
+      {
+        "close": 51.14,
+        "components": {
+          "accrual": 0.8113,
+          "fcf_margin": 0.4505,
+          "legs_present": 3.0,
+          "op_margin": null,
+          "roic": null,
+          "shy": 0.0788
+        },
+        "name": "Alexandria Real Estate Equities",
+        "rank": 30,
+        "score": 0.41233,
+        "sector": "Real Estate",
+        "ticker": "ARE",
+        "weight": 0.033333
+      }
+    ]
+  },
+  "positions": {
+    "as_of": "2026-09-11",
+    "cash": 100000.0,
+    "last_order_date": "2026-09-11",
+    "nav_history": [
+      [
+        "2026-09-11",
+        100000.0,
+        100000.0
+      ]
+    ],
+    "positions": {},
+    "start_capital": 100000,
+    "start_date": "2026-09-11"
+  },
+  "ledger": [],
+  "desk_notes": []
+}

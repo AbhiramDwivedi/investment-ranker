@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paper books</title>
+<meta name="description" content="Forward paper-trading books for systematic stock strategies, with every order published before it fills, then fills, positions and ledger rows. Model books, not investment advice.">
+<style>
+/* shared:css */
+/* The CSS both public pages share: the front page (template/ranker.html,
+   tonight's cut) and the pattern page (template/patterns.html, what is
+   moving). scripts/render_ranker.py splices this file between the shared:css
+   markers in each template's style block, so a colour token or a table rule is
+   defined once and a fix to it reaches both pages.
+
+   What stays in a template is what only that page draws: the funnel and
+   distribution charts, the step-by-step method panel, the track-record tables
+   and the readiness badges on the front page; the pattern legend, the honesty
+   cards and the whole score pop-up on the pattern page.
+*/
+
+  /* ---- palette, page frame, masthead, both tables ---- */
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --baseline: #c3c2b7; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --accent-soft: #cde2fb;
+    --trough: #2a78d6; --inflect: #1baf7a; --newlist: #eda100;
+    --warn: #fab219; --pos: #006300;
+    /* Funnel ramp: ONE hue, monotone lightness, light -> dark as the screen
+       narrows. Blue steps 250/400/500/600; validated --ordinal, light end
+       #86b6ef at 2.06:1 on this surface. */
+    --f1: #86b6ef; --f2: #3987e5; --f3: #256abf; --f4: #184f95;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+      --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+      --accent: #6da7ec; --accent-soft: #184f95;
+      --trough: #3987e5; --inflect: #199e70; --newlist: #c98500;
+      --warn: #fab219; --pos: #0ca30c;
+      /* Same ramp, anchor flipped for the dark surface (dark -> light as the
+         screen narrows). Dark end #184f95 at 2.15:1 on #1a1a19. */
+      --f1: #184f95; --f2: #256abf; --f3: #3987e5; --f4: #86b6ef;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+    --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+    --accent: #6da7ec; --accent-soft: #184f95;
+    --trough: #3987e5; --inflect: #199e70; --newlist: #c98500;
+    --warn: #fab219; --pos: #0ca30c;
+    --f1: #184f95; --f2: #256abf; --f3: #3987e5; --f4: #86b6ef;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--page); color: var(--ink); margin: 0; line-height: 1.5;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 15px; }
+  .wrap { max-width: 1560px; margin: 0 auto; padding: 28px 24px 64px; }
+  .masthead { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    border-bottom: 2px solid var(--ink); padding-bottom: 14px; }
+  .masthead h1 { font-size: 26px; font-weight: 750; letter-spacing: -0.01em; margin: 0; }
+  .masthead h1 span { color: var(--accent); }
+  .issue { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-2); font-weight: 600; }
+  .methodlink { color: var(--accent); text-decoration: none; }
+  .methodlink:hover { text-decoration: underline; }
+  .banner { margin-top: 16px; border: 1px solid color-mix(in srgb, var(--warn) 50%, var(--surface));
+    background: color-mix(in srgb, var(--warn) 10%, var(--surface)); border-radius: 8px; padding: 12px 16px;
+    font-size: 13.5px; }
+  .eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 650; margin: 30px 0 12px; }
+  .eyebrow small { text-transform: none; letter-spacing: 0; font-weight: 400; }
+  .card { background: var(--surface); border: 1px solid var(--ring); border-radius: 8px; padding: 8px 14px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 0 0 10px; }
+  .controls label { font-size: 12px; color: var(--muted); font-weight: 650; text-transform: uppercase; letter-spacing: 0.06em; }
+  .controls select, .controls input[type="search"] {
+    background: var(--surface); color: var(--ink); border: 1px solid var(--baseline); border-radius: 6px;
+    padding: 6px 10px; font-size: 13.5px; font-family: inherit; }
+  .controls input[type="search"] { width: 170px; }
+  .controls select:focus-visible, .controls input:focus-visible, th button:focus-visible, .showall:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 1px; }
+  .count { font-size: 12.5px; color: var(--muted); margin-left: auto; }
+  .table-scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th { text-align: left; padding: 0; border-bottom: 1px solid var(--baseline); white-space: nowrap; }
+  th button { all: unset; cursor: pointer; display: block; width: 100%; padding: 10px;
+    font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); font-weight: 650; }
+  th button:hover { color: var(--ink); }
+  th .dir { color: var(--accent); font-weight: 750; }
+  td { padding: 8px 10px; border-bottom: 1px solid var(--grid); vertical-align: middle; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tr:last-child td { border-bottom: none; }
+  .tk { font-weight: 700; }
+  .tk small { display: block; font-weight: 400; color: var(--muted); font-size: 11px; max-width: 20ch;
+    overflow: hidden; text-overflow: ellipsis; }
+  .score { font-size: 15px; font-weight: 750; color: var(--accent); }
+  .arch { display: inline-block; font-size: 10.5px; font-weight: 700; border-radius: 999px; padding: 1px 9px;
+    text-transform: uppercase; letter-spacing: 0.04em; color: var(--page); }
+  .arch.t { background: var(--trough); }
+  .arch.i { background: var(--inflect); }
+  .arch.n { background: var(--newlist); }
+  .flag { display: inline-block; font-size: 10.5px; font-weight: 700; border-radius: 999px; padding: 1px 8px;
+    margin-left: 6px; border: 1px solid color-mix(in srgb, var(--warn) 60%, var(--surface));
+    background: color-mix(in srgb, var(--warn) 16%, var(--surface)); color: var(--ink); cursor: help; }
+  .pos { color: var(--pos); }
+  .sec { font-size: 12px; color: var(--ink-2); }
+  .showall { all: unset; cursor: pointer; display: inline-block; margin-top: 10px; padding: 5px 14px;
+    border: 1px solid var(--baseline); border-radius: 999px; font-size: 12.5px; color: var(--accent); font-weight: 650; }
+  .showall:hover { border-color: var(--accent); }
+
+  /* ---- chips: the theme sleeves on the front page, the momentum
+     leaders on the pattern page ---- */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { border: 1px solid var(--baseline); border-radius: 999px; padding: 3px 12px; font-size: 12.5px; color: var(--ink-2); }
+  .chip b { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+  /* ---- coverage tiles and the page footer ---- */
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
+  .tile { background: var(--surface); border: 1px solid var(--ring); border-radius: 6px; padding: 12px 14px; }
+  .tile .k { font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); font-weight: 650; }
+  .tile .v { font-size: 21px; font-weight: 700; margin-top: 2px; }
+  .tile .d { font-size: 12.5px; color: var(--ink-2); margin-top: 2px; }
+  .foot { margin-top: 40px; padding-top: 14px; border-top: 1px solid var(--baseline); font-size: 12px; color: var(--muted); max-width: 82ch; }
+  .foot p { margin: 6px 0; }
+
+  /* ---- table rows. The pattern table's rows open a pop-up, so they take
+     the pointer; the cut's rows open nothing and the front page turns the
+     affordance back off for its own table. ---- */
+  tbody tr { cursor: pointer; }
+  tbody tr:hover td { background: color-mix(in srgb, var(--accent) 5%, var(--surface)); }
+  tbody tr:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+  /* ---- the floating tooltip. Both pages have one #ctip: the front page's
+     charts hover, and so do the two per-ticker charts inside the pattern
+     page's pop-up. ---- */
+  #ctip { position: fixed; z-index: 40; pointer-events: none; opacity: 0; transition: opacity .1s;
+    background: var(--surface); border: 1px solid var(--baseline); border-radius: 6px;
+    box-shadow: 0 4px 14px var(--ring); padding: 7px 10px; font-size: 12.5px; max-width: 260px;
+    color: var(--ink); line-height: 1.45; }
+  #ctip b { font-variant-numeric: tabular-nums; }
+  @media (prefers-reduced-motion: reduce) { #ctip { transition: none; } }
+/* /shared:css */
+
+  .wrap { max-width: 1100px; }
+  .lead { font-size: 14px; color: var(--ink-2); max-width: 82ch; margin: 14px 0 0; }
+  .book { background: var(--surface); border: 1px solid var(--ring); border-radius: 8px; padding: 16px 20px;
+    margin-top: 18px; min-width: 0; }
+  .book h2 { margin: 0; font-size: 22px; font-weight: 750; letter-spacing: -0.01em; }
+  .book h3 { font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted);
+    font-weight: 650; margin: 16px 0 6px; }
+  .book p { font-size: 14px; margin: 4px 0; max-width: 82ch; }
+  .book .role { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .book table { font-size: 13px; }
+  .book th { padding: 8px 10px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--muted); font-weight: 650; white-space: normal; vertical-align: bottom; }
+  .book td.n, .book th.n { text-align: right; }
+  .book td.wrap-cell { white-space: normal; min-width: 24ch; color: var(--ink-2); }
+  .book tbody tr { cursor: default; }
+  .book a, .foot a { color: var(--accent); }
+  .tiles { margin: 10px 0; }
+  details.more { margin-top: 18px; background: var(--surface); border: 1px solid var(--ring); border-radius: 8px;
+    padding: 10px 16px; }
+  details.more > summary, .book details > summary { cursor: pointer; color: var(--accent); font-weight: 650; }
+  details.more p { font-size: 13.5px; color: var(--ink-2); max-width: 82ch; }
+  details summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .planned { border-style: dashed; }
+  @media (max-width: 640px) { .wrap { padding: 18px 16px 48px; } .book { padding: 14px; } }
+
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="masthead">
+    <h1>Paper <span>/ books</span></h1>
+    <div class="issue">Updated Monday, Sept. 14, 2026 &middot; orders are public before they fill &middot; model books, not investment advice</div>
+  </header>
+
+  <div class="banner">
+    <p><b>Model books.</b> Each book below follows one systematic strategy with $100,000 of paper money and is compared with the same money in SPY. The orders are published here before they fill, so the record can be checked against prices printed afterward.</p>
+    <p>No real money is involved, and nothing on this page is investment advice.</p>
+  </div>
+
+  <p class="lead">This page tracks three running books, and one more book starts soon. A book that trails SPY for two years is retired rather than tuned.</p>
+
+<section class="book" id="book-shy">
+<div class="role">Primary book</div><h2>shy</h2>
+<p>Buys the 30 S&amp;P 500 companies returning the most cash to shareholders through buybacks and dividends, measured against their market value, in equal weights and rebalanced monthly.</p>
+<p>The book started with $100,000 on the Sept. 11, 2026, close.</p>
+<p>No orders have filled yet. The 30 orders dated to the Sept. 11, 2026, close fill at the Sept. 14, 2026, close.</p>
+<p>Performance status is eligible, which means nothing on the record disqualifies the book. It is not a claim that the strategy works.</p>
+<h3>Pending orders</h3>
+<div class="table-scroll"><table aria-label="Pending orders for shy"><thead><tr><th>Ticker</th><th>Company</th><th>Side</th><th class="n">Target weight</th><th>Order session</th><th>Fills at the close of</th><th>Note</th></tr></thead><tbody><tr><td>ACGL</td><td class="wrap-cell">Arch Capital Group</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>AIG</td><td class="wrap-cell">American International Group</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>CMCSA</td><td class="wrap-cell">Comcast</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>CPT</td><td class="wrap-cell">Camden Property Trust</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>CRM</td><td class="wrap-cell">Salesforce</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>DECK</td><td class="wrap-cell">Deckers Brands</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>EG</td><td class="wrap-cell">Everest Group</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>FICO</td><td class="wrap-cell">Fair Isaac</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>FTV</td><td class="wrap-cell">Fortive</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>GDDY</td><td class="wrap-cell">GoDaddy</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>GIS</td><td class="wrap-cell">General Mills</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell">Promoted in place of CHTR</td></tr><tr><td>GM</td><td class="wrap-cell">General Motors</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>HCA</td><td class="wrap-cell">HCA Healthcare</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>IT</td><td class="wrap-cell">Gartner</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>KR</td><td class="wrap-cell">Kroger</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>LULU</td><td class="wrap-cell">Lululemon Athletica</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>LUV</td><td class="wrap-cell">Southwest Airlines</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>LVS</td><td class="wrap-cell">Las Vegas Sands</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>MTB</td><td class="wrap-cell">M&amp;T Bank</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>NVR</td><td class="wrap-cell">NVR, Inc.</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>OMC</td><td class="wrap-cell">Omnicom Group</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>PTC</td><td class="wrap-cell">PTC Inc.</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>PYPL</td><td class="wrap-cell">PayPal</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>SYF</td><td class="wrap-cell">Synchrony Financial</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>TAP</td><td class="wrap-cell">Molson Coors Beverage Company</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>TFC</td><td class="wrap-cell">Truist Financial</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>TTD</td><td class="wrap-cell">Trade Desk (The)</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>UHS</td><td class="wrap-cell">Universal Health Services</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>WDAY</td><td class="wrap-cell">Workday, Inc.</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>ZTS</td><td class="wrap-cell">Zoetis</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr></tbody></table></div>
+<h3>Positions</h3>
+<p>The book holds no positions yet.</p>
+<h3>Trades</h3>
+<p>The ledger has no rows yet.</p>
+<h3>Desk-note vetoes</h3>
+<div class="table-scroll"><table aria-label="Desk-note vetoes for shy"><thead><tr><th>Close</th><th>Ticker</th><th>Category</th><th>Reason</th><th>Public source</th></tr></thead><tbody><tr><td>Sept. 11, 2026</td><td>CHTR</td><td>merger distorts fundamentals</td><td class="wrap-cell">The $34.5B Cox merger closed 2026-08-20. Cox Enterprises received 33.6M common units and $6B of convertible preferred units, about 26% of the combined company. The trailing 26.9% yield is pre-merger and leaves out that issuance.</td><td><a href="https://www.thewrap.com/industry-news/deals-ma/charter-cox-merger-closes/" rel="noopener">source</a></td></tr></tbody></table></div>
+<div class="table-scroll"><table aria-label="Vetoes applied to the pending orders for shy"><thead><tr><th>Applied to these orders</th></tr></thead><tbody><tr><td class="wrap-cell">CHTR vetoed, GIS promoted</td></tr></tbody></table></div>
+<details><summary>Flags without a veto (5)</summary><div class="table-scroll"><table aria-label="Desk-note flags for shy"><thead><tr><th>Close</th><th>Ticker</th><th>Category</th><th>Reason</th><th>Public source</th></tr></thead><tbody><tr><td>Sept. 11, 2026</td><td>OMC</td><td>merger distorts fundamentals</td><td class="wrap-cell">The IPG acquisition closed 2025-11-26 as an all-stock deal. The trailing window mixes pre- and post-merger figures, and the $2.5B accelerated buyback is measured against the enlarged share base. Not a veto: the deal is more than 9 months old.</td><td><a href="https://www.omc.com/newsroom/omnicom-completes-acquisition-of-interpublic-forming-the-worlds-leading-marketing-and-sales-company-built-for-intelligent-growth-in-the-next-era/" rel="noopener">source</a></td></tr><tr><td>Sept. 11, 2026</td><td>GDDY</td><td>restatement or fraud</td><td class="wrap-cell">Securities class action (lead-plaintiff deadline 2026-10-20) alleges bookings deceleration was concealed. Only law-firm solicitations so far, with no restatement or regulator action.</td><td><a href="https://www.globenewswire.com/news-release/2026/08/25/3350833/0/en/gddy-shareholder-alert-october-20-2026-lead-plaintiff-deadline-in-godaddy-inc-securities-class-action-contact-suewallst.html" rel="noopener">source</a></td></tr><tr><td>Sept. 11, 2026</td><td>PYPL</td><td>none</td><td class="wrap-cell">The Stripe/Advent $60.50/share bid was rejected, and the consortium walked away 2026-08-27. No pending acquisition, but the price moved on deal news.</td><td><a href="https://www.bloomberg.com/news/articles/2026-08-28/advent-stripe-consortium-is-said-to-drop-pursuit-of-paypal" rel="noopener">source</a></td></tr><tr><td>Sept. 11, 2026</td><td>CMCSA</td><td>merger distorts fundamentals</td><td class="wrap-cell">The Versant spin-off completed in January 2026, and on 2026-06-29 Comcast announced a further separation of NBCUniversal/Sky. Trailing figures cover a shrinking perimeter.</td><td><a href="https://www.cnbc.com/2026/06/29/comcast-announces-it-will-spin-off-media-and-tech-wings-into-separate-public-companies.html" rel="noopener">source</a></td></tr><tr><td>Sept. 11, 2026</td><td>WDAY</td><td>acquisition pending</td><td class="wrap-cell">Silver Lake take-private talks were reported 2026-08-13, and the stock jumped 18%. No definitive agreement has been announced.</td><td><a href="https://www.axios.com/2026/08/14/silver-lake-workday-take-private" rel="noopener">source</a></td></tr></tbody></table></div></details>
+<p>This book is also published as <a href="paper/shy.json">machine-readable JSON</a>.</p>
+</section>
+<section class="book" id="book-mom">
+<div class="role">Control book</div><h2>mom</h2>
+<p>Buys the 30 S&amp;P 500 stocks with the strongest price gain over the past year, skipping the most recent month, in equal weights and rebalanced monthly.</p>
+<p>The book started with $100,000 on the Sept. 11, 2026, close.</p>
+<p>No orders have filled yet. The 30 orders dated to the Sept. 11, 2026, close fill at the Sept. 14, 2026, close.</p>
+<p>Performance status is eligible, which means nothing on the record disqualifies the book. It is not a claim that the strategy works.</p>
+<h3>Pending orders</h3>
+<div class="table-scroll"><table aria-label="Pending orders for mom"><thead><tr><th>Ticker</th><th>Company</th><th>Side</th><th class="n">Target weight</th><th>Order session</th><th>Fills at the close of</th><th>Note</th></tr></thead><tbody><tr><td>AMAT</td><td class="wrap-cell">Applied Materials</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>AMD</td><td class="wrap-cell">Advanced Micro Devices</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>CAT</td><td class="wrap-cell">Caterpillar Inc.</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>CIEN</td><td class="wrap-cell">Ciena</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>CNC</td><td class="wrap-cell">Centene Corporation</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>COHR</td><td class="wrap-cell">Coherent Corp.</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>CRWD</td><td class="wrap-cell">CrowdStrike</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>DELL</td><td class="wrap-cell">Dell Technologies</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>FIX</td><td class="wrap-cell">Comfort Systems USA</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>FLEX</td><td class="wrap-cell">Flex Ltd.</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>FTNT</td><td class="wrap-cell">Fortinet</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>GLW</td><td class="wrap-cell">Corning Inc.</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>HPE</td><td class="wrap-cell">Hewlett Packard Enterprise</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>INTC</td><td class="wrap-cell">Intel</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>JBHT</td><td class="wrap-cell">J.B. Hunt</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>KEYS</td><td class="wrap-cell">Keysight Technologies</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>KLAC</td><td class="wrap-cell">KLA Corporation</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>LITE</td><td class="wrap-cell">Lumentum</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>LRCX</td><td class="wrap-cell">Lam Research</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>MRNA</td><td class="wrap-cell">Moderna</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>MRVL</td><td class="wrap-cell">Marvell Technology</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>MU</td><td class="wrap-cell">Micron Technology</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>SNDK</td><td class="wrap-cell">Sandisk</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>STLD</td><td class="wrap-cell">Steel Dynamics</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>STX</td><td class="wrap-cell">Seagate Technology</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>TER</td><td class="wrap-cell">Teradyne</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>VLO</td><td class="wrap-cell">Valero Energy</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>VRT</td><td class="wrap-cell">Vertiv</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>WBD</td><td class="wrap-cell">Warner Bros. Discovery</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>WDC</td><td class="wrap-cell">Western Digital</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr></tbody></table></div>
+<h3>Positions</h3>
+<p>The book holds no positions yet.</p>
+<h3>Trades</h3>
+<p>The ledger has no rows yet.</p>
+<h3>Desk-note vetoes</h3>
+<p>Desk-note vetoes do not apply to this book, so it trades its ranking as computed.</p>
+<p>This book is also published as <a href="paper/mom.json">machine-readable JSON</a>.</p>
+</section>
+<section class="book" id="book-quality">
+<div class="role">Control book</div><h2>quality</h2>
+<p>Buys the 30 S&amp;P 500 companies that score best on a five-part quality measure of operating margin, return on invested capital, free cash flow margin, low accruals and shareholder yield, in equal weights and rebalanced monthly.</p>
+<p>The book started with $100,000 on the Sept. 11, 2026, close.</p>
+<p>No orders have filled yet. The 30 orders dated to the Sept. 11, 2026, close fill at the Sept. 14, 2026, close.</p>
+<p>Performance status is eligible, which means nothing on the record disqualifies the book. It is not a claim that the strategy works.</p>
+<h3>Pending orders</h3>
+<div class="table-scroll"><table aria-label="Pending orders for quality"><thead><tr><th>Ticker</th><th>Company</th><th>Side</th><th class="n">Target weight</th><th>Order session</th><th>Fills at the close of</th><th>Note</th></tr></thead><tbody><tr><td>ACGL</td><td class="wrap-cell">Arch Capital Group</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>AMT</td><td class="wrap-cell">American Tower</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>ARE</td><td class="wrap-cell">Alexandria Real Estate Equities</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>BAC</td><td class="wrap-cell">Bank of America</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>CCI</td><td class="wrap-cell">Crown Castle</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>COF</td><td class="wrap-cell">Capital One</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>CPT</td><td class="wrap-cell">Camden Property Trust</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>CRM</td><td class="wrap-cell">Salesforce</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>DECK</td><td class="wrap-cell">Deckers Brands</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>DHI</td><td class="wrap-cell">D. R. Horton</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>EG</td><td class="wrap-cell">Everest Group</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>ESS</td><td class="wrap-cell">Essex Property Trust</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>EXR</td><td class="wrap-cell">Extra Space Storage</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>FICO</td><td class="wrap-cell">Fair Isaac</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>GDDY</td><td class="wrap-cell">GoDaddy</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>GM</td><td class="wrap-cell">General Motors</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>HCA</td><td class="wrap-cell">HCA Healthcare</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>HIG</td><td class="wrap-cell">Hartford (The)</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>IT</td><td class="wrap-cell">Gartner</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>LULU</td><td class="wrap-cell">Lululemon Athletica</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>LVS</td><td class="wrap-cell">Las Vegas Sands</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>MCK</td><td class="wrap-cell">McKesson Corporation</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>MET</td><td class="wrap-cell">MetLife</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>MTB</td><td class="wrap-cell">M&amp;T Bank</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>NTAP</td><td class="wrap-cell">NetApp</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>NVR</td><td class="wrap-cell">NVR, Inc.</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>OMC</td><td class="wrap-cell">Omnicom Group</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>PYPL</td><td class="wrap-cell">PayPal</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>UDR</td><td class="wrap-cell">UDR, Inc.</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr><tr><td>ZTS</td><td class="wrap-cell">Zoetis</td><td>buy</td><td class="n">3.33%</td><td>Sept. 11, 2026</td><td>Sept. 14, 2026</td><td class="wrap-cell"></td></tr></tbody></table></div>
+<h3>Positions</h3>
+<p>The book holds no positions yet.</p>
+<h3>Trades</h3>
+<p>The ledger has no rows yet.</p>
+<h3>Desk-note vetoes</h3>
+<p>Desk-note vetoes do not apply to this book, so it trades its ranking as computed.</p>
+<p>This book is also published as <a href="paper/quality.json">machine-readable JSON</a>.</p>
+</section>
+<section class="book planned" id="book-opportunity-v2.1"><div class="role">Research model book</div><h2>opportunity-v2.1</h2><p>Holds the verified buy candidates from the opportunity-v2.1 research model.</p><p>This book starts with its first orders after the Sept. 14, 2026, close. Its orders will appear here before they fill.</p></section>
+
+  <details class="more"><summary>How the paper books work</summary>
+    <p>Orders are written on one close and fill at the raw closing price of the next trading session. A ranking therefore never trades at the price it was computed from.</p>
+    <p>Every fill is charged 10 basis points of the dollars traded, and buys are scaled down so cash never goes negative.</p>
+    <p>A missing price is never treated as a sale. A position closes only on a documented corporate action with a public source, at the documented proceeds. Anything else stays open as unresolved, the book's value becomes a range, and its performance status becomes unverified.</p>
+    <p>A leg with no price at its fill close stays pending and is retried at each later close. After three closes without a price, it is recorded as unfilled.</p>
+    <p>Orders are published before they fill. The machine-readable files hold the same orders, positions and ledger rows as the state files the books run from.</p>
+  </details>
+
+  <div class="foot">
+    <p><b>Record.</b> The index of every book is published as <a href="paper/index.json">machine-readable JSON</a>. These are model books that hold no real money and use no personal data.</p>
+  </div>
+</div>
+
+</body>
+</html>

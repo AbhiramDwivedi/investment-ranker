@@ -1,6 +1,6 @@
 {
   "schema": "paper-books-public/v1",
-  "generated_at": "2026-09-14T21:26:39Z",
+  "generated_at": "2026-09-15T21:29:19Z",
   "books": [
     {
       "book": "shy",
@@ -16,7 +16,7 @@
     },
     {
       "book": "opp-v21",
-      "status": "no_fills",
+      "status": "filled",
       "performance_status": "eligible",
       "file": "paper/opp-v21.json"
     },

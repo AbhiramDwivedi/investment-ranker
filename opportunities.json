@@ -27,9 +27,9 @@
         "ranked": 0
       },
       "Health Care": {
-        "complete": 37,
-        "eligible": 48,
-        "ranked": 37
+        "complete": 36,
+        "eligible": 47,
+        "ranked": 36
       },
       "Industrials": {
         "complete": 60,
@@ -61,52 +61,45 @@
       "queue:banks-insurers": 212,
       "queue:binary-event": 8,
       "queue:cyclical": 130,
-      "queue:data-repair": 327,
+      "queue:data-repair": 328,
       "queue:duplicate-issuer-line": 6,
-      "queue:emerging": 65,
-      "queue:hard-rule-excluded": 196,
-      "queue:margin-volatile": 90,
+      "queue:emerging": 64,
+      "queue:hard-rule-excluded": 198,
+      "queue:margin-volatile": 89,
       "queue:reits": 79,
       "queue:scope-break": 94,
       "queue:sector-too-small": 8,
       "queue:young-listing": 51
     },
-    "ranked": 240,
+    "ranked": 239,
     "universe": 1506,
-    "v2_eligible": 366
+    "v2_eligible": 365
   },
   "decisions": [],
-  "engine_version": "2d44aef266baa7f6f32c3732cddcafa5c56dd198",
+  "engine_version": "12febb4c84d8be2429eadadd4819f953ebd631a9",
   "freshness": {
     "estimates": "current",
     "filings": "release-aware",
     "prices": "current"
   },
-  "generated_at": "2026-09-15T03:59:59Z",
+  "generated_at": "2026-09-16T03:59:59Z",
   "model_id": "opportunity-v2.1-hypothesis1",
-  "no_action_reason": "None of the 17 names checked in this run cleared every check: 17 are still being verified.",
-  "resolved_no_action": [],
-  "run_id": "2026-09-14-close_opportunity-v2_eb7db422",
+  "no_action_reason": "None of the 19 names checked in this run cleared every check: 18 are still being verified and one was resolved with no action.",
+  "resolved_no_action": [
+    {
+      "deciding_fact": "Evidence review found a thesis failure. The improvement rests on a non-recurring item: Tariff refunds following the Supreme Court IEEPA ruling boosted cost of goods sold, gross profit, and gross margin per the mdna_flagged excerpt.",
+      "rank": 1,
+      "ticker": "COCO"
+    }
+  ],
+  "run_id": "2026-09-15-close_opportunity-v2_5f173f98",
   "schema": "opportunity-public/v2",
-  "session": "2026-09-14",
-  "source_manifest_sha256": "sha256:eb7db422773a352d960c384634cf8112cb55467f51f36c56d60ca06e1d386673",
+  "session": "2026-09-15",
+  "source_manifest_sha256": "sha256:5f173f988b9d7c512ff9ca01563887f200354ea8167efb833f867f60b737a1df",
   "stale_notice": null,
   "status": "current",
   "strategy_status": "experimental",
   "verification_queue": [
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "independent_price",
-        "evidence_review",
-        "improvement_mechanism",
-        "organic_growth_check",
-        "impairment_review_completed"
-      ],
-      "rank": 1,
-      "retry_on": "2026-09-15",
-      "ticker": "COCO"
-    },
     {
       "evidence_status": "incomplete",
       "missing": [
@@ -122,52 +115,36 @@
     {
       "evidence_status": "incomplete",
       "missing": [
-        "independent_price",
+        "evidence_review",
+        "organic_growth_check"
+      ],
+      "rank": 3,
+      "retry_on": "2026-09-16",
+      "ticker": "TER"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
         "evidence_review",
         "improvement_mechanism",
         "organic_growth_check",
         "impairment_review_completed"
       ],
-      "rank": 3,
-      "retry_on": "2026-09-15",
+      "rank": 4,
+      "retry_on": "2026-09-16",
       "ticker": "NVDA"
     },
     {
       "evidence_status": "incomplete",
       "missing": [
-        "independent_price",
-        "evidence_review",
-        "improvement_mechanism",
-        "impairment_review_completed"
-      ],
-      "rank": 4,
-      "retry_on": "2026-09-15",
-      "ticker": "TPR"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "independent_price",
+        "awaiting_review:budget",
         "evidence_review",
         "improvement_mechanism",
         "organic_growth_check",
         "impairment_review_completed"
       ],
       "rank": 5,
-      "retry_on": "2026-09-15",
-      "ticker": "TER"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "independent_price",
-        "evidence_review",
-        "improvement_mechanism",
-        "organic_growth_check",
-        "impairment_review_completed"
-      ],
-      "rank": 6,
-      "retry_on": "2026-09-15",
+      "retry_on": "2026-09-16",
       "ticker": "VRT"
     },
     {
@@ -178,47 +155,59 @@
         "improvement_mechanism",
         "impairment_review_completed"
       ],
-      "rank": 7,
+      "rank": 6,
       "retry_on": "2026-09-15",
+      "ticker": "TPR"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "awaiting_review:budget",
+        "evidence_review",
+        "improvement_mechanism",
+        "impairment_review_completed"
+      ],
+      "rank": 7,
+      "retry_on": "2026-09-16",
       "ticker": "AGX"
     },
     {
       "evidence_status": "incomplete",
       "missing": [
-        "independent_price",
+        "awaiting_review:budget",
         "evidence_review",
         "improvement_mechanism",
-        "organic_growth_check",
         "impairment_review_completed"
       ],
       "rank": 8,
-      "retry_on": "2026-09-15",
-      "ticker": "FTNT"
+      "retry_on": "2026-09-16",
+      "ticker": "FIVE"
     },
     {
       "evidence_status": "incomplete",
       "missing": [
-        "independent_price",
+        "awaiting_review:budget",
         "evidence_review",
         "improvement_mechanism",
         "organic_growth_check",
         "impairment_review_completed"
       ],
       "rank": 9,
-      "retry_on": "2026-09-15",
-      "ticker": "STRL"
+      "retry_on": "2026-09-16",
+      "ticker": "FTNT"
     },
     {
       "evidence_status": "incomplete",
       "missing": [
-        "independent_price",
+        "awaiting_review:budget",
         "evidence_review",
         "improvement_mechanism",
+        "organic_growth_check",
         "impairment_review_completed"
       ],
       "rank": 10,
-      "retry_on": "2026-09-15",
-      "ticker": "FIVE"
+      "retry_on": "2026-09-16",
+      "ticker": "STRL"
     },
     {
       "evidence_status": "incomplete",
@@ -237,29 +226,27 @@
     {
       "evidence_status": "incomplete",
       "missing": [
-        "independent_price",
-        "scenario_complete",
-        "evidence_review",
-        "improvement_mechanism",
-        "organic_growth_check",
-        "impairment_review_completed",
-        "plausible_assumptions"
-      ],
-      "rank": 12,
-      "retry_on": "2026-09-15",
-      "ticker": "PLTR"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "independent_price",
+        "awaiting_review:budget",
         "evidence_review",
         "improvement_mechanism",
         "impairment_review_completed"
       ],
-      "rank": 13,
-      "retry_on": "2026-09-15",
+      "rank": 12,
+      "retry_on": "2026-09-16",
       "ticker": "LRCX"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "awaiting_review:budget",
+        "evidence_review",
+        "improvement_mechanism",
+        "organic_growth_check",
+        "impairment_review_completed"
+      ],
+      "rank": 13,
+      "retry_on": "2026-09-16",
+      "ticker": "ROST"
     },
     {
       "evidence_status": "conflict",
@@ -280,39 +267,65 @@
     {
       "evidence_status": "incomplete",
       "missing": [
+        "awaiting_review:budget",
+        "evidence_review",
+        "improvement_mechanism",
+        "impairment_review_completed"
+      ],
+      "rank": 15,
+      "retry_on": "2026-09-16",
+      "ticker": "CIEN"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "scenario_complete",
+        "evidence_review",
+        "improvement_mechanism",
+        "organic_growth_check",
+        "impairment_review_completed",
+        "plausible_assumptions"
+      ],
+      "rank": 16,
+      "retry_on": "2026-09-16",
+      "ticker": "PLTR"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "evidence_review",
+        "improvement_mechanism",
+        "organic_growth_check",
+        "impairment_review_completed"
+      ],
+      "rank": 17,
+      "retry_on": "2026-09-16",
+      "ticker": "ADI"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "independent_price",
+        "evidence_review",
+        "improvement_mechanism",
+        "impairment_review_completed"
+      ],
+      "rank": 18,
+      "retry_on": "2026-09-16",
+      "ticker": "QLYS"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
         "independent_price",
         "evidence_review",
         "improvement_mechanism",
         "organic_growth_check",
         "impairment_review_completed"
       ],
-      "rank": 15,
-      "retry_on": "2026-09-15",
-      "ticker": "ROST"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "independent_price",
-        "evidence_review",
-        "improvement_mechanism",
-        "impairment_review_completed"
-      ],
-      "rank": 16,
-      "retry_on": "2026-09-15",
-      "ticker": "CIEN"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "independent_price",
-        "evidence_review",
-        "improvement_mechanism",
-        "impairment_review_completed"
-      ],
-      "rank": 17,
-      "retry_on": "2026-09-15",
-      "ticker": "DXCM"
+      "rank": 19,
+      "retry_on": "2026-09-16",
+      "ticker": "WTS"
     }
   ]
 }

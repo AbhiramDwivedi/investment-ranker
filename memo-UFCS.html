@@ -117,48 +117,78 @@
   <p class="standfirst">Written Sept. 1, 2026. The verdict was
     <span class="verdict-tag">wait</span> and the name reads
     <code class="rs">research</code> on tonight's table.</p>
-  <p class="stamp"><b>As of:</b> Sept. 1, 2026 &middot; 14 days old &middot; reviewed Sept. 14, 2026 by claude &middot;
+  <p class="stamp"><b>As of:</b> Sept. 1, 2026 &middot; 15 days old &middot; reviewed Sept. 16, 2026 by claude &middot;
     a memo is a point-in-time judgment and does not update itself the way the nightly table does.</p>
 
 
 
-  <div class="note"><p><b>What this is not.</b> The ledger behind this site holds 335 decisions, collapsed from 4,407 name-nights, and none of them has ever been actionable. One row is one decision, not one appearance. A company suggested on 40 consecutive nights is counted once, dated from the first of them, so a name that keeps qualifying cannot inflate the sample. The cohorts above are the other view of the same calls and do repeat a name every night, by design. The actionable date is the first night every condition of the actionable-suggestion contract held at once. It reads empty for a name that has never been actionable, and for every night frozen before the contract existed on Aug. 23, 2026. The engine's current rules are forward-only from Aug. 16, 2026, so the record is days long, not years. This is a personal research tool, not licensed financial advice, and nothing here is a recommendation to buy or sell any security.</p></div>
+  <div class="note"><p><b>What this is not.</b> The ledger behind this site holds 337 decisions, collapsed from 4,718 name-nights, and none of them has ever been actionable. One row is one decision, not one appearance. A company suggested on 40 consecutive nights is counted once, dated from the first of them, so a name that keeps qualifying cannot inflate the sample. The cohorts above are the other view of the same calls and do repeat a name every night, by design. The actionable date is the first night every condition of the actionable-suggestion contract held at once. It reads empty for a name that has never been actionable, and for every night frozen before the contract existed on Aug. 23, 2026. The engine's current rules are forward-only from Aug. 16, 2026, so the record is days long, not years. This is a personal research tool, not licensed financial advice, and nothing here is a recommendation to buy or sell any security.</p></div>
 
   <div class="memobody">
-<p>Revised Sept. 14, 2026 addressing research/memos/UFCS-review-2026-09-02-r2.md.</p>
+<p>Revised Sept. 16, 2026 to regenerate covered-mode section 0 after the universe engine began covering UFCS.</p>
 <h2>0. Signals</h2>
 <p>Engine coverage for UFCS, checked across every governed surface by <code>python
-scripts/memo_context.py UFCS</code> on 2026-09-14T22:26:45Z. This block is
+scripts/memo_context.py UFCS</code> on 2026-09-16T22:26:09Z. This block is
 generated; paste it verbatim and do not edit it by hand.</p>
-<pre><code>focused signals       not covered   107 names, as of 2026-09-14
+<pre><code>focused signals       not covered   107 names, as of 2026-09-16
                       build/signals.json - The narrower set the nightly engine scores in full, with estimate families layered on.
-full universe         not covered   1,417 names, as of 2026-09-14
+full universe         COVERED       1,421 names, as of 2026-09-16
                       build/universe.json - The filings-only engine over every S&amp;P 1500 name with an EDGAR history.
-committed universe    not covered   1,417 names, as of 2026-09-14
+committed universe    COVERED       1,421 names, as of 2026-09-16
                       reports/universe.json - The committed fallback for the universe run, stored compact.
-cross-sectional rank  COVERED       1,339 names, as of 2026-09-14
+cross-sectional rank  COVERED       1,339 names, as of 2026-09-16
                       build/rank.json - A factor ranking, not own-history, and possibly an older window.
 </code></pre>
-<p>Memo mode is <strong>partial</strong>: UFCS has a cross-sectional factor row in
-build/rank.json but no own-history engine result, so there is no fair band, no
-replay and no quality gate to argue with. The factor row is not a valuation,
-and its trailing figures are dated.</p>
-<pre><code>Cross-sectional factor row only, from build/rank.json. These are not own-history valuation percentiles:
-ticker UFCS | name United Fire Group, Inc. | sector Financials | tier 600 | close 55.43
-ttm_revenue none | ttm_eps 5.38 | earn_yield 9.7% | rev_yoy 14.4%
-quality none | valuation 92.3 | momentum 89.8 | growth 78.7 | composite 88.2 | rank 10
-</code></pre>
+<p>Memo mode is <strong>covered</strong>: the engine has output for UFCS in
+build/universe.json, and section 3 must choose its entry from the machine band
+below rather than building a new one.</p>
+<p>Where the factor row disagrees with the engine, the engine wins:</p>
+<ul>
+<li>
+<p>The cross-sectional row in build/rank.json was generated at
+  2026-09-16T22:07:31+00:00, before the engine result at
+  2026-09-16T22:15:33+00:00, so it never supersedes it.</p>
+<p>ticker UFCS | close 54.82 | as_of 2026-09-16 | next_earnings none (days_to_earnings none)
+per share:  eps_ttm 5.38, sales 56.88, fcf none, book 37.74
+valuation:  cheap_pct 95.6 (basis pe+pb; by basis pe 23.8, pb 95.6; cheap_thin false)
+            cheapness_source earned, eps_ttm_flag none, ttm_base_spikes none
+            pe_ttm 10.20, pe_fwd none, ev_ebitda none, p_book none
+            fair_band low 29.44 / mid 37.36 / high 46.80 on bases pe, pb
+            fair_band reliability ok, upside_to_low_rung -46.3%, caveats none
+            fair_band_by_basis {"pe": {"low": 52.67, "mid": 76.99, "high": 235.91}, "ps": {"low": 31.29, "mid": 41.52, "high": 57.45}, "pb": {"low": 29.44, "mid": 37.36, "high": 46.8}}
+            implied_eps_growth at_hurdle_median_exit 4.2%, at_hurdle_p20_exit 8.0%, at_hurdle_20x_exit 1.0%
+            implied_eps_growth fwd_at_hurdle_20x_exit none, tier quality_compounder, hurdle_used 9.0%, eps_base_ttm 5.38
+            compare trailing_5y_eps_cagr none, consensus_eps_growth_1y none, consensus_ltg none
+            replay episodes_closed 2, hit_rate_vs_spy 50.0%, median_excess_12m -1.0%, worst_excess_12m -22.1%
+            replay open_episodes 0, open_median_excess_to_date none, median_worst_dd_12m -16.4%
+quality:    gate pass, hard none, soft none, unknown gross margin
+            fcf_conversion none, net_debt_to_ebitda none, share_count_chg_3y 2.6%, sbc_to_fcf none
+            sbc_adjusted_fcf not published on this surface; net TTM SBC off reported fcf_ttm none yourself and show both
+            gross_margin none against none three years ago
+economics:  roic none against none three years ago, fundable_growth 12.5%, needed_at_hurdle_20x 1.0%, growth_gap -11.6%
+fund. mom.: rev_yoy 14.4%, rev_accel true, rev_decel_2q false, eps_ttm_yoy 53.3%
+            fwd_eps_rev_30d none, fwd_eps_rev_90d none, analyst_up_minus_down_30d none, rec_mean none against none three months ago
+trend:      dd_52w -2.1%, dist_200dma 26.7%, rs_spy_6m 34.2%, sector_dd_52w -4.5%, knife false, turned true
+sentiment:  short_pct_float none, insider_net_count_6m none, target_upside none
+scores:     buy_score 31.0, cheap false, bases 2, candidate false, tier none
+            candidate_reasons none
+            candidate_blockers none
+            replay_warning none
+data notes: stale EDGAR series: buybacks (last 2022-12-31), acquisition_expense (last 2017-06-30), no Yahoo forward-EPS revision history (30/90d revisions unavailable)
+portfolio:  held false (position size never appears in a memo)</p>
+</li>
+</ul>
 <!-- memo-context: generated block, do not edit by hand. Regenerate with `python scripts/memo_context.py UFCS`. -->
 
 <p>```json memo-context
 {
-  "checksum": "sha256:a86c58f62f9b4e3acf16ea66762cceaf2ef8420062733e180366e9d93bb5f59a",
+  "checksum": "sha256:a4e987ca6a82030491e9075e4fee142112dc555e9a1c1419fae77b30ae30c991",
   "coverage": [
     {
-      "as_of": "2026-09-14",
+      "as_of": "2026-09-16",
       "covers_ticker": false,
       "exists": true,
-      "generated_at": "2026-09-14T22:22:29+00:00",
+      "generated_at": "2026-09-16T22:16:26+00:00",
       "kind": "signals_focused",
       "label": "focused signals",
       "names": 107,
@@ -166,24 +196,24 @@ quality none | valuation 92.3 | momentum 89.8 | growth 78.7 | composite 88.2 | r
       "path": "build/signals.json"
     },
     {
-      "as_of": "2026-09-14",
-      "covers_ticker": false,
+      "as_of": "2026-09-16",
+      "covers_ticker": true,
       "exists": true,
-      "generated_at": "2026-09-14T22:20:32+00:00",
+      "generated_at": "2026-09-16T22:15:33+00:00",
       "kind": "universe_full",
       "label": "full universe",
-      "names": 1417,
+      "names": 1421,
       "note": "The filings-only engine over every S&amp;P 1500 name with an EDGAR history.",
       "path": "build/universe.json"
     },
     {
-      "as_of": "2026-09-14",
-      "covers_ticker": false,
+      "as_of": "2026-09-16",
+      "covers_ticker": true,
       "exists": true,
-      "generated_at": "2026-09-14T22:20:32+00:00",
+      "generated_at": "2026-09-16T22:15:33+00:00",
       "kind": "universe_committed",
       "label": "committed universe",
-      "names": 1417,
+      "names": 1421,
       "note": "The committed fallback for the universe run, stored compact.",
       "path": "reports/universe.json"
     },
@@ -191,7 +221,7 @@ quality none | valuation 92.3 | momentum 89.8 | growth 78.7 | composite 88.2 | r
       "as_of": null,
       "covers_ticker": true,
       "exists": true,
-      "generated_at": "2026-09-14T22:10:14+00:00",
+      "generated_at": "2026-09-16T22:07:31+00:00",
       "kind": "rank_cross_sectional",
       "label": "cross-sectional rank",
       "names": 1339,
@@ -199,10 +229,13 @@ quality none | valuation 92.3 | momentum 89.8 | growth 78.7 | composite 88.2 | r
       "path": "build/rank.json"
     }
   ],
-  "data_as_of": null,
-  "engine_coverage": [],
-  "generated_at": "2026-09-14T22:26:45Z",
-  "held": null,
+  "data_as_of": "2026-09-16",
+  "engine_coverage": [
+    "build/universe.json",
+    "reports/universe.json"
+  ],
+  "generated_at": "2026-09-16T22:26:09Z",
+  "held": false,
   "instruction_locks": [
     {
       "commit": "0bf61dbf22e00df68b4a65693e6b2851205cd8fe",
@@ -226,22 +259,24 @@ quality none | valuation 92.3 | momentum 89.8 | growth 78.7 | composite 88.2 | r
       "uncommitted": false
     }
   ],
-  "mode": "partial",
-  "mode_derived": "partial",
+  "mode": "covered",
+  "mode_derived": "covered",
   "mode_forced": false,
-  "primary_kind": null,
-  "primary_source": null,
-  "rank_conflicts": [],
+  "primary_kind": "universe_full",
+  "primary_source": "build/universe.json",
+  "rank_conflicts": [
+    "The cross-sectional row in build/rank.json was generated at 2026-09-16T22:07:31+00:00, before the engine result at 2026-09-16T22:15:33+00:00, so it never supersedes it."
+  ],
   "schema": "memo-context/1",
   "spot": {
-    "as_of": null,
-    "close": 55.43,
-    "source": "build/rank.json"
+    "as_of": "2026-09-16",
+    "close": 54.82,
+    "source": "build/universe.json"
   },
   "ticker": "UFCS"
 }</p>
 <pre><code>
-The memo treats the rank-10 factor row as a research prompt, not as evidence that UFCS is cheap, because current engine output has no own-history valuation, fair band, replay or quality gate for the company.
+The memo argues with the engine's quality_compounder 9% hurdle and with using reported TTM EPS of $5.38 as the earnings base, because 2023 produced a 109.3% combined ratio and current TTM earnings are catastrophe- and prior-year-development-flattered.
 
 ## 1. What changed — why is the multiple where it is?
 
@@ -249,27 +284,27 @@ On Aug. 4, 2026, UFCS filed Q2 net income of $33.4 million versus $22.9 million 
 
 ## 2. Is the impairment real?
 
-The headline 10.2x multiple is flattered. Reported TTM EPS is $5.38 and the TTM catastrophe load is about 2.2 points. Restating catastrophes to the 4.9-point 2023-2025 average reduces EPS to about $4.25. That remains favorable because UFCS says each annual catastrophe load in 2023 through 2025, including 6.2 points in 2023, was below its 10-year average. Applying the same three-year normalization to prior-year non-catastrophe development reduces the base again to about $3.67. A reasonable range is therefore $3.29 to $4.25, making spot about 13.0x to 16.8x normalized earnings rather than 10.2x.
+The headline 10.2x multiple is flattered. Reported TTM EPS is $5.38 and the TTM catastrophe load is about 2.2 points. Restating catastrophes to the 4.9-point 2023-2025 average reduces EPS to about $4.25. That remains favorable because UFCS says each annual catastrophe load in 2023 through 2025, including 6.2 points in 2023, was below its 10-year average. Applying the same three-year normalization to prior-year non-catastrophe development reduces the base again to about $3.67. A reasonable range is therefore $3.29 to $4.25, making spot about 12.9x to 16.7x normalized earnings rather than 10.2x.
 
 The impairment risk is reserve adequacy and retained exposure, not proven deterioration in current workers' compensation accident-year economics. Workers' compensation pricing lagged the rest of core commercial while premium grew rapidly, but the filing says its underlying loss ratio improved. H1 ceded written and earned premiums fell 17.6% and 23.1%, respectively, so UFCS retained more underwriting risk while the most volatile earnings inputs remained unusually favorable.
 
-Commercial other liability is the larger warning. It produced 32.6% of Q2 earned premium and a 65.7% net loss ratio, but it also caused $52.9 million of 2023 adverse development in excess casualty, umbrella and construction defect. Assumed reinsurance contributed 14.7% of Q2 earned premium and its loss ratio worsened to 65.6%. Those lines make the reserve tail structural enough to require evidence, even though current reported results improved.
+Commercial other liability is the larger warning. It produced 32.6% of Q2 earned premium and a 65.7% net loss ratio, but it also caused $52.9 million of 2023 adverse development in excess casualty, umbrella and construction defect. Assumed reinsurance contributed 14.7% of Q2 earned premium and its loss ratio worsened to 65.6%. Those lines make the reserve tail structural enough to require evidence, even though current reported results improved. Two own-history cheap episodes beat SPY only half the time, with a median 12-month excess of -1.0%; the Q2 filing does not show a different reserve or cession regime now.
 
-Book value is the cleaner cross-check. UFCS is at 1.46x June book value of $38.02. Peer Selective Insurance (SIGI) is at about 1.54x its filed $58.13 book value using the Sept. 14 factor-row close, but Selective reported 13.7% non-GAAP operating ROE to 14.8% ROE. UFCS does not deserve a similar P/B without similar through-cycle returns. UFCS made no repurchases in 2023 through H1 2026. H1 stock compensation rose 43% to $5.3 million, and the three-year share count rose 2.6%, so issuance was not offset by buybacks.
+Book value is the cleaner cross-check. UFCS is at 1.44x June book value of $38.02. Peer Selective Insurance (SIGI) is at about 1.52x its filed $58.13 book value using the Sept. 16 factor-row close of $88.53, but Selective reported 13.7% non-GAAP operating ROE to 14.8% ROE. UFCS does not deserve a similar P/B without similar through-cycle returns. The blended own-history band of $29.44 to $46.80 is the P/B leg; the P/E-leg low of $52.67 uses the flattered $5.38 TTM and is not a floor. UFCS made no repurchases in 2023 through H1 2026. H1 stock compensation rose 43% to $5.3 million, and the three-year share count rose 2.6%, so issuance was not offset by buybacks.
 
 ## 3. Verdict and entry
 
-**wait** - the current ranking does not establish cheapness, and normalized earnings, reserve history and lower reinsurance cessions do not justify spot.
+**wait** - cheapness is earned on a flattered TTM, spot sits above the machine band and normalized earnings do not clear a 12% hurdle.
 
-Entry: use an event gate, not a price. Reassess after Q3 2026 results disclose reserve development, line-level loss ratios and cessions. No current machine fair band exists in partial mode. The `cyclical_or_single_product` tier and 12% hurdle apply because 2023 produced a 109.3% combined ratio and a net loss. The 5% base growth assumption is below current premium growth because it starts from through-cycle earnings and allows for reserve costs. None of the paired cases clears the hurdle.
+Entry: the machine band is $29.44 / $37.36 / $46.80 on pe and pb. Spot $54.82 sits above the $46.80 high, so there is no armed-style entry at the current price. The $52.67 P/E-leg low rests on reported $5.38 TTM rather than the $3.67 through-cycle base. Reassess after Q3 2026 results disclose reserve development, line-level loss ratios and cessions. The engine's quality_compounder 9% hurdle is wrong; 2023's 109.3% combined ratio warrants cyclical_or_single_product at 12%. None of the paired cases clears the hurdle.
 
 | Case | Growth | exit P/E | EPS in 5y | Price | Total | Annualized | Growth needed at 12.0% |
 |---|---|---|---|---|---|---|---|
-| Bear | -5.0% | 8x | 2.84 | $22.72 | -59.0% | -14.9% | 27.2% |
-| Base | 5.0% | 10x | 4.68 | $46.84 | -15.5% | -1.9% | 21.6% |
-| Bull | 9.0% | 12x | 5.65 | $67.76 | 22.2% | 5.5% | 17.3% |
+| Bear | -5.0% | 8x | 2.84 | $22.72 | -58.6% | -14.7% | 26.9% |
+| Base | 5.0% | 10x | 4.68 | $46.84 | -14.6% | -1.7% | 21.4% |
+| Bull | 9.0% | 12x | 5.65 | $67.76 | 23.6% | 5.8% | 17.0% |
 
-At the base case's 10x exit, the price already asks for 21.6% annual growth to clear the 12.0% hurdle, 16.6 percentage points above the 5.0% base assumption.
+At the base case's 10x exit, the price already asks for 21.4% annual growth to clear the 12.0% hurdle, 16.4% above the 5.0% the base case assumes.
 
 ```json scenario
 {
@@ -282,44 +317,44 @@ At the base case's 10x exit, the price already asks for 21.6% annual growth to c
   &quot;net_debt&quot;: 0.0,
   &quot;rows&quot;: [
     {
-      &quot;annualized_return&quot;: -0.149,
+      &quot;annualized_return&quot;: -0.1471,
       &quot;case&quot;: &quot;bear&quot;,
       &quot;clears_hurdle&quot;: false,
       &quot;growth&quot;: -0.05,
       &quot;multiple&quot;: 8.0,
-      &quot;required_growth_at_hurdle&quot;: 0.2718,
+      &quot;required_growth_at_hurdle&quot;: 0.269,
       &quot;terminal_metric&quot;: 2.8398,
       &quot;terminal_price&quot;: 22.72,
-      &quot;total_return&quot;: -0.5901,
+      &quot;total_return&quot;: -0.5856,
       &quot;treatment&quot;: &quot;single&quot;
     },
     {
-      &quot;annualized_return&quot;: -0.0187,
+      &quot;annualized_return&quot;: -0.0166,
       &quot;case&quot;: &quot;base&quot;,
       &quot;clears_hurdle&quot;: false,
       &quot;growth&quot;: 0.05,
       &quot;multiple&quot;: 10.0,
-      &quot;required_growth_at_hurdle&quot;: 0.2163,
+      &quot;required_growth_at_hurdle&quot;: 0.2136,
       &quot;terminal_metric&quot;: 4.684,
       &quot;terminal_price&quot;: 46.84,
-      &quot;total_return&quot;: -0.155,
+      &quot;total_return&quot;: -0.1456,
       &quot;treatment&quot;: &quot;single&quot;
     },
     {
-      &quot;annualized_return&quot;: 0.0554,
+      &quot;annualized_return&quot;: 0.0577,
       &quot;case&quot;: &quot;bull&quot;,
       &quot;clears_hurdle&quot;: false,
       &quot;growth&quot;: 0.09,
       &quot;multiple&quot;: 12.0,
-      &quot;required_growth_at_hurdle&quot;: 0.1727,
+      &quot;required_growth_at_hurdle&quot;: 0.1701,
       &quot;terminal_metric&quot;: 5.6467,
       &quot;terminal_price&quot;: 67.76,
-      &quot;total_return&quot;: 0.2225,
+      &quot;total_return&quot;: 0.2361,
       &quot;treatment&quot;: &quot;single&quot;
     }
   ],
   &quot;shares&quot;: 1.0,
-  &quot;spot&quot;: 55.43,
+  &quot;spot&quot;: 54.82,
   &quot;tier&quot;: &quot;cyclical_or_single_product&quot;,
   &quot;years&quot;: 5
 }
@@ -345,7 +380,7 @@ At the base case's 10x exit, the price already asks for 21.6% annual growth to c
 <li>United Fire Group, dividend and director appointment Form 8-K, filed Aug. 21, 2026: https://www.sec.gov/Archives/edgar/data/101199/000010119926000056/ufcs-20260821.htm</li>
 <li>United Fire Group, 2025 Form 10-K, filed Feb. 26, 2026: https://www.sec.gov/Archives/edgar/data/101199/000010119926000015/ufcs-20251231.htm</li>
 <li>Selective Insurance Group, Q2 2026 Form 10-Q, filed July 29, 2026: https://www.sec.gov/Archives/edgar/data/230557/000023055726000020/sigi-20260630.htm</li>
-<li>Sept. 14, 2026 closing prices for UFCS and SIGI come from the current cross-sectional factor artifact; the P/B multiples combine those prices with each company's filed June 30 book value per share.</li>
+<li>Sept. 16, 2026 closing prices for UFCS and SIGI come from the current engine and cross-sectional factor artifacts; the P/B multiples combine those prices with each company's filed June 30 book value per share.</li>
 </ul>
   </div>
 

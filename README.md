@@ -1,42 +1,21 @@
-# investment-ranker
+# Long-term investment opportunities
 
-The published pages for a personal stock-research tool.
+[Open the opportunity report](https://abhiramdwivedi.github.io/investment-ranker/)
+for the latest completed session, or view the [paper books](https://abhiramdwivedi.github.io/investment-ranker/paper.html).
 
-**→ [The Ranker](https://abhiramdwivedi.github.io/investment-ranker/)** — updated every weekday
-evening after the U.S. close. One table: the stocks trading cheap against their own history tonight.
+The experimental opportunity-v2.1 research model ranks companies for further
+research using business improvement and quality evidence. The report separates
+ranked candidates, verified investment opinions, no-action conclusions and
+unresolved evidence. A high rank is not a recommendation to buy.
 
-**→ [What is moving](https://abhiramdwivedi.github.io/investment-ranker/patterns.html)** — a different
-question, on its own page: which stocks already match a pattern that preceded big gains in the past,
-with each pattern's replay record, including the one that failed its own test.
+Each report identifies its market session, model and source run. Missing price
+checks, evidence gaps and coverage limitations remain visible. GPT runs the
+daily workflow and writes its digest; Claude Code CLI independently validates
+the research output and the digest before delivery.
 
-**→ [How it works, in three pictures](https://abhiramdwivedi.github.io/investment-ranker/how-it-works.html)**
-— the whole method in about a minute, for anyone starting from scratch.
+This repository contains the public report and paper-book output. Research
+source data and personal information remain in the private repository. Automated
+privacy checks gate publication. Paper books are simulated; no real trades are
+executed by this workflow.
 
-**→ [Method note](https://abhiramdwivedi.github.io/investment-ranker/approach.html)** — what the
-numbers mean, what the backtests found, and what the screen cannot see.
-
-## What this is
-
-A nightly screen of the S&P 1500 for companies trading cheap **against their own ten-year valuation
-history** — not against their peers, and not merely down from a high. Every S&P 1500 name with an SEC
-filing history is scored by the same code, from SEC EDGAR company facts and daily prices.
-
-The honest summary of the backtest is on the unflattering side: the rule **alone has no edge** against
-the index. Two valuation bases agreeing, and a market that is itself on sale, do carry information. The
-method note shows the numbers that say so, including the ones that argue against the premise.
-
-## What this is not
-
-**This is not investment advice, and nothing here is a recommendation to buy or sell any security.**
-It is one person's research tool, published because the reasoning is more useful in the open than in a
-private file. A name appearing on this page means "worth reading about," never "worth buying."
-
-There are no holdings, positions, account values or personal data on these pages, by design and by an
-automated check that refuses to publish if any appear.
-
-## How it gets here
-
-This repository holds only the rendered output. The engine, its data and its backtests live in a
-separate private repository; a nightly job renders these pages and pushes them here.
-
-Figures carry the date of the market close they were built from.
+The former own-history screen, pattern pages and public memo pages are retired.

@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filing verifications</title>
+<meta name="description" content="Checks of the opportunity model's financial inputs against filed 10-K and 10-Q statements, each with an independent second review. Data checks, not investment advice.">
+<style>
+/* shared:css */
+/* The CSS both public pages share: the front page (template/ranker.html,
+   tonight's cut) and the pattern page (template/patterns.html, what is
+   moving). scripts/render_ranker.py splices this file between the shared:css
+   markers in each template's style block, so a colour token or a table rule is
+   defined once and a fix to it reaches both pages.
+
+   What stays in a template is what only that page draws: the funnel and
+   distribution charts, the step-by-step method panel, the track-record tables
+   and the readiness badges on the front page; the pattern legend, the honesty
+   cards and the whole score pop-up on the pattern page.
+*/
+
+  /* ---- palette, page frame, masthead, both tables ---- */
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --baseline: #c3c2b7; --ring: rgba(11,11,11,0.10);
+    --accent: #1c5cab; --accent-soft: #cde2fb;
+    --trough: #2a78d6; --inflect: #1baf7a; --newlist: #eda100;
+    --warn: #fab219; --pos: #006300;
+    /* Funnel ramp: ONE hue, monotone lightness, light -> dark as the screen
+       narrows. Blue steps 250/400/500/600; validated --ordinal, light end
+       #86b6ef at 2.06:1 on this surface. */
+    --f1: #86b6ef; --f2: #3987e5; --f3: #256abf; --f4: #184f95;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+      --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+      --accent: #6da7ec; --accent-soft: #184f95;
+      --trough: #3987e5; --inflect: #199e70; --newlist: #c98500;
+      --warn: #fab219; --pos: #0ca30c;
+      /* Same ramp, anchor flipped for the dark surface (dark -> light as the
+         screen narrows). Dark end #184f95 at 2.15:1 on #1a1a19. */
+      --f1: #184f95; --f2: #256abf; --f3: #3987e5; --f4: #86b6ef;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+    --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --ring: rgba(255,255,255,0.10);
+    --accent: #6da7ec; --accent-soft: #184f95;
+    --trough: #3987e5; --inflect: #199e70; --newlist: #c98500;
+    --warn: #fab219; --pos: #0ca30c;
+    --f1: #184f95; --f2: #256abf; --f3: #3987e5; --f4: #86b6ef;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--page); color: var(--ink); margin: 0; line-height: 1.5;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 15px; }
+  .wrap { max-width: 1560px; margin: 0 auto; padding: 28px 24px 64px; }
+  .masthead { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    border-bottom: 2px solid var(--ink); padding-bottom: 14px; }
+  .masthead h1 { font-size: 26px; font-weight: 750; letter-spacing: -0.01em; margin: 0; }
+  .masthead h1 span { color: var(--accent); }
+  .issue { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-2); font-weight: 600; }
+  .methodlink { color: var(--accent); text-decoration: none; }
+  .methodlink:hover { text-decoration: underline; }
+  .banner { margin-top: 16px; border: 1px solid color-mix(in srgb, var(--warn) 50%, var(--surface));
+    background: color-mix(in srgb, var(--warn) 10%, var(--surface)); border-radius: 8px; padding: 12px 16px;
+    font-size: 13.5px; }
+  .eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 650; margin: 30px 0 12px; }
+  .eyebrow small { text-transform: none; letter-spacing: 0; font-weight: 400; }
+  .card { background: var(--surface); border: 1px solid var(--ring); border-radius: 8px; padding: 8px 14px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 0 0 10px; }
+  .controls label { font-size: 12px; color: var(--muted); font-weight: 650; text-transform: uppercase; letter-spacing: 0.06em; }
+  .controls select, .controls input[type="search"] {
+    background: var(--surface); color: var(--ink); border: 1px solid var(--baseline); border-radius: 6px;
+    padding: 6px 10px; font-size: 13.5px; font-family: inherit; }
+  .controls input[type="search"] { width: 170px; }
+  .controls select:focus-visible, .controls input:focus-visible, th button:focus-visible, .showall:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 1px; }
+  .count { font-size: 12.5px; color: var(--muted); margin-left: auto; }
+  .table-scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th { text-align: left; padding: 0; border-bottom: 1px solid var(--baseline); white-space: nowrap; }
+  th button { all: unset; cursor: pointer; display: block; width: 100%; padding: 10px;
+    font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); font-weight: 650; }
+  th button:hover { color: var(--ink); }
+  th .dir { color: var(--accent); font-weight: 750; }
+  td { padding: 8px 10px; border-bottom: 1px solid var(--grid); vertical-align: middle; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tr:last-child td { border-bottom: none; }
+  .tk { font-weight: 700; }
+  .tk small { display: block; font-weight: 400; color: var(--muted); font-size: 11px; max-width: 20ch;
+    overflow: hidden; text-overflow: ellipsis; }
+  .score { font-size: 15px; font-weight: 750; color: var(--accent); }
+  .arch { display: inline-block; font-size: 10.5px; font-weight: 700; border-radius: 999px; padding: 1px 9px;
+    text-transform: uppercase; letter-spacing: 0.04em; color: var(--page); }
+  .arch.t { background: var(--trough); }
+  .arch.i { background: var(--inflect); }
+  .arch.n { background: var(--newlist); }
+  .flag { display: inline-block; font-size: 10.5px; font-weight: 700; border-radius: 999px; padding: 1px 8px;
+    margin-left: 6px; border: 1px solid color-mix(in srgb, var(--warn) 60%, var(--surface));
+    background: color-mix(in srgb, var(--warn) 16%, var(--surface)); color: var(--ink); cursor: help; }
+  .pos { color: var(--pos); }
+  .sec { font-size: 12px; color: var(--ink-2); }
+  .showall { all: unset; cursor: pointer; display: inline-block; margin-top: 10px; padding: 5px 14px;
+    border: 1px solid var(--baseline); border-radius: 999px; font-size: 12.5px; color: var(--accent); font-weight: 650; }
+  .showall:hover { border-color: var(--accent); }
+
+  /* ---- chips: the theme sleeves on the front page, the momentum
+     leaders on the pattern page ---- */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { border: 1px solid var(--baseline); border-radius: 999px; padding: 3px 12px; font-size: 12.5px; color: var(--ink-2); }
+  .chip b { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+  /* ---- coverage tiles and the page footer ---- */
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
+  .tile { background: var(--surface); border: 1px solid var(--ring); border-radius: 6px; padding: 12px 14px; }
+  .tile .k { font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); font-weight: 650; }
+  .tile .v { font-size: 21px; font-weight: 700; margin-top: 2px; }
+  .tile .d { font-size: 12.5px; color: var(--ink-2); margin-top: 2px; }
+  .foot { margin-top: 40px; padding-top: 14px; border-top: 1px solid var(--baseline); font-size: 12px; color: var(--muted); max-width: 82ch; }
+  .foot p { margin: 6px 0; }
+
+  /* ---- table rows. The pattern table's rows open a pop-up, so they take
+     the pointer; the cut's rows open nothing and the front page turns the
+     affordance back off for its own table. ---- */
+  tbody tr { cursor: pointer; }
+  tbody tr:hover td { background: color-mix(in srgb, var(--accent) 5%, var(--surface)); }
+  tbody tr:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+  /* ---- the floating tooltip. Both pages have one #ctip: the front page's
+     charts hover, and so do the two per-ticker charts inside the pattern
+     page's pop-up. ---- */
+  #ctip { position: fixed; z-index: 40; pointer-events: none; opacity: 0; transition: opacity .1s;
+    background: var(--surface); border: 1px solid var(--baseline); border-radius: 6px;
+    box-shadow: 0 4px 14px var(--ring); padding: 7px 10px; font-size: 12.5px; max-width: 260px;
+    color: var(--ink); line-height: 1.45; }
+  #ctip b { font-variant-numeric: tabular-nums; }
+  @media (prefers-reduced-motion: reduce) { #ctip { transition: none; } }
+/* /shared:css */
+
+  .wrap { max-width: 1100px; }
+  .lead { font-size: 14px; color: var(--ink-2); max-width: 82ch; margin: 14px 0 0; }
+  .book { background: var(--surface); border: 1px solid var(--ring); border-radius: 8px; padding: 16px 20px;
+    margin-top: 18px; min-width: 0; }
+  .book h2 { margin: 0; font-size: 22px; font-weight: 750; letter-spacing: -0.01em; }
+  .book h3 { font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted);
+    font-weight: 650; margin: 16px 0 6px; }
+  .book p { font-size: 14px; margin: 4px 0; max-width: 82ch; }
+  .book .role { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .book table { font-size: 13px; }
+  .book th { padding: 8px 10px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--muted); font-weight: 650; white-space: normal; vertical-align: bottom; }
+  .book td.n, .book th.n { text-align: right; }
+  .book td.wrap-cell { white-space: normal; min-width: 24ch; color: var(--ink-2); }
+  .book tbody tr { cursor: default; }
+  .book a, .foot a { color: var(--accent); }
+  .tiles { margin: 10px 0; }
+  details.more { margin-top: 18px; background: var(--surface); border: 1px solid var(--ring); border-radius: 8px;
+    padding: 10px 16px; }
+  details.more > summary, .book details > summary { cursor: pointer; color: var(--accent); font-weight: 650; }
+  details.more p { font-size: 13.5px; color: var(--ink-2); max-width: 82ch; }
+  details summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .planned { border-style: dashed; }
+  @media (max-width: 640px) { .wrap { padding: 18px 16px 48px; } .book { padding: 14px; } }
+
+  .book td.miss { color: var(--bad, #b42318); font-weight: 650; }
+  .book ul { margin: 4px 0 4px 18px; padding: 0; max-width: 82ch; }
+  .book li { font-size: 14px; margin: 4px 0; }
+
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="masthead">
+    <h1>Filing <span>/ verifications</span></h1>
+    <div class="issue">Updated Friday, Sept. 18, 2026 &middot; data checks, not investment advice &middot; <a href="index.html">Opportunities</a> &middot; <a href="paper.html">Paper books</a></div>
+  </header>
+
+  <div class="banner">
+    <p><b>Data checks.</b> Each check recomputes the financial values the opportunity model relied on for one company from the 10-K and 10-Q statements the company filed. It tests the model's inputs. It does not test the investment case, and a clean check is not a reason to buy.</p>
+    <p>Nothing on this page is investment advice.</p>
+  </div>
+
+  <p class="lead">This page holds two checks. A check is published only after a second reviewer has fetched the filings independently and ruled on it.</p>
+
+<section class="book" id="WTS">
+<div class="role">Rank 19 in the Sept. 17, 2026 report</div>
+<h2>WTS <span>/ Watts Water Technologies</span></h2>
+<p>All 24 values the model relied on match the filed statements. The model failed to build one further value, cash spent on acquisitions, and so left its check for a change in business scope unevaluated.</p>
+<h3>What the matching numbers do not show</h3>
+<ul><li>The model built no figure for cash spent on acquisitions. The filings give $173.1 million for the year to June 28, 2026, which is 5.9% of total assets. Year-to-date payments fell from $1.9 million to $1.7 million between the first and second quarters because of purchase price adjustments, and the model rejects a cumulative payment that shrinks.</li><li>About 4.9 of the 17.1 percentage points of revenue growth came from acquired businesses, and about 1.7 points came from currency. Organic growth was about 10.6 points. Five acquisitions closed in 2025, three of them in the fourth quarter.</li><li>Operating margin rose 1.4 percentage points, from 17.7% to 19.1%. Restructuring charges fell from $26.4 million to $8.8 million between the two periods, and without them the margin rose about 0.6 points. Gross margin fell in the first half of 2026.</li><li>Free cash flow rose $32.5 million while working capital used $119.1 million. Deferred income taxes swung by $60.9 million in the company&#x27;s favor, and the latest quarterly report says the cash tax benefit from accelerated deductions will not repeat in 2026.</li><li>Neither period contains discontinued operations, a 53-week year or a restated comparative. No acquisition was reported after the latest balance sheet as of Sept. 18, 2026.</li></ul>
+<h3>Second review by codex</h3>
+<p>The reviewer fetched 10 filing documents itself on Sept. 18, 2026, re-added every row and ruled: stands with corrections. It confirmed every filing value in the table below.</p>
+<p>It corrected the first check on these points:</p>
+<ul><li>The first check overstated the rounding uncertainty in the annual change in share count. Share counts are filed to the nearest 0.1 million, so the range is about minus 0.2% to zero a year.</li><li>The first check said prior-year figures were unchanged in the later filing. One cash flow line was split into two in the later filing, with the same total.</li><li>The second reviewer could not confirm why the model rejected the acquisitions figure, because it did not have the model&#x27;s code. The project confirmed that cause separately in the code.</li></ul>
+<p>It added these items, which the first check missed:</p>
+<ul><li>The earlier period includes a $7.8 million pension settlement gain before tax.</li><li>The later period includes a $3.4 million benefit from the release of a reserved contingency.</li><li>Acquisition-related charges after tax were $5.9 million in the later period and $3.7 million in the earlier one.</li></ul>
+<details><summary>Every value checked</summary>
+<div class="table-scroll"><table aria-label="WTS values checked against filings"><thead><tr><th>Value</th><th>Period</th><th class="n">Model</th><th class="n">Filing</th><th>Match</th><th>Filings</th></tr></thead><tbody><tr><td class="wrap-cell">Revenue</td><td class="wrap-cell">TTM 2025-06-30 to 2026-06-28 (364 days)</td><td class="n">2,677.3 million dollars</td><td class="n">2,677.2 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926018541/wts-20251231x10k.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926091726/wts-20260628x10q.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025010686/wts-20250629x10q.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Gross profit</td><td class="wrap-cell">TTM 2025-06-30 to 2026-06-28 (364 days)</td><td class="n">1,307.9 million dollars</td><td class="n">1,307.9 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926018541/wts-20251231x10k.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926091726/wts-20260628x10q.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025010686/wts-20250629x10q.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Operating income</td><td class="wrap-cell">TTM 2025-06-30 to 2026-06-28 (364 days)</td><td class="n">512.1 million dollars</td><td class="n">512.1 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926018541/wts-20251231x10k.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926091726/wts-20260628x10q.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025010686/wts-20250629x10q.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Net income</td><td class="wrap-cell">TTM 2025-06-30 to 2026-06-28 (364 days)</td><td class="n">383.8 million dollars</td><td class="n">383.8 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926018541/wts-20251231x10k.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926091726/wts-20260628x10q.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025010686/wts-20250629x10q.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Operating cash flow</td><td class="wrap-cell">TTM 2025-06-30 to 2026-06-28 (364 days)</td><td class="n">397.9 million dollars</td><td class="n">397.9 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926018541/wts-20251231x10k.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926091726/wts-20260628x10q.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025010686/wts-20250629x10q.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Capital spending</td><td class="wrap-cell">TTM 2025-06-30 to 2026-06-28 (364 days)</td><td class="n">48.5 million dollars</td><td class="n">48.5 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926018541/wts-20251231x10k.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926091726/wts-20260628x10q.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025010686/wts-20250629x10q.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Free cash flow</td><td class="wrap-cell">TTM 2025-06-30 to 2026-06-28 (364 days)</td><td class="n">349.4 million dollars</td><td class="n">349.4 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926018541/wts-20251231x10k.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926091726/wts-20260628x10q.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025010686/wts-20250629x10q.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Diluted shares, average</td><td class="wrap-cell">TTM 2025-06-30 to 2026-06-28 (364 days)</td><td class="n">33.50 million shares</td><td class="n">33.50 million shares</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000110465925107489/wts-20250928x10q.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926018541/wts-20251231x10k.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926056817/wts-20260329x10q.htm" rel="noopener">3</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926091726/wts-20260628x10q.htm" rel="noopener">4</a></td></tr><tr><td class="wrap-cell">Revenue</td><td class="wrap-cell">TTM 2024-07-01 to 2025-06-29 (364 days)</td><td class="n">2,285.7 million dollars</td><td class="n">2,285.7 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025001102/wts-20241231x10k.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025010686/wts-20250629x10q.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837024011496/wts-20240630x10q.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Gross profit</td><td class="wrap-cell">TTM 2024-07-01 to 2025-06-29 (364 days)</td><td class="n">1,108.1 million dollars</td><td class="n">1,108.1 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025001102/wts-20241231x10k.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025010686/wts-20250629x10q.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837024011496/wts-20240630x10q.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Operating income</td><td class="wrap-cell">TTM 2024-07-01 to 2025-06-29 (364 days)</td><td class="n">405.2 million dollars</td><td class="n">405.2 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025001102/wts-20241231x10k.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025010686/wts-20250629x10q.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837024011496/wts-20240630x10q.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Net income</td><td class="wrap-cell">TTM 2024-07-01 to 2025-06-29 (364 days)</td><td class="n">311.6 million dollars</td><td class="n">311.6 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025001102/wts-20241231x10k.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025010686/wts-20250629x10q.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837024011496/wts-20240630x10q.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Operating cash flow</td><td class="wrap-cell">TTM 2024-07-01 to 2025-06-29 (364 days)</td><td class="n">355.1 million dollars</td><td class="n">355.1 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025001102/wts-20241231x10k.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025010686/wts-20250629x10q.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837024011496/wts-20240630x10q.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Capital spending</td><td class="wrap-cell">TTM 2024-07-01 to 2025-06-29 (364 days)</td><td class="n">38.2 million dollars</td><td class="n">38.2 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025001102/wts-20241231x10k.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025010686/wts-20250629x10q.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837024011496/wts-20240630x10q.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Free cash flow</td><td class="wrap-cell">TTM 2024-07-01 to 2025-06-29 (364 days)</td><td class="n">316.9 million dollars</td><td class="n">316.9 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025001102/wts-20241231x10k.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025010686/wts-20250629x10q.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837024011496/wts-20240630x10q.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Diluted shares, average</td><td class="wrap-cell">TTM 2024-07-01 to 2025-06-29 (364 days)</td><td class="n">33.50 million shares</td><td class="n">33.50 million shares</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000155837024014022/wts-20240929x10q.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025001102/wts-20241231x10k.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025006887/wts-20250330x10q.htm" rel="noopener">3</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025010686/wts-20250629x10q.htm" rel="noopener">4</a></td></tr><tr><td class="wrap-cell">Total assets</td><td class="wrap-cell">instant 2026-06-28</td><td class="n">2,951.5 million dollars</td><td class="n">2,951.5 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926091726/wts-20260628x10q.htm" rel="noopener">1</a></td></tr><tr><td class="wrap-cell">Total assets</td><td class="wrap-cell">instant 2025-06-29</td><td class="n">2,644.9 million dollars</td><td class="n">2,644.9 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025010686/wts-20250629x10q.htm" rel="noopener">1</a></td></tr><tr><td class="wrap-cell">Total assets, average of two dates</td><td class="wrap-cell">2025-06-29 and 2026-06-28</td><td class="n">2,798.2 million dollars</td><td class="n">2,798.2 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926091726/wts-20260628x10q.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025010686/wts-20250629x10q.htm" rel="noopener">2</a></td></tr><tr><td class="wrap-cell">Diluted earnings per share, latest fiscal year</td><td class="wrap-cell">FY2025 (2025-01-01 to 2025-12-31)</td><td class="n">10.17 a share</td><td class="n">10.17 a share</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926018541/wts-20251231x10k.htm" rel="noopener">1</a></td></tr><tr><td class="wrap-cell">Diluted shares, fiscal year</td><td class="wrap-cell">FY2025</td><td class="n">33.50 million shares</td><td class="n">33.50 million shares</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926018541/wts-20251231x10k.htm" rel="noopener">1</a></td></tr><tr><td class="wrap-cell">Diluted shares, fiscal year</td><td class="wrap-cell">FY2022</td><td class="n">33.60 million shares</td><td class="n">33.60 million shares</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000155837023001614/wts-20221231x10k.htm" rel="noopener">1</a></td></tr><tr><td class="wrap-cell">Annual change in share count</td><td class="wrap-cell">FY2022 to FY2025, 3 years</td><td class="n">-0.10%</td><td class="n">-0.10%</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926018541/wts-20251231x10k.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837023001614/wts-20221231x10k.htm" rel="noopener">2</a></td></tr><tr><td class="wrap-cell">Shares outstanding, cover page</td><td class="wrap-cell">cover page as of 2026-07-26</td><td class="n">33.38 million shares</td><td class="n">33.38 million shares</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926091726/wts-20260628x10q.htm" rel="noopener">1</a></td></tr><tr><td class="wrap-cell">Cash paid for acquisitions</td><td class="wrap-cell">TTM 2025-06-30 to 2026-06-28 (364 days)</td><td class="n">not built</td><td class="n">173.1 million dollars</td><td><span class="miss">No</span></td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926018541/wts-20251231x10k.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926091726/wts-20260628x10q.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025010686/wts-20250629x10q.htm" rel="noopener">3</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926056817/wts-20260329x10q.htm" rel="noopener">4</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000110465925107489/wts-20250928x10q.htm" rel="noopener">5</a></td></tr><tr><td class="wrap-cell">Acquisitions cash to total assets</td><td class="wrap-cell">TTM to 2026-06-28 / total assets 2026-06-28</td><td class="n">not built</td><td class="n">5.86%</td><td><span class="miss">No</span></td><td><a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926018541/wts-20251231x10k.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000110465926091726/wts-20260628x10q.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/795403/000155837025010686/wts-20250629x10q.htm" rel="noopener">3</a></td></tr></tbody></table></div>
+</details>
+</section>
+<section class="book" id="MTSI">
+<div class="role">Rank 22 in the Sept. 17, 2026 report</div>
+<h2>MTSI <span>/ MACOM Technology Solutions</span></h2>
+<p>Of the 24 values the model relied on, 23 match the filed statements. The diluted share count for the year to July 3, 2026, is 0.58% too low.</p>
+<h3>What the matching numbers do not show</h3>
+<ul><li>The model&#x27;s diluted share count for the year to July 3, 2026, is 76.79 million, and the published quarterly counts average 77.23 million. Fiscal 2025 and its first nine months were both loss periods, so their diluted counts equal their basic counts. The model derives the fourth quarter from those two figures and therefore uses a basic count for a quarter that earned $45.1 million. The quarterly figure comes from the company&#x27;s earnings release, which is furnished to the regulator and is not audited.</li><li>Net income of $240.9 million for the year to July 3, 2026, exceeds operating income of $210.8 million. It includes a $41.5 million net fair value gain on the company&#x27;s investment in IQE and a $10.1 million gain on acquired assets.</li><li>Net income a year earlier was a loss of $69.9 million on operating income of $117.6 million, because of a $193.1 million loss on the exchange of convertible notes in the quarter that ended Jan. 3, 2025.</li><li>Fiscal 2025 had 53 weeks, so the earlier period covers 371 days and the later one covers 364. Revenue grew 28.4% as reported and 30.8% after scaling the earlier period to 364 days, which is the adjustment the model applies.</li><li>Capital spending rose from $27.5 million to $67.1 million. That line excludes a $28.8 million property purchase under a financing arrangement in the earlier period, which an equal financing inflow offset, and it excludes $9.9 million of software license purchases in the later period.</li><li>Neither period contains a restated comparative. No acquisition was reported after the latest balance sheet as of Sept. 18, 2026.</li></ul>
+<h3>Second review by codex</h3>
+<p>The reviewer fetched 12 filing documents itself on Sept. 18, 2026, re-added every row and ruled: stands with corrections. It confirmed every filing value in the table below.</p>
+<p>It corrected the first check on these points:</p>
+<ul><li>The first check called the IQE holding one equity stake. It is $40.4 million of equity and $20.2 million of convertible debt, which produced a gain of about $49.6 million and a loss of about $8.1 million. These fair value changes will keep passing through earnings, so they are not a single event.</li><li>The first check cited a share issuance from fiscal 2026 to explain share growth that ended in fiscal 2025. The relevant issuance was 1,582,958 shares in December 2024.</li><li>The first check said there was no release of a tax valuation allowance. The second reviewer accepts only that the filings it read identify none.</li></ul>
+<p>It added these items, which the first check missed:</p>
+<ul><li>Fiscal 2025 includes a $10.1 million charge from a change in the tax valuation allowance, of which about $9.2 million relates to foreign losses the company does not expect to use.</li><li>Stock compensation was $83.6 million in the later period and is added back in operating cash flow.</li><li>The 2029 convertible notes carry $344.3 million of principal that must be settled in cash, and they are now classified as short-term debt.</li></ul>
+<details><summary>Every value checked</summary>
+<div class="table-scroll"><table aria-label="MTSI values checked against filings"><thead><tr><th>Value</th><th>Period</th><th class="n">Model</th><th class="n">Filing</th><th>Match</th><th>Filings</th></tr></thead><tbody><tr><td class="wrap-cell">Revenue</td><td class="wrap-cell">TTM to 2026-07-03 (FY2025 + 9M FY2026 - 9M FY2025)</td><td class="n">1,164.0 million dollars</td><td class="n">1,164.0 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000054/mtsi-20251003.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359426000038/mtsi-20260703.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000038/mtsi-20250704.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Gross profit</td><td class="wrap-cell">TTM to 2026-07-03 (FY2025 + 9M FY2026 - 9M FY2025)</td><td class="n">658.1 million dollars</td><td class="n">658.1 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000054/mtsi-20251003.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359426000038/mtsi-20260703.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000038/mtsi-20250704.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Operating income</td><td class="wrap-cell">TTM to 2026-07-03 (FY2025 + 9M FY2026 - 9M FY2025)</td><td class="n">210.8 million dollars</td><td class="n">210.8 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000054/mtsi-20251003.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359426000038/mtsi-20260703.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000038/mtsi-20250704.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Net income</td><td class="wrap-cell">TTM to 2026-07-03 (FY2025 + 9M FY2026 - 9M FY2025)</td><td class="n">240.9 million dollars</td><td class="n">240.9 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000054/mtsi-20251003.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359426000038/mtsi-20260703.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000038/mtsi-20250704.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Operating cash flow</td><td class="wrap-cell">TTM to 2026-07-03 (FY2025 + 9M FY2026 - 9M FY2025)</td><td class="n">271.2 million dollars</td><td class="n">271.2 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000054/mtsi-20251003.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359426000038/mtsi-20260703.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000038/mtsi-20250704.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Capital spending</td><td class="wrap-cell">TTM to 2026-07-03 (FY2025 + 9M FY2026 - 9M FY2025)</td><td class="n">67.1 million dollars</td><td class="n">67.1 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000054/mtsi-20251003.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359426000038/mtsi-20260703.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000038/mtsi-20250704.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Free cash flow</td><td class="wrap-cell">TTM to 2026-07-03 (FY2025 + 9M FY2026 - 9M FY2025)</td><td class="n">204.1 million dollars</td><td class="n">204.1 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000054/mtsi-20251003.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359426000038/mtsi-20260703.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000038/mtsi-20250704.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Diluted shares, average</td><td class="wrap-cell">TTM to 2026-07-03 (FY2025 + 9M FY2026 - 9M FY2025)</td><td class="n">76.79 million shares</td><td class="n">77.23 million shares</td><td><span class="miss">No</span></td><td><a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000049/ex99_1earningsreleaseq4fy25.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000054/mtsi-20251003.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000038/mtsi-20250704.htm" rel="noopener">3</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359426000019/mtsi-20260102.htm" rel="noopener">4</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359426000028/mtsi-20260403.htm" rel="noopener">5</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359426000038/mtsi-20260703.htm" rel="noopener">6</a></td></tr><tr><td class="wrap-cell">Revenue</td><td class="wrap-cell">TTM to 2025-07-04 (FY2024 + 9M FY2025 - 9M FY2024)</td><td class="n">906.8 million dollars</td><td class="n">906.8 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359424000060/mtsi-20240927.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000038/mtsi-20250704.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359424000052/mtsi-20240628.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Gross profit</td><td class="wrap-cell">TTM to 2025-07-04 (FY2024 + 9M FY2025 - 9M FY2024)</td><td class="n">496.5 million dollars</td><td class="n">496.5 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359424000060/mtsi-20240927.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000038/mtsi-20250704.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359424000052/mtsi-20240628.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Operating income</td><td class="wrap-cell">TTM to 2025-07-04 (FY2024 + 9M FY2025 - 9M FY2024)</td><td class="n">117.6 million dollars</td><td class="n">117.6 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359424000060/mtsi-20240927.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000038/mtsi-20250704.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359424000052/mtsi-20240628.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Net income</td><td class="wrap-cell">TTM to 2025-07-04 (FY2024 + 9M FY2025 - 9M FY2024)</td><td class="n">-69.9 million dollars</td><td class="n">-69.9 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359424000060/mtsi-20240927.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000038/mtsi-20250704.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359424000052/mtsi-20240628.htm" rel="noopener">3</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000020/mtsi-20250103.htm" rel="noopener">4</a></td></tr><tr><td class="wrap-cell">Operating cash flow</td><td class="wrap-cell">TTM to 2025-07-04 (FY2024 + 9M FY2025 - 9M FY2024)</td><td class="n">228.1 million dollars</td><td class="n">228.1 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359424000060/mtsi-20240927.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000038/mtsi-20250704.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359424000052/mtsi-20240628.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Capital spending</td><td class="wrap-cell">TTM to 2025-07-04 (FY2024 + 9M FY2025 - 9M FY2024)</td><td class="n">27.5 million dollars</td><td class="n">27.5 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359424000060/mtsi-20240927.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000038/mtsi-20250704.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359424000052/mtsi-20240628.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Free cash flow</td><td class="wrap-cell">TTM to 2025-07-04 (FY2024 + 9M FY2025 - 9M FY2024)</td><td class="n">200.5 million dollars</td><td class="n">200.5 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359424000060/mtsi-20240927.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000038/mtsi-20250704.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359424000052/mtsi-20240628.htm" rel="noopener">3</a></td></tr><tr><td class="wrap-cell">Diluted shares, average</td><td class="wrap-cell">TTM to 2025-07-04 (FY2024 + 9M FY2025 - 9M FY2024)</td><td class="n">74.69 million shares</td><td class="n">74.69 million shares</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359424000060/mtsi-20240927.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359424000052/mtsi-20240628.htm" rel="noopener">2</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000020/mtsi-20250103.htm" rel="noopener">3</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000029/mtsi-20250404.htm" rel="noopener">4</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000038/mtsi-20250704.htm" rel="noopener">5</a></td></tr><tr><td class="wrap-cell">Total assets</td><td class="wrap-cell">2026-07-03</td><td class="n">2,146.8 million dollars</td><td class="n">2,146.8 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359426000038/mtsi-20260703.htm" rel="noopener">1</a></td></tr><tr><td class="wrap-cell">Total assets</td><td class="wrap-cell">2025-07-04</td><td class="n">2,003.3 million dollars</td><td class="n">2,003.3 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000038/mtsi-20250704.htm" rel="noopener">1</a></td></tr><tr><td class="wrap-cell">Total assets, average of two dates</td><td class="wrap-cell">2025-07-04 and 2026-07-03</td><td class="n">2,075.0 million dollars</td><td class="n">2,075.0 million dollars</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359426000038/mtsi-20260703.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000038/mtsi-20250704.htm" rel="noopener">2</a></td></tr><tr><td class="wrap-cell">Diluted earnings per share, latest fiscal year</td><td class="wrap-cell">FY2025 (2024-09-28 to 2025-10-03, 53 weeks)</td><td class="n">-0.73 a share</td><td class="n">-0.73 a share</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000054/mtsi-20251003.htm" rel="noopener">1</a></td></tr><tr><td class="wrap-cell">Diluted shares, fiscal year</td><td class="wrap-cell">FY2025</td><td class="n">73.99 million shares</td><td class="n">73.99 million shares</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000054/mtsi-20251003.htm" rel="noopener">1</a></td></tr><tr><td class="wrap-cell">Diluted shares, fiscal year</td><td class="wrap-cell">FY2022</td><td class="n">71.17 million shares</td><td class="n">71.17 million shares</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359422000047/mtsi-20220930.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359424000060/mtsi-20240927.htm" rel="noopener">2</a></td></tr><tr><td class="wrap-cell">Annual change in share count</td><td class="wrap-cell">FY2022 to FY2025 (3 years)</td><td class="n">1.97%</td><td class="n">1.97%</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359422000047/mtsi-20220930.htm" rel="noopener">1</a> <a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359425000054/mtsi-20251003.htm" rel="noopener">2</a></td></tr><tr><td class="wrap-cell">Shares outstanding, cover page</td><td class="wrap-cell">2026-08-03 (10-Q cover)</td><td class="n">76.37 million shares</td><td class="n">76.37 million shares</td><td>Yes</td><td><a href="https://www.sec.gov/Archives/edgar/data/1493594/000149359426000038/mtsi-20260703.htm" rel="noopener">1</a></td></tr></tbody></table></div>
+</details>
+</section>
+
+  <details class="more"><summary>How a check works</summary>
+    <p>The first check reads the income statement, cash flow statement and balance sheet in the filed documents. A trailing twelve-month figure is the latest fiscal year plus the current year to date minus the prior year to date.</p>
+    <p>A value matches when it is within 0.5% of the filing or within the filing's rounding. Each company is checked on the same 24 values, and any further value is shown but not counted.</p>
+    <p>Filings report no fourth-quarter share average, so the twelve-month diluted share rows repeat the model's own construction from filed inputs. They are a reproduction and not an independent test.</p>
+    <p>The second reviewer is a different model from a different company. It receives the first check's rows and claims, fetches the filings itself, and is told to look for mistakes.</p>
+  </details>
+
+  <div class="foot">
+    <p><b>Record.</b> The same checks are published as <a href="verifications.json">machine-readable JSON</a>, with the components of every calculation and the filing each came from. These checks use no personal data.</p>
+  </div>
+</div>
+
+</body>
+</html>

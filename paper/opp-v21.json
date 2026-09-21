@@ -1,7 +1,7 @@
 {
   "schema": "paper-book-public/v1",
   "book": "opp-v21",
-  "generated_at": "2026-09-21T21:34:18Z",
+  "generated_at": "2026-09-21T22:04:18Z",
   "config": {
     "benchmark": "SPY",
     "cost_bps": 10,

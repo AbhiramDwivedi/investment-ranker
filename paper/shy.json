@@ -1,7 +1,7 @@
 {
   "schema": "paper-book-public/v1",
   "book": "shy",
-  "generated_at": "2026-09-23T22:04:21Z",
+  "generated_at": "2026-09-24T04:30:02Z",
   "config": {
     "benchmark": "SPY",
     "cost_bps": 10,

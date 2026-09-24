@@ -1,6 +1,6 @@
 {
   "schema": "paper-books-public/v1",
-  "generated_at": "2026-09-23T22:04:21Z",
+  "generated_at": "2026-09-24T04:30:02Z",
   "books": [
     {
       "book": "shy",
@@ -25,6 +25,13 @@
       "status": "filled",
       "performance_status": "eligible",
       "file": "paper/quality.json"
+    },
+    {
+      "book": "rec-v21",
+      "kind": "recommendation",
+      "status": "no_fills",
+      "performance_status": "eligible",
+      "file": "paper/rec-v21.json"
     }
   ]
 }

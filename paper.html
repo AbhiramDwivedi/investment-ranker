@@ -172,7 +172,7 @@
 <div class="wrap">
   <header class="masthead">
     <h1>Paper <span>/ books</span></h1>
-    <div class="issue">Updated Wednesday, Sept. 23, 2026 &middot; orders are public before they fill &middot; model books, not investment advice &middot; <a href="index.html">Opportunities</a></div>
+    <div class="issue">Updated Thursday, Sept. 24, 2026 &middot; orders are public before they fill &middot; model books, not investment advice &middot; <a href="index.html">Opportunities</a></div>
   </header>
 
   <div class="banner">
@@ -181,6 +181,7 @@
   </div>
 
   <p class="lead">This page tracks four running books, and zero more books start soon. A book that trails SPY for two years is retired rather than tuned.</p>
+  <p class="lead">Below the weighted books, one further book records each published buy candidate on its own terms: a single fixed commitment per recommendation, matched dollar for dollar against an index fund bought the same day. It is a record of the research, not a portfolio.</p>
 
 <section class="book" id="book-shy">
 <div class="role">Primary book</div><h2>shy</h2>
@@ -250,6 +251,23 @@
 <h3>Desk-note vetoes</h3>
 <p>Desk-note vetoes do not apply to this book, so it trades its ranking as computed.</p>
 <p>This book is also published as <a href="paper/quality.json">machine-readable JSON</a>.</p>
+</section>
+<section class="book" id="book-rec-v21">
+<div class="role">Recommendation book</div><h2>rec-v21</h2>
+<p>Commits $10,000 of paper money to every company the opportunity research report first publishes as a verified buy candidate, buys $10,000 of the VOO index fund at the same closing price beside it, and closes the pair only when an explicit, validated sell recommendation is recorded for that position.</p>
+<p>Every recommendation on this book is tracked on its own. Each one commits $10,000 to the company and $10,000 to VOO at the same closing price, so the two can be read side by side. There is no fixed pot of money here, and no percentage of a portfolio.</p>
+<p>Committed money comes to $10,000 across one recommendation, of which $10,000 is still open.</p>
+<p>Nothing has filled yet, so there is no result to report.</p>
+<p>Performance status is eligible, which means nothing on the record disqualifies the book. It is not a claim that the research works.</p>
+<h3>Pending orders</h3>
+<div class="table-scroll"><table aria-label="Pending recommendation orders for rec-v21"><thead><tr><th>Ticker</th><th>Company</th><th>Side</th><th class="n">Dollars</th><th>Order session</th><th>Fills at the close of</th><th>Note</th></tr></thead><tbody><tr><td>EXEL</td><td class="wrap-cell">Exelixis</td><td>buy</td><td class="n">$10,000</td><td>Sept. 23, 2026</td><td>Sept. 24, 2026</td><td class="wrap-cell">Ordered on the 2026-09-23 close; it fills at the next settled close.</td></tr></tbody></table></div>
+<h3>Recommendation tranches</h3>
+<p>No recommendation has filled yet.</p>
+<h3>Sell recommendations</h3>
+<p>No sell recommendation has been recorded, so nothing has been closed. A position here is never closed because a name changed rank, left the report or lost its price.</p>
+<h3>Trades</h3>
+<p>Nothing has traded on this book yet, so the ledger records the orders and no fills.</p>
+<p>This book is also published as <a href="paper/rec-v21.json">machine-readable JSON</a>.</p>
 </section>
 
   <details class="more"><summary>How the paper books work</summary>

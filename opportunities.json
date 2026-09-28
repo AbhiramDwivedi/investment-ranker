@@ -33,12 +33,12 @@
       },
       "Industrials": {
         "complete": 60,
-        "eligible": 107,
+        "eligible": 106,
         "ranked": 60
       },
       "Information Technology": {
         "complete": 66,
-        "eligible": 85,
+        "eligible": 84,
         "ranked": 66
       },
       "Materials": {
@@ -60,12 +60,12 @@
     "queues": {
       "queue:banks-insurers": 208,
       "queue:binary-event": 7,
-      "queue:cyclical": 128,
-      "queue:data-repair": 327,
+      "queue:cyclical": 129,
+      "queue:data-repair": 325,
       "queue:duplicate-issuer-line": 6,
-      "queue:emerging": 63,
-      "queue:hard-rule-excluded": 208,
-      "queue:margin-volatile": 89,
+      "queue:emerging": 64,
+      "queue:hard-rule-excluded": 209,
+      "queue:margin-volatile": 88,
       "queue:reits": 79,
       "queue:scope-break": 94,
       "queue:sector-too-small": 8,
@@ -73,11 +73,11 @@
     },
     "ranked": 240,
     "universe": 1506,
-    "v2_eligible": 364
+    "v2_eligible": 362
   },
   "decisions": [
     {
-      "changed_since_prior": "On Sept. 24, 2026, this name was still being verified.",
+      "changed_since_prior": "The price moved from $58.16 on Sept. 25, 2026, to $58.37, a gain of 0.4%. The opinion and the filing facts are unchanged.",
       "cohort": "v2",
       "company": "Exelixis",
       "decisive_facts": [
@@ -127,8 +127,8 @@
       "price": {
         "currency": "USD",
         "independent_check": "pass",
-        "session": "2026-09-25",
-        "value": 58.16
+        "session": "2026-09-28",
+        "value": 58.37
       },
       "rank": 1,
       "scenario": {
@@ -240,15 +240,15 @@
           }
         ],
         "assumptions_version": "valuation-2026-09-13",
-        "base_irr_pct": 22.0,
-        "bear_irr_pct": -47.6,
-        "bull_irr_pct": 33.7,
+        "base_irr_pct": 21.8,
+        "bear_irr_pct": -47.7,
+        "bull_irr_pct": 33.5,
         "hurdle_pct": 12.0,
         "max_entry_price": 75.1,
-        "reverse_requirement": "To earn the 12% hurdle from $58.16, revenue would need to grow negative 0.5% a year with the other base-case inputs held. With base-case growth instead, the year-three net margin would need to reach 27.4%.",
+        "reverse_requirement": "To earn the 12% hurdle from $58.37, revenue would need to grow negative 0.3% a year with the other base-case inputs held. With base-case growth instead, the year-three net margin would need to reach 27.5%.",
         "spy_base_assumption_pct": 7.0,
         "stress_classification": "fragile",
-        "stress_sentence": "The published base case depends on margin, net share reduction and terminal multiple holding together. The moderate joint case returns 11.8% a year against a 12% hurdle. 26 of 60 combinations still clear the hurdle."
+        "stress_sentence": "The published base case depends on margin, net share reduction and terminal multiple holding together. The moderate joint case returns 11.7% a year against a 12% hurdle. 26 of 60 combinations still clear the hurdle."
       },
       "sector": "Health Care",
       "ticker": "EXEL",
@@ -257,15 +257,197 @@
         "Sales per diluted share rose 19.2% from a year earlier, and operating margin widened by 8.5 percentage points.",
         "Higher net product revenues and license revenues, per mdna_results, drove the reported revenue and margin improvement."
       ]
+    },
+    {
+      "changed_since_prior": "On Sept. 25, 2026, this name was still being verified.",
+      "cohort": "v2",
+      "company": "Lam Research",
+      "decisive_facts": [
+        {
+          "as_of": "2026-06-28",
+          "evidence_id": "dv:6c9675f49f65e475eb770fec36b706f0",
+          "label": "One-year change in sales per diluted share",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/707549/000070754926000037/0000707549-26-000037-index.htm",
+          "unit": "percent",
+          "value": 28.9
+        },
+        {
+          "as_of": "2026-06-28",
+          "evidence_id": "dv:3bac3c0e24f9b8d0823a6fffaa934a29",
+          "label": "One-year change in operating margin",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/707549/000070754926000037/0000707549-26-000037-index.htm",
+          "unit": "percentage_points",
+          "value": 3.3
+        },
+        {
+          "as_of": "2026-06-28",
+          "evidence_id": "dv:f12fe078e1856d5c9bf0b9b3f2e4422f",
+          "label": "Free cash flow margin",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/707549/000070754926000037/0000707549-26-000037-index.htm",
+          "unit": "percent",
+          "value": 21.1
+        }
+      ],
+      "evidence_review": {
+        "evidence_hash": "sha256:1dcbf98f42bab1cb469f70159ef1e68bc86b35309d220e2a21675c01a3735f47",
+        "model_class": "cached",
+        "status": "clear"
+      },
+      "evidence_status": "verified",
+      "horizon_months": [
+        6,
+        36
+      ],
+      "invalidation": [
+        "Net margin falls below the bear case's 23.5% for two quarters in a row.",
+        "Revenue grows more slowly than the bear case's 11.1% a year over four reported quarters.",
+        "The diluted share count shrinks more slowly than the bear case's 1.4% a year."
+      ],
+      "investment_opinion": "watch_below",
+      "main_downside": "Tariff-related spend on aluminum and steel partially offset margin gains, showing cost pressure could reverse the improvement.",
+      "next_event": null,
+      "price": {
+        "currency": "USD",
+        "independent_check": "pass",
+        "session": "2026-09-28",
+        "value": 314.47
+      },
+      "rank": 11,
+      "scenario": {
+        "assumptions": [
+          {
+            "basis": "Base revenue growth 19.1% -8% (bear offset, valuation.json).",
+            "case": "bear",
+            "input": "revenue_growth",
+            "source": "assumption",
+            "value": 0.111064
+          },
+          {
+            "basis": "0.75 x TTM net margin 31.3%, below the 5-year low of 24.2%.",
+            "case": "bear",
+            "input": "net_margin_3",
+            "source": "assumption",
+            "value": 0.234542
+          },
+          {
+            "basis": "Base dilution -2.4% +1% a year (bear offset, valuation.json).",
+            "case": "bear",
+            "input": "annual_dilution",
+            "source": "assumption",
+            "value": -0.014454
+          },
+          {
+            "basis": "TTM dividends paid / TTM net income ended 2026-06-28.",
+            "case": "bear",
+            "input": "payout_ratio",
+            "source": "reported",
+            "value": 0.174889
+          },
+          {
+            "basis": "max(8, 0.7 x base P/E 23.6).",
+            "case": "bear",
+            "input": "terminal_pe",
+            "source": "assumption",
+            "value": 16.553372
+          },
+          {
+            "basis": "0.5 x same-period consensus revenue growth for the fiscal year ending 2028-06-30 (annualized over 2 yr from reported 2026-06-28, 26 analysts) of 33.2% + 0.5 x assumed 5.0% long-run nominal growth, clamped to [-5.0%, 25.0%].",
+            "case": "base",
+            "input": "revenue_growth",
+            "source": "assumption",
+            "value": 0.191064
+          },
+          {
+            "basis": "TTM net margin ended 2026-06-28, held for year 3.",
+            "case": "base",
+            "input": "net_margin_3",
+            "source": "reported",
+            "value": 0.312723
+          },
+          {
+            "basis": "Annualized change in fiscal-year diluted weighted-average shares over 3 years, FY ended 2023-06-25 to FY ended 2026-06-28.",
+            "case": "base",
+            "input": "annual_dilution",
+            "source": "reported",
+            "value": -0.024454
+          },
+          {
+            "basis": "TTM dividends paid / TTM net income ended 2026-06-28.",
+            "case": "base",
+            "input": "payout_ratio",
+            "source": "reported",
+            "value": 0.174889
+          },
+          {
+            "basis": "Median of 60 month-end P/Es over 5 years: split-adjusted close over TTM diluted EPS on today's share basis, each period from its first report.",
+            "case": "base",
+            "input": "terminal_pe",
+            "source": "reported",
+            "value": 23.647674
+          },
+          {
+            "basis": "Base revenue growth 19.1% +5% (bull offset, valuation.json).",
+            "case": "bull",
+            "input": "revenue_growth",
+            "source": "assumption",
+            "value": 0.241064
+          },
+          {
+            "basis": "Highest TTM net margin in the prior 5 fiscal years (2026-06-28).",
+            "case": "bull",
+            "input": "net_margin_3",
+            "source": "reported",
+            "value": 0.312723
+          },
+          {
+            "basis": "Annualized change in fiscal-year diluted weighted-average shares over 3 years, FY ended 2023-06-25 to FY ended 2026-06-28.",
+            "case": "bull",
+            "input": "annual_dilution",
+            "source": "reported",
+            "value": -0.024454
+          },
+          {
+            "basis": "TTM dividends paid / TTM net income ended 2026-06-28.",
+            "case": "bull",
+            "input": "payout_ratio",
+            "source": "reported",
+            "value": 0.174889
+          },
+          {
+            "basis": "min(35, 1.15 x base P/E 23.6).",
+            "case": "bull",
+            "input": "terminal_pe",
+            "source": "assumption",
+            "value": 27.194825
+          }
+        ],
+        "assumptions_version": "valuation-2026-09-13",
+        "base_irr_pct": -7.1,
+        "bear_irr_pct": -30.7,
+        "bull_irr_pct": 1.4,
+        "hurdle_pct": 12.0,
+        "max_entry_price": 180.09,
+        "reverse_requirement": "To earn the 12% hurdle from $314.47, revenue would need to grow 43.6% a year with the other base-case inputs held. With base-case growth instead, the year-three net margin would need to reach 54.8%.",
+        "spy_base_assumption_pct": 7.0,
+        "stress_classification": "base_below_hurdle",
+        "stress_sentence": "The published base case itself is below the hurdle, so joint stress is not a second test. The moderate joint case returns negative 13.8% a year against a 12% hurdle. 0 of 60 combinations still clear the hurdle."
+      },
+      "sector": "Information Technology",
+      "ticker": "LRCX",
+      "watch_price": 180.08,
+      "why_now": [
+        "Sales per diluted share rose 28.9% from a year earlier, and operating margin widened by 3.3 percentage points.",
+        "Revenue growth from strong foundry customer demand and favorable customer mix drove margin improvement per mdna_results and mdna_flagged."
+      ]
     }
   ],
-  "engine_version": "edab515be8b40154690dde2d4dbb9e34e993f48d",
+  "engine_version": "19fea4ca528e1a9ed455b392403b3a81876025c3",
   "freshness": {
     "estimates": "current",
     "filings": "release-aware",
     "prices": "current"
   },
-  "generated_at": "2026-09-26T03:59:59Z",
+  "generated_at": "2026-09-29T03:59:59Z",
   "model_id": "opportunity-v2.1-hypothesis1",
   "no_action_reason": null,
   "resolved_no_action": [
@@ -281,19 +463,19 @@
     },
     {
       "deciding_fact": "Evidence review found a thesis failure. The improvement rests on a non-recurring item: A pre-tax benefit from IEEPA tariff refunds reduced cost of goods sold and boosted interest and other income.",
-      "rank": 8,
+      "rank": 9,
       "ticker": "FIVE"
     },
     {
       "deciding_fact": "Evidence review blocked the thesis: Capital contributions from noncontrolling interest owners and earn-out payments in the flagged excerpt indicate financing flows that could reverse and are not organic operating strength.",
-      "rank": 14,
+      "rank": 12,
       "ticker": "STRL"
     }
   ],
-  "run_id": "2026-09-25-close_opportunity-v2_e2db1d94",
+  "run_id": "2026-09-28-close_opportunity-v2_3e9437b9",
   "schema": "opportunity-public/v2",
-  "session": "2026-09-25",
-  "source_manifest_sha256": "sha256:e2db1d946118d61dc221e84f83fbc4e60439405c21278234a314236dbbe6540b",
+  "session": "2026-09-28",
+  "source_manifest_sha256": "sha256:3e9437b99c34a53836ce2df248d6d69aac4d6ec61f42cc708602cdb59c8eb16d",
   "stale_notice": null,
   "status": "current",
   "strategy_status": "experimental",
@@ -302,9 +484,21 @@
       "evidence_status": "incomplete",
       "missing": [
         "evidence_review",
-        "organic_growth_check"
+        "improvement_mechanism",
+        "organic_growth_check",
+        "impairment_review_completed"
       ],
       "rank": 3,
+      "retry_on": "2026-09-16",
+      "ticker": "NVDA"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "evidence_review",
+        "organic_growth_check"
+      ],
+      "rank": 4,
       "retry_on": "2026-09-16",
       "ticker": "TER"
     },
@@ -313,21 +507,19 @@
       "missing": [
         "evidence_review"
       ],
-      "rank": 4,
-      "retry_on": "2026-09-28",
+      "rank": 5,
+      "retry_on": "2026-09-29",
       "ticker": "VRT"
     },
     {
       "evidence_status": "incomplete",
       "missing": [
         "evidence_review",
-        "improvement_mechanism",
-        "organic_growth_check",
-        "impairment_review_completed"
+        "organic_growth_check"
       ],
-      "rank": 5,
-      "retry_on": "2026-09-16",
-      "ticker": "NVDA"
+      "rank": 7,
+      "retry_on": "2026-09-24",
+      "ticker": "FTNT"
     },
     {
       "evidence_status": "incomplete",
@@ -338,19 +530,9 @@
         "impairment_review_completed",
         "plausible_assumptions"
       ],
-      "rank": 7,
-      "retry_on": "2026-09-28",
+      "rank": 8,
+      "retry_on": "2026-09-29",
       "ticker": "GMED"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "evidence_review",
-        "organic_growth_check"
-      ],
-      "rank": 9,
-      "retry_on": "2026-09-24",
-      "ticker": "FTNT"
     },
     {
       "evidence_status": "incomplete",
@@ -365,23 +547,13 @@
       "evidence_status": "incomplete",
       "missing": [
         "independent_price",
-        "evidence_review"
-      ],
-      "rank": 11,
-      "retry_on": "2026-09-28",
-      "ticker": "LRCX"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "independent_price",
         "evidence_review",
         "improvement_mechanism",
         "organic_growth_check",
         "impairment_review_completed"
       ],
-      "rank": 12,
-      "retry_on": "2026-09-25",
+      "rank": 13,
+      "retry_on": "2026-09-29",
       "ticker": "ROST"
     },
     {
@@ -391,14 +563,13 @@
         "improvement_mechanism",
         "impairment_review_completed"
       ],
-      "rank": 13,
+      "rank": 14,
       "retry_on": "2026-09-17",
       "ticker": "DXCM"
     },
     {
       "evidence_status": "conflict",
       "missing": [
-        "independent_price",
         "reconciliation",
         "scenario_complete",
         "evidence_review",
@@ -408,8 +579,22 @@
         "plausible_assumptions"
       ],
       "rank": 15,
-      "retry_on": "2026-09-28",
+      "retry_on": "2026-09-29",
       "ticker": "DDOG"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "scenario_complete",
+        "evidence_review",
+        "improvement_mechanism",
+        "organic_growth_check",
+        "impairment_review_completed",
+        "plausible_assumptions"
+      ],
+      "rank": 16,
+      "retry_on": "2026-09-16",
+      "ticker": "PLTR"
     },
     {
       "evidence_status": "incomplete",
@@ -419,21 +604,47 @@
         "improvement_mechanism",
         "impairment_review_completed"
       ],
-      "rank": 16,
+      "rank": 17,
       "retry_on": "2026-09-23",
       "ticker": "CIEN"
     },
     {
       "evidence_status": "incomplete",
       "missing": [
+        "independent_price",
         "evidence_review",
         "improvement_mechanism",
         "organic_growth_check",
         "impairment_review_completed"
       ],
-      "rank": 17,
-      "retry_on": "2026-09-17",
+      "rank": 18,
+      "retry_on": "2026-09-29",
       "ticker": "ADI"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "scenario_complete",
+        "evidence_review",
+        "improvement_mechanism",
+        "organic_growth_check",
+        "impairment_review_completed",
+        "plausible_assumptions"
+      ],
+      "rank": 19,
+      "retry_on": "2026-09-24",
+      "ticker": "PATH"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "evidence_review",
+        "improvement_mechanism",
+        "impairment_review_completed"
+      ],
+      "rank": 20,
+      "retry_on": "2026-09-24",
+      "ticker": "QLYS"
     },
     {
       "evidence_status": "incomplete",
@@ -443,7 +654,7 @@
         "organic_growth_check",
         "impairment_review_completed"
       ],
-      "rank": 18,
+      "rank": 21,
       "retry_on": "2026-09-17",
       "ticker": "WTS"
     },
@@ -457,37 +668,9 @@
         "impairment_review_completed",
         "plausible_assumptions"
       ],
-      "rank": 19,
+      "rank": 22,
       "retry_on": "2026-09-18",
       "ticker": "VCYT"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "scenario_complete",
-        "evidence_review",
-        "improvement_mechanism",
-        "organic_growth_check",
-        "impairment_review_completed",
-        "plausible_assumptions"
-      ],
-      "rank": 20,
-      "retry_on": "2026-09-16",
-      "ticker": "PLTR"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "scenario_complete",
-        "evidence_review",
-        "improvement_mechanism",
-        "organic_growth_check",
-        "impairment_review_completed",
-        "plausible_assumptions"
-      ],
-      "rank": 21,
-      "retry_on": "2026-09-24",
-      "ticker": "PATH"
     },
     {
       "evidence_status": "incomplete",
@@ -496,9 +679,9 @@
         "improvement_mechanism",
         "impairment_review_completed"
       ],
-      "rank": 22,
-      "retry_on": "2026-09-24",
-      "ticker": "QLYS"
+      "rank": 23,
+      "retry_on": "2026-09-21",
+      "ticker": "PAYC"
     },
     {
       "evidence_status": "incomplete",
@@ -509,44 +692,33 @@
         "organic_growth_check",
         "impairment_review_completed"
       ],
-      "rank": 23,
+      "rank": 24,
       "retry_on": "2026-09-23",
       "ticker": "MTSI"
     },
     {
       "evidence_status": "incomplete",
       "missing": [
-        "evidence_review",
-        "improvement_mechanism",
-        "impairment_review_completed"
-      ],
-      "rank": 24,
-      "retry_on": "2026-09-21",
-      "ticker": "CHEF"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
+        "independent_price",
         "evidence_review",
         "improvement_mechanism",
         "impairment_review_completed"
       ],
       "rank": 25,
-      "retry_on": "2026-09-21",
-      "ticker": "PAYC"
+      "retry_on": "2026-09-29",
+      "ticker": "CHEF"
     },
     {
-      "evidence_status": "conflict",
+      "evidence_status": "incomplete",
       "missing": [
-        "reconciliation",
+        "independent_price",
         "evidence_review",
         "improvement_mechanism",
-        "organic_growth_check",
         "impairment_review_completed"
       ],
       "rank": 26,
-      "retry_on": "2026-09-21",
-      "ticker": "NDSN"
+      "retry_on": "2026-09-29",
+      "ticker": "NTAP"
     },
     {
       "evidence_status": "incomplete",
@@ -557,18 +729,20 @@
       ],
       "rank": 27,
       "retry_on": "2026-09-21",
-      "ticker": "NTAP"
+      "ticker": "CRS"
     },
     {
-      "evidence_status": "incomplete",
+      "evidence_status": "conflict",
       "missing": [
+        "reconciliation",
         "evidence_review",
         "improvement_mechanism",
+        "organic_growth_check",
         "impairment_review_completed"
       ],
       "rank": 28,
       "retry_on": "2026-09-21",
-      "ticker": "CRS"
+      "ticker": "NDSN"
     },
     {
       "evidence_status": "incomplete",
@@ -601,18 +775,44 @@
       ],
       "rank": 31,
       "retry_on": "2026-09-22",
+      "ticker": "DELL"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "independent_price",
+        "evidence_review",
+        "improvement_mechanism",
+        "impairment_review_completed"
+      ],
+      "rank": 32,
+      "retry_on": "2026-09-29",
       "ticker": "KO"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "scenario_complete",
+        "evidence_review",
+        "improvement_mechanism",
+        "impairment_review_completed",
+        "plausible_assumptions"
+      ],
+      "rank": 33,
+      "retry_on": "2026-09-22",
+      "ticker": "TPC"
     },
     {
       "evidence_status": "incomplete",
       "missing": [
         "evidence_review",
         "improvement_mechanism",
+        "organic_growth_check",
         "impairment_review_completed"
       ],
-      "rank": 32,
+      "rank": 34,
       "retry_on": "2026-09-22",
-      "ticker": "DELL"
+      "ticker": "DGII"
     },
     {
       "evidence_status": "incomplete",
@@ -625,7 +825,7 @@
         "impairment_review_completed",
         "plausible_assumptions"
       ],
-      "rank": 33,
+      "rank": 35,
       "retry_on": "2026-09-25",
       "ticker": "TTC"
     },
@@ -638,46 +838,8 @@
         "organic_growth_check",
         "impairment_review_completed"
       ],
-      "rank": 34,
-      "retry_on": "2026-09-28",
-      "ticker": "AAPL"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "evidence_review",
-        "improvement_mechanism",
-        "organic_growth_check",
-        "impairment_review_completed"
-      ],
-      "rank": 35,
-      "retry_on": "2026-09-22",
-      "ticker": "DGII"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "scenario_complete",
-        "evidence_review",
-        "improvement_mechanism",
-        "impairment_review_completed",
-        "plausible_assumptions"
-      ],
       "rank": 36,
-      "retry_on": "2026-09-22",
-      "ticker": "TPC"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "independent_price",
-        "evidence_review",
-        "improvement_mechanism",
-        "organic_growth_check",
-        "impairment_review_completed"
-      ],
-      "rank": 37,
-      "retry_on": "2026-09-23",
+      "retry_on": "2026-09-29",
       "ticker": "AMGN"
     },
     {
@@ -686,12 +848,23 @@
         "independent_price",
         "evidence_review",
         "improvement_mechanism",
+        "impairment_review_completed"
+      ],
+      "rank": 37,
+      "retry_on": "2026-09-23",
+      "ticker": "TXN"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "evidence_review",
+        "improvement_mechanism",
         "organic_growth_check",
         "impairment_review_completed"
       ],
       "rank": 38,
-      "retry_on": "2026-09-23",
-      "ticker": "ABBV"
+      "retry_on": "2026-09-29",
+      "ticker": "AAPL"
     },
     {
       "evidence_status": "incomplete",
@@ -702,18 +875,6 @@
         "impairment_review_completed"
       ],
       "rank": 39,
-      "retry_on": "2026-09-23",
-      "ticker": "FICO"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "independent_price",
-        "evidence_review",
-        "improvement_mechanism",
-        "impairment_review_completed"
-      ],
-      "rank": 40,
       "retry_on": "2026-09-25",
       "ticker": "PEN"
     },
@@ -725,9 +886,21 @@
         "organic_growth_check",
         "impairment_review_completed"
       ],
-      "rank": 41,
+      "rank": 40,
       "retry_on": "2026-09-24",
       "ticker": "TGT"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "independent_price",
+        "evidence_review",
+        "improvement_mechanism",
+        "impairment_review_completed"
+      ],
+      "rank": 41,
+      "retry_on": "2026-09-23",
+      "ticker": "FICO"
     },
     {
       "evidence_status": "incomplete",
@@ -744,54 +917,15 @@
     {
       "evidence_status": "incomplete",
       "missing": [
-        "scenario_complete",
+        "independent_price",
         "evidence_review",
         "improvement_mechanism",
         "organic_growth_check",
-        "impairment_review_completed",
-        "plausible_assumptions"
+        "impairment_review_completed"
       ],
       "rank": 43,
-      "retry_on": "2026-09-28",
-      "ticker": "P"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "independent_price",
-        "evidence_review",
-        "improvement_mechanism",
-        "organic_growth_check",
-        "impairment_review_completed"
-      ],
-      "rank": 44,
-      "retry_on": "2026-09-25",
-      "ticker": "LECO"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "independent_price",
-        "evidence_review",
-        "improvement_mechanism",
-        "impairment_review_completed"
-      ],
-      "rank": 45,
-      "retry_on": "2026-09-23",
-      "ticker": "TXN"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "independent_price",
-        "evidence_review",
-        "improvement_mechanism",
-        "organic_growth_check",
-        "impairment_review_completed"
-      ],
-      "rank": 46,
-      "retry_on": "2026-09-23",
-      "ticker": "YUM"
+      "retry_on": "2026-09-29",
+      "ticker": "ABBV"
     },
     {
       "evidence_status": "conflict",
@@ -802,45 +936,9 @@
         "organic_growth_check",
         "impairment_review_completed"
       ],
-      "rank": 47,
+      "rank": 44,
       "retry_on": "2026-09-24",
       "ticker": "CSCO"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "scenario_complete",
-        "evidence_review",
-        "improvement_mechanism",
-        "impairment_review_completed",
-        "plausible_assumptions"
-      ],
-      "rank": 48,
-      "retry_on": "2026-09-21",
-      "ticker": "CW"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "evidence_review",
-        "improvement_mechanism",
-        "impairment_review_completed"
-      ],
-      "rank": 49,
-      "retry_on": "2026-09-24",
-      "ticker": "HQY"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "evidence_review",
-        "improvement_mechanism",
-        "organic_growth_check",
-        "impairment_review_completed"
-      ],
-      "rank": 50,
-      "retry_on": "2026-09-28",
-      "ticker": "TILE"
     },
     {
       "evidence_status": "incomplete",
@@ -851,7 +949,71 @@
         "organic_growth_check",
         "impairment_review_completed"
       ],
-      "rank": 51,
+      "rank": 45,
+      "retry_on": "2026-09-25",
+      "ticker": "LECO"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "scenario_complete",
+        "evidence_review",
+        "improvement_mechanism",
+        "organic_growth_check",
+        "impairment_review_completed",
+        "plausible_assumptions"
+      ],
+      "rank": 46,
+      "retry_on": "2026-09-29",
+      "ticker": "PAYX"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "evidence_review",
+        "improvement_mechanism",
+        "organic_growth_check",
+        "impairment_review_completed"
+      ],
+      "rank": 47,
+      "retry_on": "2026-09-29",
+      "ticker": "AGYS"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "independent_price",
+        "evidence_review",
+        "improvement_mechanism",
+        "organic_growth_check",
+        "impairment_review_completed"
+      ],
+      "rank": 48,
+      "retry_on": "2026-09-25",
+      "ticker": "LNTH"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "evidence_review",
+        "improvement_mechanism",
+        "organic_growth_check",
+        "impairment_review_completed"
+      ],
+      "rank": 49,
+      "retry_on": "2026-09-28",
+      "ticker": "AYI"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "independent_price",
+        "evidence_review",
+        "improvement_mechanism",
+        "organic_growth_check",
+        "impairment_review_completed"
+      ],
+      "rank": 50,
       "retry_on": "2026-09-25",
       "ticker": "DXPE"
     },
@@ -864,9 +1026,21 @@
         "organic_growth_check",
         "impairment_review_completed"
       ],
+      "rank": 51,
+      "retry_on": "2026-09-23",
+      "ticker": "YUM"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "evidence_review",
+        "improvement_mechanism",
+        "organic_growth_check",
+        "impairment_review_completed"
+      ],
       "rank": 52,
-      "retry_on": "2026-09-25",
-      "ticker": "LNTH"
+      "retry_on": "2026-09-28",
+      "ticker": "EME"
     },
     {
       "evidence_status": "incomplete",
@@ -898,28 +1072,27 @@
     {
       "evidence_status": "incomplete",
       "missing": [
+        "scenario_complete",
+        "evidence_review",
+        "improvement_mechanism",
+        "impairment_review_completed",
+        "plausible_assumptions"
+      ],
+      "rank": 55,
+      "retry_on": "2026-09-21",
+      "ticker": "CW"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
         "evidence_review",
         "improvement_mechanism",
         "organic_growth_check",
         "impairment_review_completed"
       ],
-      "rank": 55,
-      "retry_on": "2026-09-28",
-      "ticker": "AIT"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "scenario_complete",
-        "evidence_review",
-        "improvement_mechanism",
-        "organic_growth_check",
-        "impairment_review_completed",
-        "plausible_assumptions"
-      ],
       "rank": 56,
       "retry_on": "2026-09-28",
-      "ticker": "PAYX"
+      "ticker": "TILE"
     },
     {
       "evidence_status": "incomplete",
@@ -938,21 +1111,9 @@
       "missing": [
         "evidence_review",
         "improvement_mechanism",
-        "organic_growth_check",
         "impairment_review_completed"
       ],
       "rank": 58,
-      "retry_on": "2026-09-28",
-      "ticker": "EME"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "evidence_review",
-        "improvement_mechanism",
-        "impairment_review_completed"
-      ],
-      "rank": 59,
       "retry_on": "2026-09-28",
       "ticker": "GLW"
     },
@@ -961,11 +1122,26 @@
       "missing": [
         "evidence_review",
         "improvement_mechanism",
+        "organic_growth_check",
         "impairment_review_completed"
+      ],
+      "rank": 59,
+      "retry_on": "2026-09-28",
+      "ticker": "AIT"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "scenario_complete",
+        "evidence_review",
+        "improvement_mechanism",
+        "organic_growth_check",
+        "impairment_review_completed",
+        "plausible_assumptions"
       ],
       "rank": 60,
       "retry_on": "2026-09-28",
-      "ticker": "GOLF"
+      "ticker": "P"
     },
     {
       "evidence_status": "incomplete",
@@ -976,8 +1152,8 @@
         "impairment_review_completed"
       ],
       "rank": 61,
-      "retry_on": "2026-09-28",
-      "ticker": "AYI"
+      "retry_on": "2026-09-29",
+      "ticker": "ADSK"
     },
     {
       "evidence_status": "incomplete",
@@ -987,7 +1163,7 @@
         "impairment_review_completed"
       ],
       "rank": 62,
-      "retry_on": "2026-09-28",
+      "retry_on": "2026-09-29",
       "ticker": "VMI"
     },
     {
@@ -999,19 +1175,8 @@
         "impairment_review_completed"
       ],
       "rank": 63,
-      "retry_on": "2026-09-28",
-      "ticker": "AGYS"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "evidence_review",
-        "improvement_mechanism",
-        "impairment_review_completed"
-      ],
-      "rank": 64,
-      "retry_on": "2026-09-28",
-      "ticker": "IDXX"
+      "retry_on": "2026-09-29",
+      "ticker": "PCTY"
     },
     {
       "evidence_status": "incomplete",
@@ -1021,7 +1186,7 @@
         "improvement_mechanism",
         "impairment_review_completed"
       ],
-      "rank": 65,
+      "rank": 64,
       "retry_on": "2026-09-25",
       "ticker": "WST"
     },
@@ -1032,9 +1197,20 @@
         "improvement_mechanism",
         "impairment_review_completed"
       ],
+      "rank": 65,
+      "retry_on": "2026-09-29",
+      "ticker": "IDXX"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "evidence_review",
+        "improvement_mechanism",
+        "impairment_review_completed"
+      ],
       "rank": 66,
       "retry_on": "2026-09-28",
-      "ticker": "GWW"
+      "ticker": "GOLF"
     },
     {
       "evidence_status": "incomplete",
@@ -1044,7 +1220,7 @@
         "impairment_review_completed"
       ],
       "rank": 67,
-      "retry_on": "2026-09-28",
+      "retry_on": "2026-09-29",
       "ticker": "ISRG"
     },
     {
@@ -1059,8 +1235,42 @@
         "plausible_assumptions"
       ],
       "rank": 68,
-      "retry_on": "2026-09-28",
+      "retry_on": "2026-09-29",
       "ticker": "BRC"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "evidence_review",
+        "improvement_mechanism",
+        "impairment_review_completed"
+      ],
+      "rank": 69,
+      "retry_on": "2026-09-29",
+      "ticker": "GWW"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "evidence_review",
+        "improvement_mechanism",
+        "organic_growth_check",
+        "impairment_review_completed"
+      ],
+      "rank": 70,
+      "retry_on": "2026-09-29",
+      "ticker": "PWR"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "evidence_review",
+        "improvement_mechanism",
+        "impairment_review_completed"
+      ],
+      "rank": 71,
+      "retry_on": "2026-09-29",
+      "ticker": "CL"
     }
   ]
 }

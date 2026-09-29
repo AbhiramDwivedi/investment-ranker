@@ -1,7 +1,7 @@
 {
   "schema": "paper-book-public/v1",
   "book": "opp-v21",
-  "generated_at": "2026-09-28T21:36:33Z",
+  "generated_at": "2026-09-29T21:27:13Z",
   "config": {
     "benchmark": "SPY",
     "cost_bps": 10,
@@ -19,14 +19,14 @@
   },
   "strategy": null,
   "status": {
-    "as_of": "2026-09-28",
+    "as_of": "2026-09-29",
     "filled": true,
     "start_capital": 100000,
     "start_date": "2026-09-14",
     "cash": 60095.04,
-    "nav": 102390.73,
+    "nav": 102609.25,
     "benchmark": "SPY",
-    "benchmark_nav": 100871.51,
+    "benchmark_nav": 100685.75,
     "nav_low": null,
     "nav_high": null,
     "unresolved": [],
@@ -37,7 +37,7 @@
   "pending_orders": [],
   "orders": null,
   "positions": {
-    "as_of": "2026-09-28",
+    "as_of": "2026-09-29",
     "cash": 60095.04,
     "first_order_date": "2026-09-14",
     "last_fill_date": "2026-09-15",
@@ -97,6 +97,11 @@
         "2026-09-28",
         102390.73,
         100871.51
+      ],
+      [
+        "2026-09-29",
+        102609.25,
+        100685.75
       ]
     ],
     "positions": {
@@ -104,9 +109,9 @@
         "dollars_at_fill": 2637.9,
         "fill_date": "2026-09-15",
         "fill_price_raw": 388.74,
-        "last_price_raw": 355.21,
-        "last_value": 2410.37,
-        "last_value_date": "2026-09-28",
+        "last_price_raw": 378.39,
+        "last_value": 2567.67,
+        "last_value_date": "2026-09-29",
         "lots": [
           {
             "dollars_at_fill": 2637.9,
@@ -119,9 +124,9 @@
         "dollars_at_fill": 2187.2,
         "fill_date": "2026-09-15",
         "fill_price_raw": 55.78,
-        "last_price_raw": 57.66,
-        "last_value": 2260.92,
-        "last_value_date": "2026-09-28",
+        "last_price_raw": 56.55,
+        "last_value": 2217.39,
+        "last_value_date": "2026-09-29",
         "lots": [
           {
             "dollars_at_fill": 2187.2,
@@ -134,9 +139,9 @@
         "dollars_at_fill": 2936.6,
         "fill_date": "2026-09-15",
         "fill_price_raw": 230.27,
-        "last_price_raw": 268.7,
-        "last_value": 3426.69,
-        "last_value_date": "2026-09-28",
+        "last_price_raw": 268.56,
+        "last_value": 3424.91,
+        "last_value_date": "2026-09-29",
         "lots": [
           {
             "dollars_at_fill": 2936.6,
@@ -149,9 +154,9 @@
         "dollars_at_fill": 2349.1,
         "fill_date": "2026-09-15",
         "fill_price_raw": 56.9,
-        "last_price_raw": 58.37,
-        "last_value": 2409.79,
-        "last_value_date": "2026-09-28",
+        "last_price_raw": 58.65,
+        "last_value": 2421.35,
+        "last_value_date": "2026-09-29",
         "lots": [
           {
             "dollars_at_fill": 2349.1,
@@ -164,9 +169,9 @@
         "dollars_at_fill": 2617.9,
         "fill_date": "2026-09-15",
         "fill_price_raw": 236.07,
-        "last_price_raw": 228.0,
-        "last_value": 2528.41,
-        "last_value_date": "2026-09-28",
+        "last_price_raw": 222.03,
+        "last_value": 2462.2,
+        "last_value_date": "2026-09-29",
         "lots": [
           {
             "dollars_at_fill": 2617.9,
@@ -179,9 +184,9 @@
         "dollars_at_fill": 2627.8,
         "fill_date": "2026-09-15",
         "fill_price_raw": 172.37,
-        "last_price_raw": 176.33,
-        "last_value": 2688.17,
-        "last_value_date": "2026-09-28",
+        "last_price_raw": 175.96,
+        "last_value": 2682.53,
+        "last_value_date": "2026-09-29",
         "lots": [
           {
             "dollars_at_fill": 2627.8,
@@ -194,9 +199,9 @@
         "dollars_at_fill": 2173.9,
         "fill_date": "2026-09-15",
         "fill_price_raw": 74.69,
-        "last_price_raw": 74.78,
-        "last_value": 2176.52,
-        "last_value_date": "2026-09-28",
+        "last_price_raw": 75.69,
+        "last_value": 2203.01,
+        "last_value_date": "2026-09-29",
         "lots": [
           {
             "dollars_at_fill": 2173.9,
@@ -209,9 +214,9 @@
         "dollars_at_fill": 3232.3,
         "fill_date": "2026-09-15",
         "fill_price_raw": 270.87,
-        "last_price_raw": 314.47,
-        "last_value": 3756.57,
-        "last_value_date": "2026-09-28",
+        "last_price_raw": 323.86,
+        "last_value": 3868.74,
+        "last_value_date": "2026-09-29",
         "lots": [
           {
             "dollars_at_fill": 3232.3,
@@ -224,9 +229,9 @@
         "dollars_at_fill": 2940.5,
         "fill_date": "2026-09-15",
         "fill_price_raw": 212.17,
-        "last_price_raw": 228.86,
-        "last_value": 3171.81,
-        "last_value_date": "2026-09-28",
+        "last_price_raw": 227.21,
+        "last_value": 3148.94,
+        "last_value_date": "2026-09-29",
         "lots": [
           {
             "dollars_at_fill": 2940.5,
@@ -239,9 +244,9 @@
         "dollars_at_fill": 2363.6,
         "fill_date": "2026-09-15",
         "fill_price_raw": 172.56,
-        "last_price_raw": 187.48,
-        "last_value": 2567.96,
-        "last_value_date": "2026-09-28",
+        "last_price_raw": 186.97,
+        "last_value": 2560.98,
+        "last_value_date": "2026-09-29",
         "lots": [
           {
             "dollars_at_fill": 2363.6,
@@ -254,9 +259,9 @@
         "dollars_at_fill": 3733.1,
         "fill_date": "2026-09-15",
         "fill_price_raw": 226.26,
-        "last_price_raw": 237.09,
-        "last_value": 3911.79,
-        "last_value_date": "2026-09-28",
+        "last_price_raw": 234.4,
+        "last_value": 3867.4,
+        "last_value_date": "2026-09-29",
         "lots": [
           {
             "dollars_at_fill": 3733.1,
@@ -269,9 +274,9 @@
         "dollars_at_fill": 2493.9,
         "fill_date": "2026-09-15",
         "fill_price_raw": 459.02,
-        "last_price_raw": 498.36,
-        "last_value": 2707.64,
-        "last_value_date": "2026-09-28",
+        "last_price_raw": 504.94,
+        "last_value": 2743.39,
+        "last_value_date": "2026-09-29",
         "lots": [
           {
             "dollars_at_fill": 2493.9,
@@ -284,9 +289,9 @@
         "dollars_at_fill": 3383.2,
         "fill_date": "2026-09-15",
         "fill_price_raw": 332.85,
-        "last_price_raw": 401.3,
-        "last_value": 4078.95,
-        "last_value_date": "2026-09-28",
+        "last_price_raw": 403.02,
+        "last_value": 4096.43,
+        "last_value_date": "2026-09-29",
         "lots": [
           {
             "dollars_at_fill": 3383.2,
@@ -299,9 +304,9 @@
         "dollars_at_fill": 2188.1,
         "fill_date": "2026-09-15",
         "fill_price_raw": 117.11,
-        "last_price_raw": 113.45,
-        "last_value": 2119.72,
-        "last_value_date": "2026-09-28",
+        "last_price_raw": 114.12,
+        "last_value": 2132.23,
+        "last_value_date": "2026-09-29",
         "lots": [
           {
             "dollars_at_fill": 2188.1,
@@ -314,9 +319,9 @@
         "dollars_at_fill": 2000.0,
         "fill_date": "2026-09-15",
         "fill_price_raw": 234.61,
-        "last_price_raw": 244.04,
-        "last_value": 2080.39,
-        "last_value_date": "2026-09-28",
+        "last_price_raw": 248.34,
+        "last_value": 2117.05,
+        "last_value_date": "2026-09-29",
         "lots": [
           {
             "dollars_at_fill": 2000.0,

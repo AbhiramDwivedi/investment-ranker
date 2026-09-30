@@ -1,7 +1,7 @@
 {
   "schema": "recommendation-book-public/v1",
   "book": "rec-v21",
-  "generated_at": "2026-09-29T21:27:13Z",
+  "generated_at": "2026-09-30T21:34:55Z",
   "config": {
     "book": "rec-v21",
     "source": "opportunity-v2.1",
@@ -14,7 +14,7 @@
   },
   "strategy": "Commits $10,000 of paper money to every company the opportunity research report first publishes as a verified buy candidate, buys $10,000 of the VOO index fund at the same closing price beside it, and closes the pair only when an explicit, validated sell recommendation is recorded for that position.",
   "status": {
-    "as_of": "2026-09-29",
+    "as_of": "2026-09-30",
     "benchmark": "VOO",
     "notional_per_entry": 10000,
     "committed_notional": 10000.0,
@@ -24,9 +24,9 @@
     "closed_entries": 0,
     "unfilled_entries": 0,
     "pending_entries": 0,
-    "stock_value_total": 10110.67,
-    "benchmark_value_total": 9951.51,
-    "excess_total": 159.16,
+    "stock_value_total": 10069.3,
+    "benchmark_value_total": 9928.85,
+    "excess_total": 140.45,
     "filled": true,
     "performance_status": "eligible",
     "performance_status_reasons": [],
@@ -45,13 +45,13 @@
       "recommendation_session": "2026-09-23",
       "fill_date": "2026-09-24",
       "closed_session": null,
-      "stock_value": 10110.67,
-      "benchmark_value": 9951.51,
-      "stock_return": 0.011066999999999938,
-      "benchmark_return": -0.004848999999999992,
-      "excess_return": 0.01591599999999993,
+      "stock_value": 10069.3,
+      "benchmark_value": 9928.85,
+      "stock_return": 0.006929999999999881,
+      "benchmark_return": -0.0071149999999999824,
+      "excess_return": 0.014044999999999863,
       "unresolved": false,
-      "value_date": "2026-09-29"
+      "value_date": "2026-09-30"
     }
   ],
   "entries": [
@@ -63,9 +63,9 @@
         "exit": null,
         "fill_date": "2026-09-24",
         "fill_price_raw": 706.99,
-        "last_price_raw": 702.46,
-        "last_value": 9951.51,
-        "last_value_date": "2026-09-29",
+        "last_price_raw": 700.86,
+        "last_value": 9928.85,
+        "last_value_date": "2026-09-30",
         "stale": false,
         "ticker": "VOO",
         "unresolved": null
@@ -92,9 +92,9 @@
         "exit": null,
         "fill_date": "2026-09-24",
         "fill_price_raw": 57.95,
-        "last_price_raw": 58.65,
-        "last_value": 10110.67,
-        "last_value_date": "2026-09-29",
+        "last_price_raw": 58.41,
+        "last_value": 10069.3,
+        "last_value_date": "2026-09-30",
         "stale": false,
         "ticker": "EXEL",
         "unresolved": null

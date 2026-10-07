@@ -1,6 +1,6 @@
 {
   "schema": "paper-books-public/v1",
-  "generated_at": "2026-10-01T21:26:40Z",
+  "generated_at": "2026-10-07T22:01:35Z",
   "books": [
     {
       "book": "shy",
@@ -25,6 +25,33 @@
       "status": "filled",
       "performance_status": "eligible",
       "file": "paper/quality.json"
+    },
+    {
+      "book": "ai-pick",
+      "status": "no_fills",
+      "performance_status": "eligible",
+      "file": "paper/ai-pick.json"
+    },
+    {
+      "book": "ai-pick-ew",
+      "display": "numbers_only",
+      "status": "no_fills"
+    },
+    {
+      "book": "ai-overlay",
+      "status": "no_fills",
+      "performance_status": "eligible",
+      "file": "paper/ai-overlay.json"
+    },
+    {
+      "book": "ai-overlay-ew",
+      "display": "numbers_only",
+      "status": "no_fills"
+    },
+    {
+      "book": "ai-overlay-top15",
+      "display": "numbers_only",
+      "status": "no_fills"
     },
     {
       "book": "rec-v21",

@@ -1,0 +1,49 @@
+{
+  "schema": "paper-book-public/v1",
+  "book": "ai-pick",
+  "generated_at": "2026-10-07T22:01:35Z",
+  "config": {
+    "benchmark": "SPY",
+    "cost_bps": 10,
+    "max_names": 15,
+    "min_names": 15,
+    "max_weight": 0.1,
+    "max_turnover_per_rebalance": 2.0,
+    "rebalance": "M",
+    "start_capital": 100000,
+    "start_date": "2026-11-30",
+    "stale_days_refuse": 3,
+    "unfilled_after_sessions": 3,
+    "vetoes_apply": false,
+    "targets_file": "data/paper/ai-pick/targets/current.json",
+    "primary": false,
+    "min_weight": 0.04,
+    "display": "public"
+  },
+  "strategy": "An experimental book in which a language model each month screens the S&P 1500 to 40 names, researches each from its filings and the web, and buys the 15 it rates highest at fixed weights from 10% down to 4%, holding 2% in cash and rebalancing monthly. A second model checks the research for facts only and never picks a name, and a month that ends with fewer than 15 checked names leaves the book as it was, which before its first trade means all cash.",
+  "status": {
+    "as_of": null,
+    "filled": false,
+    "start_capital": 100000,
+    "start_date": "2026-11-30",
+    "cash": null,
+    "nav": null,
+    "benchmark": "SPY",
+    "benchmark_nav": null,
+    "nav_low": null,
+    "nav_high": null,
+    "unresolved": [],
+    "performance_status": "eligible",
+    "performance_status_reasons": [],
+    "pending_orders": 0
+  },
+  "pending_orders": [],
+  "orders": null,
+  "positions": null,
+  "ledger": [],
+  "desk_notes": [],
+  "evaluation": {
+    "shown": false,
+    "reason": "the evaluation file has not been written yet"
+  }
+}

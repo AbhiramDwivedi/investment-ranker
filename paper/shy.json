@@ -1,7 +1,7 @@
 {
   "schema": "paper-book-public/v1",
   "book": "shy",
-  "generated_at": "2026-10-08T21:26:00Z",
+  "generated_at": "2026-11-03T22:44:19Z",
   "config": {
     "benchmark": "SPY",
     "cost_bps": 10,
@@ -20,14 +20,14 @@
   },
   "strategy": "Buys the 30 S&P 500 companies returning the most cash to shareholders through buybacks and dividends, measured against their market value, in equal weights and rebalanced monthly.",
   "status": {
-    "as_of": "2026-10-08",
+    "as_of": "2026-11-03",
     "filled": true,
     "start_capital": 100000,
     "start_date": "2026-09-11",
-    "cash": -0.04,
-    "nav": 95935.2,
+    "cash": 0.01,
+    "nav": 102740.93,
     "benchmark": "SPY",
-    "benchmark_nav": 101512.76,
+    "benchmark_nav": 98944.54,
     "nav_low": null,
     "nav_high": null,
     "unresolved": [],
@@ -38,17 +38,17 @@
   "pending_orders": [],
   "orders": null,
   "positions": {
-    "as_of": "2026-10-08",
-    "cash": -0.04,
+    "as_of": "2026-11-03",
+    "cash": 0.01,
     "first_order_date": "2026-09-30",
-    "last_fill_date": "2026-10-01",
-    "last_order_date": "2026-09-30",
-    "last_rebalance_date": "2026-09-30",
+    "last_fill_date": "2026-11-02",
+    "last_order_date": "2026-10-30",
+    "last_rebalance_date": "2026-10-30",
     "last_vetoes": {
       "applied": [
-        "CHTR vetoed, ADBE promoted"
+        "CHTR vetoed, ACGL promoted"
       ],
-      "order_date": "2026-09-30"
+      "order_date": "2026-10-30"
     },
     "nav_history": [
       [
@@ -150,81 +150,166 @@
         "2026-10-08",
         95935.2,
         101512.76
+      ],
+      [
+        "2026-10-09",
+        95788.27,
+        102121.36
+      ],
+      [
+        "2026-10-12",
+        96601.35,
+        102059.71
+      ],
+      [
+        "2026-10-13",
+        96822.89,
+        102047.91
+      ],
+      [
+        "2026-10-14",
+        96781.81,
+        100944.81
+      ],
+      [
+        "2026-10-15",
+        99740.01,
+        101232.06
+      ],
+      [
+        "2026-10-16",
+        99267.94,
+        100111.91
+      ],
+      [
+        "2026-10-19",
+        99009.53,
+        100535.57
+      ],
+      [
+        "2026-10-20",
+        100742.98,
+        100872.67
+      ],
+      [
+        "2026-10-21",
+        100260.83,
+        101402.58
+      ],
+      [
+        "2026-10-22",
+        103219.48,
+        100205.04
+      ],
+      [
+        "2026-10-23",
+        101733.82,
+        99681.69
+      ],
+      [
+        "2026-10-26",
+        100629.58,
+        100389.98
+      ],
+      [
+        "2026-10-27",
+        99525.18,
+        100952.68
+      ],
+      [
+        "2026-10-28",
+        99724.73,
+        101300.27
+      ],
+      [
+        "2026-10-29",
+        101350.45,
+        100913.33
+      ],
+      [
+        "2026-10-30",
+        101877.79,
+        99124.23
+      ],
+      [
+        "2026-11-03",
+        102740.93,
+        98944.54
       ]
     ],
     "positions": {
       "ACGL": {
-        "dollars_at_fill": 3259.62,
+        "dollars_at_fill": 3110.64,
         "fill_date": "2026-09-14",
         "fill_price_raw": 97.95,
-        "last_price_raw": 96.08,
-        "last_value": 3197.39,
-        "last_value_date": "2026-10-08",
+        "last_price_raw": 107.79,
+        "last_value": 3423.13,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
-            "dollars_at_fill": 3259.62,
+            "dollars_at_fill": 3110.64,
             "fill_date": "2026-09-14",
             "fill_price_raw": 97.95
           }
         ]
       },
-      "ADBE": {
-        "dollars_at_fill": 3130.8,
-        "fill_date": "2026-10-01",
-        "fill_price_raw": 241.28,
-        "last_price_raw": 241.05,
-        "last_value": 3127.82,
-        "last_value_date": "2026-10-08",
+      "BAC": {
+        "dollars_at_fill": 3464.64,
+        "fill_date": "2026-11-02",
+        "fill_price_raw": 49.57,
+        "last_price_raw": 49.66,
+        "last_value": 3470.93,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
-            "dollars_at_fill": 3130.8,
-            "fill_date": "2026-10-01",
-            "fill_price_raw": 241.28
+            "dollars_at_fill": 3464.64,
+            "fill_date": "2026-11-02",
+            "fill_price_raw": 49.57
           }
         ]
       },
-      "AIG": {
-        "dollars_at_fill": 3151.71,
-        "fill_date": "2026-09-14",
-        "fill_price_raw": 76.29,
-        "last_price_raw": 77.05,
-        "last_value": 3204.19,
-        "last_value_date": "2026-10-08",
+      "BKNG": {
+        "dollars_at_fill": 3464.64,
+        "fill_date": "2026-11-02",
+        "fill_price_raw": 153.75,
+        "last_price_raw": 155.67,
+        "last_value": 3507.91,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
-            "dollars_at_fill": 3151.71,
-            "fill_date": "2026-09-14",
-            "fill_price_raw": 76.29
+            "dollars_at_fill": 3464.64,
+            "fill_date": "2026-11-02",
+            "fill_price_raw": 153.75
           }
         ]
       },
       "CMCSA": {
-        "dollars_at_fill": 3561.99,
+        "dollars_at_fill": 3529.22,
         "fill_date": "2026-09-14",
         "fill_price_raw": 24.88,
-        "last_price_raw": 21.21,
-        "last_value": 3113.2,
-        "last_value_date": "2026-10-08",
+        "last_price_raw": 23.67,
+        "last_value": 3442.32,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
-            "dollars_at_fill": 3330.0,
+            "dollars_at_fill": 3299.36,
             "fill_date": "2026-09-14",
             "fill_price_raw": 24.88
           },
           {
-            "dollars_at_fill": 231.99,
+            "dollars_at_fill": 229.86,
             "fill_date": "2026-10-01",
             "fill_price_raw": 21.7
           }
         ]
       },
       "CPT": {
-        "dollars_at_fill": 3334.33,
+        "dollars_at_fill": 3504.63,
         "fill_date": "2026-09-14",
         "fill_price_raw": 103.83,
-        "last_price_raw": 96.76,
-        "last_value": 3141.36,
-        "last_value_date": "2026-10-08",
+        "last_price_raw": 100.68,
+        "last_value": 3437.27,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
             "dollars_at_fill": 3330.0,
@@ -235,16 +320,21 @@
             "dollars_at_fill": 4.33,
             "fill_date": "2026-10-01",
             "fill_price_raw": 96.62
+          },
+          {
+            "dollars_at_fill": 170.3,
+            "fill_date": "2026-11-02",
+            "fill_price_raw": 101.67
           }
         ]
       },
       "CRM": {
-        "dollars_at_fill": 3423.18,
+        "dollars_at_fill": 3896.3,
         "fill_date": "2026-09-14",
         "fill_price_raw": 259.43,
-        "last_price_raw": 227.8,
-        "last_value": 3018.83,
-        "last_value_date": "2026-10-08",
+        "last_price_raw": 222.2,
+        "last_value": 3409.41,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
             "dollars_at_fill": 3330.0,
@@ -255,61 +345,41 @@
             "dollars_at_fill": 93.18,
             "fill_date": "2026-10-01",
             "fill_price_raw": 236.69
+          },
+          {
+            "dollars_at_fill": 473.12,
+            "fill_date": "2026-11-02",
+            "fill_price_raw": 226.18
           }
         ]
       },
       "DECK": {
-        "dollars_at_fill": 3175.06,
+        "dollars_at_fill": 3295.34,
         "fill_date": "2026-09-14",
         "fill_price_raw": 80.54,
-        "last_price_raw": 82.56,
-        "last_value": 3254.69,
-        "last_value_date": "2026-10-08",
+        "last_price_raw": 84.09,
+        "last_value": 3434.0,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
             "dollars_at_fill": 3175.06,
             "fill_date": "2026-09-14",
             "fill_price_raw": 80.54
-          }
-        ]
-      },
-      "EFX": {
-        "dollars_at_fill": 3130.8,
-        "fill_date": "2026-10-01",
-        "fill_price_raw": 139.73,
-        "last_price_raw": 145.54,
-        "last_value": 3260.98,
-        "last_value_date": "2026-10-08",
-        "lots": [
+          },
           {
-            "dollars_at_fill": 3130.8,
-            "fill_date": "2026-10-01",
-            "fill_price_raw": 139.73
-          }
-        ]
-      },
-      "EG": {
-        "dollars_at_fill": 3228.87,
-        "fill_date": "2026-09-14",
-        "fill_price_raw": 379.54,
-        "last_price_raw": 373.1,
-        "last_value": 3174.08,
-        "last_value_date": "2026-10-08",
-        "lots": [
-          {
-            "dollars_at_fill": 3228.87,
-            "fill_date": "2026-09-14",
-            "fill_price_raw": 379.54
+            "dollars_at_fill": 120.28,
+            "fill_date": "2026-11-02",
+            "fill_price_raw": 85.0
           }
         ]
       },
       "FICO": {
-        "dollars_at_fill": 4264.7,
+        "dollars_at_fill": 4305.19,
         "fill_date": "2026-09-14",
         "fill_price_raw": 1001.5,
-        "last_price_raw": 707.43,
-        "last_value": 3351.44,
-        "last_value_date": "2026-10-08",
+        "last_price_raw": 724.38,
+        "last_value": 3472.24,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
             "dollars_at_fill": 3330.0,
@@ -320,131 +390,121 @@
             "dollars_at_fill": 934.7,
             "fill_date": "2026-10-01",
             "fill_price_raw": 661.75
+          },
+          {
+            "dollars_at_fill": 40.49,
+            "fill_date": "2026-11-02",
+            "fill_price_raw": 724.19
           }
         ]
       },
       "FTV": {
-        "dollars_at_fill": 3100.31,
+        "dollars_at_fill": 2866.35,
         "fill_date": "2026-09-14",
         "fill_price_raw": 55.19,
-        "last_price_raw": 56.42,
-        "last_value": 3169.41,
-        "last_value_date": "2026-10-08",
+        "last_price_raw": 66.81,
+        "last_value": 3469.85,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
-            "dollars_at_fill": 3100.31,
+            "dollars_at_fill": 2866.35,
             "fill_date": "2026-09-14",
             "fill_price_raw": 55.19
           }
         ]
       },
       "GDDY": {
-        "dollars_at_fill": 3375.48,
+        "dollars_at_fill": 3106.77,
         "fill_date": "2026-09-14",
         "fill_price_raw": 104.47,
-        "last_price_raw": 103.19,
-        "last_value": 3337.59,
-        "last_value_date": "2026-10-08",
+        "last_price_raw": 113.45,
+        "last_value": 3377.33,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
-            "dollars_at_fill": 3330.0,
+            "dollars_at_fill": 3064.91,
             "fill_date": "2026-09-14",
             "fill_price_raw": 104.47
           },
           {
-            "dollars_at_fill": 45.48,
+            "dollars_at_fill": 41.86,
             "fill_date": "2026-10-01",
             "fill_price_raw": 96.98
           }
         ]
       },
       "GM": {
-        "dollars_at_fill": 3436.53,
+        "dollars_at_fill": 3353.81,
         "fill_date": "2026-09-14",
         "fill_price_raw": 87.16,
-        "last_price_raw": 82.25,
-        "last_value": 3252.89,
-        "last_value_date": "2026-10-08",
+        "last_price_raw": 88.34,
+        "last_value": 3409.64,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
-            "dollars_at_fill": 3330.0,
+            "dollars_at_fill": 3249.84,
             "fill_date": "2026-09-14",
             "fill_price_raw": 87.16
           },
           {
-            "dollars_at_fill": 106.53,
+            "dollars_at_fill": 103.97,
             "fill_date": "2026-10-01",
             "fill_price_raw": 79.31
           }
         ]
       },
-      "HCA": {
-        "dollars_at_fill": 3146.58,
-        "fill_date": "2026-09-14",
-        "fill_price_raw": 425.49,
-        "last_price_raw": 445.01,
-        "last_value": 3297.0,
-        "last_value_date": "2026-10-08",
-        "lots": [
-          {
-            "dollars_at_fill": 3146.58,
-            "fill_date": "2026-09-14",
-            "fill_price_raw": 425.49
-          }
-        ]
-      },
       "IT": {
-        "dollars_at_fill": 3206.29,
+        "dollars_at_fill": 2907.88,
         "fill_date": "2026-09-14",
         "fill_price_raw": 197.07,
-        "last_price_raw": 195.41,
-        "last_value": 3179.28,
-        "last_value_date": "2026-10-08",
+        "last_price_raw": 204.22,
+        "last_value": 3013.38,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
-            "dollars_at_fill": 3206.29,
+            "dollars_at_fill": 2907.88,
             "fill_date": "2026-09-14",
             "fill_price_raw": 197.07
           }
         ]
       },
       "KR": {
-        "dollars_at_fill": 3212.24,
+        "dollars_at_fill": 3093.08,
         "fill_date": "2026-09-14",
         "fill_price_raw": 60.91,
-        "last_price_raw": 61.41,
-        "last_value": 3238.61,
-        "last_value_date": "2026-10-08",
+        "last_price_raw": 66.81,
+        "last_value": 3392.69,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
-            "dollars_at_fill": 3212.24,
+            "dollars_at_fill": 3093.08,
             "fill_date": "2026-09-14",
             "fill_price_raw": 60.91
           }
         ]
       },
       "LULU": {
-        "dollars_at_fill": 3282.11,
+        "dollars_at_fill": 3228.98,
         "fill_date": "2026-09-14",
         "fill_price_raw": 100.3,
-        "last_price_raw": 92.68,
-        "last_value": 3032.76,
-        "last_value_date": "2026-10-08",
+        "last_price_raw": 106.95,
+        "last_value": 3443.06,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
-            "dollars_at_fill": 3282.11,
+            "dollars_at_fill": 3228.98,
             "fill_date": "2026-09-14",
             "fill_price_raw": 100.3
           }
         ]
       },
       "LVS": {
-        "dollars_at_fill": 3584.78,
+        "dollars_at_fill": 3763.71,
         "fill_date": "2026-09-14",
         "fill_price_raw": 42.4,
-        "last_price_raw": 36.1,
-        "last_value": 3085.9,
-        "last_value_date": "2026-10-08",
+        "last_price_raw": 38.26,
+        "last_value": 3476.5,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
             "dollars_at_fill": 3330.0,
@@ -455,16 +515,36 @@
             "dollars_at_fill": 254.78,
             "fill_date": "2026-10-01",
             "fill_price_raw": 36.69
+          },
+          {
+            "dollars_at_fill": 178.93,
+            "fill_date": "2026-11-02",
+            "fill_price_raw": 38.2
+          }
+        ]
+      },
+      "MGM": {
+        "dollars_at_fill": 3464.64,
+        "fill_date": "2026-11-02",
+        "fill_price_raw": 30.56,
+        "last_price_raw": 31.02,
+        "last_value": 3516.79,
+        "last_value_date": "2026-11-03",
+        "lots": [
+          {
+            "dollars_at_fill": 3464.64,
+            "fill_date": "2026-11-02",
+            "fill_price_raw": 30.56
           }
         ]
       },
       "MTB": {
-        "dollars_at_fill": 3423.27,
+        "dollars_at_fill": 3655.4,
         "fill_date": "2026-09-14",
         "fill_price_raw": 237.82,
-        "last_price_raw": 217.56,
-        "last_value": 3139.68,
-        "last_value_date": "2026-10-08",
+        "last_price_raw": 222.07,
+        "last_value": 3434.45,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
             "dollars_at_fill": 3330.0,
@@ -475,111 +555,146 @@
             "dollars_at_fill": 93.27,
             "fill_date": "2026-10-01",
             "fill_price_raw": 217.35
+          },
+          {
+            "dollars_at_fill": 232.13,
+            "fill_date": "2026-11-02",
+            "fill_price_raw": 224.43
           }
         ]
       },
       "NRG": {
-        "dollars_at_fill": 3130.8,
+        "dollars_at_fill": 3530.05,
         "fill_date": "2026-10-01",
         "fill_price_raw": 96.93,
-        "last_price_raw": 106.32,
-        "last_value": 3434.09,
-        "last_value_date": "2026-10-08",
+        "last_price_raw": 96.26,
+        "last_value": 3530.78,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
             "dollars_at_fill": 3130.8,
             "fill_date": "2026-10-01",
             "fill_price_raw": 96.93
+          },
+          {
+            "dollars_at_fill": 399.25,
+            "fill_date": "2026-11-02",
+            "fill_price_raw": 94.62
           }
         ]
       },
       "NVR": {
-        "dollars_at_fill": 3225.49,
+        "dollars_at_fill": 3488.53,
         "fill_date": "2026-09-14",
         "fill_price_raw": 6299.5601,
-        "last_price_raw": 6002.5498,
-        "last_value": 3073.42,
-        "last_value_date": "2026-10-08",
+        "last_price_raw": 6024.7202,
+        "last_value": 3337.71,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
             "dollars_at_fill": 3225.49,
             "fill_date": "2026-09-14",
             "fill_price_raw": 6299.5601
+          },
+          {
+            "dollars_at_fill": 263.04,
+            "fill_date": "2026-11-02",
+            "fill_price_raw": 6265.1001
           }
         ]
       },
       "OMC": {
-        "dollars_at_fill": 3366.85,
+        "dollars_at_fill": 3313.92,
         "fill_date": "2026-09-14",
         "fill_price_raw": 81.07,
-        "last_price_raw": 76.45,
-        "last_value": 3210.23,
-        "last_value_date": "2026-10-08",
+        "last_price_raw": 83.17,
+        "last_value": 3437.51,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
-            "dollars_at_fill": 3330.0,
+            "dollars_at_fill": 3277.65,
             "fill_date": "2026-09-14",
             "fill_price_raw": 81.07
           },
           {
-            "dollars_at_fill": 36.85,
+            "dollars_at_fill": 36.27,
             "fill_date": "2026-10-01",
             "fill_price_raw": 74.7
           }
         ]
       },
       "PYPL": {
-        "dollars_at_fill": 3194.17,
+        "dollars_at_fill": 3190.88,
         "fill_date": "2026-09-14",
         "fill_price_raw": 54.03,
-        "last_price_raw": 55.02,
-        "last_value": 3252.7,
-        "last_value_date": "2026-10-08",
+        "last_price_raw": 58.21,
+        "last_value": 3437.74,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
-            "dollars_at_fill": 3194.17,
+            "dollars_at_fill": 3190.88,
             "fill_date": "2026-09-14",
             "fill_price_raw": 54.03
           }
         ]
       },
       "SYF": {
-        "dollars_at_fill": 3328.51,
+        "dollars_at_fill": 3429.97,
         "fill_date": "2026-09-14",
         "fill_price_raw": 75.88,
-        "last_price_raw": 73.72,
-        "last_value": 3233.76,
-        "last_value_date": "2026-10-08",
+        "last_price_raw": 75.18,
+        "last_value": 3397.1,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
             "dollars_at_fill": 3328.51,
             "fill_date": "2026-09-14",
             "fill_price_raw": 75.88
+          },
+          {
+            "dollars_at_fill": 101.46,
+            "fill_date": "2026-11-02",
+            "fill_price_raw": 76.82
+          }
+        ]
+      },
+      "T": {
+        "dollars_at_fill": 3464.64,
+        "fill_date": "2026-11-02",
+        "fill_price_raw": 21.44,
+        "last_price_raw": 21.39,
+        "last_value": 3456.56,
+        "last_value_date": "2026-11-03",
+        "lots": [
+          {
+            "dollars_at_fill": 3464.64,
+            "fill_date": "2026-11-02",
+            "fill_price_raw": 21.44
           }
         ]
       },
       "TAP": {
-        "dollars_at_fill": 3303.34,
+        "dollars_at_fill": 3138.15,
         "fill_date": "2026-09-14",
         "fill_price_raw": 39.08,
-        "last_price_raw": 37.92,
-        "last_value": 3205.29,
-        "last_value_date": "2026-10-08",
+        "last_price_raw": 41.87,
+        "last_value": 3362.19,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
-            "dollars_at_fill": 3303.34,
+            "dollars_at_fill": 3138.15,
             "fill_date": "2026-09-14",
             "fill_price_raw": 39.08
           }
         ]
       },
       "TFC": {
-        "dollars_at_fill": 3390.61,
+        "dollars_at_fill": 3461.51,
         "fill_date": "2026-09-14",
         "fill_price_raw": 50.1,
-        "last_price_raw": 46.18,
-        "last_value": 3129.93,
-        "last_value_date": "2026-10-08",
+        "last_price_raw": 49.41,
+        "last_value": 3418.67,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
             "dollars_at_fill": 3330.0,
@@ -590,16 +705,36 @@
             "dollars_at_fill": 60.61,
             "fill_date": "2026-10-01",
             "fill_price_raw": 46.28
+          },
+          {
+            "dollars_at_fill": 70.9,
+            "fill_date": "2026-11-02",
+            "fill_price_raw": 50.17
+          }
+        ]
+      },
+      "TMUS": {
+        "dollars_at_fill": 3464.64,
+        "fill_date": "2026-11-02",
+        "fill_price_raw": 160.15,
+        "last_price_raw": 154.41,
+        "last_value": 3340.46,
+        "last_value_date": "2026-11-03",
+        "lots": [
+          {
+            "dollars_at_fill": 3464.64,
+            "fill_date": "2026-11-02",
+            "fill_price_raw": 160.15
           }
         ]
       },
       "TTD": {
-        "dollars_at_fill": 3774.38,
+        "dollars_at_fill": 3992.76,
         "fill_date": "2026-09-14",
         "fill_price_raw": 14.97,
-        "last_price_raw": 12.34,
-        "last_value": 3198.16,
-        "last_value_date": "2026-10-08",
+        "last_price_raw": 12.86,
+        "last_value": 3556.71,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
             "dollars_at_fill": 3330.0,
@@ -610,54 +745,69 @@
             "dollars_at_fill": 444.38,
             "fill_date": "2026-10-01",
             "fill_price_raw": 12.1
+          },
+          {
+            "dollars_at_fill": 218.38,
+            "fill_date": "2026-11-02",
+            "fill_price_raw": 12.55
           }
         ]
       },
       "UHS": {
-        "dollars_at_fill": 3104.21,
+        "dollars_at_fill": 3338.35,
         "fill_date": "2026-09-14",
         "fill_price_raw": 173.25,
-        "last_price_raw": 175.72,
-        "last_value": 3148.47,
-        "last_value_date": "2026-10-08",
+        "last_price_raw": 177.13,
+        "last_value": 3403.31,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
             "dollars_at_fill": 3104.21,
             "fill_date": "2026-09-14",
             "fill_price_raw": 173.25
+          },
+          {
+            "dollars_at_fill": 234.14,
+            "fill_date": "2026-11-02",
+            "fill_price_raw": 180.65
           }
         ]
       },
       "WDAY": {
-        "dollars_at_fill": 3262.13,
+        "dollars_at_fill": 3405.28,
         "fill_date": "2026-09-14",
         "fill_price_raw": 194.21,
-        "last_price_raw": 187.81,
-        "last_value": 3154.63,
-        "last_value_date": "2026-10-08",
+        "last_price_raw": 197.94,
+        "last_value": 3467.8,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
             "dollars_at_fill": 3262.13,
             "fill_date": "2026-09-14",
             "fill_price_raw": 194.21
+          },
+          {
+            "dollars_at_fill": 143.15,
+            "fill_date": "2026-11-02",
+            "fill_price_raw": 198.13
           }
         ]
       },
       "ZTS": {
-        "dollars_at_fill": 3343.37,
+        "dollars_at_fill": 3053.03,
         "fill_date": "2026-09-14",
         "fill_price_raw": 73.67,
-        "last_price_raw": 73.08,
-        "last_value": 3317.47,
-        "last_value_date": "2026-10-08",
+        "last_price_raw": 82.99,
+        "last_value": 3463.47,
+        "last_value_date": "2026-11-03",
         "lots": [
           {
-            "dollars_at_fill": 3330.0,
+            "dollars_at_fill": 3040.82,
             "fill_date": "2026-09-14",
             "fill_price_raw": 73.67
           },
           {
-            "dollars_at_fill": 13.37,
+            "dollars_at_fill": 12.21,
             "fill_date": "2026-10-01",
             "fill_price_raw": 69.1
           }
@@ -1297,6 +1447,356 @@
       "reason": "rebalance shy v2026-09-13 as_of 2026-09-30",
       "side": "buy",
       "ticker": "ZTS"
+    },
+    {
+      "cost": 0.17,
+      "date": "2026-11-02",
+      "dollars": 166.26,
+      "order_date": "2026-10-30",
+      "price_raw": 109.31,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "sell",
+      "ticker": "ACGL"
+    },
+    {
+      "cost": 3.26,
+      "date": "2026-11-02",
+      "dollars": 3263.02,
+      "order_date": "2026-10-30",
+      "price_raw": 251.47,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "sell",
+      "ticker": "ADBE"
+    },
+    {
+      "cost": 3.43,
+      "date": "2026-11-02",
+      "dollars": 3426.68,
+      "order_date": "2026-10-30",
+      "price_raw": 82.4,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "sell",
+      "ticker": "AIG"
+    },
+    {
+      "cost": 3.46,
+      "date": "2026-11-02",
+      "dollars": 3464.64,
+      "order_date": "2026-10-30",
+      "price_raw": 49.57,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "buy",
+      "ticker": "BAC"
+    },
+    {
+      "cost": 3.46,
+      "date": "2026-11-02",
+      "dollars": 3464.64,
+      "order_date": "2026-10-30",
+      "price_raw": 153.75,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "buy",
+      "ticker": "BKNG"
+    },
+    {
+      "cost": 0.03,
+      "date": "2026-11-02",
+      "dollars": 32.24,
+      "order_date": "2026-10-30",
+      "price_raw": 23.87,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "sell",
+      "ticker": "CMCSA"
+    },
+    {
+      "cost": 0.17,
+      "date": "2026-11-02",
+      "dollars": 170.3,
+      "order_date": "2026-10-30",
+      "price_raw": 101.67,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "buy",
+      "ticker": "CPT"
+    },
+    {
+      "cost": 0.47,
+      "date": "2026-11-02",
+      "dollars": 473.12,
+      "order_date": "2026-10-30",
+      "price_raw": 226.18,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "buy",
+      "ticker": "CRM"
+    },
+    {
+      "cost": 0.12,
+      "date": "2026-11-02",
+      "dollars": 120.28,
+      "order_date": "2026-10-30",
+      "price_raw": 85.0,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "buy",
+      "ticker": "DECK"
+    },
+    {
+      "cost": 4.31,
+      "date": "2026-11-02",
+      "dollars": 4313.39,
+      "order_date": "2026-10-30",
+      "price_raw": 192.51,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "sell",
+      "ticker": "EFX"
+    },
+    {
+      "cost": 3.55,
+      "date": "2026-11-02",
+      "dollars": 3553.68,
+      "order_date": "2026-10-30",
+      "price_raw": 417.72,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "sell",
+      "ticker": "EG"
+    },
+    {
+      "cost": 0.04,
+      "date": "2026-11-02",
+      "dollars": 40.49,
+      "order_date": "2026-10-30",
+      "price_raw": 724.19,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "buy",
+      "ticker": "FICO"
+    },
+    {
+      "cost": 0.28,
+      "date": "2026-11-02",
+      "dollars": 283.35,
+      "order_date": "2026-10-30",
+      "price_raw": 66.84,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "sell",
+      "ticker": "FTV"
+    },
+    {
+      "cost": 0.3,
+      "date": "2026-11-02",
+      "dollars": 300.25,
+      "order_date": "2026-10-30",
+      "price_raw": 116.61,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "sell",
+      "ticker": "GDDY"
+    },
+    {
+      "cost": 0.09,
+      "date": "2026-11-02",
+      "dollars": 85.62,
+      "order_date": "2026-10-30",
+      "price_raw": 89.94,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "sell",
+      "ticker": "GM"
+    },
+    {
+      "cost": 3.47,
+      "date": "2026-11-02",
+      "dollars": 3465.33,
+      "order_date": "2026-10-30",
+      "price_raw": 467.73,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "sell",
+      "ticker": "HCA"
+    },
+    {
+      "cost": 0.36,
+      "date": "2026-11-02",
+      "dollars": 356.23,
+      "order_date": "2026-10-30",
+      "price_raw": 235.26,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "sell",
+      "ticker": "IT"
+    },
+    {
+      "cost": 0.13,
+      "date": "2026-11-02",
+      "dollars": 133.73,
+      "order_date": "2026-10-30",
+      "price_raw": 68.36,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "sell",
+      "ticker": "KR"
+    },
+    {
+      "cost": 0.06,
+      "date": "2026-11-02",
+      "dollars": 57.11,
+      "order_date": "2026-10-30",
+      "price_raw": 107.83,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "sell",
+      "ticker": "LULU"
+    },
+    {
+      "cost": 0.18,
+      "date": "2026-11-02",
+      "dollars": 178.93,
+      "order_date": "2026-10-30",
+      "price_raw": 38.2,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "buy",
+      "ticker": "LVS"
+    },
+    {
+      "cost": 3.46,
+      "date": "2026-11-02",
+      "dollars": 3464.64,
+      "order_date": "2026-10-30",
+      "price_raw": 30.56,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "buy",
+      "ticker": "MGM"
+    },
+    {
+      "cost": 0.23,
+      "date": "2026-11-02",
+      "dollars": 232.13,
+      "order_date": "2026-10-30",
+      "price_raw": 224.43,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "buy",
+      "ticker": "MTB"
+    },
+    {
+      "cost": 0.4,
+      "date": "2026-11-02",
+      "dollars": 399.25,
+      "order_date": "2026-10-30",
+      "price_raw": 94.62,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "buy",
+      "ticker": "NRG"
+    },
+    {
+      "cost": 0.26,
+      "date": "2026-11-02",
+      "dollars": 263.04,
+      "order_date": "2026-10-30",
+      "price_raw": 6265.1001,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "buy",
+      "ticker": "NVR"
+    },
+    {
+      "cost": 0.06,
+      "date": "2026-11-02",
+      "dollars": 55.45,
+      "order_date": "2026-10-30",
+      "price_raw": 83.99,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "sell",
+      "ticker": "OMC"
+    },
+    {
+      "cost": 0.0,
+      "date": "2026-11-02",
+      "dollars": 3.58,
+      "order_date": "2026-10-30",
+      "price_raw": 58.78,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "sell",
+      "ticker": "PYPL"
+    },
+    {
+      "cost": 0.1,
+      "date": "2026-11-02",
+      "dollars": 101.46,
+      "order_date": "2026-10-30",
+      "price_raw": 76.82,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "buy",
+      "ticker": "SYF"
+    },
+    {
+      "cost": 3.46,
+      "date": "2026-11-02",
+      "dollars": 3464.64,
+      "order_date": "2026-10-30",
+      "price_raw": 21.44,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "buy",
+      "ticker": "T"
+    },
+    {
+      "cost": 0.18,
+      "date": "2026-11-02",
+      "dollars": 182.73,
+      "order_date": "2026-10-30",
+      "price_raw": 43.23,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "sell",
+      "ticker": "TAP"
+    },
+    {
+      "cost": 0.07,
+      "date": "2026-11-02",
+      "dollars": 70.9,
+      "order_date": "2026-10-30",
+      "price_raw": 50.17,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "buy",
+      "ticker": "TFC"
+    },
+    {
+      "cost": 3.46,
+      "date": "2026-11-02",
+      "dollars": 3464.64,
+      "order_date": "2026-10-30",
+      "price_raw": 160.15,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "buy",
+      "ticker": "TMUS"
+    },
+    {
+      "cost": 0.22,
+      "date": "2026-11-02",
+      "dollars": 218.38,
+      "order_date": "2026-10-30",
+      "price_raw": 12.55,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "buy",
+      "ticker": "TTD"
+    },
+    {
+      "cost": 0.23,
+      "date": "2026-11-02",
+      "dollars": 234.14,
+      "order_date": "2026-10-30",
+      "price_raw": 180.65,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "buy",
+      "ticker": "UHS"
+    },
+    {
+      "cost": 0.14,
+      "date": "2026-11-02",
+      "dollars": 143.15,
+      "order_date": "2026-10-30",
+      "price_raw": 198.13,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "buy",
+      "ticker": "WDAY"
+    },
+    {
+      "cost": 0.33,
+      "date": "2026-11-02",
+      "dollars": 330.13,
+      "order_date": "2026-10-30",
+      "price_raw": 83.18,
+      "reason": "rebalance shy v2026-09-13 as_of 2026-10-30",
+      "side": "sell",
+      "ticker": "ZTS"
     }
   ],
   "desk_notes": [
@@ -1843,6 +2343,253 @@
       "vetoes": [],
       "rule_messages": [
         "not a month-end"
+      ]
+    },
+    {
+      "generated": "2026-10-09",
+      "as_of": "2026-10-09",
+      "strategy": "shy v2026-09-13",
+      "status": "no-rebalance-tonight",
+      "note": "",
+      "verdicts": [],
+      "vetoes": [],
+      "rule_messages": [
+        "not a month-end"
+      ]
+    },
+    {
+      "generated": "2026-10-12",
+      "as_of": "2026-10-12",
+      "strategy": "shy v2026-09-13",
+      "status": "no-rebalance-tonight",
+      "note": "",
+      "verdicts": [],
+      "vetoes": [],
+      "rule_messages": [
+        "not a month-end"
+      ]
+    },
+    {
+      "generated": "2026-10-13",
+      "as_of": "2026-10-13",
+      "strategy": "shy v2026-09-13",
+      "status": "no-rebalance-tonight",
+      "note": "",
+      "verdicts": [],
+      "vetoes": [],
+      "rule_messages": [
+        "not a month-end"
+      ]
+    },
+    {
+      "generated": "2026-10-14",
+      "as_of": "2026-10-14",
+      "strategy": "shy v2026-09-13",
+      "status": "no-rebalance-tonight",
+      "note": "",
+      "verdicts": [],
+      "vetoes": [],
+      "rule_messages": [
+        "not a month-end"
+      ]
+    },
+    {
+      "generated": "2026-10-15",
+      "as_of": "2026-10-15",
+      "strategy": "shy v2026-09-13",
+      "status": "no-rebalance-tonight",
+      "note": "",
+      "verdicts": [],
+      "vetoes": [],
+      "rule_messages": [
+        "not a month-end"
+      ]
+    },
+    {
+      "generated": "2026-10-16",
+      "as_of": "2026-10-16",
+      "strategy": "shy v2026-09-13",
+      "status": "no-rebalance-tonight",
+      "note": "",
+      "verdicts": [],
+      "vetoes": [],
+      "rule_messages": [
+        "not a month-end"
+      ]
+    },
+    {
+      "generated": "2026-10-19",
+      "as_of": "2026-10-19",
+      "strategy": "shy v2026-09-13",
+      "status": "no-rebalance-tonight",
+      "note": "",
+      "verdicts": [],
+      "vetoes": [],
+      "rule_messages": [
+        "not a month-end"
+      ]
+    },
+    {
+      "generated": "2026-10-20",
+      "as_of": "2026-10-20",
+      "strategy": "shy v2026-09-13",
+      "status": "no-rebalance-tonight",
+      "note": "",
+      "verdicts": [],
+      "vetoes": [],
+      "rule_messages": [
+        "not a month-end"
+      ]
+    },
+    {
+      "generated": "2026-10-21",
+      "as_of": "2026-10-21",
+      "strategy": "shy v2026-09-13",
+      "status": "no-rebalance-tonight",
+      "note": "",
+      "verdicts": [],
+      "vetoes": [],
+      "rule_messages": [
+        "not a month-end"
+      ]
+    },
+    {
+      "generated": "2026-10-22",
+      "as_of": "2026-10-22",
+      "strategy": "shy v2026-09-13",
+      "status": "no-rebalance-tonight",
+      "note": "",
+      "verdicts": [],
+      "vetoes": [],
+      "rule_messages": [
+        "not a month-end"
+      ]
+    },
+    {
+      "generated": "2026-10-23",
+      "as_of": "2026-10-23",
+      "strategy": "shy v2026-09-13",
+      "status": "no-rebalance-tonight",
+      "note": "",
+      "verdicts": [],
+      "vetoes": [],
+      "rule_messages": [
+        "not a month-end"
+      ]
+    },
+    {
+      "generated": "2026-10-26",
+      "as_of": "2026-10-26",
+      "strategy": "shy v2026-09-13",
+      "status": "no-rebalance-tonight",
+      "note": "",
+      "verdicts": [],
+      "vetoes": [],
+      "rule_messages": [
+        "not a month-end"
+      ]
+    },
+    {
+      "generated": "2026-10-27",
+      "as_of": "2026-10-27",
+      "strategy": "shy v2026-09-13",
+      "status": "no-rebalance-tonight",
+      "note": "",
+      "verdicts": [],
+      "vetoes": [],
+      "rule_messages": [
+        "not a month-end"
+      ]
+    },
+    {
+      "generated": "2026-10-28",
+      "as_of": "2026-10-28",
+      "strategy": "shy v2026-09-13",
+      "status": "no-rebalance-tonight",
+      "note": "",
+      "verdicts": [],
+      "vetoes": [],
+      "rule_messages": [
+        "not a month-end"
+      ]
+    },
+    {
+      "generated": "2026-10-29",
+      "as_of": "2026-10-29",
+      "strategy": "shy v2026-09-13",
+      "status": "no-rebalance-tonight",
+      "note": "",
+      "verdicts": [],
+      "vetoes": [],
+      "rule_messages": [
+        "not a month-end"
+      ]
+    },
+    {
+      "generated": "2026-10-30",
+      "as_of": "2026-10-30",
+      "strategy": "shy v2026-09-13",
+      "status": "ok",
+      "note": "The book holds 30 large, mature companies that return a lot of cash to shareholders through buybacks and dividends. Consumer Discretionary is 23%, Communication Services 20%, Information Technology 17% and Financials 17%. Six names enter: Charter, AT&T, Booking, MGM Resorts, Bank of America and T-Mobile. Six leave: ACGL, ADBE, AIG, EFX, EG and HCA. Most of the departures are insurers, and the entries add telecom and cable. Three US wireless and broadband carriers would together take about 10% of the book, so it would depend heavily on one industry. Charter is vetoed. Its Cox acquisition and its Liberty Broadband merger both closed on Aug. 20, 2026. Charter retired 38.6 million shares in that deal, which probably inflates its 35% shareholder yield, and its trailing figures cover the company before the merger. The membership snapshot is 122 days old.",
+      "verdicts": [
+        {
+          "ticker": "CHTR",
+          "action": "veto",
+          "category": "merger_distorts_fundamentals",
+          "reason": "Closed its Cox Communications acquisition and its Liberty Broadband merger on Aug. 20, 2026. Its trailing figures predate the combined company. Retiring about 38.6 million shares formerly held by Liberty Broadband probably inflates the 35% shareholder yield, which is far above any other name's.",
+          "source": "https://lightreading.com/cable-technology/charter-wraps-cox-and-liberty-broadband-transactions"
+        },
+        {
+          "ticker": "T",
+          "action": "keep",
+          "category": "none",
+          "reason": "Q3 2026 results beat expectations and the outlook was raised. A fiber joint venture stake is not a merger of AT&T itself. Nothing found that meets a veto criterion.",
+          "source": ""
+        },
+        {
+          "ticker": "BKNG",
+          "action": "keep",
+          "category": "none",
+          "reason": "Q3 results are due Nov. 3 and the stock is near its yearly low. Nothing found that meets a veto criterion.",
+          "source": ""
+        },
+        {
+          "ticker": "MGM",
+          "action": "keep",
+          "category": "none",
+          "reason": "Q3 2026 results were filed Oct. 28, alongside an amended voting agreement and support for buybacks. Nothing found that meets a veto criterion.",
+          "source": ""
+        },
+        {
+          "ticker": "BAC",
+          "action": "keep",
+          "category": "none",
+          "reason": "Q3 2026 net income was $6.9 billion. Nothing found that meets a veto criterion.",
+          "source": ""
+        },
+        {
+          "ticker": "TMUS",
+          "action": "flag",
+          "category": "none",
+          "reason": "No veto criterion found. Flagged because it lifts combined carrier exposure (AT&T, T-Mobile and Charter) to about 10% of the book. Q3 results came out Oct. 28 and were not reviewed.",
+          "source": ""
+        }
+      ],
+      "vetoes": [
+        "CHTR"
+      ],
+      "rule_messages": []
+    },
+    {
+      "generated": "2026-11-03",
+      "as_of": "2026-11-03",
+      "strategy": "shy v2026-09-13",
+      "status": "no-rebalance-tonight",
+      "note": "",
+      "verdicts": [],
+      "vetoes": [],
+      "rule_messages": [
+        "orders already pending"
       ]
     }
   ]

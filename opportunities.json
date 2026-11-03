@@ -1,20 +1,21 @@
 {
   "coverage": {
+    "additional_candidates": 11,
     "by_sector": {
       "Communication Services": {
         "complete": 5,
-        "eligible": 13,
+        "eligible": 12,
         "ranked": 0
       },
       "Consumer Discretionary": {
-        "complete": 46,
-        "eligible": 75,
-        "ranked": 46
+        "complete": 47,
+        "eligible": 78,
+        "ranked": 47
       },
       "Consumer Staples": {
-        "complete": 29,
-        "eligible": 33,
-        "ranked": 29
+        "complete": 26,
+        "eligible": 30,
+        "ranked": 26
       },
       "Energy": {
         "complete": 0,
@@ -32,14 +33,14 @@
         "ranked": 36
       },
       "Industrials": {
-        "complete": 60,
-        "eligible": 106,
-        "ranked": 60
+        "complete": 64,
+        "eligible": 110,
+        "ranked": 64
       },
       "Information Technology": {
-        "complete": 66,
+        "complete": 68,
         "eligible": 84,
-        "ranked": 66
+        "ranked": 68
       },
       "Materials": {
         "complete": 0,
@@ -58,44 +59,990 @@
       }
     },
     "queues": {
-      "queue:banks-insurers": 207,
+      "queue:banks-insurers": 208,
       "queue:binary-event": 7,
-      "queue:cyclical": 128,
-      "queue:data-repair": 329,
+      "queue:cyclical": 123,
+      "queue:data-repair": 327,
       "queue:duplicate-issuer-line": 6,
-      "queue:emerging": 63,
-      "queue:hard-rule-excluded": 209,
-      "queue:margin-volatile": 86,
+      "queue:emerging": 65,
+      "queue:hard-rule-excluded": 208,
+      "queue:margin-volatile": 92,
       "queue:reits": 79,
-      "queue:scope-break": 94,
+      "queue:scope-break": 88,
       "queue:sector-too-small": 8,
-      "queue:young-listing": 53
+      "queue:young-listing": 54
     },
-    "ranked": 237,
+    "ranked": 241,
     "universe": 1506,
-    "v2_eligible": 361
+    "v2_eligible": 364
   },
-  "decisions": [],
-  "engine_version": "89461e09e014c9a0b21b59d8bc920a616a10a659",
+  "decisions": [
+    {
+      "changed_since_prior": "The price moved from $274.37 on Oct. 30, 2026, to $269.35, a decline of 1.8%. A newer filing, for the period ended Sept. 27, 2026, updated the facts.",
+      "cohort": "v2",
+      "company": "Teradyne",
+      "decisive_facts": [
+        {
+          "as_of": "2026-09-27",
+          "evidence_id": "dv:7001647d86bdf8b705d6e4db9049d956",
+          "label": "One-year change in sales per diluted share",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/97210/000119312526441091/0001193125-26-441091-index.htm",
+          "unit": "percent",
+          "value": 78.7
+        },
+        {
+          "as_of": "2026-09-27",
+          "evidence_id": "dv:c295f8ff71100d9ddddccf4c7200c46a",
+          "label": "One-year change in operating margin",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/97210/000119312526441091/0001193125-26-441091-index.htm",
+          "unit": "percentage_points",
+          "value": 14.3
+        },
+        {
+          "as_of": "2026-09-27",
+          "evidence_id": "dv:1e18c4ca6c0e11617616e478726bf85c",
+          "label": "Free cash flow margin",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/97210/000119312526441091/0001193125-26-441091-index.htm",
+          "unit": "percent",
+          "value": 20.5
+        }
+      ],
+      "evidence_review": {
+        "evidence_hash": "sha256:5180c8edf01c75ddea96fee3a9a6c35ab28a736449c2188b9b5569c4de5fd9c7",
+        "model_class": "cached",
+        "status": "clear"
+      },
+      "evidence_status": "verified",
+      "horizon_months": [
+        6,
+        36
+      ],
+      "invalidation": [
+        "Net margin falls below the bear case's 15.5% for two quarters in a row.",
+        "Revenue grows more slowly than the bear case's 16.0% a year over four reported quarters.",
+        "The diluted share count shrinks more slowly than the bear case's 1.0% a year.",
+        "Customer concentration in AI-driven demand could permanently cut earnings power if a few large buyers reduce orders, a serious risk.",
+        "Acquisition benefits may not materialize, but the filing calls recent deals immaterial, so permanent per-share impairment risk looks modest.",
+        "Cyclical industry swings could reverse the current surge and sharply compress margins, a material but recoverable risk."
+      ],
+      "investment_opinion": "buy_candidate",
+      "main_downside": "Cash conversion weakened versus last year while payables and receivables ballooned, so reported cash flow may be propped up by payables that can unwind, and the goodwill test failed.",
+      "next_event": null,
+      "price": {
+        "currency": "USD",
+        "independent_check": "pass",
+        "session": "2026-11-03",
+        "value": 269.35
+      },
+      "rank": 1,
+      "scenario": {
+        "assumptions": [
+          {
+            "basis": "Base revenue growth 24.0% -8% (bear offset, valuation.json).",
+            "case": "bear",
+            "input": "revenue_growth",
+            "source": "assumption",
+            "value": 0.159734
+          },
+          {
+            "basis": "Lowest TTM net margin in the prior 5 fiscal years (2025-09-28), below 0.75 x TTM.",
+            "case": "bear",
+            "input": "net_margin_3",
+            "source": "reported",
+            "value": 0.154946
+          },
+          {
+            "basis": "Base dilution -2.0% +1% a year (bear offset, valuation.json).",
+            "case": "bear",
+            "input": "annual_dilution",
+            "source": "assumption",
+            "value": -0.010068
+          },
+          {
+            "basis": "TTM dividends paid / TTM net income ended 2026-09-27.",
+            "case": "bear",
+            "input": "payout_ratio",
+            "source": "reported",
+            "value": 0.058091
+          },
+          {
+            "basis": "max(8, 0.7 x base P/E 30.0).",
+            "case": "bear",
+            "input": "terminal_pe",
+            "source": "assumption",
+            "value": 21.0
+          },
+          {
+            "basis": "0.5 x same-period consensus revenue growth for the fiscal year ending 2027-12-31 (annualized over 2 yr from reported 2025-12-31, 17 analysts) of 42.9% + 0.5 x assumed 5.0% long-run nominal growth, clamped to [-5.0%, 25.0%].",
+            "case": "base",
+            "input": "revenue_growth",
+            "source": "assumption",
+            "value": 0.239734
+          },
+          {
+            "basis": "TTM net margin ended 2026-09-27, held for year 3.",
+            "case": "base",
+            "input": "net_margin_3",
+            "source": "reported",
+            "value": 0.274571
+          },
+          {
+            "basis": "Annualized change in fiscal-year diluted weighted-average shares over 3 years, FY ended 2022-12-31 to FY ended 2025-12-31.",
+            "case": "base",
+            "input": "annual_dilution",
+            "source": "reported",
+            "value": -0.020068
+          },
+          {
+            "basis": "TTM dividends paid / TTM net income ended 2026-09-27.",
+            "case": "base",
+            "input": "payout_ratio",
+            "source": "reported",
+            "value": 0.058091
+          },
+          {
+            "basis": "Median month-end P/E 34.9 over 5 years clamped to [10, 30].",
+            "case": "base",
+            "input": "terminal_pe",
+            "source": "assumption",
+            "value": 30.0
+          },
+          {
+            "basis": "Base revenue growth 24.0% +5% (bull offset, valuation.json).",
+            "case": "bull",
+            "input": "revenue_growth",
+            "source": "assumption",
+            "value": 0.289734
+          },
+          {
+            "basis": "Highest TTM net margin in the prior 5 fiscal years (2021-10-03).",
+            "case": "bull",
+            "input": "net_margin_3",
+            "source": "reported",
+            "value": 0.275911
+          },
+          {
+            "basis": "Annualized change in fiscal-year diluted weighted-average shares over 3 years, FY ended 2022-12-31 to FY ended 2025-12-31.",
+            "case": "bull",
+            "input": "annual_dilution",
+            "source": "reported",
+            "value": -0.020068
+          },
+          {
+            "basis": "TTM dividends paid / TTM net income ended 2026-09-27.",
+            "case": "bull",
+            "input": "payout_ratio",
+            "source": "reported",
+            "value": 0.058091
+          },
+          {
+            "basis": "min(35, 1.15 x base P/E 30.0).",
+            "case": "bull",
+            "input": "terminal_pe",
+            "source": "assumption",
+            "value": 34.5
+          }
+        ],
+        "assumptions_version": "valuation-2026-09-13",
+        "base_irr_pct": 25.5,
+        "bear_irr_pct": -14.7,
+        "bull_irr_pct": 37.0,
+        "hurdle_pct": 12.0,
+        "max_entry_price": 378.55,
+        "reverse_requirement": "To earn the 12% hurdle from $269.35, revenue would need to grow 10.7% a year with the other base-case inputs held. With base-case growth instead, the year-three net margin would need to reach 19.5%.",
+        "spy_base_assumption_pct": 7.0,
+        "stress_classification": "robust",
+        "stress_sentence": "The base case remains above the hurdle after a moderate joint cut to margin, net share reduction and terminal multiple. The moderate joint case returns 16.7% a year against a 12% hurdle. 36 of 60 combinations still clear the hurdle."
+      },
+      "sector": "Information Technology",
+      "ticker": "TER",
+      "watch_price": null,
+      "why_now": [
+        "Sales per diluted share rose 78.7% from a year earlier, and operating margin widened by 14.3 percentage points.",
+        "Surging AI-related memory and compute demand lifted Semiconductor Test sales while selling and engineering costs fell as a share of revenue, producing operating leverage on a steady gross margin."
+      ]
+    },
+    {
+      "changed_since_prior": "The price moved from $204.64 on Oct. 30, 2026, to $206.69, a gain of 1.0%. The opinion and the filing facts are unchanged.",
+      "cohort": "v2",
+      "company": "Nvidia",
+      "decisive_facts": [
+        {
+          "as_of": "2026-07-26",
+          "evidence_id": "dv:36f984d2c525724d8cb9a6193ae6797d",
+          "label": "One-year change in sales per diluted share",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/0001045810-26-000075-index.htm",
+          "unit": "percent",
+          "value": 85.3
+        },
+        {
+          "as_of": "2026-07-26",
+          "evidence_id": "dv:a5d999b55228ac3ea0d8ae05cae9885c",
+          "label": "One-year change in operating margin",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/0001045810-26-000075-index.htm",
+          "unit": "percentage_points",
+          "value": 7.1
+        },
+        {
+          "as_of": "2026-07-26",
+          "evidence_id": "dv:ad27f41a7fd76b400626d0122e0fee6f",
+          "label": "Free cash flow margin",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/0001045810-26-000075-index.htm",
+          "unit": "percent",
+          "value": 41.9
+        }
+      ],
+      "evidence_review": {
+        "evidence_hash": "sha256:47117f1751e84066b54878ee04fcb69a32e04d79fbc6477a4d88ff6aa9ec2c3b",
+        "model_class": "cached",
+        "status": "clear"
+      },
+      "evidence_status": "verified",
+      "horizon_months": [
+        6,
+        36
+      ],
+      "invalidation": [
+        "Net margin falls below the bear case's 16.2% for two quarters in a row.",
+        "Revenue grows more slowly than the bear case's 17.0% a year over four reported quarters.",
+        "The diluted share count grows faster than the bear case's 0.3% a year.",
+        "Newly added commitments and residual-value support for partner financing could create counterparty losses that permanently reduce per-share earnings power.",
+        "Export licensing, tariffs that cannot be passed to customers, and political actions could durably cut China revenue and margins.",
+        "Newly flagged indebtedness could raise fixed costs and constrain cash flows, though current cash generation limits the near-term severity."
+      ],
+      "investment_opinion": "buy_candidate",
+      "main_downside": "Cash conversion weakened as receivables absorbed large cash and customer advances rose, a working-capital swing that could reverse and overstate sustainable cash flow.",
+      "next_event": null,
+      "price": {
+        "currency": "USD",
+        "independent_check": "pass",
+        "session": "2026-11-03",
+        "value": 206.69
+      },
+      "rank": 3,
+      "scenario": {
+        "assumptions": [
+          {
+            "basis": "Base revenue growth 25.0% -8% (bear offset, valuation.json).",
+            "case": "bear",
+            "input": "revenue_growth",
+            "source": "assumption",
+            "value": 0.17
+          },
+          {
+            "basis": "Lowest TTM net margin in the prior 5 fiscal years (2023-01-29), below 0.75 x TTM.",
+            "case": "bear",
+            "input": "net_margin_3",
+            "source": "reported",
+            "value": 0.161934
+          },
+          {
+            "basis": "Base dilution -0.7% +1% a year (bear offset, valuation.json).",
+            "case": "bear",
+            "input": "annual_dilution",
+            "source": "assumption",
+            "value": 0.002552
+          },
+          {
+            "basis": "TTM dividends paid / TTM net income ended 2026-07-26.",
+            "case": "bear",
+            "input": "payout_ratio",
+            "source": "reported",
+            "value": 0.034887
+          },
+          {
+            "basis": "max(8, 0.7 x base P/E 30.0).",
+            "case": "bear",
+            "input": "terminal_pe",
+            "source": "assumption",
+            "value": 21.0
+          },
+          {
+            "basis": "0.5 x same-period consensus revenue growth for the fiscal year ending 2028-01-31 (annualized over 2 yr from reported 2026-01-25, 57 analysts) of 79.0% + 0.5 x assumed 5.0% long-run nominal growth, clamped to [-5.0%, 25.0%].",
+            "case": "base",
+            "input": "revenue_growth",
+            "source": "assumption",
+            "value": 0.25
+          },
+          {
+            "basis": "TTM net margin ended 2026-07-26, held for year 3.",
+            "case": "base",
+            "input": "net_margin_3",
+            "source": "reported",
+            "value": 0.636629
+          },
+          {
+            "basis": "Annualized change in fiscal-year diluted weighted-average shares over 3 years, FY ended 2023-01-29 to FY ended 2026-01-25.",
+            "case": "base",
+            "input": "annual_dilution",
+            "source": "reported",
+            "value": -0.007448
+          },
+          {
+            "basis": "TTM dividends paid / TTM net income ended 2026-07-26.",
+            "case": "base",
+            "input": "payout_ratio",
+            "source": "reported",
+            "value": 0.034887
+          },
+          {
+            "basis": "Median month-end P/E 56.6 over 5 years clamped to [10, 30].",
+            "case": "base",
+            "input": "terminal_pe",
+            "source": "assumption",
+            "value": 30.0
+          },
+          {
+            "basis": "Base revenue growth 25.0% +5% (bull offset, valuation.json).",
+            "case": "bull",
+            "input": "revenue_growth",
+            "source": "assumption",
+            "value": 0.3
+          },
+          {
+            "basis": "Highest TTM net margin in the prior 5 fiscal years (2026-07-26).",
+            "case": "bull",
+            "input": "net_margin_3",
+            "source": "reported",
+            "value": 0.636629
+          },
+          {
+            "basis": "Annualized change in fiscal-year diluted weighted-average shares over 3 years, FY ended 2023-01-29 to FY ended 2026-01-25.",
+            "case": "bull",
+            "input": "annual_dilution",
+            "source": "reported",
+            "value": -0.007448
+          },
+          {
+            "basis": "TTM dividends paid / TTM net income ended 2026-07-26.",
+            "case": "bull",
+            "input": "payout_ratio",
+            "source": "reported",
+            "value": 0.034887
+          },
+          {
+            "basis": "min(35, 1.15 x base P/E 30.0).",
+            "case": "bull",
+            "input": "terminal_pe",
+            "source": "assumption",
+            "value": 34.5
+          }
+        ],
+        "assumptions_version": "valuation-2026-09-13",
+        "base_irr_pct": 32.0,
+        "bear_irr_pct": -31.1,
+        "bull_irr_pct": 43.8,
+        "hurdle_pct": 12.0,
+        "max_entry_price": 338.25,
+        "reverse_requirement": "To earn the 12% hurdle from $206.69, revenue would need to grow 6.1% a year with the other base-case inputs held. With base-case growth instead, the year-three net margin would need to reach 38.9%.",
+        "spy_base_assumption_pct": 7.0,
+        "stress_classification": "robust",
+        "stress_sentence": "The base case remains above the hurdle after a moderate joint cut to margin, net share reduction and terminal multiple. The moderate joint case returns 23.5% a year against a 12% hurdle. 51 of 60 combinations still clear the hurdle."
+      },
+      "sector": "Information Technology",
+      "ticker": "NVDA",
+      "watch_price": null,
+      "why_now": [
+        "Sales per diluted share rose 85.3% from a year earlier, and operating margin widened by 7.1 percentage points.",
+        "Revenue growth from the Blackwell Ultra and Blackwell ramps drove segment operating income higher, lifting sales per share and margin."
+      ]
+    },
+    {
+      "changed_since_prior": "The price moved from $136.08 on Oct. 30, 2026, to $128.11, a decline of 5.9%. The opinion changed from watch below $85.67 to watch below $85.73.",
+      "cohort": "v2",
+      "company": "Fortinet",
+      "decisive_facts": [
+        {
+          "as_of": "2026-06-30",
+          "evidence_id": "dv:35a3978a9ac858f56476e2279c7779ff",
+          "label": "One-year change in sales per diluted share",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/1262039/000126203926000021/0001262039-26-000021-index.htm",
+          "unit": "percent",
+          "value": 22.9
+        },
+        {
+          "as_of": "2026-06-30",
+          "evidence_id": "dv:30801c07fb7282d853f72e2cbe727cd6",
+          "label": "One-year change in operating margin",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/1262039/000126203926000021/0001262039-26-000021-index.htm",
+          "unit": "percentage_points",
+          "value": 1.6
+        },
+        {
+          "as_of": "2026-06-30",
+          "evidence_id": "dv:5a2641011ec8fcd5a3c77fe035afe707",
+          "label": "Free cash flow margin",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/1262039/000126203926000021/0001262039-26-000021-index.htm",
+          "unit": "percent",
+          "value": 41.4
+        }
+      ],
+      "evidence_review": {
+        "evidence_hash": "sha256:992ba7522ea8f96c3454de87790aff6ede6dfa693bd1d507256f7c2f211f3d04",
+        "model_class": "economical",
+        "status": "clear"
+      },
+      "evidence_status": "verified",
+      "horizon_months": [
+        6,
+        36
+      ],
+      "invalidation": [
+        "Net margin falls below the bear case's 17.7% for two quarters in a row.",
+        "Revenue grows more slowly than the bear case's 2.4% a year over four reported quarters.",
+        "The diluted share count shrinks more slowly than the bear case's 0.7% a year.",
+        "Reliance on channel partners and a single distributor holding a large receivables share could permanently hurt earnings power if that relationship weakens.",
+        "Failure to integrate acquired businesses could erode returns on goodwill that has grown, though the acquiree results are described as immaterial.",
+        "Trade agreement changes and tariffs could structurally raise costs or reduce international demand, which is a moderate lasting risk to margins."
+      ],
+      "investment_opinion": "watch_below",
+      "main_downside": "Cash flow strength leans on customer advance swings and payables growth that can reverse, and the goodwill test failed, so acquisitions may contribute more than the filing suggests.",
+      "next_event": null,
+      "price": {
+        "currency": "USD",
+        "independent_check": "pass",
+        "session": "2026-11-03",
+        "value": 128.11
+      },
+      "rank": 4,
+      "scenario": {
+        "assumptions": [
+          {
+            "basis": "Base revenue growth 10.4% -8% (bear offset, valuation.json).",
+            "case": "bear",
+            "input": "revenue_growth",
+            "source": "assumption",
+            "value": 0.023747
+          },
+          {
+            "basis": "Lowest TTM net margin in the prior 5 fiscal years (2022-06-30), below 0.75 x TTM.",
+            "case": "bear",
+            "input": "net_margin_3",
+            "source": "reported",
+            "value": 0.176639
+          },
+          {
+            "basis": "Base dilution -1.7% +1% a year (bear offset, valuation.json).",
+            "case": "bear",
+            "input": "annual_dilution",
+            "source": "assumption",
+            "value": -0.007139
+          },
+          {
+            "basis": "No non-zero dividend payment is reported for any period in the past 5 fiscal years; zero payout assumed (it can only lower the return).",
+            "case": "bear",
+            "input": "payout_ratio",
+            "source": "assumption",
+            "value": 0.0
+          },
+          {
+            "basis": "max(8, 0.7 x base P/E 30.0).",
+            "case": "bear",
+            "input": "terminal_pe",
+            "source": "assumption",
+            "value": 21.0
+          },
+          {
+            "basis": "0.5 x same-period consensus revenue growth for the fiscal year ending 2027-12-31 (annualized over 2 yr from reported 2025-12-31, 43 analysts) of 15.7% + 0.5 x assumed 5.0% long-run nominal growth, clamped to [-5.0%, 25.0%].",
+            "case": "base",
+            "input": "revenue_growth",
+            "source": "assumption",
+            "value": 0.103747
+          },
+          {
+            "basis": "TTM net margin ended 2026-06-30, held for year 3.",
+            "case": "base",
+            "input": "net_margin_3",
+            "source": "reported",
+            "value": 0.281731
+          },
+          {
+            "basis": "Annualized change in fiscal-year diluted weighted-average shares over 3 years, FY ended 2022-12-31 to FY ended 2025-12-31.",
+            "case": "base",
+            "input": "annual_dilution",
+            "source": "reported",
+            "value": -0.017139
+          },
+          {
+            "basis": "No non-zero dividend payment is reported for any period in the past 5 fiscal years; zero payout assumed (it can only lower the return).",
+            "case": "base",
+            "input": "payout_ratio",
+            "source": "assumption",
+            "value": 0.0
+          },
+          {
+            "basis": "Median month-end P/E 47.3 over 5 years clamped to [10, 30].",
+            "case": "base",
+            "input": "terminal_pe",
+            "source": "assumption",
+            "value": 30.0
+          },
+          {
+            "basis": "Base revenue growth 10.4% +5% (bull offset, valuation.json).",
+            "case": "bull",
+            "input": "revenue_growth",
+            "source": "assumption",
+            "value": 0.153747
+          },
+          {
+            "basis": "Highest TTM net margin in the prior 5 fiscal years (2025-06-30).",
+            "case": "bull",
+            "input": "net_margin_3",
+            "source": "reported",
+            "value": 0.306032
+          },
+          {
+            "basis": "Annualized change in fiscal-year diluted weighted-average shares over 3 years, FY ended 2022-12-31 to FY ended 2025-12-31.",
+            "case": "bull",
+            "input": "annual_dilution",
+            "source": "reported",
+            "value": -0.017139
+          },
+          {
+            "basis": "No non-zero dividend payment is reported for any period in the past 5 fiscal years; zero payout assumed (it can only lower the return).",
+            "case": "bull",
+            "input": "payout_ratio",
+            "source": "assumption",
+            "value": 0.0
+          },
+          {
+            "basis": "min(35, 1.15 x base P/E 30.0).",
+            "case": "bull",
+            "input": "terminal_pe",
+            "source": "assumption",
+            "value": 34.5
+          }
+        ],
+        "assumptions_version": "valuation-2026-09-13",
+        "base_irr_pct": -2.0,
+        "bear_irr_pct": -31.6,
+        "bull_irr_pct": 10.3,
+        "hurdle_pct": 12.0,
+        "max_entry_price": 85.74,
+        "reverse_requirement": "To earn the 12% hurdle from $128.11, revenue would need to grow 26.2% a year with the other base-case inputs held. With base-case growth instead, the year-three net margin would need to reach 42.1%.",
+        "spy_base_assumption_pct": 7.0,
+        "stress_classification": "base_below_hurdle",
+        "stress_sentence": "The published base case itself is below the hurdle, so joint stress is not a second test. The moderate joint case returns negative 8.8% a year against a 12% hurdle. 0 of 60 combinations still clear the hurdle."
+      },
+      "sector": "Information Technology",
+      "ticker": "FTNT",
+      "watch_price": 85.73,
+      "why_now": [
+        "Sales per diluted share rose 22.9% from a year earlier, and operating margin widened by 1.6 percentage points.",
+        "Higher hardware unit shipments, better average selling prices and pricing actions lifted product revenue, while growing deferred revenue supported service revenue, which together drove sales per share and operating profit."
+      ]
+    },
+    {
+      "changed_since_prior": "The price moved from $300.84 on Oct. 30, 2026, to $312.49, a gain of 3.9%. The opinion and the filing facts are unchanged.",
+      "cohort": "v2",
+      "company": "Texas Instruments",
+      "decisive_facts": [
+        {
+          "as_of": "2026-09-30",
+          "evidence_id": "dv:0b9bbb4ad38d4f9b8151ab357bfb2c19",
+          "label": "One-year change in sales per diluted share",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/97476/000009747626000169/0000097476-26-000169-index.htm",
+          "unit": "percent",
+          "value": 20.1
+        },
+        {
+          "as_of": "2026-09-30",
+          "evidence_id": "dv:12ce22c0e7674d04a6ffd5f4ad3ea817",
+          "label": "One-year change in operating margin",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/97476/000009747626000169/0000097476-26-000169-index.htm",
+          "unit": "percentage_points",
+          "value": 6.4
+        },
+        {
+          "as_of": "2026-09-30",
+          "evidence_id": "dv:d85df75ba45d1b2e3235905efca6822c",
+          "label": "Free cash flow margin",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/97476/000009747626000169/0000097476-26-000169-index.htm",
+          "unit": "percent",
+          "value": 35.2
+        }
+      ],
+      "evidence_review": {
+        "evidence_hash": "sha256:bbc4eff50bf8cd9777e1de87650cffb4bcc1f6c06daebe660d5bcc7817483eca",
+        "model_class": "cached",
+        "status": "clear"
+      },
+      "evidence_status": "verified",
+      "horizon_months": [
+        6,
+        36
+      ],
+      "invalidation": [
+        "Net margin falls below the bear case's 25.7% for two quarters in a row.",
+        "Revenue grows more slowly than the bear case's 5.4% a year over four reported quarters.",
+        "The diluted share count grows faster than the bear case's 0.5% a year.",
+        "Demand swings in the semiconductor cycle could cut loadings and, with a largely fixed cost base, permanently compress margins and earnings power.",
+        "Intense competition could erode pricing and share, a moderate risk to per-share earnings power given the current high margins.",
+        "Debt could constrain flexibility and raise interest burden, a moderate risk given the planned acquisition and rising interest expense."
+      ],
+      "investment_opinion": "watch_below",
+      "main_downside": "Part of the operating cash flow gain came from lower cash used for working capital, which could reverse, though receivables still consumed cash and conversion stays above parity.",
+      "next_event": null,
+      "price": {
+        "currency": "USD",
+        "independent_check": "pass",
+        "session": "2026-11-03",
+        "value": 312.49
+      },
+      "rank": 8,
+      "scenario": {
+        "assumptions": [
+          {
+            "basis": "Base revenue growth 13.4% -8% (bear offset, valuation.json).",
+            "case": "bear",
+            "input": "revenue_growth",
+            "source": "assumption",
+            "value": 0.054126
+          },
+          {
+            "basis": "0.75 x TTM net margin 34.3%, below the 5-year low of 28.3%.",
+            "case": "bear",
+            "input": "net_margin_3",
+            "source": "assumption",
+            "value": 0.256898
+          },
+          {
+            "basis": "Base dilution -0.5% +1% a year (bear offset, valuation.json).",
+            "case": "bear",
+            "input": "annual_dilution",
+            "source": "assumption",
+            "value": 0.005298
+          },
+          {
+            "basis": "TTM dividends paid / TTM net income ended 2026-09-30.",
+            "case": "bear",
+            "input": "payout_ratio",
+            "source": "reported",
+            "value": 0.727401
+          },
+          {
+            "basis": "max(8, 0.7 x base P/E 28.5).",
+            "case": "bear",
+            "input": "terminal_pe",
+            "source": "assumption",
+            "value": 19.93801
+          },
+          {
+            "basis": "0.5 x same-period consensus revenue growth for the fiscal year ending 2027-12-31 (annualized over 2 yr from reported 2025-12-31, 31 analysts) of 21.8% + 0.5 x assumed 5.0% long-run nominal growth, clamped to [-5.0%, 25.0%].",
+            "case": "base",
+            "input": "revenue_growth",
+            "source": "assumption",
+            "value": 0.134126
+          },
+          {
+            "basis": "TTM net margin ended 2026-09-30, held for year 3.",
+            "case": "base",
+            "input": "net_margin_3",
+            "source": "reported",
+            "value": 0.342531
+          },
+          {
+            "basis": "Annualized change in fiscal-year diluted weighted-average shares over 3 years, FY ended 2022-12-31 to FY ended 2025-12-31.",
+            "case": "base",
+            "input": "annual_dilution",
+            "source": "reported",
+            "value": -0.004702
+          },
+          {
+            "basis": "TTM dividends paid / TTM net income ended 2026-09-30.",
+            "case": "base",
+            "input": "payout_ratio",
+            "source": "reported",
+            "value": 0.727401
+          },
+          {
+            "basis": "Median of 60 month-end P/Es over 5 years: split-adjusted close over TTM diluted EPS on today's share basis, each period from its first report.",
+            "case": "base",
+            "input": "terminal_pe",
+            "source": "reported",
+            "value": 28.482871
+          },
+          {
+            "basis": "Base revenue growth 13.4% +5% (bull offset, valuation.json).",
+            "case": "bull",
+            "input": "revenue_growth",
+            "source": "assumption",
+            "value": 0.184126
+          },
+          {
+            "basis": "Highest TTM net margin in the prior 5 fiscal years (2022-09-30).",
+            "case": "bull",
+            "input": "net_margin_3",
+            "source": "reported",
+            "value": 0.442051
+          },
+          {
+            "basis": "Annualized change in fiscal-year diluted weighted-average shares over 3 years, FY ended 2022-12-31 to FY ended 2025-12-31.",
+            "case": "bull",
+            "input": "annual_dilution",
+            "source": "reported",
+            "value": -0.004702
+          },
+          {
+            "basis": "TTM dividends paid / TTM net income ended 2026-09-30.",
+            "case": "bull",
+            "input": "payout_ratio",
+            "source": "reported",
+            "value": 0.727401
+          },
+          {
+            "basis": "min(35, 1.15 x base P/E 28.5).",
+            "case": "bull",
+            "input": "terminal_pe",
+            "source": "assumption",
+            "value": 32.755301
+          }
+        ],
+        "assumptions_version": "valuation-2026-09-13",
+        "base_irr_pct": 3.9,
+        "bear_irr_pct": -22.4,
+        "bull_irr_pct": 23.4,
+        "hurdle_pct": 12.0,
+        "max_entry_price": 250.39,
+        "reverse_requirement": "To earn the 12% hurdle from $312.49, revenue would need to grow 22.3% a year with the other base-case inputs held. With base-case growth instead, the year-three net margin would need to reach 42.9%.",
+        "spy_base_assumption_pct": 7.0,
+        "stress_classification": "base_below_hurdle",
+        "stress_sentence": "The published base case itself is below the hurdle, so joint stress is not a second test. The moderate joint case returns negative 2.5% a year against a 12% hurdle. 0 of 60 combinations still clear the hurdle."
+      },
+      "sector": "Information Technology",
+      "ticker": "TXN",
+      "watch_price": 250.39,
+      "why_now": [
+        "Sales per diluted share rose 20.1% from a year earlier, and operating margin widened by 6.4 percentage points.",
+        "Higher analog and embedded demand lifted revenue and gross profit while fixed factory costs were spread over greater loadings, raising operating margin without reliance on one-off items."
+      ]
+    },
+    {
+      "changed_since_prior": "The price moved from $417.11 on Oct. 30, 2026, to $419.79, a gain of 0.6%. The opinion and the filing facts are unchanged.",
+      "cohort": "v2",
+      "company": "Analog Devices",
+      "decisive_facts": [
+        {
+          "as_of": "2026-08-01",
+          "evidence_id": "dv:bf52db33dfedd10a426c34b732a5057a",
+          "label": "One-year change in sales per diluted share",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/6281/000000628126000073/0000006281-26-000073-index.htm",
+          "unit": "percent",
+          "value": 35.6
+        },
+        {
+          "as_of": "2026-08-01",
+          "evidence_id": "dv:7272c73ccfce9418f18b54ebc0e113ed",
+          "label": "One-year change in operating margin",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/6281/000000628126000073/0000006281-26-000073-index.htm",
+          "unit": "percentage_points",
+          "value": 10.9
+        },
+        {
+          "as_of": "2026-08-01",
+          "evidence_id": "dv:70facd2151524b20bc94b8f2363feb74",
+          "label": "Free cash flow margin",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/6281/000000628126000073/0000006281-26-000073-index.htm",
+          "unit": "percent",
+          "value": 35.6
+        }
+      ],
+      "evidence_review": {
+        "evidence_hash": "sha256:57cd6be9fbb49fb2feec4975ce97852fe03e3734748241620644250da74a2125",
+        "model_class": "cached",
+        "status": "clear"
+      },
+      "evidence_status": "verified",
+      "horizon_months": [
+        6,
+        36
+      ],
+      "invalidation": [
+        "Net margin falls below the bear case's 15.2% for two quarters in a row.",
+        "Revenue grows more slowly than the bear case's 9.1% a year over four reported quarters.",
+        "The diluted share count shrinks more slowly than the bear case's 0.7% a year.",
+        "Substantial indebtedness, with commercial paper outstanding and acquisition spending, could constrain flexibility, but strong free cash flow makes permanent per-share impairment unlikely.",
+        "The newly flagged cyber risk could disrupt operations or expose data, a plausible but unquantified threat to earnings power.",
+        "Tariffs and trade restrictions could erode margins and demand, and the packet gives no quantification of exposure."
+      ],
+      "investment_opinion": "watch_below",
+      "main_downside": "Receivables rose sharply and operating capital absorbed cash, while year-to-date cash conversion fell, so reported cash strength could weaken if receivables stay elevated.",
+      "next_event": null,
+      "price": {
+        "currency": "USD",
+        "independent_check": "pass",
+        "session": "2026-11-03",
+        "value": 419.79
+      },
+      "rank": 9,
+      "scenario": {
+        "assumptions": [
+          {
+            "basis": "Base revenue growth 17.1% -8% (bear offset, valuation.json).",
+            "case": "bear",
+            "input": "revenue_growth",
+            "source": "assumption",
+            "value": 0.090948
+          },
+          {
+            "basis": "Lowest TTM net margin in the prior 5 fiscal years (2022-01-29), below 0.75 x TTM.",
+            "case": "bear",
+            "input": "net_margin_3",
+            "source": "reported",
+            "value": 0.151819
+          },
+          {
+            "basis": "Base dilution -1.7% +1% a year (bear offset, valuation.json).",
+            "case": "bear",
+            "input": "annual_dilution",
+            "source": "assumption",
+            "value": -0.007157
+          },
+          {
+            "basis": "TTM dividends paid / TTM net income ended 2026-08-01.",
+            "case": "bear",
+            "input": "payout_ratio",
+            "source": "reported",
+            "value": 0.494055
+          },
+          {
+            "basis": "max(8, 0.7 x base P/E 30.0).",
+            "case": "bear",
+            "input": "terminal_pe",
+            "source": "assumption",
+            "value": 21.0
+          },
+          {
+            "basis": "0.5 x same-period consensus revenue growth for the fiscal year ending 2027-10-31 (annualized over 2 yr from reported 2025-11-01, 30 analysts) of 29.2% + 0.5 x assumed 5.0% long-run nominal growth, clamped to [-5.0%, 25.0%].",
+            "case": "base",
+            "input": "revenue_growth",
+            "source": "assumption",
+            "value": 0.170948
+          },
+          {
+            "basis": "TTM net margin ended 2026-08-01, held for year 3.",
+            "case": "base",
+            "input": "net_margin_3",
+            "source": "reported",
+            "value": 0.297874
+          },
+          {
+            "basis": "Annualized change in fiscal-year diluted weighted-average shares over 3 years, FY ended 2022-10-29 to FY ended 2025-11-01.",
+            "case": "base",
+            "input": "annual_dilution",
+            "source": "reported",
+            "value": -0.017157
+          },
+          {
+            "basis": "TTM dividends paid / TTM net income ended 2026-08-01.",
+            "case": "base",
+            "input": "payout_ratio",
+            "source": "reported",
+            "value": 0.494055
+          },
+          {
+            "basis": "Median month-end P/E 54.1 over 5 years clamped to [10, 30].",
+            "case": "base",
+            "input": "terminal_pe",
+            "source": "assumption",
+            "value": 30.0
+          },
+          {
+            "basis": "Base revenue growth 17.1% +5% (bull offset, valuation.json).",
+            "case": "bull",
+            "input": "revenue_growth",
+            "source": "assumption",
+            "value": 0.220948
+          },
+          {
+            "basis": "Highest TTM net margin in the prior 5 fiscal years (2026-08-01).",
+            "case": "bull",
+            "input": "net_margin_3",
+            "source": "reported",
+            "value": 0.297874
+          },
+          {
+            "basis": "Annualized change in fiscal-year diluted weighted-average shares over 3 years, FY ended 2022-10-29 to FY ended 2025-11-01.",
+            "case": "bull",
+            "input": "annual_dilution",
+            "source": "reported",
+            "value": -0.017157
+          },
+          {
+            "basis": "TTM dividends paid / TTM net income ended 2026-08-01.",
+            "case": "bull",
+            "input": "payout_ratio",
+            "source": "reported",
+            "value": 0.494055
+          },
+          {
+            "basis": "min(35, 1.15 x base P/E 30.0).",
+            "case": "bull",
+            "input": "terminal_pe",
+            "source": "assumption",
+            "value": 34.5
+          }
+        ],
+        "assumptions_version": "valuation-2026-09-13",
+        "base_irr_pct": 2.0,
+        "bear_irr_pct": -33.0,
+        "bull_irr_pct": 11.3,
+        "hurdle_pct": 12.0,
+        "max_entry_price": 318.21,
+        "reverse_requirement": "To earn the 12% hurdle from $419.79, revenue would need to grow 28.6% a year with the other base-case inputs held. With base-case growth instead, the year-three net margin would need to reach 39.4%.",
+        "spy_base_assumption_pct": 7.0,
+        "stress_classification": "base_below_hurdle",
+        "stress_sentence": "The published base case itself is below the hurdle, so joint stress is not a second test. The moderate joint case returns negative 5.0% a year against a 12% hurdle. 0 of 60 combinations still clear the hurdle."
+      },
+      "sector": "Information Technology",
+      "ticker": "ADI",
+      "watch_price": 318.21,
+      "why_now": [
+        "Sales per diluted share rose 35.6% from a year earlier, and operating margin widened by 10.9 percentage points.",
+        "Broad-based demand, led by data center and industrial markets, lifted revenue and gross margin, which lifted operating income and sales per share."
+      ]
+    }
+  ],
+  "engine_version": "ebf5d44223f59c5250476b5997ca5ddd7a35defe",
   "freshness": {
     "estimates": "current",
     "filings": "release-aware",
     "prices": "current"
   },
-  "generated_at": "2026-10-09T03:59:59Z",
+  "generated_at": "2026-11-04T04:59:59Z",
   "model_id": "opportunity-v2.1-hypothesis1",
-  "no_action_reason": "None of the 22 names checked in this run cleared every check: 16 are still being verified, five stopped until a data repair and one was resolved with no action.",
+  "no_action_reason": null,
   "resolved_no_action": [
     {
-      "deciding_fact": "Evidence review found a thesis failure. The improvement rests on a non-recurring item: A pre-tax benefit from IEEPA tariff refunds reduced cost of goods sold and boosted interest and other income.",
-      "rank": 5,
+      "deciding_fact": "Evidence review found a thesis failure. The improvement rests on a non-recurring item: The tariff refund recognized in cost of sales is a one-time benefit to operating income, and the packet shows no operating driver beyond it and the lapped impairment.",
+      "rank": 6,
+      "ticker": "TPR"
+    },
+    {
+      "deciding_fact": "Evidence review found a thesis failure. The improvement rests on a non-recurring item: Tariff refunds cut cost of goods sold and added interest income in the latest quarter, and the margin improvement depends on this one-time benefit.",
+      "rank": 11,
       "ticker": "FIVE"
+    },
+    {
+      "deciding_fact": "Evidence review found a thesis failure. The improvement rests on a non-recurring item: Much of the products revenue gain came from one-time sales rather than recurring revenue, which may not repeat.",
+      "rank": 31,
+      "ticker": "DGII"
+    },
+    {
+      "deciding_fact": "Evidence review found a thesis failure. The improvement rests on a non-recurring item: A significant limited-edition can promotion with Disney and Home Depot lifted U.S. sales and may not repeat, so the sales gain partly depends on it.",
+      "rank": 41,
+      "ticker": "WDFC"
+    },
+    {
+      "deciding_fact": "Evidence review found a thesis failure. The improvement rests on a non-recurring item: The net benefit from tariff refunds booked in cost of goods sold and SG&A drove gross profit growth and the operating income improvement.",
+      "rank": 42,
+      "ticker": "WOR"
     }
   ],
-  "run_id": "2026-10-08-close_opportunity-v2_2550817d",
+  "run_id": "2026-11-03-close_opportunity-v2_bcabdd5b",
   "schema": "opportunity-public/v2",
-  "session": "2026-10-08",
-  "source_manifest_sha256": "sha256:2550817df54c8eaba0490308d40d21e90058691161a28906d4c75f77ebbcbccb",
+  "session": "2026-11-03",
+  "source_manifest_sha256": "sha256:bcabdd5b8819359d965394ca8023bc1f08e47bf65a2e4078bd830051182a56fb",
   "stale_notice": null,
   "status": "current",
   "strategy_status": "experimental",
@@ -109,10 +1056,10 @@
         "improvement_mechanism",
         "impairment_review_completed"
       ],
-      "rank": 1,
-      "retry_on": "2026-10-09",
+      "rank": 2,
+      "retry_on": "2026-11-04",
       "state": "in_progress",
-      "ticker": "EXEL"
+      "ticker": "DXCM"
     },
     {
       "evidence_status": "incomplete",
@@ -120,187 +1067,51 @@
         "evidence_review",
         "organic_growth_check"
       ],
-      "rank": 2,
-      "retry_on": "2026-09-16",
+      "rank": 5,
+      "retry_on": "2026-11-02",
       "state": "data_repair",
-      "ticker": "TER"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "evidence_review",
-        "improvement_mechanism",
-        "organic_growth_check",
-        "impairment_review_completed"
-      ],
-      "rank": 3,
-      "retry_on": "2026-09-16",
-      "state": "data_repair",
-      "ticker": "NVDA"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "awaiting_review:price_quota",
-        "independent_price",
-        "evidence_review",
-        "improvement_mechanism",
-        "organic_growth_check",
-        "impairment_review_completed"
-      ],
-      "rank": 4,
-      "retry_on": "2026-10-09",
-      "state": "in_progress",
-      "ticker": "VRT"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "awaiting_review:price_quota",
-        "independent_price",
-        "evidence_review",
-        "improvement_mechanism",
-        "organic_growth_check",
-        "impairment_review_completed"
-      ],
-      "rank": 6,
-      "retry_on": "2026-10-09",
-      "state": "in_progress",
-      "ticker": "FTNT"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "awaiting_review:price_quota",
-        "independent_price",
-        "evidence_review",
-        "improvement_mechanism",
-        "organic_growth_check",
-        "impairment_review_completed"
-      ],
-      "rank": 7,
-      "retry_on": "2026-10-09",
-      "state": "in_progress",
-      "ticker": "COCO"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "awaiting_review:price_quota",
-        "independent_price",
-        "evidence_review",
-        "improvement_mechanism",
-        "impairment_review_completed"
-      ],
-      "rank": 8,
-      "retry_on": "2026-10-09",
-      "state": "in_progress",
-      "ticker": "AGX"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "awaiting_review:price_quota",
-        "independent_price",
-        "evidence_review",
-        "improvement_mechanism",
-        "impairment_review_completed"
-      ],
-      "rank": 9,
-      "retry_on": "2026-10-09",
-      "state": "in_progress",
       "ticker": "LRCX"
     },
     {
       "evidence_status": "incomplete",
       "missing": [
-        "awaiting_review:price_quota",
         "independent_price",
-        "evidence_review",
-        "improvement_mechanism",
-        "organic_growth_check",
-        "impairment_review_completed"
-      ],
-      "rank": 10,
-      "retry_on": "2026-10-09",
-      "state": "in_progress",
-      "ticker": "STRL"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "awaiting_review:price_quota",
-        "independent_price",
-        "evidence_review",
-        "improvement_mechanism",
-        "organic_growth_check",
-        "impairment_review_completed"
-      ],
-      "rank": 11,
-      "retry_on": "2026-10-09",
-      "state": "in_progress",
-      "ticker": "ROST"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "awaiting_review:price_quota",
-        "independent_price",
-        "evidence_review",
-        "improvement_mechanism",
-        "impairment_review_completed"
-      ],
-      "rank": 12,
-      "retry_on": "2026-10-09",
-      "state": "in_progress",
-      "ticker": "DXCM"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "awaiting_review:price_quota",
-        "independent_price",
-        "evidence_review",
-        "improvement_mechanism",
-        "impairment_review_completed"
-      ],
-      "rank": 13,
-      "retry_on": "2026-10-09",
-      "state": "in_progress",
-      "ticker": "TPR"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
         "evidence_review",
         "improvement_mechanism",
         "organic_growth_check",
         "impairment_review_completed",
         "plausible_assumptions"
       ],
-      "rank": 14,
-      "retry_on": "2026-09-29",
+      "rank": 7,
+      "retry_on": "2026-10-21",
       "state": "data_repair",
       "ticker": "GMED"
     },
     {
       "evidence_status": "incomplete",
       "missing": [
-        "awaiting_review:price_quota",
-        "independent_price",
         "evidence_review",
-        "improvement_mechanism",
-        "organic_growth_check",
-        "impairment_review_completed"
+        "organic_growth_check"
       ],
-      "rank": 15,
-      "retry_on": "2026-10-09",
+      "rank": 12,
+      "retry_on": "2026-11-04",
       "state": "in_progress",
-      "ticker": "ADI"
+      "ticker": "ROST"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "evidence_review"
+      ],
+      "rank": 13,
+      "retry_on": "2026-11-04",
+      "state": "data_repair",
+      "ticker": "PAYC"
     },
     {
       "evidence_status": "conflict",
       "missing": [
+        "independent_price",
         "reconciliation",
         "scenario_complete",
         "evidence_review",
@@ -309,9 +1120,9 @@
         "impairment_review_completed",
         "plausible_assumptions"
       ],
-      "rank": 16,
-      "retry_on": "2026-10-06",
-      "state": "data_repair",
+      "rank": 14,
+      "retry_on": "2026-11-04",
+      "state": "in_progress",
       "ticker": "DDOG"
     },
     {
@@ -324,42 +1135,76 @@
         "impairment_review_completed"
       ],
       "rank": 17,
-      "retry_on": "2026-10-09",
+      "retry_on": "2026-11-04",
       "state": "in_progress",
       "ticker": "CIEN"
     },
     {
       "evidence_status": "incomplete",
       "missing": [
-        "awaiting_review:price_quota",
         "independent_price",
+        "scenario_complete",
         "evidence_review",
         "improvement_mechanism",
-        "impairment_review_completed"
+        "impairment_review_completed",
+        "plausible_assumptions"
       ],
       "rank": 18,
-      "retry_on": "2026-10-09",
-      "state": "in_progress",
-      "ticker": "QLYS"
+      "retry_on": "2026-10-30",
+      "state": "data_repair",
+      "ticker": "VCYT"
     },
     {
       "evidence_status": "incomplete",
       "missing": [
-        "awaiting_review:price_quota",
+        "evidence_review",
+        "organic_growth_check"
+      ],
+      "rank": 21,
+      "retry_on": "2026-11-04",
+      "state": "in_progress",
+      "ticker": "PLTR"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "evidence_review"
+      ],
+      "rank": 22,
+      "retry_on": "2026-11-02",
+      "state": "data_repair",
+      "ticker": "MTSI"
+    },
+    {
+      "evidence_status": "conflict",
+      "missing": [
         "independent_price",
+        "reconciliation",
         "evidence_review",
         "improvement_mechanism",
         "organic_growth_check",
         "impairment_review_completed"
       ],
-      "rank": 19,
-      "retry_on": "2026-10-09",
-      "state": "in_progress",
-      "ticker": "WTS"
+      "rank": 24,
+      "retry_on": "2026-11-02",
+      "state": "data_repair",
+      "ticker": "NDSN"
     },
     {
       "evidence_status": "incomplete",
       "missing": [
+        "evidence_review",
+        "impairment_review_completed"
+      ],
+      "rank": 26,
+      "retry_on": "2026-11-04",
+      "state": "in_progress",
+      "ticker": "FAST"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "independent_price",
         "scenario_complete",
         "evidence_review",
         "improvement_mechanism",
@@ -367,10 +1212,10 @@
         "impairment_review_completed",
         "plausible_assumptions"
       ],
-      "rank": 20,
-      "retry_on": "2026-09-16",
+      "rank": 28,
+      "retry_on": "2026-11-02",
       "state": "data_repair",
-      "ticker": "PLTR"
+      "ticker": "P"
     },
     {
       "evidence_status": "incomplete",
@@ -381,10 +1226,10 @@
         "improvement_mechanism",
         "impairment_review_completed"
       ],
-      "rank": 21,
-      "retry_on": "2026-10-09",
+      "rank": 29,
+      "retry_on": "2026-11-04",
       "state": "in_progress",
-      "ticker": "CHEF"
+      "ticker": "DELL"
     },
     {
       "evidence_status": "incomplete",
@@ -395,10 +1240,166 @@
         "improvement_mechanism",
         "impairment_review_completed"
       ],
-      "rank": 22,
-      "retry_on": "2026-10-09",
+      "rank": 30,
+      "retry_on": "2026-11-04",
       "state": "in_progress",
-      "ticker": "PAYC"
+      "ticker": "PEN"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "independent_price",
+        "scenario_complete",
+        "evidence_review",
+        "improvement_mechanism",
+        "organic_growth_check",
+        "impairment_review_completed",
+        "plausible_assumptions"
+      ],
+      "rank": 32,
+      "retry_on": "2026-09-25",
+      "state": "data_repair",
+      "ticker": "TTC"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "awaiting_review:price_quota",
+        "independent_price",
+        "evidence_review",
+        "improvement_mechanism",
+        "organic_growth_check",
+        "impairment_review_completed"
+      ],
+      "rank": 33,
+      "retry_on": "2026-11-04",
+      "state": "in_progress",
+      "ticker": "AAPL"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "awaiting_review:price_quota",
+        "independent_price",
+        "evidence_review",
+        "improvement_mechanism",
+        "impairment_review_completed"
+      ],
+      "rank": 34,
+      "retry_on": "2026-11-04",
+      "state": "in_progress",
+      "ticker": "PGNY"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "awaiting_review:price_quota",
+        "independent_price",
+        "evidence_review",
+        "improvement_mechanism",
+        "impairment_review_completed"
+      ],
+      "rank": 35,
+      "retry_on": "2026-11-04",
+      "state": "in_progress",
+      "ticker": "ATI"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "awaiting_review:price_quota",
+        "independent_price",
+        "evidence_review",
+        "improvement_mechanism",
+        "organic_growth_check",
+        "impairment_review_completed"
+      ],
+      "rank": 36,
+      "retry_on": "2026-11-04",
+      "state": "in_progress",
+      "ticker": "AMGN"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "awaiting_review:price_quota",
+        "independent_price",
+        "evidence_review",
+        "improvement_mechanism",
+        "impairment_review_completed"
+      ],
+      "rank": 37,
+      "retry_on": "2026-11-04",
+      "state": "in_progress",
+      "ticker": "WST"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "evidence_review",
+        "improvement_mechanism",
+        "organic_growth_check"
+      ],
+      "rank": 43,
+      "retry_on": "2026-11-04",
+      "state": "in_progress",
+      "ticker": "TGT"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "evidence_review",
+        "improvement_mechanism",
+        "organic_growth_check"
+      ],
+      "rank": 44,
+      "retry_on": "2026-11-04",
+      "state": "data_repair",
+      "ticker": "TILE"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "scenario_complete",
+        "evidence_review",
+        "improvement_mechanism",
+        "impairment_review_completed",
+        "plausible_assumptions"
+      ],
+      "rank": 45,
+      "retry_on": "2026-09-22",
+      "state": "data_repair",
+      "ticker": "TPC"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "awaiting_review:price_quota",
+        "independent_price",
+        "evidence_review",
+        "improvement_mechanism",
+        "impairment_review_completed"
+      ],
+      "rank": 46,
+      "retry_on": "2026-11-04",
+      "state": "in_progress",
+      "ticker": "ENS"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "independent_price",
+        "scenario_complete",
+        "evidence_review",
+        "improvement_mechanism",
+        "organic_growth_check",
+        "impairment_review_completed",
+        "plausible_assumptions"
+      ],
+      "rank": 47,
+      "retry_on": "2026-11-04",
+      "state": "in_progress",
+      "ticker": "RBC"
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "schema": "paper-book-public/v1",
   "book": "ai-overlay",
-  "generated_at": "2026-11-03T22:44:19Z",
+  "generated_at": "2026-11-09T22:33:16Z",
   "config": {
     "benchmark": "SPY",
     "cost_bps": 10,

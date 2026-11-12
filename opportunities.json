@@ -1,6 +1,6 @@
 {
   "coverage": {
-    "additional_candidates": 9,
+    "additional_candidates": 15,
     "by_sector": {
       "Communication Services": {
         "complete": 4,
@@ -28,9 +28,9 @@
         "ranked": 0
       },
       "Health Care": {
-        "complete": 36,
-        "eligible": 46,
-        "ranked": 36
+        "complete": 35,
+        "eligible": 45,
+        "ranked": 35
       },
       "Industrials": {
         "complete": 62,
@@ -59,26 +59,26 @@
       }
     },
     "queues": {
-      "queue:banks-insurers": 209,
+      "queue:banks-insurers": 210,
       "queue:binary-event": 7,
       "queue:cyclical": 127,
-      "queue:data-repair": 333,
+      "queue:data-repair": 332,
       "queue:duplicate-issuer-line": 6,
-      "queue:emerging": 63,
-      "queue:hard-rule-excluded": 204,
-      "queue:margin-volatile": 86,
+      "queue:emerging": 62,
+      "queue:hard-rule-excluded": 211,
+      "queue:margin-volatile": 85,
       "queue:reits": 81,
       "queue:scope-break": 88,
       "queue:sector-too-small": 7,
-      "queue:young-listing": 52
+      "queue:young-listing": 48
     },
-    "ranked": 242,
+    "ranked": 241,
     "universe": 1505,
-    "v2_eligible": 366
+    "v2_eligible": 365
   },
   "decisions": [
     {
-      "changed_since_prior": "On Nov. 10, 2026, this name was still being verified.",
+      "changed_since_prior": "The price moved from $265.78 on Nov. 11, 2026, to $263.75, a decline of 0.8%. The opinion and the filing facts are unchanged.",
       "cohort": "v2",
       "company": "Teradyne",
       "decisive_facts": [
@@ -109,7 +109,7 @@
       ],
       "evidence_review": {
         "evidence_hash": "sha256:7458292069d06efeeb7a94824e84b8d77eedefc04b042c5121e6b83f5e556312",
-        "model_class": "economical",
+        "model_class": "cached",
         "status": "clear"
       },
       "evidence_status": "verified",
@@ -131,8 +131,8 @@
       "price": {
         "currency": "USD",
         "independent_check": "pass",
-        "session": "2026-11-11",
-        "value": 265.78
+        "session": "2026-11-12",
+        "value": 263.75
       },
       "rank": 1,
       "scenario": {
@@ -244,15 +244,15 @@
           }
         ],
         "assumptions_version": "valuation-2026-09-13",
-        "base_irr_pct": 26.1,
-        "bear_irr_pct": -14.3,
-        "bull_irr_pct": 37.6,
+        "base_irr_pct": 26.4,
+        "bear_irr_pct": -14.0,
+        "bull_irr_pct": 38.0,
         "hurdle_pct": 12.0,
         "max_entry_price": 379.11,
-        "reverse_requirement": "To earn the 12% hurdle from $265.78, revenue would need to grow 10.2% a year with the other base-case inputs held. With base-case growth instead, the year-three net margin would need to reach 19.2%.",
+        "reverse_requirement": "To earn the 12% hurdle from $263.75, revenue would need to grow 9.9% a year with the other base-case inputs held. With base-case growth instead, the year-three net margin would need to reach 19.1%.",
         "spy_base_assumption_pct": 7.0,
         "stress_classification": "robust",
-        "stress_sentence": "The base case remains above the hurdle after a moderate joint cut to margin, net share reduction and terminal multiple. The moderate joint case returns 17.2% a year against a 12% hurdle. 38 of 60 combinations still clear the hurdle."
+        "stress_sentence": "The base case remains above the hurdle after a moderate joint cut to margin, net share reduction and terminal multiple. The moderate joint case returns 17.5% a year against a 12% hurdle. 39 of 60 combinations still clear the hurdle."
       },
       "sector": "Information Technology",
       "ticker": "TER",
@@ -263,7 +263,7 @@
       ]
     },
     {
-      "changed_since_prior": "On Nov. 10, 2026, this name was still being verified.",
+      "changed_since_prior": "The price moved from $128.10 on Nov. 11, 2026, to $129.54, a gain of 1.1%. The opinion and the filing facts are unchanged.",
       "cohort": "v2",
       "company": "Fortinet",
       "decisive_facts": [
@@ -316,8 +316,8 @@
       "price": {
         "currency": "USD",
         "independent_check": "pass",
-        "session": "2026-11-11",
-        "value": 128.1
+        "session": "2026-11-12",
+        "value": 129.54
       },
       "rank": 4,
       "scenario": {
@@ -429,15 +429,15 @@
           }
         ],
         "assumptions_version": "valuation-2026-09-13",
-        "base_irr_pct": -2.0,
-        "bear_irr_pct": -31.6,
-        "bull_irr_pct": 10.3,
+        "base_irr_pct": -2.4,
+        "bear_irr_pct": -31.9,
+        "bull_irr_pct": 9.9,
         "hurdle_pct": 12.0,
         "max_entry_price": 85.75,
-        "reverse_requirement": "To earn the 12% hurdle from $128.10, revenue would need to grow 26.2% a year with the other base-case inputs held. With base-case growth instead, the year-three net margin would need to reach 42.1%.",
+        "reverse_requirement": "To earn the 12% hurdle from $129.54, revenue would need to grow 26.7% a year with the other base-case inputs held. With base-case growth instead, the year-three net margin would need to reach 42.6%.",
         "spy_base_assumption_pct": 7.0,
         "stress_classification": "base_below_hurdle",
-        "stress_sentence": "The published base case itself is below the hurdle, so joint stress is not a second test. The moderate joint case returns negative 8.8% a year against a 12% hurdle. 0 of 60 combinations still clear the hurdle."
+        "stress_sentence": "The published base case itself is below the hurdle, so joint stress is not a second test. The moderate joint case returns negative 9.1% a year against a 12% hurdle. 0 of 60 combinations still clear the hurdle."
       },
       "sector": "Information Technology",
       "ticker": "FTNT",
@@ -448,7 +448,7 @@
       ]
     },
     {
-      "changed_since_prior": "On Nov. 10, 2026, this name was still being verified.",
+      "changed_since_prior": "The price moved from $173.73 on Nov. 11, 2026, to $166.19, a decline of 4.3%. The opinion and the filing facts are unchanged.",
       "cohort": "v2",
       "company": "Nvidia",
       "decisive_facts": [
@@ -501,10 +501,10 @@
       "price": {
         "currency": "USD",
         "independent_check": "pass",
-        "session": "2026-11-11",
-        "value": 173.73
+        "session": "2026-11-12",
+        "value": 166.19
       },
-      "rank": 5,
+      "rank": 6,
       "scenario": {
         "assumptions": [
           {
@@ -543,7 +543,7 @@
             "value": 21.0
           },
           {
-            "basis": "0.5 x same-period consensus revenue growth for the fiscal year ending 2028-01-31 (annualized over 2 yr from reported 2026-01-25, 56 analysts) of 78.9% + 0.5 x assumed 5.0% long-run nominal growth, clamped to [-5.0%, 25.0%].",
+            "basis": "0.5 x same-period consensus revenue growth for the fiscal year ending 2028-01-31 (annualized over 2 yr from reported 2026-01-25, 57 analysts) of 79.0% + 0.5 x assumed 5.0% long-run nominal growth, clamped to [-5.0%, 25.0%].",
             "case": "base",
             "input": "revenue_growth",
             "source": "assumption",
@@ -614,15 +614,15 @@
           }
         ],
         "assumptions_version": "valuation-2026-09-13",
-        "base_irr_pct": 39.9,
-        "bear_irr_pct": -27.0,
-        "bull_irr_pct": 52.4,
+        "base_irr_pct": 42.0,
+        "bear_irr_pct": -25.9,
+        "bull_irr_pct": 54.7,
         "hurdle_pct": 12.0,
         "max_entry_price": 338.25,
-        "reverse_requirement": "To earn the 12% hurdle from $173.73, revenue would need to grow 0.1% a year with the other base-case inputs held. With base-case growth instead, the year-three net margin would need to reach 32.7%.",
+        "reverse_requirement": "To earn the 12% hurdle from $166.19, revenue would need to grow negative 1.4% a year with the other base-case inputs held. With base-case growth instead, the year-three net margin would need to reach 31.2%.",
         "spy_base_assumption_pct": 7.0,
         "stress_classification": "robust",
-        "stress_sentence": "The base case remains above the hurdle after a moderate joint cut to margin, net share reduction and terminal multiple. The moderate joint case returns 30.9% a year against a 12% hurdle. 57 of 60 combinations still clear the hurdle."
+        "stress_sentence": "The base case remains above the hurdle after a moderate joint cut to margin, net share reduction and terminal multiple. The moderate joint case returns 32.8% a year against a 12% hurdle. 57 of 60 combinations still clear the hurdle."
       },
       "sector": "Information Technology",
       "ticker": "NVDA",
@@ -633,7 +633,7 @@
       ]
     },
     {
-      "changed_since_prior": "On Nov. 10, 2026, this name was still being verified.",
+      "changed_since_prior": "The price moved from $309.81 on Nov. 11, 2026, to $312.48, a gain of 0.9%. The opinion and the filing facts are unchanged.",
       "cohort": "v2",
       "company": "Texas Instruments",
       "decisive_facts": [
@@ -686,10 +686,10 @@
       "price": {
         "currency": "USD",
         "independent_check": "pass",
-        "session": "2026-11-11",
-        "value": 309.81
+        "session": "2026-11-12",
+        "value": 312.48
       },
-      "rank": 8,
+      "rank": 10,
       "scenario": {
         "assumptions": [
           {
@@ -799,15 +799,15 @@
           }
         ],
         "assumptions_version": "valuation-2026-09-13",
-        "base_irr_pct": 4.2,
-        "bear_irr_pct": -22.1,
-        "bull_irr_pct": 23.9,
+        "base_irr_pct": 3.9,
+        "bear_irr_pct": -22.4,
+        "bull_irr_pct": 23.5,
         "hurdle_pct": 12.0,
         "max_entry_price": 250.67,
-        "reverse_requirement": "To earn the 12% hurdle from $309.81, revenue would need to grow 21.9% a year with the other base-case inputs held. With base-case growth instead, the year-three net margin would need to reach 42.5%.",
+        "reverse_requirement": "To earn the 12% hurdle from $312.48, revenue would need to grow 22.3% a year with the other base-case inputs held. With base-case growth instead, the year-three net margin would need to reach 42.9%.",
         "spy_base_assumption_pct": 7.0,
         "stress_classification": "base_below_hurdle",
-        "stress_sentence": "The published base case itself is below the hurdle, so joint stress is not a second test. The moderate joint case returns negative 2.2% a year against a 12% hurdle. 0 of 60 combinations still clear the hurdle."
+        "stress_sentence": "The published base case itself is below the hurdle, so joint stress is not a second test. The moderate joint case returns negative 2.5% a year against a 12% hurdle. 0 of 60 combinations still clear the hurdle."
       },
       "sector": "Information Technology",
       "ticker": "TXN",
@@ -818,7 +818,7 @@
       ]
     },
     {
-      "changed_since_prior": "On Nov. 10, 2026, this name was still being verified.",
+      "changed_since_prior": "The price moved from $409.08 on Nov. 11, 2026, to $409.29, a gain of 0.1%. The opinion and the filing facts are unchanged.",
       "cohort": "v2",
       "company": "Analog Devices",
       "decisive_facts": [
@@ -871,10 +871,10 @@
       "price": {
         "currency": "USD",
         "independent_check": "pass",
-        "session": "2026-11-11",
-        "value": 409.08
+        "session": "2026-11-12",
+        "value": 409.29
       },
-      "rank": 10,
+      "rank": 11,
       "scenario": {
         "assumptions": [
           {
@@ -986,10 +986,10 @@
         "assumptions_version": "valuation-2026-09-13",
         "base_irr_pct": 2.9,
         "bear_irr_pct": -32.4,
-        "bull_irr_pct": 12.3,
+        "bull_irr_pct": 12.2,
         "hurdle_pct": 12.0,
         "max_entry_price": 318.21,
-        "reverse_requirement": "To earn the 12% hurdle from $409.08, revenue would need to grow 27.5% a year with the other base-case inputs held. With base-case growth instead, the year-three net margin would need to reach 38.4%.",
+        "reverse_requirement": "To earn the 12% hurdle from $409.29, revenue would need to grow 27.5% a year with the other base-case inputs held. With base-case growth instead, the year-three net margin would need to reach 38.4%.",
         "spy_base_assumption_pct": 7.0,
         "stress_classification": "base_below_hurdle",
         "stress_sentence": "The published base case itself is below the hurdle, so joint stress is not a second test. The moderate joint case returns negative 4.1% a year against a 12% hurdle. 0 of 60 combinations still clear the hurdle."
@@ -1003,19 +1003,19 @@
       ]
     }
   ],
-  "engine_version": "cec457924219b9a6916a22e1dc521decb9d1e1d4",
+  "engine_version": "07e63e600c2a7861f898a3079ef8876674123de9",
   "freshness": {
     "estimates": "current",
     "filings": "release-aware",
     "prices": "current"
   },
-  "generated_at": "2026-11-12T04:59:59Z",
+  "generated_at": "2026-11-13T04:59:59Z",
   "model_id": "opportunity-v2.1-hypothesis1",
   "no_action_reason": null,
   "resolved_no_action": [
     {
       "deciding_fact": "Evidence review found a thesis failure. The improvement rests on a non-recurring item: Tariff refunds reduced cost of goods sold and added interest income in the latest quarter, and the margin and operating income improvement depends on them.",
-      "rank": 9,
+      "rank": 8,
       "ticker": "FIVE"
     },
     {
@@ -1024,45 +1024,40 @@
       "ticker": "WTS"
     },
     {
-      "deciding_fact": "Evidence review found a thesis failure. The improvement rests on a non-recurring item: Tariff refunds and recoveries are cited as a gross margin driver, and their size is not quantified in the packet, so reliance cannot be excluded.",
-      "rank": 16,
-      "ticker": "CIEN"
-    },
-    {
       "deciding_fact": "Evidence review found a thesis failure. The improvement rests on a non-recurring item: A non-cash gain from remeasuring contingent consideration, driven by rhode outperformance, is included in earnings and may not repeat, and the packet does not show where it sits.",
-      "rank": 22,
+      "rank": 19,
       "ticker": "ELF"
     },
     {
-      "deciding_fact": "Evidence review found a thesis failure. The improvement rests on a non-recurring item: The pre-tax gain on the Pizza Hut divestitures lifted GAAP operating profit, and the improvement depends on it.",
-      "rank": 23,
-      "ticker": "YUM"
-    },
-    {
-      "deciding_fact": "Evidence review found a thesis failure. The improvement rests on a non-recurring item: Much of the products revenue gain came from one-time sales rather than recurring revenue, which may not repeat.",
-      "rank": 30,
-      "ticker": "DGII"
-    },
-    {
-      "deciding_fact": "Evidence review found a thesis failure. The improvement rests on a non-recurring item: The prior-year long-lived asset impairment tied to Galvanize is absent this year, which flatters the operating income comparison and likely explains much of the improvement.",
-      "rank": 33,
-      "ticker": "LRN"
+      "deciding_fact": "Evidence review found a thesis failure. The improvement rests on a non-recurring item: Tariff refunds and recoveries are cited as a gross margin driver, and their size is not quantified in the packet, so reliance cannot be excluded.",
+      "rank": 20,
+      "ticker": "CIEN"
     },
     {
       "deciding_fact": "Evidence review found a thesis failure. The improvement rests on a non-recurring item: The gain on sale of the SmartDose on-body delivery system lifted latest-quarter operating income, so the margin improvement partly depends on it.",
-      "rank": 36,
+      "rank": 33,
       "ticker": "WST"
     },
     {
       "deciding_fact": "Evidence review found a thesis failure. The improvement rests on a non-recurring item: The divestiture gain in other income inflated year-to-date GAAP earnings per share, so reported per-share improvement leans on it, though operating income excludes it.",
-      "rank": 38,
+      "rank": 36,
       "ticker": "PTC"
+    },
+    {
+      "deciding_fact": "Evidence review found a thesis failure. The improvement rests on a non-recurring item: The one-time refund of previously paid IEEPA tariffs reduced cost of sales and added interest income, and the margin gain depends on it.",
+      "rank": 42,
+      "ticker": "URBN"
+    },
+    {
+      "deciding_fact": "Evidence review found a thesis failure. The improvement rests on a non-recurring item: The net benefit from tariff refunds booked in cost of goods sold and SG&A drove gross profit growth and the operating income improvement.",
+      "rank": 44,
+      "ticker": "WOR"
     }
   ],
-  "run_id": "2026-11-11-close_opportunity-v2_bb35b481",
+  "run_id": "2026-11-12-close_opportunity-v2_9294e837",
   "schema": "opportunity-public/v2",
-  "session": "2026-11-11",
-  "source_manifest_sha256": "sha256:bb35b4814aaedbbe7026d0444f72a16ea2e08b4eec5d5866ae9846f2d29baaeb",
+  "session": "2026-11-12",
+  "source_manifest_sha256": "sha256:9294e83747ee2a02cae136048299c884291fd12d02a42db6d0cd0a5da524707c",
   "stale_notice": null,
   "status": "current",
   "strategy_status": "experimental",
@@ -1075,7 +1070,7 @@
       "rank": 2,
       "retry_on": "2026-11-12",
       "state": "data_repair",
-      "ticker": "DXCM"
+      "ticker": "PAYC"
     },
     {
       "evidence_status": "incomplete",
@@ -1085,18 +1080,7 @@
       "rank": 3,
       "retry_on": "2026-11-12",
       "state": "data_repair",
-      "ticker": "PAYC"
-    },
-    {
-      "evidence_status": "incomplete",
-      "missing": [
-        "evidence_review",
-        "organic_growth_check"
-      ],
-      "rank": 6,
-      "retry_on": "2026-11-02",
-      "state": "data_repair",
-      "ticker": "LRCX"
+      "ticker": "DXCM"
     },
     {
       "evidence_status": "conflict",
@@ -1107,10 +1091,32 @@
         "improvement_mechanism",
         "impairment_review_completed"
       ],
-      "rank": 7,
-      "retry_on": "2026-11-12",
-      "state": "in_progress",
+      "rank": 5,
+      "retry_on": "2026-11-13",
+      "state": "data_repair",
       "ticker": "TPR"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "evidence_review",
+        "organic_growth_check"
+      ],
+      "rank": 7,
+      "retry_on": "2026-11-02",
+      "state": "data_repair",
+      "ticker": "LRCX"
+    },
+    {
+      "evidence_status": "stale",
+      "missing": [
+        "independent_price",
+        "evidence_review"
+      ],
+      "rank": 9,
+      "retry_on": "2026-11-13",
+      "state": "in_progress",
+      "ticker": "FORM"
     },
     {
       "evidence_status": "incomplete",
@@ -1126,15 +1132,12 @@
     {
       "evidence_status": "incomplete",
       "missing": [
-        "awaiting_review:price_quota",
-        "independent_price",
         "evidence_review",
         "improvement_mechanism",
-        "organic_growth_check",
-        "impairment_review_completed"
+        "organic_growth_check"
       ],
       "rank": 14,
-      "retry_on": "2026-11-12",
+      "retry_on": "2026-11-13",
       "state": "in_progress",
       "ticker": "ROST"
     },
@@ -1150,9 +1153,23 @@
         "plausible_assumptions"
       ],
       "rank": 15,
-      "retry_on": "2026-11-12",
-      "state": "in_progress",
+      "retry_on": "2026-11-13",
+      "state": "data_repair",
       "ticker": "VIAV"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "awaiting_review:price_quota",
+        "independent_price",
+        "evidence_review",
+        "improvement_mechanism",
+        "impairment_review_completed"
+      ],
+      "rank": 21,
+      "retry_on": "2026-11-13",
+      "state": "in_progress",
+      "ticker": "YUM"
     },
     {
       "evidence_status": "conflict",
@@ -1166,19 +1183,24 @@
         "impairment_review_completed",
         "plausible_assumptions"
       ],
-      "rank": 20,
-      "retry_on": "2026-11-12",
-      "state": "in_progress",
+      "rank": 22,
+      "retry_on": "2026-11-13",
+      "state": "data_repair",
       "ticker": "DDOG"
     },
     {
       "evidence_status": "incomplete",
       "missing": [
-        "evidence_review"
+        "awaiting_review:price_quota",
+        "independent_price",
+        "evidence_review",
+        "improvement_mechanism",
+        "organic_growth_check",
+        "impairment_review_completed"
       ],
-      "rank": 24,
-      "retry_on": "2026-11-12",
-      "state": "data_repair",
+      "rank": 23,
+      "retry_on": "2026-11-13",
+      "state": "in_progress",
       "ticker": "MTSI"
     },
     {
@@ -1192,10 +1214,21 @@
         "impairment_review_completed",
         "plausible_assumptions"
       ],
-      "rank": 28,
-      "retry_on": "2026-11-02",
-      "state": "data_repair",
+      "rank": 26,
+      "retry_on": "2026-11-13",
+      "state": "in_progress",
       "ticker": "P"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "evidence_review",
+        "impairment_review_completed"
+      ],
+      "rank": 27,
+      "retry_on": "2026-11-12",
+      "state": "data_repair",
+      "ticker": "FAST"
     },
     {
       "evidence_status": "conflict",
@@ -1207,7 +1240,7 @@
         "organic_growth_check",
         "impairment_review_completed"
       ],
-      "rank": 29,
+      "rank": 28,
       "retry_on": "2026-11-02",
       "state": "data_repair",
       "ticker": "NDSN"
@@ -1215,13 +1248,17 @@
     {
       "evidence_status": "incomplete",
       "missing": [
+        "awaiting_review:price_quota",
+        "independent_price",
         "evidence_review",
+        "improvement_mechanism",
+        "organic_growth_check",
         "impairment_review_completed"
       ],
-      "rank": 31,
-      "retry_on": "2026-11-12",
-      "state": "data_repair",
-      "ticker": "FAST"
+      "rank": 29,
+      "retry_on": "2026-11-13",
+      "state": "in_progress",
+      "ticker": "DGII"
     },
     {
       "evidence_status": "incomplete",
@@ -1234,10 +1271,21 @@
         "impairment_review_completed",
         "plausible_assumptions"
       ],
-      "rank": 34,
+      "rank": 32,
       "retry_on": "2026-09-25",
       "state": "data_repair",
       "ticker": "TTC"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "evidence_review",
+        "organic_growth_check"
+      ],
+      "rank": 34,
+      "retry_on": "2026-11-13",
+      "state": "data_repair",
+      "ticker": "PGNY"
     },
     {
       "evidence_status": "incomplete",
@@ -1250,21 +1298,69 @@
         "impairment_review_completed"
       ],
       "rank": 35,
-      "retry_on": "2026-11-12",
+      "retry_on": "2026-11-13",
       "state": "in_progress",
-      "ticker": "PCTY"
+      "ticker": "AAPL"
     },
     {
       "evidence_status": "incomplete",
       "missing": [
+        "independent_price",
+        "scenario_complete",
         "evidence_review",
         "improvement_mechanism",
-        "organic_growth_check"
+        "organic_growth_check",
+        "impairment_review_completed",
+        "plausible_assumptions"
       ],
       "rank": 37,
-      "retry_on": "2026-11-12",
+      "retry_on": "2026-10-19",
       "state": "data_repair",
-      "ticker": "AAPL"
+      "ticker": "DOCU"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "awaiting_review:price_quota",
+        "independent_price",
+        "evidence_review",
+        "improvement_mechanism",
+        "impairment_review_completed"
+      ],
+      "rank": 38,
+      "retry_on": "2026-11-13",
+      "state": "in_progress",
+      "ticker": "LRN"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "awaiting_review:price_quota",
+        "independent_price",
+        "evidence_review",
+        "improvement_mechanism",
+        "organic_growth_check",
+        "impairment_review_completed"
+      ],
+      "rank": 43,
+      "retry_on": "2026-11-13",
+      "state": "in_progress",
+      "ticker": "DXPE"
+    },
+    {
+      "evidence_status": "incomplete",
+      "missing": [
+        "independent_price",
+        "evidence_review",
+        "improvement_mechanism",
+        "organic_growth_check",
+        "impairment_review_completed",
+        "plausible_assumptions"
+      ],
+      "rank": 49,
+      "retry_on": "2026-11-13",
+      "state": "data_repair",
+      "ticker": "GMED"
     }
   ]
 }
